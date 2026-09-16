@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DroneAtak — Symulator Dronów RemoteID & TAK</title>
+    <style>
+        :root {
+            --bg-dark: #121613;
+            --bg-card: #1c231d;
+            --accent-green: #4b6b38;
+            --highlight-gold: #c5a059;
+            --text-light: #e0e6df;
+            --text-muted: #9aa897;
+            --border: #2e3b2c;
+        }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--bg-dark);
+            color: var(--text-light);
+            line-height: 1.7;
+            margin: 0;
+            padding: 0;
+        }
+        header { background-color: #0b0e0c; border-bottom: 2px solid var(--accent-green); padding: 20px 0; text-align: center; }
+        nav { background: #171f18; display: flex; justify-content: center; gap: 15px; padding: 12px; border-bottom: 1px solid var(--border); flex-wrap: wrap; }
+        nav a { color: var(--text-light); text-decoration: none; padding: 8px 16px; border-radius: 4px; background: var(--bg-card); border: 1px solid var(--border); font-size: 0.9em; font-weight: bold; }
+        nav a:hover, nav a.active { background: var(--accent-green); color: #fff; border-color: var(--highlight-gold); }
+        .container { max-width: 900px; margin: 30px auto; padding: 0 20px; }
+        .content-box { background: var(--bg-card); border: 1px solid var(--border); border-radius: 6px; padding: 30px; margin-bottom: 30px; }
+        h1, h2, h3 { color: var(--highlight-gold); }
+        ul { padding-left: 20px; }
+        li { margin-bottom: 8px; }
+        .tech-tag { display: inline-block; background: #2a382b; border: 1px solid var(--accent-green); color: var(--highlight-gold); padding: 3px 8px; border-radius: 3px; font-size: 0.85em; margin-right: 5px; margin-bottom: 5px; }
+        footer { text-align: center; padding: 30px; color: var(--text-muted); border-top: 1px solid var(--border); margin-top: 50px; font-size: 0.85em; }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1 style="margin:0; color: var(--highlight-gold);">DRONEATAK</h1>
+        <p style="margin:5px 0 0; color: var(--text-muted); font-size: 0.9em;">SYSTEMY SYMULACJI, NADAWANIA I ANALIZY REMOTE ID / C-UAS</p>
+    </header>
+
+    <nav>
+        <a href="index.html">Strona Główna</a>
+        <a href="symulator.html" class="active">1. Symulator DroneAtak</a>
+        <a href="nadajnik.html">2. Nadajnik Taktyczny</a>
+        <a href="odbiornik.html">3. Odbiornik & Python</a>
+    </nav>
+
+    <div class="container">
+        <div class="content-box">
+            <h1>PROJEKT 1: Symulator Masowego Ataku Dronów DroneAtak</h1>
+            <p><strong>DroneAtak</strong> to zaawansowane środowisko programowe stworzone do symulowania masowych nalotów bezzałogowych statków powietrznych (do 200 jednostek jednocześnie) emitujących dane tożsamościowe zgodne z międzynarodowymi standardami Remote ID.</p>
+
+            <span class="tech-tag">TAK Integration</span>
+            <span class="tech-tag">ATAK / WinTAK</span>
+            <span class="tech-tag">ASTM F3411-22</span>
+            <span class="tech-tag">ASD-STAN ED-282</span>
+            <span class="tech-tag">CoT Protocol</span>
+
+            <h2>1. Kluczowe Funkcjonalności</h2>
+            <ul>
+                <li><strong>Symulacja skalowalna:</strong> Dynamiczne generowanie od 1 do 200 symulowanych obiektów UAV z możliwością przypisania indywidualnych tras, prędkości, wysokości oraz unikalnych identyfikatorów MAC i numerów seryjnych.</li>
+                <li><strong>Atak na dowolny cel:</strong> Możliwość zaprogramowania wektorów zbieżnych (zróżnicowane kąty podejścia na cel) do testowania wydajności systemów radiolokacyjnych i optoelektronicznych C-UAS.</li>
+                <li><strong>Dynamiczna rekonfiguracja w locie:</strong> Modyfikacja parametrów sygnału (wysokość, prędkość, nagłe zmiany kursu) w czasie rzeczywistym.</li>
+            </ul>
+
+            <h2>2. Integracja ze Środowiskiem TAK (Team Awareness Kit)</h2>
+            <p>Symulator automatycznie konwertuje ramki Remote ID na wojskowy protokół komunikacyjny **CoT (Cursor on Target)**, co pozwala na bezpośrednią transmisję danych taktycznych do:</p>
+            <ul>
+                <li><strong>ATAK (Android Tactical Assault Kit):</strong> Transmisja danych bezpośrednio na urządzenia osobiste żołnierzy w polu (smartfony/tablety taktyczne).</li>
+                <li><strong>WinTAK (Windows Tactical Assault Kit):</strong> Zasilanie danymi stanowisk dowodzenia operujących na systemie Windows.</li>
+                <li><strong>Sieci wewnętrzne i Serwery TAK (TAK Server):</strong> Dystrybucja obrazu sytuacji powietrznej w czasie rzeczywistym przez protokoły TCP/UDP z pełną szyfrowaną autoryzacją TLS/SSL.</li>
+            </ul>
+
+            <h2>3. Zgodność z Normami Europejskimi i USA</h2>
+            <p>Projekt odpowiada wymogom prawnym i technicznym narzucanym przez regulatorów przestrzeni powietrznej:</p>
+            <ul>
+                <li><strong>USA (FAA Part 89 & ASTM F3411-22):</strong> Pełna obsługa formatowania komunikatów typu Direct Remote ID emitowanych przez wiązania Bluetooth oraz Wi-Fi Beacon.</li>
+                <li><strong>Unia Europejska (Rozporządzenie 2019/945 & ASD-STAN ED-282):</strong> Obsługa struktury danych Open Drone ID (Operator ID, Emergency status, Position, Vector).</li>
+            </ul>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2026 DroneAtak Project. Wszelkie prawa zastrzeżone.</p>
+    </footer>
+
+</body>
+</html>
