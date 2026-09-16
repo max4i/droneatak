@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DroneAtak — Odbiornik Remote ID & Python</title>
+    <style>
+        :root {
+            --bg-dark: #121613;
+            --bg-card: #1c231d;
+            --accent-green: #4b6b38;
+            --highlight-gold: #c5a059;
+            --text-light: #e0e6df;
+            --text-muted: #9aa897;
+            --border: #2e3b2c;
+        }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: var(--bg-dark); color: var(--text-light); line-height: 1.7; margin: 0; padding: 0; }
+        header { background-color: #0b0e0c; border-bottom: 2px solid var(--accent-green); padding: 20px 0; text-align: center; }
+        nav { background: #171f18; display: flex; justify-content: center; gap: 15px; padding: 12px; border-bottom: 1px solid var(--border); flex-wrap: wrap; }
+        nav a { color: var(--text-light); text-decoration: none; padding: 8px 16px; border-radius: 4px; background: var(--bg-card); border: 1px solid var(--border); font-size: 0.9em; font-weight: bold; }
+        nav a:hover, nav a.active { background: var(--accent-green); color: #fff; border-color: var(--highlight-gold); }
+        .container { max-width: 900px; margin: 30px auto; padding: 0 20px; }
+        .content-box { background: var(--bg-card); border: 1px solid var(--border); border-radius: 6px; padding: 30px; margin-bottom: 30px; }
+        h1, h2, h3 { color: var(--highlight-gold); }
+        ul { padding-left: 20px; }
+        li { margin-bottom: 8px; }
+        .tech-tag { display: inline-block; background: #2a382b; border: 1px solid var(--accent-green); color: var(--highlight-gold); padding: 3px 8px; border-radius: 3px; font-size: 0.85em; margin-right: 5px; margin-bottom: 5px; }
+        code { background: #121613; padding: 2px 6px; border-radius: 4px; color: #a9dc76; font-family: monospace; }
+        footer { text-align: center; padding: 30px; color: var(--text-muted); border-top: 1px solid var(--border); margin-top: 50px; font-size: 0.85em; }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1 style="margin:0; color: var(--highlight-gold);">DRONEATAK</h1>
+        <p style="margin:5px 0 0; color: var(--text-muted); font-size: 0.9em;">SYSTEMY SYMULACJI, NADAWANIA I ANALIZY REMOTE ID / C-UAS</p>
+    </header>
+
+    <nav>
+        <a href="index.html">Strona Główna</a>
+        <a href="symulator.html">1. Symulator DroneAtak</a>
+        <a href="nadajnik.html">2. Nadajnik Taktyczny</a>
+        <a href="odbiornik.html" class="active">3. Odbiornik & Python</a>
+    </nav>
+
+    <div class="container">
+        <div class="content-box">
+            <h1>PROJEKT 3: Szerokopasmowy Odbiornik Remote ID z Dedykowaną Aplikacją Python</h1>
+            <p>Zintegrowany system nasłuchowy przeznaczony do detekcji, przechwytywania oraz dekodowania transmisji Remote ID nadawanych na pasmach **2.4 GHz** oraz **5.8 GHz**.</p>
+
+            <span class="tech-tag">2.4 GHz & 5.8 GHz Band</span>
+            <span class="tech-tag">Python Engine</span>
+            <span class="tech-tag">Real-time Parsing</span>
+            <span class="tech-tag">Packet Inspection</span>
+
+            <h2>1. Architektura Radiowa i Odbiór Sygnału</h2>
+            <ul>
+                <li><strong>Szerokopasmowy skaner RF:</strong> Symultaniczna praca w paśmie ISM 2.4 GHz (Bluetooth LE, Wi-Fi Beacon) oraz 5.8 GHz (transmisje analogowe/cyfrowe o wysokiej przepustowości).</li>
+                <li><strong>Korekcja błędów i detekcja słabych sygnałów:</strong> Zastosowanie filtrów cyfrowych pozwalających wyłowić ramki Remote ID z tła szumów elektromagnetycznych.</li>
+            </ul>
+
+            <h2>2. Silnik Analityczny w Języku Python</h2>
+            <p>Oprogramowanie napisane w środowisku Python analizuje odebrane pakiety binarne w czasie rzeczywistym i wyciąga kluczowe dane telemetryczne:</p>
+            <ul>
+                <li><strong>Dekodowanie telemetrii:</strong> Pozycja GPS drona, wysokość barometryczna/nad poziomem morza, wektor prędkości i kierunek lotu.</li>
+                <li><strong>Lokalizacja pilota:</strong> Wyodrębnienie współrzędnych geograficznych punktu startu (Home Location) oraz pozycji aparatu sterującego (Operator Position).</li>
+                <li><strong>Eksport danych:</strong> Możliwość przekazywania danych do formatów <code>JSON</code>, <code>KML</code> (dla Google Earth) oraz wypychanie strumienia na serwery telemetryczne.</li>
+            </ul>
+
+            <h2>3. Analiza Zgodności ze Standardami</h2>
+            <p>Aplikacja weryfikuje spójność i poprawność struktury odebranych ramek z międzynarodowymi normami:</p>
+            <ul>
+                <li>Sprawdzanie sum kontrolnych i ciągłości pakietów wg **ANSI/CTA-2063-A** (struktura numeru seryjnego).</li>
+                <li>Weryfikacja stempli czasowych zgodnie z dyrektywami **EASA** oraz **FAA**.</li>
+            </ul>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2026 DroneAtak Project. Wszelkie prawa zastrzeżone.</p>
+    </footer>
+
+</body>
+</html>
