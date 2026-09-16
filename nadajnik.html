@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DroneAtak — Nadajnik Taktyczny Remote ID</title>
+    <style>
+        :root {
+            --bg-dark: #121613;
+            --bg-card: #1c231d;
+            --accent-green: #4b6b38;
+            --highlight-gold: #c5a059;
+            --text-light: #e0e6df;
+            --text-muted: #9aa897;
+            --border: #2e3b2c;
+        }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: var(--bg-dark); color: var(--text-light); line-height: 1.7; margin: 0; padding: 0; }
+        header { background-color: #0b0e0c; border-bottom: 2px solid var(--accent-green); padding: 20px 0; text-align: center; }
+        nav { background: #171f18; display: flex; justify-content: center; gap: 15px; padding: 12px; border-bottom: 1px solid var(--border); flex-wrap: wrap; }
+        nav a { color: var(--text-light); text-decoration: none; padding: 8px 16px; border-radius: 4px; background: var(--bg-card); border: 1px solid var(--border); font-size: 0.9em; font-weight: bold; }
+        nav a:hover, nav a.active { background: var(--accent-green); color: #fff; border-color: var(--highlight-gold); }
+        .container { max-width: 900px; margin: 30px auto; padding: 0 20px; }
+        .content-box { background: var(--bg-card); border: 1px solid var(--border); border-radius: 6px; padding: 30px; margin-bottom: 30px; }
+        h1, h2, h3 { color: var(--highlight-gold); }
+        ul { padding-left: 20px; }
+        li { margin-bottom: 8px; }
+        .tech-tag { display: inline-block; background: #2a382b; border: 1px solid var(--accent-green); color: var(--highlight-gold); padding: 3px 8px; border-radius: 3px; font-size: 0.85em; margin-right: 5px; margin-bottom: 5px; }
+        footer { text-align: center; padding: 30px; color: var(--text-muted); border-top: 1px solid var(--border); margin-top: 50px; font-size: 0.85em; }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1 style="margin:0; color: var(--highlight-gold);">DRONEATAK</h1>
+        <p style="margin:5px 0 0; color: var(--text-muted); font-size: 0.9em;">SYSTEMY SYMULACJI, NADAWANIA I ANALIZY REMOTE ID / C-UAS</p>
+    </header>
+
+    <nav>
+        <a href="index.html">Strona Główna</a>
+        <a href="symulator.html">1. Symulator DroneAtak</a>
+        <a href="nadajnik.html" class="active">2. Nadajnik Taktyczny</a>
+        <a href="odbiornik.html">3. Odbiornik & Python</a>
+    </nav>
+
+    <div class="container">
+        <div class="content-box">
+            <h1>PROJEKT 2: Taktyczny Nadajnik Remote ID ze Mglą Sygnałową</h1>
+            <p>Dedykowany moduł nadawczy stworzony z myślą o cywilnych ośrodkach szkoleniowych (UATO) oraz jednostkach podległych **Ministerstwu Obrony Narodowej (MON)**. Urządzenie służy do realizacji ćwiczeń z zakresu walki elektronicznej (EW) oraz testowania systemów ostrzegania przed rojem dronów.</p>
+
+            <span class="tech-tag">SDR Hardware</span>
+            <span class="tech-tag">Multi-Protocol</span>
+            <span class="tech-tag">MON & Civilian Training</span>
+            <span class="tech-tag">Phantom Echo Generation</span>
+
+            <h2>1. Zaawansowana Funkcja "Echo Dronów" (Phantom Echoes)</h2>
+            <p>Najistotniejszą innowacją systemu jest zdolność generowania fałszywych śladów radiowych wzdłuż trajektorii lotu prawdziwej jednostki:</p>
+            <ul>
+                <li><strong>Akompaniament Sygnałowy:</strong> Nadajnik transmituje rzeczywistą pozycję drona głównego oraz równolegle generuje wirtualne echa lewo- i prawoboczne.</li>
+                <li><strong>Dezorientacja Systemów C-UAS:</strong> Moduł wymusza na wrogich lub testowanych skanerach rozpoznanie wielopunktowego roju zamiast pojedynczej jednostki, utrudniając identyfikację celu priorytetowego.</li>
+            </ul>
+
+            <h2>2. Uniwersalna Emulacja Protokołów</h2>
+            <p>Urządzenie posiada wstępnie zdefiniowane profile telemetryczne pozwalające emulować dowolny typ drona (komercyjny, custom FPV, wojskowy):</p>
+            <ul>
+                <li>Dynamiczna zmiana numerów rejestracyjnych i ID operatora.</li>
+                <li>Generowanie sygnałów w standardach **Bluetooth Legacy (4.x), Bluetooth Long Range (5.x)** oraz **Wi-Fi NAN / Beacon**.</li>
+            </ul>
+
+            <h2>3. Zastosowanie Szkoleniowe i Badawcze</h2>
+            <p>System umożliwia realizację bezkosztowych ćwiczeń obrony obiektowej bez konieczności angażowania fizycznej floty kilkudziesięciu dronów w powietrzu.</p>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2026 DroneAtak Project. Wszelkie prawa zastrzeżone.</p>
+    </footer>
+
+</body>
+</html>
