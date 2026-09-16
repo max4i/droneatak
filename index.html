@@ -53,9 +53,36 @@
             color: #fff;
             border-color: var(--highlight-gold);
         }
+        
+        /* BANER NEONOWY STRONA W BUDOWIE */
+        .neon-banner {
+            text-align: center;
+            margin: 25px auto 10px;
+            padding: 15px;
+            font-size: 1.8em;
+            font-weight: 900;
+            letter-spacing: 3px;
+            color: #ff3333;
+            text-transform: uppercase;
+            text-shadow: 
+                0 0 5px #ff0000,
+                0 0 10px #ff0000,
+                0 0 20px #ff0000,
+                0 0 40px #ff0000;
+            border: 2px dashed #ff3333;
+            border-radius: 8px;
+            background: rgba(255, 0, 0, 0.05);
+            animation: pulse 2s infinite alternate;
+        }
+
+        @keyframes pulse {
+            0% { opacity: 0.85; text-shadow: 0 0 5px #ff0000, 0 0 10px #ff0000, 0 0 20px #ff0000; }
+            100% { opacity: 1; text-shadow: 0 0 10px #ff0000, 0 0 25px #ff0000, 0 0 50px #ff0000; }
+        }
+
         .container {
             max-width: 1000px;
-            margin: 30px auto;
+            margin: 20px auto;
             padding: 0 20px;
         }
         .hero {
@@ -120,6 +147,12 @@
     </nav>
 
     <div class="container">
+        
+        <!-- NEONOWY BAZINGA BANER -->
+        <div class="neon-banner">
+            STRONA W BUDOWIE!!!
+        </div>
+
         <div class="hero">
             <h1>Zaawansowane Badania nad Bezpieczeństwem Przestrzeni Powietrznej</h1>
             <p>Witaj na platformie projektowej poświęconej rozwojowi i testowaniu systemów identyfikacji bezzałogowych statków powietrznych (BSD/UAV). Nasze rozwiązania wspierają procesy szkoleniowe, testowanie systemów C-UAS (Counter-UAS) oraz integrację protokołów komunikacji radiowej z wojskowym oprogramowaniem świadomości sytuacyjnej typu TAK (Team Awareness Kit).</p>
@@ -155,7 +188,7 @@
     </div>
 
     <footer>
-        <p>&copy; 2026 DroneAtak Project. MaxGyver 2024 JW2211 • all right reserved</p>
+        <p>MaxGyver 2024 JW2211 • all right reserved</p>
     </footer>
 
 </body>
