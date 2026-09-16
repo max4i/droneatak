@@ -3,33 +3,101 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Moje Projekty Specjalistyczne</title>
+    <title>DroneAtak — Projekty Specjalistyczne</title>
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            max-width: 800px;
-            margin: 40px auto;
-            padding: 0 20px;
-            line-height: 1.6;
-            color: #333;
+        :root {
+            --primary: #0056b3;
+            --bg: #f8f9fa;
+            --text: #212529;
+            --card-bg: #ffffff;
         }
-        h1 { color: #0056b3; }
-        .projekt {
-            border: 1px solid #ddd;
+        body {
+            font-family: system-ui, -apple-system, sans-serif;
+            background-color: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+            margin: 0;
             padding: 20px;
+        }
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        header {
+            text-align: center;
+            padding: 40px 0 20px;
+        }
+        h1 {
+            color: var(--primary);
+            margin-bottom: 10px;
+        }
+        .intro {
+            font-size: 1.1em;
+            color: #555;
+        }
+        .card {
+            background: var(--card-bg);
+            border-radius: 12px;
+            padding: 25px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            border: 1px solid #e9ecef;
+        }
+        .card img {
+            max-width: 100%;
+            height: auto;
             border-radius: 8px;
-            margin-top: 20px;
+            margin: 15px 0;
+        }
+        .btn {
+            display: inline-block;
+            background-color: var(--primary);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: bold;
+            margin-top: 10px;
+        }
+        .btn:hover {
+            opacity: 0.9;
+        }
+        footer {
+            text-align: center;
+            margin-top: 50px;
+            color: #888;
+            font-size: 0.9em;
         }
     </style>
 </head>
 <body>
 
-    <h1>Witamy na mojej stronie z projektami</h1>
-    <p>Strona jest w trakcie budowy. Niedługo pojawią się tu opisy pierwszych prac!</p>
+    <div class="container">
+        <header>
+            <h1>DroneAtak</h1>
+            <p class="intro">Portfolio specjalistycznych projektów, analiz technicznych i prac badawczych.</p>
+        </header>
 
-    <div class="projekt">
-        <h2>Projekt 1: Wkrótce premiera</h2>
-        <p>TUTAJ w przyszłości dodamy opis Twojego pierwszego specjalistycznego projektu oraz zdjęcia.</p>
+        <!-- SEKCJA PROJEKTU 1 -->
+        <article class="card">
+            <h2>Projekt 1: Nazwa Twojego Pierwszego Projektu</h2>
+            <p>Krótki wstęp lub opis projektu. Tutaj możesz napisać, na czym polegał ten projekt, jakie cele realizował i z jakich technologii korzystał.</p>
+            
+            <!-- Przykład wstawionego zdjęcia (podmień nazwę pliku na swoją) -->
+            <!-- <img src="projekt1-foto1.jpg" alt="Opis zdjęcia"> -->
+
+            <p>Więcej szczegółów technicznych, opis przebiegu prac, zestawienie komponentów i uzyskane wyniki...</p>
+        </article>
+
+        <!-- SEKCJA PROJEKTU 2 -->
+        <article class="card">
+            <h2>Projekt 2: Nazwa Drugiego Projektu</h2>
+            <p>Opis kolejnego specjalistycznego projektu...</p>
+        </article>
+
+        <footer>
+            <p>&copy; DroneAtak. Wszelkie prawa zastrzeżone.</p>
+        </footer>
     </div>
 
 </body>
