@@ -1,195 +1,581 @@
 <!DOCTYPE html>
 <html lang="pl">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DroneAtak — Systemy Symulacji i Analizy Remote ID / C-UAS</title>
-    <style>
-        :root {
-            --bg-dark: #121613;
-            --bg-card: #1c231d;
-            --accent-green: #4b6b38;
-            --highlight-gold: #c5a059;
-            --text-light: #e0e6df;
-            --text-muted: #9aa897;
-            --border: #2e3b2c;
-        }
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: var(--bg-dark);
-            color: var(--text-light);
-            line-height: 1.6;
-            margin: 0;
-            padding: 0;
-        }
-        header {
-            background-color: #0b0e0c;
-            border-bottom: 2px solid var(--accent-green);
-            padding: 20px 0;
-            text-align: center;
-        }
-        nav {
-            background: #171f18;
-            display: flex;
-            justify-content: center;
-            gap: 15px;
-            padding: 12px;
-            border-bottom: 1px solid var(--border);
-            flex-wrap: wrap;
-        }
-        nav a {
-            color: var(--text-light);
-            text-decoration: none;
-            padding: 8px 16px;
-            border-radius: 4px;
-            background: var(--bg-card);
-            border: 1px solid var(--border);
-            font-size: 0.9em;
-            font-weight: bold;
-            transition: 0.2s;
-        }
-        nav a:hover, nav a.active {
-            background: var(--accent-green);
-            color: #fff;
-            border-color: var(--highlight-gold);
-        }
-        
-        /* BANER NEONOWY STRONA W BUDOWIE */
-        .neon-banner {
-            text-align: center;
-            margin: 25px auto 10px;
-            padding: 15px;
-            font-size: 1.8em;
-            font-weight: 900;
-            letter-spacing: 3px;
-            color: #ff3333;
-            text-transform: uppercase;
-            text-shadow: 
-                0 0 5px #ff0000,
-                0 0 10px #ff0000,
-                0 0 20px #ff0000,
-                0 0 40px #ff0000;
-            border: 2px dashed #ff3333;
-            border-radius: 8px;
-            background: rgba(255, 0, 0, 0.05);
-            animation: pulse 2s infinite alternate;
-        }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DroneAtak — Systemy Symulacji i Analizy Remote ID / C-UAS</title>
+<meta name="description" content="DroneAtak — symulator, nadajnik i odbiornik Remote ID dla ośrodków szkoleniowych pilotów dronów MON i WOT. Integracja z ATAK/WinTAK, 12 scenariuszy taktycznych, zgodność ASTM F3411.">
+<style>
+:root{
+  --bg:#0a0e08; --panel:#121a10; --panel-card:#192316; --border:#2a3a22;
+  --border-active:#4a6a3a; --khaki:#d4b26f; --khaki-light:#f3ebd7;
+  --olive:#7ca357; --camo-dark:#0f150c; --red:#e63946; --amber:#f59e0b;
+  --text:#cbd5e1; --muted:#8a9a7b; --accent:#38bdf8;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  background:var(--bg); color:var(--text);
+  font-family:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,monospace;
+  font-size:14px; line-height:1.6;
+  background-image:
+    radial-gradient(circle at 20% 10%, rgba(74,106,58,0.15), transparent 40%),
+    radial-gradient(circle at 80% 60%, rgba(212,178,111,0.06), transparent 45%);
+}
+a{color:var(--khaki); text-decoration:none}
+a:hover{color:var(--khaki-light)}
 
-        @keyframes pulse {
-            0% { opacity: 0.85; text-shadow: 0 0 5px #ff0000, 0 0 10px #ff0000, 0 0 20px #ff0000; }
-            100% { opacity: 1; text-shadow: 0 0 10px #ff0000, 0 0 25px #ff0000, 0 0 50px #ff0000; }
-        }
+/* === NAGŁÓWEK === */
+header{
+  border-bottom:1px solid var(--border);
+  background:linear-gradient(180deg,#0f150c 0%,#0a0e08 100%);
+  position:sticky; top:0; z-index:100;
+}
+.nav{
+  max-width:1280px; margin:0 auto; padding:14px 20px;
+  display:flex; align-items:center; justify-content:space-between; gap:16px;
+}
+.logo{display:flex; align-items:center; gap:12px}
+.flag{
+  width:44px; height:30px; display:flex; flex-direction:column;
+  border:1px solid #555; border-radius:2px; overflow:hidden; flex-shrink:0;
+}
+.flag-white{flex:1; background:#fff}
+.flag-red{flex:1; background:#dc143c}
+.logo-text{font-size:1.15rem; font-weight:900; color:#fff; letter-spacing:1.5px; text-transform:uppercase}
+.logo-text small{display:block; font-size:9px; color:var(--muted); letter-spacing:1px; font-weight:400}
+.nav-links{display:flex; gap:22px; flex-wrap:wrap}
+.nav-links a{font-size:12px; font-weight:700; text-transform:uppercase; letter-spacing:0.5px}
+@media(max-width:820px){.nav-links{display:none}}
 
-        .container {
-            max-width: 1000px;
-            margin: 20px auto;
-            padding: 0 20px;
-        }
-        .hero {
-            background: var(--bg-card);
-            border: 1px solid var(--border);
-            border-left: 5px solid var(--highlight-gold);
-            padding: 30px;
-            border-radius: 6px;
-            margin-bottom: 40px;
-        }
-        .hero h1 { color: var(--highlight-gold); margin-top: 0; }
-        .grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 20px;
-        }
-        .card {
-            background: var(--bg-card);
-            border: 1px solid var(--border);
-            border-radius: 6px;
-            padding: 20px;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-        }
-        .card h3 { color: var(--highlight-gold); margin-top: 0; }
-        .btn {
-            display: inline-block;
-            background: var(--accent-green);
-            color: #fff;
-            text-decoration: none;
-            padding: 10px 15px;
-            border-radius: 4px;
-            text-align: center;
-            font-weight: bold;
-            margin-top: 15px;
-            border: 1px solid var(--border);
-        }
-        .btn:hover { background: #3d582d; }
-        footer {
-            text-align: center;
-            padding: 30px;
-            color: var(--text-muted);
-            border-top: 1px solid var(--border);
-            margin-top: 50px;
-            font-size: 0.85em;
-        }
-    </style>
+/* === HERO === */
+.hero{
+  max-width:1280px; margin:0 auto; padding:70px 20px 60px;
+  border-bottom:1px solid var(--border);
+}
+.hero-tag{
+  display:inline-block; padding:4px 12px; border:1px solid var(--border-active);
+  border-radius:20px; font-size:10px; color:var(--khaki); letter-spacing:2px;
+  text-transform:uppercase; margin-bottom:22px; background:rgba(212,178,111,0.05);
+}
+.hero h1{
+  font-size:clamp(1.8rem,4.5vw,3rem); color:#fff; line-height:1.15;
+  letter-spacing:1px; margin-bottom:18px; font-weight:900;
+}
+.hero h1 span{color:var(--khaki)}
+.hero p.lead{
+  font-size:1.02rem; color:var(--text); max-width:800px; margin-bottom:24px;
+  font-family:'Segoe UI',system-ui,sans-serif; line-height:1.75;
+}
+.hero-badges{display:flex; flex-wrap:wrap; gap:10px; margin-top:26px}
+.badge{
+  padding:6px 14px; border:1px solid var(--border-active); border-radius:4px;
+  font-size:11px; color:var(--khaki-light); background:var(--panel);
+  font-weight:700; letter-spacing:0.5px;
+}
+.badge-green{border-color:var(--olive); color:#a3c27e}
+.badge-blue{border-color:var(--accent); color:var(--accent)}
+.badge-red{border-color:var(--red); color:#f87171}
+
+/* === SEKCJE === */
+section{
+  max-width:1280px; margin:0 auto; padding:60px 20px;
+  border-bottom:1px solid var(--border);
+}
+.sec-title{
+  font-size:1.5rem; color:#fff; font-weight:900; letter-spacing:1px;
+  text-transform:uppercase; margin-bottom:8px;
+}
+.sec-sub{
+  font-size:12px; color:var(--khaki); letter-spacing:2px;
+  text-transform:uppercase; margin-bottom:28px; font-weight:700;
+}
+.sec-intro{
+  max-width:900px; margin-bottom:34px;
+  font-family:'Segoe UI',system-ui,sans-serif; line-height:1.75; color:var(--text);
+}
+
+/* === KARTY === */
+.grid-3{display:grid; grid-template-columns:repeat(3,1fr); gap:18px}
+.grid-2{display:grid; grid-template-columns:repeat(2,1fr); gap:18px}
+.grid-4{display:grid; grid-template-columns:repeat(4,1fr); gap:14px}
+@media(max-width:900px){.grid-3,.grid-4{grid-template-columns:1fr 1fr}}
+@media(max-width:640px){.grid-3,.grid-2,.grid-4{grid-template-columns:1fr}}
+
+.card{
+  background:var(--panel); border:1px solid var(--border); border-radius:8px;
+  padding:22px; transition:border-color .2s, transform .2s;
+}
+.card:hover{border-color:var(--border-active); transform:translateY(-2px)}
+.card .card-num{
+  font-size:10px; color:var(--muted); letter-spacing:2px; margin-bottom:10px;
+  display:block; font-weight:700;
+}
+.card h3{
+  font-size:1.05rem; color:var(--khaki-light); margin-bottom:12px;
+  letter-spacing:0.5px; font-weight:800;
+}
+.card p{font-size:13px; color:var(--text); font-family:'Segoe UI',system-ui,sans-serif; line-height:1.65}
+
+/* === TABELA === */
+.table-wrap{overflow-x:auto; border:1px solid var(--border); border-radius:8px; background:var(--panel)}
+table{width:100%; border-collapse:collapse; font-size:12px}
+th{
+  background:var(--camo-dark); color:var(--khaki); text-align:left;
+  padding:12px 14px; font-weight:800; text-transform:uppercase;
+  letter-spacing:1px; font-size:10px; border-bottom:1px solid var(--border-active);
+}
+td{padding:11px 14px; border-bottom:1px solid var(--border); color:var(--text)}
+tr:last-child td{border-bottom:none}
+tr:hover td{background:rgba(212,178,111,0.03)}
+td strong{color:var(--khaki-light)}
+
+/* === LISTA === */
+ul.clean{list-style:none; padding:0}
+ul.clean li{
+  padding:10px 0 10px 26px; position:relative; font-size:13px;
+  border-bottom:1px solid rgba(42,58,34,0.5);
+  font-family:'Segoe UI',system-ui,sans-serif; line-height:1.6;
+}
+ul.clean li:last-child{border-bottom:none}
+ul.clean li::before{
+  content:"▸"; position:absolute; left:6px; color:var(--khaki); font-weight:900;
+}
+
+/* === SCENARIUSZE === */
+.scenario-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:12px}
+@media(max-width:1000px){.scenario-grid{grid-template-columns:1fr 1fr}}
+@media(max-width:640px){.scenario-grid{grid-template-columns:1fr}}
+.scenario{
+  background:var(--camo-dark); border:1px solid var(--border); border-radius:6px;
+  padding:14px 16px; transition:border-color .2s;
+}
+.scenario:hover{border-color:var(--khaki)}
+.scenario .num{
+  font-size:10px; color:var(--khaki); letter-spacing:1.5px; font-weight:800;
+}
+.scenario h4{
+  font-size:0.92rem; color:#fff; margin:6px 0 8px; font-weight:800;
+  letter-spacing:0.3px;
+}
+.scenario p{font-size:11px; color:var(--muted); line-height:1.55}
+.scenario p strong{color:var(--khaki-light)}
+
+/* === PANEL INFO === */
+.panel-info{
+  background:var(--panel); border:1px solid var(--border-active);
+  border-left:4px solid var(--khaki); border-radius:6px;
+  padding:20px 24px; margin:24px 0;
+}
+.panel-info h4{
+  color:var(--khaki); font-size:0.85rem; letter-spacing:2px; text-transform:uppercase;
+  margin-bottom:12px; font-weight:800;
+}
+.panel-info p{font-size:13px; line-height:1.75; font-family:'Segoe UI',system-ui,sans-serif}
+
+/* === DANE TECHNICZNE === */
+.spec-row{
+  display:grid; grid-template-columns:220px 1fr; gap:16px;
+  padding:10px 0; border-bottom:1px solid rgba(42,58,34,0.5); font-size:13px;
+}
+.spec-row:last-child{border-bottom:none}
+.spec-key{color:var(--muted); text-transform:uppercase; font-size:11px; letter-spacing:1px; font-weight:700; padding-top:2px}
+.spec-val{color:#fff; font-family:'Segoe UI',system-ui,sans-serif}
+@media(max-width:600px){.spec-row{grid-template-columns:1fr; gap:4px}}
+
+/* === STOPKA === */
+footer{
+  background:var(--camo-dark); border-top:1px solid var(--border);
+  padding:40px 20px 30px; margin-top:40px;
+}
+.footer-inner{
+  max-width:1280px; margin:0 auto; display:grid;
+  grid-template-columns:2fr 1fr 1fr; gap:32px;
+}
+@media(max-width:720px){.footer-inner{grid-template-columns:1fr; gap:20px}}
+.footer-inner h5{
+  color:var(--khaki); font-size:11px; letter-spacing:2px;
+  text-transform:uppercase; margin-bottom:14px; font-weight:800;
+}
+.footer-inner p, .footer-inner li{
+  font-size:12px; color:var(--muted); line-height:1.7;
+}
+.footer-inner ul{list-style:none}
+.footer-inner li{padding:3px 0}
+.footer-bottom{
+  max-width:1280px; margin:32px auto 0; padding-top:22px;
+  border-top:1px solid var(--border); text-align:center;
+  font-size:11px; color:var(--muted); letter-spacing:1px;
+}
+
+/* === CERTYFIKATY === */
+.cert-box{
+  background:var(--camo-dark); border:1px solid var(--border);
+  border-radius:6px; padding:16px; text-align:center;
+  transition:border-color .2s;
+}
+.cert-box:hover{border-color:var(--olive)}
+.cert-region{font-size:11px; color:var(--khaki); letter-spacing:1.5px; font-weight:800; text-transform:uppercase}
+.cert-date{font-size:10px; color:var(--muted); margin-top:4px}
+
+/* === UNIKATOWE === */
+.unique-badge{
+  display:inline-block; padding:3px 10px; background:rgba(230,57,70,0.15);
+  border:1px solid var(--red); color:#f87171; border-radius:3px;
+  font-size:10px; font-weight:800; letter-spacing:1px; margin-bottom:12px;
+}
+</style>
 </head>
 <body>
 
-    <header>
-        <h1 style="margin:0; color: var(--highlight-gold); letter-spacing: 2px;">DRONEATAK</h1>
-        <p style="margin:5px 0 0; color: var(--text-muted); font-size: 0.9em;">SYSTEMY SYMULACJI, NADAWANIA I ANALIZY REMOTE ID / C-UAS</p>
-    </header>
-
-    <nav>
-        <a href="index.html" class="active">Strona Główna</a>
-        <a href="symulator.html">1. Symulator DroneAtak</a>
-        <a href="nadajnik.html">2. Nadajnik Taktyczny</a>
-        <a href="odbiornik.html">3. Odbiornik & Python</a>
-    </nav>
-
-    <div class="container">
-        
-        <!-- NEONOWY BAZINGA BANER -->
-        <div class="neon-banner">
-            STRONA W BUDOWIE!!!
-        </div>
-
-        <div class="hero">
-            <h1>Zaawansowane Badania nad Bezpieczeństwem Przestrzeni Powietrznej</h1>
-            <p>Witaj na platformie projektowej poświęconej rozwojowi i testowaniu systemów identyfikacji bezzałogowych statków powietrznych (BSD/UAV). Nasze rozwiązania wspierają procesy szkoleniowe, testowanie systemów C-UAS (Counter-UAS) oraz integrację protokołów komunikacji radiowej z wojskowym oprogramowaniem świadomości sytuacyjnej typu TAK (Team Awareness Kit).</p>
-        </div>
-
-        <h2 style="color: var(--highlight-gold); border-bottom: 1px solid var(--border); padding-bottom: 10px;">Projekty i Rozwiązania Techniczne</h2>
-
-        <div class="grid">
-            <div class="card">
-                <div>
-                    <h3>1. Symulator Dronów DroneAtak</h3>
-                    <p>Wielobiektowy symulator generujący do 200 wirtualnych dronów zgodnych ze standardami Remote ID. Bezpośrednia integracja z systemami ATAK, WinTAK i serwerem TAK.</p>
-                </div>
-                <a href="symulator.html" class="btn">Zobacz Szczegóły Projektu &rarr;</a>
-            </div>
-
-            <div class="card">
-                <div>
-                    <h3>2. Nadajnik RemoteID ze Mglą Sygnałową</h3>
-                    <p>Zaawansowany nadajnik dedykowany dla ośrodków cywilnych oraz resortu MON. Generuje sygnał rzeczywisty oraz fałszywe echa radiowe (lewo/prawo).</p>
-                </div>
-                <a href="nadajnik.html" class="btn">Zobacz Szczegóły Projektu &rarr;</a>
-            </div>
-
-            <div class="card">
-                <div>
-                    <h3>3. Szerokopasmowy Odbiornik & Python</h3>
-                    <p>Odbiornik częstotliwości 2.4 GHz oraz 5.8 GHz dekodujący pakiety ASTM/ASD-STAN w czasie rzeczywistym z dedykowaną aplikacją analityczną w języku Python.</p>
-                </div>
-                <a href="odbiornik.html" class="btn">Zobacz Szczegóły Projektu &rarr;</a>
-            </div>
-        </div>
+<!-- ============ HEADER ============ -->
+<header>
+  <div class="nav">
+    <div class="logo">
+      <div class="flag"><div class="flag-white"></div><div class="flag-red"></div></div>
+      <div class="logo-text">
+        DroneAtak
+        <small>Remote ID / C-UAS Systems</small>
+      </div>
     </div>
+    <nav class="nav-links">
+      <a href="#o-projekcie">O projekcie</a>
+      <a href="#moduly">Moduły</a>
+      <a href="#scenariusze">Scenariusze</a>
+      <a href="#tak">Integracja TAK</a>
+      <a href="#normy">Normy</a>
+      <a href="#certyfikaty">Certyfikaty</a>
+    </nav>
+  </div>
+</header>
 
-    <footer>
-        <p>MaxGyver 2024 JW2211 • all right reserved</p>
-    </footer>
+<!-- ============ HERO ============ -->
+<div class="hero">
+  <span class="hero-tag">Systemy Symulacji, Nadawania i Analizy Remote ID / C-UAS</span>
+  <h1>Zaawansowane badania nad <span>bezpieczeństwem przestrzeni powietrznej</span></h1>
+  <p class="lead">
+    DroneAtak to zintegrowany system wsparcia szkolenia pilotów dronów, przeznaczony dla ośrodków
+    działających na potrzeby resortu obrony narodowej, Wojsk Obrony Terytorialnej oraz instytucji
+    odpowiedzialnych za bezpieczeństwo przestrzeni powietrznej. Łączymy wieloobiektową symulację
+    roju dronów z emisją rzeczywistego sygnału Remote ID oraz integracją z wojskowym oprogramowaniem
+    świadomości sytuacyjnej TAK (Team Awareness Kit).
+  </p>
+  <p class="lead">
+    Rozwiązanie wypełnia lukę, której nie adresuje żaden dostępny na rynku projekt. W sieci nie
+    istnieje podobne narzędzie łączące symulację roju, emisję sygnału zgodnego ze standardami
+    ASTM/ASD-STAN oraz możliwość prowadzenia ćwiczeń z zakresu przeciwdziałania bezzałogowcom
+    (C-UAS) w warunkach zbliżonych do rzeczywistych.
+  </p>
+  <div class="hero-badges">
+    <span class="badge badge-green">ASTM F3411</span>
+    <span class="badge badge-green">ASD-STAN</span>
+    <span class="badge badge-blue">CoT / ATAK</span>
+    <span class="badge badge-blue">BLE 5 / 802.11</span>
+    <span class="badge badge-red">200 dronów</span>
+    <span class="badge">ESP32-S3 / C3</span>
+  </div>
+</div>
+
+<!-- ============ O PROJEKCIE ============ -->
+<section id="o-projekcie">
+  <div class="sec-sub">01 — O projekcie</div>
+  <h2 class="sec-title">System symulatora, nadajnika i odbiornika</h2>
+  <p class="sec-intro">
+    DroneAtak powstał jako odpowiedź na rosnące zapotrzebowanie na realistyczne narzędzia szkoleniowe
+    w zakresie identyfikacji i przeciwdziałania bezzałogowym statkom powietrznym. System składa się
+    z trzech komplementarnych modułów, które można wykorzystywać niezależnie lub w komplecie:
+    symulatora roju dronów, nadajnika Remote ID ze zdolnością generowania fałszywych ech radiowych
+    oraz — w fazie projektowej — szerokopasmowego odbiornika dekodującego pakiety ASTM/ASD-STAN
+    w czasie rzeczywistym.
+  </p>
+  <div class="panel-info">
+    <h4>Kluczowa zdolność</h4>
+    <p>
+      Cel można ustawić w <strong>dowolnym punkcie na globie</strong>. Operator definiuje pozycję
+      startową (GPS odbiornika lub ręcznie) oraz pozycję celu względem niej — odległość do 50 km,
+      kąt do 360°. Dzięki temu możliwe jest prowadzenie symulacji ataku na infrastrukturę krytyczną
+      w dowolnym miejscu świata, bez fizycznej obecności w tym rejonie.
+    </p>
+  </div>
+</section>
+
+<!-- ============ MODUŁY ============ -->
+<section id="moduly">
+  <div class="sec-sub">02 — Moduły systemu</div>
+  <h2 class="sec-title">Trzy filary DroneAtak</h2>
+
+  <div class="grid-3">
+    <div class="card">
+      <span class="card-num">MODUŁ 01</span>
+      <h3>Symulator Dronów</h3>
+      <p>
+        Wieloobiektowy symulator generujący ruch do 200 wirtualnych dronów jednocześnie. Każdy dron
+        posiada niezależny model lotu, parametry taktyczne i własną tożsamość w standardzie Remote ID.
+        Symulacja odwzorowuje 12 scenariuszy taktycznych z podziałem na trzy fazy operacyjne.
+        Wirtualne drony są widoczne w ATAK/WinTAK jako obiekty CoT oraz wykrywalne przez dowolny
+        odbiornik Remote ID.
+      </p>
+    </div>
+    <div class="card">
+      <span class="card-num">MODUŁ 02</span>
+      <h3>Nadajnik Remote ID</h3>
+      <p>
+        Zaawansowany nadajnik dedykowany ośrodkom cywilnym oraz resortowi MON. Generuje sygnał
+        zgodny ze standardem Remote ID (ASTM F3411 / ASD-STAN) oraz — co stanowi cechę unikalną —
+        <strong>fałszywe echa radiowe</strong> (lewe/prawe). Umożliwia szkolenie pilotów w zakresie
+        procedur identyfikacji, klasyfikacji i śledzenia celów powietrznych.
+      </p>
+    </div>
+    <div class="card">
+      <span class="card-num">MODUŁ 03 — w planach</span>
+      <h3>Odbiornik Szerokopasmowy</h3>
+      <p>
+        Moduł odbiorczy pracujący w pasmach 2,4 GHz oraz 5,8 GHz, dekodujący pakiety Remote ID
+        w czasie rzeczywistym. Współpracuje z dedykowaną aplikacją analityczną w języku Python,
+        umożliwiającą rejestrację, wizualizację i analizę danych z wielu źródeł jednocześnie.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ SCENARIUSZE ============ -->
+<section id="scenariusze">
+  <div class="sec-sub">03 — Scenariusze taktyczne</div>
+  <h2 class="sec-title">12 taktyk rojowych</h2>
+  <p class="sec-intro">
+    Każdy scenariusz odzwierciedla rzeczywistą taktykę stosowaną przez roje dronów w warunkach
+    konfliktu zbrojnego. Symulacja dzieli każdy scenariusz na trzy fazy operacyjne, co pozwala
+    na precyzyjne odwzorowanie dynamiki natarcia.
+  </p>
+
+  <div class="scenario-grid">
+    <div class="scenario"><div class="num">01</div><h4>Kleszcze Dwukierunkowe</h4><p><strong>Faza I:</strong> Rozdzielenie skrzydeł ±55°<br><strong>Faza II:</strong> Zniżenie i wyrównanie<br><strong>Faza III:</strong> Zbieżny atak 180°</p></div>
+    <div class="scenario"><div class="num">02</div><h4>Gilotyna Pionowa</h4><p><strong>Faza I:</strong> Wznoszenie na 1200 m<br><strong>Faza II:</strong> Lot nad celem<br><strong>Faza III:</strong> Nurkowanie 80°</p></div>
+    <div class="scenario"><div class="num">03</div><h4>Przynęta i Skrzydło</h4><p><strong>Faza I:</strong> Atak pozorowany<br><strong>Faza II:</strong> Obejście flankujące<br><strong>Faza III:</strong> Uderzenie z martwego kąta</p></div>
+    <div class="scenario"><div class="num">04</div><h4>Karuzela Śmierci</h4><p><strong>Faza I:</strong> Formowanie pierścienia<br><strong>Faza II:</strong> Rotacja wokół celu<br><strong>Faza III:</strong> Losowe nurkowania</p></div>
+    <div class="scenario"><div class="num">05</div><h4>Wielofalowa Sztafeta</h4><p><strong>Faza I:</strong> Fala 1<br><strong>Faza II:</strong> Fala 2<br><strong>Faza III:</strong> Fala 3</p></div>
+    <div class="scenario"><div class="num">06</div><h4>Cień Radarowy</h4><p><strong>Faza I:</strong> Lot w cieniu lidera<br><strong>Faza II:</strong> Rozpad formacji<br><strong>Faza III:</strong> Wachlarzowe uderzenie</p></div>
+    <div class="scenario"><div class="num">07</div><h4>Zbieżność Czasowa</h4><p><strong>Faza I:</strong> Rozproszenie 360°<br><strong>Faza II:</strong> Regulacja prędkości<br><strong>Faza III:</strong> ToT Impact</p></div>
+    <div class="scenario"><div class="num">08</div><h4>Zbieżny Lejek</h4><p><strong>Faza I:</strong> Szeroki front<br><strong>Faza II:</strong> Zwężanie<br><strong>Faza III:</strong> Przełamanie</p></div>
+    <div class="scenario"><div class="num">09</div><h4>Zmiękczenie REB</h4><p><strong>Faza I:</strong> Zakłócenia<br><strong>Faza II:</strong> Identyfikacja luk<br><strong>Faza III:</strong> Uderzenie</p></div>
+    <div class="scenario"><div class="num">10</div><h4>Wężowy Unik</h4><p><strong>Faza I:</strong> Oscylacje ±45°<br><strong>Faza II:</strong> Zmiany wysokości<br><strong>Faza III:</strong> Wyjście na cel</p></div>
+    <div class="scenario"><div class="num">11</div><h4>Ultra-Low & Pop-Up</h4><p><strong>Faza I:</strong> Lot NOE 15 m<br><strong>Faza II:</strong> Pop-Up 160 m<br><strong>Faza III:</strong> Nurkowanie</p></div>
+    <div class="scenario"><div class="num">12</div><h4>Hiper-Saturacja</h4><p><strong>Faza I:</strong> Formowanie<br><strong>Faza II:</strong> Sprint<br><strong>Faza III:</strong> Nasycenie</p></div>
+  </div>
+</section>
+
+<!-- ============ TAK ============ -->
+<section id="tak">
+  <div class="sec-sub">04 — Integracja</div>
+  <h2 class="sec-title">Współpraca z TAK / ATAK</h2>
+  <p class="sec-intro">
+    Integracja z oprogramowaniem TAK (Team Awareness Kit) odbywa się poprzez standard CoT
+    (Cursor on Target). Symulator wysyła komunikaty CoT zawierające pełny zestaw danych,
+    spójny z tożsamością Remote ID każdego drona.
+  </p>
+
+  <div class="grid-2">
+    <div class="card">
+      <h3>Pola CoT</h3>
+      <ul class="clean">
+        <li><strong>uid</strong> — unikalny identyfikator drona (spójny z numerem seryjnym Remote ID)</li>
+        <li><strong>callsign</strong> — nazwa wywoławcza (spójna z nazwą BLE z Remote ID)</li>
+        <li><strong>operator</strong> — identyfikator operatora (spójny z Operator ID)</li>
+        <li><strong>__group</strong> — przynależność do grupy (spójna z Self ID)</li>
+        <li><strong>track</strong> — kurs i prędkość</li>
+        <li><strong>sensor</strong> — azymut i pole widzenia</li>
+        <li><strong>remarks</strong> — faza lotu, rola, dystans do celu</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h3>Tryby transportu</h3>
+      <ul class="clean">
+        <li><strong>AP (UDP broadcast/multicast)</strong> — dla sieci lokalnej, bez serwera</li>
+        <li><strong>TCP</strong> — bezpośrednie połączenie z TAK Server</li>
+        <li><strong>TLS</strong> — szyfrowane połączenie z certyfikatami klienta</li>
+      </ul>
+      <p style="margin-top:14px; font-size:12px; color:var(--muted);">
+        Konfiguracja obejmuje 21 pól CoT z presetami Minimal / Standard / Full.
+        Częstotliwość wysyłki: 0,2 – 5 Hz. Stale: 30 s.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ NORMY ============ -->
+<section id="normy">
+  <div class="sec-sub">05 — Zgodność</div>
+  <h2 class="sec-title">Normy i standardy</h2>
+
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr><th>Standard</th><th>Zakres</th></tr>
+      </thead>
+      <tbody>
+        <tr><td><strong>ASTM F3411</strong></td><td>Remote ID — Basic ID, Location, System, Operator ID, Self ID</td></tr>
+        <tr><td><strong>ASD-STAN</strong></td><td>Równoległy standard europejski dla identyfikacji UAV</td></tr>
+        <tr><td><strong>CoT (Cursor on Target)</strong></td><td>Protokół wymiany danych taktycznych, zgodny z ATAK / WinTAK / TAK Server</td></tr>
+        <tr><td><strong>802.11</strong></td><td>Wi-Fi Beacon z Vendor Specific IE</td></tr>
+        <tr><td><strong>BLE 5</strong></td><td>Legacy Advertising z Service Data 0xFFFA</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="panel-info" style="margin-top:26px;">
+    <h4>Kompletność emisji</h4>
+    <p>
+      Symulator emituje jednocześnie komunikaty we wszystkich pięciu formatach Remote ID
+      (Basic ID, Location, System, Operator ID, Self ID), co zapewnia pełną kompatybilność
+      z odbiornikami komercyjnymi i wojskowymi.
+    </p>
+  </div>
+</section>
+
+<!-- ============ UNIKATOWE ============ -->
+<section>
+  <div class="sec-sub">06 — Wyróżniki</div>
+  <h2 class="sec-title">Co dodano ponad standard</h2>
+
+  <div class="grid-2">
+    <div class="card">
+      <span class="unique-badge">UNIKAT</span>
+      <h3>Spójność CoT ↔ Remote ID</h3>
+      <p>Te same dane w obu standardach: uid = serial, callsign = bleName, operator = operatorId, grupa = groupName, model = modelName.</p>
+    </div>
+    <div class="card">
+      <span class="unique-badge">UNIKAT</span>
+      <h3>Fałszywe echa radiowe</h3>
+      <p>Unikalna funkcja nadajnika do szkolenia C-UAS — operator systemu obrony widzi wiele potencjalnych celów jednocześnie.</p>
+    </div>
+    <div class="card">
+      <span class="unique-badge">UNIKAT</span>
+      <h3>Cel w dowolnym punkcie globu</h3>
+      <p>Symulacja ataku na infrastrukturę krytyczną bez fizycznej obecności w rejonie — odległość do 50 km, kąt do 360°.</p>
+    </div>
+    <div class="card">
+      <span class="unique-badge">UNIKAT</span>
+      <h3>12 scenariuszy taktycznych</h3>
+      <p>Odzwierciedlenie rzeczywistych taktyk rojowych z podziałem na trzy fazy operacyjne.</p>
+    </div>
+    <div class="card">
+      <span class="unique-badge">UNIKAT</span>
+      <h3>Telemetria WebSocket</h3>
+      <p>Binarna transmisja 30 dronów / 100 ms — płynna wizualizacja w panelu webowym.</p>
+    </div>
+    <div class="card">
+      <span class="unique-badge">UNIKAT</span>
+      <h3>Tryb DUAL RF</h3>
+      <p>Jednoczesna emisja BLE + Wi-Fi Beacon — maksymalna wykrywalność przez różne odbiorniki.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ DANE TECHNICZNE ============ -->
+<section>
+  <div class="sec-sub">07 — Specyfikacja</div>
+  <h2 class="sec-title">Dane techniczne</h2>
+
+  <div class="grid-2">
+    <div>
+      <h3 style="color:var(--khaki); font-size:0.85rem; letter-spacing:2px; text-transform:uppercase; margin-bottom:16px;">Sprzęt</h3>
+      <div class="spec-row"><span class="spec-key">Mikrokontroler</span><span class="spec-val">ESP32-S3 (N16R8, 4 MB Flash, 2 MB PSRAM)</span></div>
+      <div class="spec-row"><span class="spec-key">Moduł radiowy</span><span class="spec-val">ESP32-C3-MINI-1 (FCC, CE, SRRC, BQB, RoHS/REACH)</span></div>
+      <div class="spec-row"><span class="spec-key">GPS</span><span class="spec-val">NMEA 115200 bps, UART (RX 11 / TX 10)</span></div>
+      <div class="spec-row"><span class="spec-key">Zasilanie</span><span class="spec-val">5 V USB</span></div>
+      <div class="spec-row"><span class="spec-key">Sieć</span><span class="spec-val">AP (własna) + STA (router, opcjonalnie)</span></div>
+      <div class="spec-row"><span class="spec-key">Waga urządzenia</span><span class="spec-val">21 g (bez anteny)</span></div>
+      <div class="spec-row"><span class="spec-key">Obudowa</span><span class="spec-val">Druk 3D, materiał PETG / ASA</span></div>
+    </div>
+    <div>
+      <h3 style="color:var(--khaki); font-size:0.85rem; letter-spacing:2px; text-transform:uppercase; margin-bottom:16px;">Oprogramowanie</h3>
+      <div class="spec-row"><span class="spec-key">Max dronów</span><span class="spec-val">200</span></div>
+      <div class="spec-row"><span class="spec-key">Częstotliwość CoT</span><span class="spec-val">0,2 – 5 Hz</span></div>
+      <div class="spec-row"><span class="spec-key">Stale CoT</span><span class="spec-val">30 s</span></div>
+      <div class="spec-row"><span class="spec-key">Zasięg AP</span><span class="spec-val">do 100 m (moc 20 dBm)</span></div>
+      <div class="spec-row"><span class="spec-key">Interwały RF</span><span class="spec-val">20 / 35 / 50 / 100 ms</span></div>
+      <div class="spec-row"><span class="spec-key">Pamięć konfiguracji</span><span class="spec-val">NVS (flash, trwała)</span></div>
+      <div class="spec-row"><span class="spec-key">Panel webowy</span><span class="spec-val">http://192.168.4.1 (AP DRONE_ATAK)</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CERTYFIKATY ============ -->
+<section id="certyfikaty">
+  <div class="sec-sub">08 — Certyfikaty</div>
+  <h2 class="sec-title">Zgodność modułów Espressif</h2>
+  <p class="sec-intro">
+    Wykorzystywane moduły radiowe Espressif posiadają certyfikaty kluczowych rynków światowych,
+    co zapewnia zgodność z przepisami Unii Europejskiej oraz Stanów Zjednoczonych.
+  </p>
+
+  <h3 style="color:var(--khaki-light); font-size:0.95rem; letter-spacing:1px; margin:28px 0 14px;">ESP32-S3-WROOM-1</h3>
+  <div class="grid-4">
+    <div class="cert-box"><div class="cert-region">FCC — USA</div><div class="cert-date">26.01.2022</div></div>
+    <div class="cert-box"><div class="cert-region">CE — UE</div><div class="cert-date">18.12.2025</div></div>
+    <div class="cert-box"><div class="cert-region">SRRC — Chiny</div><div class="cert-date">31.12.2025</div></div>
+    <div class="cert-box"><div class="cert-region">IC — Kanada</div><div class="cert-date">08.10.2024</div></div>
+    <div class="cert-box"><div class="cert-region">NCC — Tajwan</div><div class="cert-date">13.05.2022</div></div>
+    <div class="cert-box"><div class="cert-region">KCC — Korea</div><div class="cert-date">02.04.2022</div></div>
+    <div class="cert-box"><div class="cert-region">ANATEL — Brazylia</div><div class="cert-date">09.07.2025</div></div>
+    <div class="cert-box"><div class="cert-region">MIC — Wietnam</div><div class="cert-date">16.12.2025</div></div>
+  </div>
+
+  <h3 style="color:var(--khaki-light); font-size:0.95rem; letter-spacing:1px; margin:34px 0 14px;">ESP32-C3-MINI-1</h3>
+  <div class="grid-4">
+    <div class="cert-box"><div class="cert-region">FCC — USA</div><div class="cert-date">24.06.2021</div></div>
+    <div class="cert-box"><div class="cert-region">CE — UE</div><div class="cert-date">18.12.2025</div></div>
+    <div class="cert-box"><div class="cert-region">SRRC — Chiny</div><div class="cert-date">16.06.2026</div></div>
+    <div class="cert-box"><div class="cert-region">IC — Kanada</div><div class="cert-date">08.10.2024</div></div>
+    <div class="cert-box"><div class="cert-region">TELEC — Japonia</div><div class="cert-date">—</div></div>
+    <div class="cert-box"><div class="cert-region">NCC — Tajwan</div><div class="cert-date">—</div></div>
+    <div class="cert-box"><div class="cert-region">KCC — Korea</div><div class="cert-date">08.03.2022</div></div>
+    <div class="cert-box"><div class="cert-region">ANATEL — Brazylia</div><div class="cert-date">09.07.2025</div></div>
+    <div class="cert-box"><div class="cert-region">MIC — Wietnam</div><div class="cert-date">16.12.2025</div></div>
+    <div class="cert-box"><div class="cert-region">ACMA — Australia</div><div class="cert-date">—</div></div>
+    <div class="cert-box"><div class="cert-region">RSM — N. Zelandia</div><div class="cert-date">—</div></div>
+    <div class="cert-box"><div class="cert-region">SIRIM — Malezja</div><div class="cert-date">21.12.2022</div></div>
+    <div class="cert-box"><div class="cert-region">BQB — Bluetooth SIG</div><div class="cert-date">20.08.2025</div></div>
+  </div>
+
+  <div class="panel-info" style="margin-top:28px;">
+    <h4>Certyfikaty środowiskowe</h4>
+    <p>Oba moduły posiadają certyfikaty <strong>RoHS</strong> oraz <strong>REACH</strong>, potwierdzające zgodność z europejskimi wymogami w zakresie substancji niebezpiecznych oraz bezpieczeństwa chemicznego.</p>
+  </div>
+</section>
+
+<!-- ============ STOPKA ============ -->
+<footer>
+  <div class="footer-inner">
+    <div>
+      <h5>DroneAtak</h5>
+      <p>
+        Systemy symulacji, nadawania i analizy Remote ID / C-UAS. Projekt dedykowany ośrodkom
+        szkoleniowym pilotów dronów dla potrzeb resortu obrony narodowej oraz Wojsk Obrony Terytorialnej.
+      </p>
+    </div>
+    <div>
+      <h5>Moduły</h5>
+      <ul>
+        <li>Symulator dronów</li>
+        <li>Nadajnik Remote ID</li>
+        <li>Odbiornik szerokopasmowy (w planach)</li>
+      </ul>
+    </div>
+    <div>
+      <h5>Standardy</h5>
+      <ul>
+        <li>ASTM F3411</li>
+        <li>ASD-STAN</li>
+        <li>CoT / ATAK</li>
+        <li>BLE 5 / 802.11</li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    DroneAtak &copy; 2024–2026 &nbsp;•&nbsp; Projekt unikalny w skali globalnej &nbsp;•&nbsp; Wszelkie prawa zastrzeżone
+  </div>
+</footer>
 
 </body>
 </html>
