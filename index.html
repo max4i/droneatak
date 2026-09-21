@@ -1,14 +1,41 @@
+```html
 <!DOCTYPE html>
 <html lang="pl">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Główna - Taktyczny Interfejs</title>
+
+    <!-- SEO -->
+    <title>DroneAtak – symulatory dronów, Remote ID i systemy szkoleniowe</title>
+
+    <meta name="description" content="DroneAtak to projekty symulatorów dronów, systemów Remote ID oraz narzędzi szkoleniowych dla operatorów BSP. Projekty do symulacji, testów i szkolenia pilotów dronów.">
+
+    <meta name="robots" content="index, follow">
+    <meta name="author" content="DroneAtak">
+
+    <!-- Canonical -->
+    <link rel="canonical" href="https://droneatak.pl/">
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="DroneAtak – symulatory dronów, Remote ID i systemy szkoleniowe">
+    <meta property="og:description" content="Projekty symulatorów dronów, systemów Remote ID oraz narzędzi szkoleniowych dla operatorów BSP.">
+    <meta property="og:url" content="https://droneatak.pl/">
+    <meta property="og:image" content="https://droneatak.pl/images/g2.png">
+    <meta property="og:locale" content="pl_PL">
+
+    <!-- Twitter / X -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="DroneAtak – symulatory dronów i systemy szkoleniowe">
+    <meta name="twitter:description" content="Projekty symulatorów dronów, Remote ID oraz narzędzi szkoleniowych dla operatorów BSP.">
+    <meta name="twitter:image" content="https://droneatak.pl/images/g2.png">
+
     <script src="https://cdn.tailwindcss.com"></script>
+
     <style>
         body {
             background-color: #0b0d12;
-            background-image: 
+            background-image:
                 radial-gradient(circle at 50% 30%, #1a202c 0%, transparent 70%),
                 linear-gradient(to bottom, #07080a, #0d1017);
             color: #d1d5db;
@@ -18,7 +45,6 @@
             min-height: 100vh;
         }
 
-        /* Kontener banera z naturalną wysokością */
         .main-banner {
             width: 100%;
             overflow: hidden;
@@ -32,7 +58,6 @@
             display: block;
         }
 
-        /* Przyciski nawigacyjne */
         .nav-btn {
             background: linear-gradient(180deg, #1f242d 0%, #12151c 100%);
             border: 1px solid #374151;
@@ -58,16 +83,19 @@
             background: linear-gradient(180deg, #2a2215 0%, #18130a 100%);
             border-color: #f59e0b;
             color: #f59e0b;
-            box-shadow: inset 0 0 8px rgba(245, 158, 11, 0.4), 0 0 10px rgba(245, 158, 11, 0.2);
+            box-shadow:
+                inset 0 0 8px rgba(245, 158, 11, 0.4),
+                0 0 10px rgba(245, 158, 11, 0.2);
         }
 
-        /* 8-elementowa ramka metalowa */
         .metal-frame-container {
             position: relative;
             box-sizing: border-box;
             background: rgba(15, 18, 25, 0.85);
             padding: 20px;
-            box-shadow: 0 15px 35px rgba(0,0,0,0.8), inset 0 0 15px rgba(0,0,0,0.5);
+            box-shadow:
+                0 15px 35px rgba(0,0,0,0.8),
+                inset 0 0 15px rgba(0,0,0,0.5);
         }
 
         .metal-corner {
@@ -80,19 +108,42 @@
             background-repeat: no-repeat;
         }
 
-        .corner-tl { top: 0; left: 0; background-image: url('images/naroznik_lewy_gorny.png'); }
-        .corner-tr { top: 0; right: 0; background-image: url('images/naroznik_prawy_gorny.png'); }
-        .corner-bl { bottom: 0; left: 0; background-image: url('images/naroznik_lewy_dolny.png'); }
-        .corner-br { bottom: 0; right: 0; background-image: url('images/naroznik_prawy_dolny.png'); }
+        .corner-tl {
+            top: 0;
+            left: 0;
+            background-image: url('images/naroznik_lewy_gorny.png');
+        }
 
-        .metal-bar-h, .metal-bar-v {
+        .corner-tr {
+            top: 0;
+            right: 0;
+            background-image: url('images/naroznik_prawy_gorny.png');
+        }
+
+        .corner-bl {
+            bottom: 0;
+            left: 0;
+            background-image: url('images/naroznik_lewy_dolny.png');
+        }
+
+        .corner-br {
+            bottom: 0;
+            right: 0;
+            background-image: url('images/naroznik_prawy_dolny.png');
+        }
+
+        .metal-bar-h,
+        .metal-bar-v {
             position: absolute;
             z-index: 10;
             pointer-events: none;
         }
 
         .bar-top {
-            top: 0; left: 32px; right: 32px; height: 16px;
+            top: 0;
+            left: 32px;
+            right: 32px;
+            height: 16px;
             background-image: url('images/listwa_gorna.png');
             background-repeat: repeat-x;
             background-position: center top;
@@ -100,7 +151,10 @@
         }
 
         .bar-bottom {
-            bottom: 0; left: 32px; right: 32px; height: 16px;
+            bottom: 0;
+            left: 32px;
+            right: 32px;
+            height: 16px;
             background-image: url('images/listwa_dolna.png');
             background-repeat: repeat-x;
             background-position: center bottom;
@@ -108,7 +162,10 @@
         }
 
         .bar-left {
-            top: 32px; bottom: 32px; left: 0; width: 16px;
+            top: 32px;
+            bottom: 32px;
+            left: 0;
+            width: 16px;
             background-image: url('images/listwa_lewa.png');
             background-repeat: repeat-y;
             background-position: left center;
@@ -116,7 +173,10 @@
         }
 
         .bar-right {
-            top: 32px; bottom: 32px; right: 0; width: 16px;
+            top: 32px;
+            bottom: 32px;
+            right: 0;
+            width: 16px;
             background-image: url('images/listwa_prawa.png');
             background-repeat: repeat-y;
             background-position: right center;
@@ -126,7 +186,7 @@
         .frame-content {
             position: relative;
             width: 100%;
-            height: 100%;
+            min-height: 400px;
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -139,14 +199,13 @@
             box-shadow: inset 0 0 15px rgba(0, 0, 0, 0.7);
         }
 
-        /* Neonowy napis STRONA W BUDOWIE */
         .neon-text {
             color: #ffaa00;
             font-size: 2rem;
             font-weight: 800;
-            letter-spacing: 0.15em;
+            letter-spacing: 0.12em;
             text-transform: uppercase;
-            text-shadow: 
+            text-shadow:
                 0 0 5px #ffaa00,
                 0 0 10px #ffaa00,
                 0 0 20px #ffaa00,
@@ -155,18 +214,55 @@
             animation: neonPulse 1.8s infinite alternate;
         }
 
+        .section-title {
+            color: #f59e0b;
+            font-size: 1.1rem;
+            font-weight: 700;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+        }
+
+        .project-card {
+            background: rgba(10, 12, 17, 0.75);
+            border: 1px solid rgba(75, 85, 99, 0.6);
+            border-radius: 4px;
+            padding: 18px;
+            text-align: left;
+            transition: all 0.2s ease;
+        }
+
+        .project-card:hover {
+            border-color: rgba(245, 158, 11, 0.7);
+            box-shadow: 0 0 15px rgba(245, 158, 11, 0.12);
+        }
+
+        .project-card h2 {
+            color: #e5e7eb;
+            font-size: 1rem;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .project-card p {
+            color: #9ca3af;
+            font-size: 0.85rem;
+            line-height: 1.6;
+            margin: 0;
+        }
+
         @keyframes neonPulse {
             0% {
                 opacity: 0.85;
-                text-shadow: 
+                text-shadow:
                     0 0 5px #ffaa00,
                     0 0 10px #ffaa00,
                     0 0 20px #ffaa00,
                     0 0 40px #ff6600;
             }
+
             100% {
                 opacity: 1;
-                text-shadow: 
+                text-shadow:
                     0 0 8px #ffaa00,
                     0 0 15px #ffaa00,
                     0 0 30px #ffaa00,
@@ -176,59 +272,247 @@
         }
     </style>
 </head>
+
 <body class="p-4 md:p-8 flex flex-col min-h-screen">
 
     <main class="max-w-7xl mx-auto w-full flex-grow flex flex-col gap-6">
 
         <!-- BANER GŁÓWNY -->
         <section class="w-full">
-            <div class="main-banner w-full h-auto">
-                <img src="images/g2.png" 
-                     alt="Główna grafika taktyczna" 
-                     class="main-graphic"
-                     onerror="this.onerror=null; this.src='https://placehold.co/1200x600/182026/e5a93c?text=ChatGPT+Image+18+wrz+2026,+17_31_33.png';">
+            <div class="main-banner">
+                <img
+                    src="images/g2.png"
+                    alt="DroneAtak – systemy szkoleniowe, symulatory dronów i technologie Remote ID"
+                    class="main-graphic"
+                >
             </div>
         </section>
 
-        <!-- PRZYCISKI NAWIGACYJNE -->
-        <nav class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3 w-full">
-            <a href="index.html" class="nav-btn active py-3 px-2 text-xs sm:text-sm rounded">Główna</a>
-            <a href="nadajnik.html" class="nav-btn py-3 px-2 text-xs sm:text-sm rounded">Nadajnik</a>
-            <a href="symulator.html" class="nav-btn py-3 px-2 text-xs sm:text-sm rounded">Symulator</a>
-            <a href="odbiornik.html" class="nav-btn py-3 px-2 text-xs sm:text-sm rounded">Odbiornik</a>
-            <a href="pobieranie.html" class="nav-btn py-3 px-2 text-xs sm:text-sm rounded">Pobieranie</a>
-            <a href="inne_projekty.html" class="nav-btn py-3 px-2 text-xs sm:text-sm rounded">Inne projekty</a>
+        <!-- NAWIGACJA -->
+        <nav
+            class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3 w-full"
+            aria-label="Główna nawigacja"
+        >
+            <a href="index.html" class="nav-btn active py-3 px-2 text-xs sm:text-sm rounded">
+                Główna
+            </a>
+
+            <a href="nadajnik.html" class="nav-btn py-3 px-2 text-xs sm:text-sm rounded">
+                Nadajnik
+            </a>
+
+            <a href="symulator.html" class="nav-btn py-3 px-2 text-xs sm:text-sm rounded">
+                Symulator
+            </a>
+
+            <a href="odbiornik.html" class="nav-btn py-3 px-2 text-xs sm:text-sm rounded">
+                Odbiornik
+            </a>
+
+            <a href="pobieranie.html" class="nav-btn py-3 px-2 text-xs sm:text-sm rounded">
+                Pobieranie
+            </a>
+
+            <a href="inne_projekty.html" class="nav-btn py-3 px-2 text-xs sm:text-sm rounded">
+                Inne projekty
+            </a>
         </nav>
 
-        <!-- OKNO TREŚCI PODSTRONY -->
-        <section class="w-full flex-grow">
-            <div class="metal-frame-container w-full min-h-[400px] h-full">
+        <!-- GŁÓWNA TREŚĆ -->
+        <section class="w-full">
+
+            <div class="metal-frame-container w-full">
+
+                <!-- Narożniki -->
                 <div class="metal-corner corner-tl"></div>
                 <div class="metal-corner corner-tr"></div>
                 <div class="metal-corner corner-bl"></div>
                 <div class="metal-corner corner-br"></div>
 
+                <!-- Listwy -->
                 <div class="metal-bar-h bar-top"></div>
                 <div class="metal-bar-h bar-bottom"></div>
                 <div class="metal-bar-v bar-left"></div>
                 <div class="metal-bar-v bar-right"></div>
 
-                <div class="frame-content p-8 text-center">
-                    <div class="neon-text mb-4">STRONA W BUDOWIE</div>
-                    <p class="text-zinc-400 text-sm max-w-md font-mono">
-                        SEKCJA: GŁÓWNA<br>
-                        Trwają prace nad przygotowaniem modułu.
-                    </p>
+                <div class="frame-content p-6 md:p-10">
+
+                    <!-- GŁÓWNY TYTUŁ -->
+                    <header class="text-center max-w-4xl mb-10">
+
+                        <h1 class="neon-text mb-5">
+                            DroneAtak
+                        </h1>
+
+                        <p class="text-xl md:text-2xl text-zinc-200 font-semibold mb-4">
+                            Symulatory dronów, systemy Remote ID i narzędzia szkoleniowe
+                        </p>
+
+                        <p class="text-zinc-400 text-sm md:text-base leading-7">
+                            Projekt skupiający się na tworzeniu oprogramowania,
+                            systemów testowych i narzędzi wspierających szkolenie
+                            operatorów bezzałogowych statków powietrznych (BSP).
+                        </p>
+
+                    </header>
+
+                    <!-- INFORMACJA O BUDOWIE -->
+                    <div class="w-full max-w-4xl mb-10 p-5 text-center border border-amber-900/50 bg-black/30 rounded">
+
+                        <div class="section-title mb-3">
+                            Projekt w budowie
+                        </div>
+
+                        <p class="text-zinc-400 text-sm leading-6">
+                            Serwis DroneAtak jest obecnie rozwijany.
+                            Poszczególne moduły, dokumentacja oraz materiały
+                            szkoleniowe będą sukcesywnie udostępniane.
+                        </p>
+
+                    </div>
+
+                    <!-- OBSZARY PROJEKTU -->
+                    <section class="w-full max-w-5xl">
+
+                        <h2 class="section-title text-center mb-6">
+                            Obszary projektu
+                        </h2>
+
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+
+                            <article class="project-card">
+
+                                <h2>
+                                    Symulator wielu dronów
+                                </h2>
+
+                                <p>
+                                    Projekt symulatora umożliwiającego jednoczesną
+                                    pracę z dużą liczbą symulowanych obiektów.
+                                    Zakładanym kierunkiem rozwoju jest obsługa
+                                    scenariuszy obejmujących do 200 dronów.
+                                </p>
+
+                            </article>
+
+                            <article class="project-card">
+
+                                <h2>
+                                    Nadajnik Remote ID
+                                </h2>
+
+                                <p>
+                                    System testowy przeznaczony do generowania
+                                    danych Remote ID oraz przygotowywania
+                                    scenariuszy z wieloma symulowanymi źródłami.
+                                    Projekt zakłada możliwość symulacji do
+                                    50 jednoczesnych obiektów.
+                                </p>
+
+                            </article>
+
+                            <article class="project-card">
+
+                                <h2>
+                                    Odbiornik Remote ID
+                                </h2>
+
+                                <p>
+                                    Odbiornik i narzędzia do wizualizacji oraz
+                                    analizy danych Remote ID. Projekt rozwijany
+                                    z myślą o zastosowaniach testowych i
+                                    szkoleniowych operatorów BSP.
+                                </p>
+
+                            </article>
+
+                            <article class="project-card">
+
+                                <h2>
+                                    Szkolenie operatorów BSP
+                                </h2>
+
+                                <p>
+                                    Narzędzia i scenariusze wspierające szkolenie
+                                    pilotów dronów oraz pracę grup szkoleniowych.
+                                    Projekty mogą być wykorzystywane w środowisku
+                                    instytucjonalnym i cywilnym.
+                                </p>
+
+                            </article>
+
+                            <article class="project-card">
+
+                                <h2>
+                                    Systemy symulacyjne
+                                </h2>
+
+                                <p>
+                                    Projekty związane z przygotowaniem kontrolowanych
+                                    scenariuszy szkoleniowych, w tym symulacją
+                                    zdarzeń i zadań wykonywanych przez operatora.
+                                    Rozwiązania mają charakter testowy i szkoleniowy.
+                                </p>
+
+                            </article>
+
+                            <article class="project-card">
+
+                                <h2>
+                                    Oprogramowanie i dokumentacja
+                                </h2>
+
+                                <p>
+                                    Oprogramowanie, firmware, instrukcje oraz
+                                    materiały techniczne związane z rozwijanymi
+                                    projektami. Materiały będą publikowane
+                                    sukcesywnie w sekcji pobierania.
+                                </p>
+
+                            </article>
+
+                        </div>
+
+                    </section>
+
+                    <!-- INFORMACJA KOŃCOWA -->
+                    <section class="max-w-4xl mt-10 text-center">
+
+                        <h2 class="section-title mb-4">
+                            Cel projektu
+                        </h2>
+
+                        <p class="text-zinc-400 text-sm leading-7">
+                            Celem projektu DroneAtak jest tworzenie praktycznych
+                            narzędzi umożliwiających prowadzenie testów,
+                            eksperymentów oraz szkoleń związanych z bezzałogowymi
+                            statkami powietrznymi. Systemy są rozwijane etapami,
+                            a ich funkcjonalność będzie rozszerzana wraz z
+                            rozwojem poszczególnych projektów.
+                        </p>
+
+                    </section>
+
                 </div>
             </div>
+
         </section>
 
     </main>
 
     <!-- STOPKA -->
     <footer class="w-full text-center py-6 mt-8 border-t border-zinc-800 text-xs text-zinc-500 font-mono tracking-widest">
-        MaxGyver 2024 JW2211 • all right reserved
+
+        <div>
+            DroneAtak • MaxGyver 2024 JW2211
+        </div>
+
+        <div class="mt-2 text-zinc-600">
+            Projekty i narzędzia szkoleniowe związane z technologią BSP
+        </div>
+
     </footer>
 
 </body>
 </html>
+```
