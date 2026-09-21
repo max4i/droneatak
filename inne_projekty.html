@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inne Projekty - Taktyczny Interfejs</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            background-color: #0b0d12;
+            background-image: 
+                radial-gradient(circle at 50% 30%, #1a202c 0%, transparent 70%),
+                linear-gradient(to bottom, #07080a, #0d1017);
+            color: #d1d5db;
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+        }
+
+        .main-banner {
+            width: 100%;
+            overflow: hidden;
+            border-radius: 4px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.8);
+        }
+
+        .main-graphic {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .nav-btn {
+            background: linear-gradient(180deg, #1f242d 0%, #12151c 100%);
+            border: 1px solid #374151;
+            color: #9ca3af;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            transition: all 0.2s ease;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.4);
+            text-align: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .nav-btn:hover {
+            border-color: #f59e0b;
+            color: #f59e0b;
+            box-shadow: 0 0 12px rgba(245, 158, 11, 0.3);
+        }
+
+        .nav-btn.active {
+            background: linear-gradient(180deg, #2a2215 0%, #18130a 100%);
+            border-color: #f59e0b;
+            color: #f59e0b;
+            box-shadow: inset 0 0 8px rgba(245, 158, 11, 0.4), 0 0 10px rgba(245, 158, 11, 0.2);
+        }
+
+        .metal-frame-container {
+            position: relative;
+            box-sizing: border-box;
+            background: rgba(15, 18, 25, 0.85);
+            padding: 20px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.8), inset 0 0 15px rgba(0,0,0,0.5);
+            height: auto;
+        }
+
+        .metal-corner {
+            position: absolute;
+            width: 32px;
+            height: 32px;
+            z-index: 20;
+            pointer-events: none;
+            background-size: contain;
+            background-repeat: no-repeat;
+        }
+
+        .corner-tl { top: 0; left: 0; background-image: url('images/naroznik_lewy_gorny.png'); }
+        .corner-tr { top: 0; right: 0; background-image: url('images/naroznik_prawy_gorny.png'); }
+        .corner-bl { bottom: 0; left: 0; background-image: url('images/naroznik_lewy_dolny.png'); }
+        .corner-br { bottom: 0; right: 0; background-image: url('images/naroznik_prawy_dolny.png'); }
+
+        .metal-bar-h, .metal-bar-v {
+            position: absolute;
+            z-index: 10;
+            pointer-events: none;
+        }
+
+        .bar-top {
+            top: 0; left: 32px; right: 32px; height: 16px;
+            background-image: url('images/listwa_gorna.png');
+            background-repeat: repeat-x;
+            background-position: center top;
+            background-size: auto 100%;
+        }
+
+        .bar-bottom {
+            bottom: 0; left: 32px; right: 32px; height: 16px;
+            background-image: url('images/listwa_dolna.png');
+            background-repeat: repeat-x;
+            background-position: center bottom;
+            background-size: auto 100%;
+        }
+
+        .bar-left {
+            top: 32px; bottom: 32px; left: 0; width: 16px;
+            background-image: url('images/listwa_lewa.png');
+            background-repeat: repeat-y;
+            background-position: left center;
+            background-size: 100% auto;
+        }
+
+        .bar-right {
+            top: 32px; bottom: 32px; right: 0; width: 16px;
+            background-image: url('images/listwa_prawa.png');
+            background-repeat: repeat-y;
+            background-position: right center;
+            background-size: 100% auto;
+        }
+
+        .frame-content {
+            position: relative;
+            width: 100%;
+            height: auto;
+            display: flex;
+            flex-direction: column;
+            border-radius: 4px;
+            background-image: url('images/tlo_okna.jpg');
+            background-repeat: repeat;
+            background-position: center;
+            box-shadow: inset 0 0 15px rgba(0, 0, 0, 0.7);
+        }
+
+        .neon-title {
+            color: #ffaa00;
+            font-size: 1.5rem;
+            font-weight: 800;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            text-align: center;
+            text-shadow: 
+                0 0 5px #ffaa00,
+                0 0 10px #ffaa00,
+                0 0 20px #ffaa00,
+                0 0 40px #ff6600;
+            animation: neonPulse 1.8s infinite alternate;
+        }
+
+        @keyframes neonPulse {
+            0% {
+                opacity: 0.85;
+                text-shadow: 
+                    0 0 5px #ffaa00,
+                    0 0 10px #ffaa00,
+                    0 0 20px #ffaa00,
+                    0 0 40px #ff6600;
+            }
+            100% {
+                opacity: 1;
+                text-shadow: 
+                    0 0 8px #ffaa00,
+                    0 0 15px #ffaa00,
+                    0 0 30px #ffaa00,
+                    0 0 60px #ff6600,
+                    0 0 90px #ff6600;
+            }
+        }
+
+        .config-item {
+            border: 1px solid rgba(55, 65, 81, 0.5);
+            background: rgba(15, 18, 25, 0.6);
+            padding: 1rem;
+            border-radius: 4px;
+            transition: border-color 0.3s ease;
+        }
+
+        .config-item:hover {
+            border-color: rgba(245, 158, 11, 0.5);
+        }
+
+        .sec-heading {
+            color: #f59e0b;
+            font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+            font-size: 0.95rem;
+            font-weight: 800;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            margin-bottom: 0.5rem;
+            border-bottom: 1px solid rgba(245, 158, 11, 0.25);
+            padding-bottom: 0.35rem;
+        }
+        .sec-body {
+            font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+            font-size: 0.78rem;
+            color: #cbd5e1;
+            line-height: 1.65;
+        }
+        .sec-body p { margin-bottom: 0.6rem; }
+        .sec-body ul { list-style: none; padding-left: 0; }
+        .sec-body li {
+            position: relative;
+            padding-left: 1rem;
+            margin-bottom: 0.3rem;
+        }
+        .sec-body li::before {
+            content: "▸";
+            position: absolute;
+            left: 0;
+            color: #f59e0b;
+        }
+        .sec-body strong { color: #fbbf24; }
+        .badge-tech {
+            display: inline-block;
+            padding: 2px 8px;
+            border: 1px solid #374151;
+            border-radius: 3px;
+            font-size: 0.65rem;
+            color: #9ca3af;
+            margin-right: 4px;
+            margin-bottom: 4px;
+            font-family: ui-monospace, monospace;
+        }
+    </style>
+</head>
+<body class="p-4 md:p-8 flex flex-col min-h-screen">
+
+    <main class="max-w-7xl mx-auto w-full flex-grow flex flex-col gap-6">
+
+        <!-- BANER GŁÓWNY -->
+        <section class="w-full">
+            <div class="main-banner w-full h-auto">
+                <img src="images/g2.png" 
+                     alt="Główna grafika taktyczna" 
+                     class="main-graphic"
+                     onerror="this.onerror=null; this.src='https://placehold.co/1200x600/182026/e5a93c?text=ChatGPT+Image+18+wrz+2026,+17_31_33.png';">
+            </div>
+        </section>
+
+        <!-- PRZYCISKI NAWIGACYJNE -->
+        <nav class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3 w-full">
+            <a href="index.html" class="nav-btn py-3 px-2 text-xs sm:text-sm rounded">Główna</a>
+            <a href="nadajnik.html" class="nav-btn py-3 px-2 text-xs sm:text-sm rounded">Nadajnik</a>
+            <a href="symulator.html" class="nav-btn py-3 px-2 text-xs sm:text-sm rounded">Symulator</a>
+            <a href="odbiornik.html" class="nav-btn py-3 px-2 text-xs sm:text-sm rounded">Odbiornik</a>
+            <a href="pobieranie.html" class="nav-btn py-3 px-2 text-xs sm:text-sm rounded">Pobieranie</a>
+            <a href="inne_projekty.html" class="nav-btn active py-3 px-2 text-xs sm:text-sm rounded">Inne projekty</a>
+        </nav>
+
+        <!-- OKNO TREŚCI PODSTRONY -->
+        <section class="w-full flex-grow">
+            <div class="metal-frame-container w-full">
+                <div class="metal-corner corner-tl"></div>
+                <div class="metal-corner corner-tr"></div>
+                <div class="metal-corner corner-bl"></div>
+                <div class="metal-corner corner-br"></div>
+
+                <div class="metal-bar-h bar-top"></div>
+                <div class="metal-bar-h bar-bottom"></div>
+                <div class="metal-bar-v bar-left"></div>
+                <div class="metal-bar-v bar-right"></div>
+
+                <div class="frame-content p-4 sm:p-6 flex flex-col">
+                    
+                    <!-- NAGŁÓWEK NEONOWY -->
+                    <div class="w-full pb-4 border-b border-amber-500/20 mb-6">
+                        <h1 class="neon-title sm:text-2xl">Inne Projekty i Moduły Taktyczne</h1>
+                        <p class="text-center text-zinc-400 font-mono text-xs mt-2 tracking-widest">
+                            DRONE ATAK MX • dodatkowe projekty, prototypy i rozszerzenia sprzętowe.
+                        </p>
+                    </div>
+
+                    <!-- KARTA PROJEKTU 1 -->
+                    <div class="config-item mb-6">
+                        <h2 class="sec-heading">Mobilna Stacja Przekaźnikowa CoT / Mesh</h2>
+                        <div class="sec-body">
+                            <p>Autonomiczny węzeł retransmisyjny przeznaczony do rozszerzania zasięgu sieci taktycznej TAK/ATAK w trudnym terenie. Moduł agreguje dane z nadajników i odbiorników Remote ID oraz przekazuje je z wykorzystaniem szyfrowanego łącza radiowego LoRa / Meshtastic.</p>
+                            <ul>
+                                <li><strong>Zasięg retransmisji:</strong> do 15 km w widoczności optycznej.</li>
+                                <li><strong>Zasilanie:</strong> wbudowane ogniwa LiFePO4 z panelem słonecznym.</li>
+                                <li><strong>Protokół:</strong> CoT / Protobuf / LoRaWAN.</li>
+                            </ul>
+                            <div class="mt-3">
+                                <span class="badge-tech">LoRa 868 MHz</span>
+                                <span class="badge-tech">TAK Server Mesh</span>
+                                <span class="badge-tech">IP67</span>
+                                <span class="badge-tech">Solar Powered</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- KARTA PROJEKTU 2 -->
+                    <div class="config-item mb-6">
+                        <h2 class="sec-heading">Analizator Widma RF i Detektor Zakłóceń</h2>
+                        <div class="sec-body">
+                            <p>Kompaktowy moduł skanujący pasma 2,4 GHz, 5,8 GHz oraz pasma ISM w celu wykrywania emisji sygnałów sterujących (RC), transmisji wideo (FPV) oraz aktywnego jammingu. Integracja z panelem centralnym umożliwia generowanie alertów taktycznych.</p>
+                            <ul>
+                                <li><strong>Zakres skanowania:</strong> 70 MHz – 6 GHz.</li>
+                                <li><strong>Wykrywanie:</strong> sygnały FPV (analog/digital), telemetryczne, jamming RF.</li>
+                            </ul>
+                            <div class="mt-3">
+                                <span class="badge-tech">SDR Platform</span>
+                                <span class="badge-tech">Skaner RF</span>
+                                <span class="badge-tech">C-UAS Early Warning</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- KARTA PROJEKTU 3 -->
+                    <div class="config-item">
+                        <h2 class="sec-heading">System Autonomicznego Pozycjonowania UWB</h2>
+                        <div class="sec-body">
+                            <p>Lokalny system pozycjonowania wewnątrzbudynkowego (Indoor positioning) oparty na technologii Ultra-Wideband (UWB). Pozwala na precyzyjne śledzenie pozycji jednostek oraz dronów w środowisku bez dostępu do sygnału GPS (GPS-denied environment).</p>
+                            <ul>
+                                <li><strong>Dokładność:</strong> do 10 cm.</li>
+                                <li><strong>Opóźnienie:</strong> &lt; 20 ms.</li>
+                            </ul>
+                            <div class="mt-3">
+                                <span class="badge-tech">UWB IEEE 802.15.4z</span>
+                                <span class="badge-tech">GPS-Denied Tracking</span>
+                                <span class="badge-tech">RTLS</span>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- STOPKA -->
+    <footer class="w-full text-center py-6 mt-8 border-t border-zinc-800 text-xs text-zinc-500 font-mono tracking-widest">
+        MaxGyver 2024 JW2211 • all right reserved
+    </footer>
+
+</body>
+</html>

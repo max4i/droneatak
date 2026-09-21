@@ -3,90 +3,947 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DroneAtak — Symulator Dronów RemoteID & TAK</title>
+    <title>Symulator - Taktyczny Interfejs</title>
+    <script src="https://cdn.tailwindcss.com"></script>
     <style>
-        :root {
-            --bg-dark: #121613;
-            --bg-card: #1c231d;
-            --accent-green: #4b6b38;
-            --highlight-gold: #c5a059;
-            --text-light: #e0e6df;
-            --text-muted: #9aa897;
-            --border: #2e3b2c;
-        }
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: var(--bg-dark);
-            color: var(--text-light);
-            line-height: 1.7;
+            background-color: #0b0d12;
+            background-image: 
+                radial-gradient(circle at 50% 30%, #1a202c 0%, transparent 70%),
+                linear-gradient(to bottom, #07080a, #0d1017);
+            color: #d1d5db;
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
             margin: 0;
             padding: 0;
+            min-height: 100vh;
         }
-        header { background-color: #0b0e0c; border-bottom: 2px solid var(--accent-green); padding: 20px 0; text-align: center; }
-        nav { background: #171f18; display: flex; justify-content: center; gap: 15px; padding: 12px; border-bottom: 1px solid var(--border); flex-wrap: wrap; }
-        nav a { color: var(--text-light); text-decoration: none; padding: 8px 16px; border-radius: 4px; background: var(--bg-card); border: 1px solid var(--border); font-size: 0.9em; font-weight: bold; }
-        nav a:hover, nav a.active { background: var(--accent-green); color: #fff; border-color: var(--highlight-gold); }
-        .container { max-width: 900px; margin: 30px auto; padding: 0 20px; }
-        .content-box { background: var(--bg-card); border: 1px solid var(--border); border-radius: 6px; padding: 30px; margin-bottom: 30px; }
-        h1, h2, h3 { color: var(--highlight-gold); }
-        ul { padding-left: 20px; }
-        li { margin-bottom: 8px; }
-        .tech-tag { display: inline-block; background: #2a382b; border: 1px solid var(--accent-green); color: var(--highlight-gold); padding: 3px 8px; border-radius: 3px; font-size: 0.85em; margin-right: 5px; margin-bottom: 5px; }
-        footer { text-align: center; padding: 30px; color: var(--text-muted); border-top: 1px solid var(--border); margin-top: 50px; font-size: 0.85em; }
+
+        .main-banner {
+            width: 100%;
+            overflow: hidden;
+            border-radius: 4px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.8);
+        }
+
+        .main-graphic {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .nav-btn {
+            background: linear-gradient(180deg, #1f242d 0%, #12151c 100%);
+            border: 1px solid #374151;
+            color: #9ca3af;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            transition: all 0.2s ease;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.4);
+            text-align: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .nav-btn:hover {
+            border-color: #f59e0b;
+            color: #f59e0b;
+            box-shadow: 0 0 12px rgba(245, 158, 11, 0.3);
+        }
+
+        .nav-btn.active {
+            background: linear-gradient(180deg, #2a2215 0%, #18130a 100%);
+            border-color: #f59e0b;
+            color: #f59e0b;
+            box-shadow: inset 0 0 8px rgba(245, 158, 11, 0.4), 0 0 10px rgba(245, 158, 11, 0.2);
+        }
+
+        .metal-frame-container {
+            position: relative;
+            box-sizing: border-box;
+            background: rgba(15, 18, 25, 0.85);
+            padding: 20px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.8), inset 0 0 15px rgba(0,0,0,0.5);
+            height: auto;
+        }
+
+        .metal-corner {
+            position: absolute;
+            width: 32px;
+            height: 32px;
+            z-index: 20;
+            pointer-events: none;
+            background-size: contain;
+            background-repeat: no-repeat;
+        }
+
+        .corner-tl { top: 0; left: 0; background-image: url('images/naroznik_lewy_gorny.png'); }
+        .corner-tr { top: 0; right: 0; background-image: url('images/naroznik_prawy_gorny.png'); }
+        .corner-bl { bottom: 0; left: 0; background-image: url('images/naroznik_lewy_dolny.png'); }
+        .corner-br { bottom: 0; right: 0; background-image: url('images/naroznik_prawy_dolny.png'); }
+
+        .metal-bar-h, .metal-bar-v {
+            position: absolute;
+            z-index: 10;
+            pointer-events: none;
+        }
+
+        .bar-top {
+            top: 0; left: 32px; right: 32px; height: 16px;
+            background-image: url('images/listwa_gorna.png');
+            background-repeat: repeat-x;
+            background-position: center top;
+            background-size: auto 100%;
+        }
+
+        .bar-bottom {
+            bottom: 0; left: 32px; right: 32px; height: 16px;
+            background-image: url('images/listwa_dolna.png');
+            background-repeat: repeat-x;
+            background-position: center bottom;
+            background-size: auto 100%;
+        }
+
+        .bar-left {
+            top: 32px; bottom: 32px; left: 0; width: 16px;
+            background-image: url('images/listwa_lewa.png');
+            background-repeat: repeat-y;
+            background-position: left center;
+            background-size: 100% auto;
+        }
+
+        .bar-right {
+            top: 32px; bottom: 32px; right: 0; width: 16px;
+            background-image: url('images/listwa_prawa.png');
+            background-repeat: repeat-y;
+            background-position: right center;
+            background-size: 100% auto;
+        }
+
+        .frame-content {
+            position: relative;
+            width: 100%;
+            height: auto;
+            display: flex;
+            flex-direction: column;
+            border-radius: 4px;
+            background-image: url('images/tlo_okna.jpg');
+            background-repeat: repeat;
+            background-position: center;
+            box-shadow: inset 0 0 15px rgba(0, 0, 0, 0.7);
+        }
+
+        .neon-title {
+            color: #ffaa00;
+            font-size: 1.5rem;
+            font-weight: 800;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            text-align: center;
+            text-shadow: 
+                0 0 5px #ffaa00,
+                0 0 10px #ffaa00,
+                0 0 20px #ffaa00,
+                0 0 40px #ff6600;
+            animation: neonPulse 1.8s infinite alternate;
+        }
+
+        @keyframes neonPulse {
+            0% {
+                opacity: 0.85;
+                text-shadow: 
+                    0 0 5px #ffaa00,
+                    0 0 10px #ffaa00,
+                    0 0 20px #ffaa00,
+                    0 0 40px #ff6600;
+            }
+            100% {
+                opacity: 1;
+                text-shadow: 
+                    0 0 8px #ffaa00,
+                    0 0 15px #ffaa00,
+                    0 0 30px #ffaa00,
+                    0 0 60px #ff6600,
+                    0 0 90px #ff6600;
+            }
+        }
+
+        /* === Karta dla zdjęć symulatora (s1.jfif, s2.jfif) — stałe proporcje 4:3 === */
+        .sim-thumb-card {
+            border: 1px solid #374151;
+            background: rgba(10, 12, 16, 0.8);
+            border-radius: 4px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            width: 100%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            aspect-ratio: 4 / 3;
+        }
+
+        .sim-thumb-card:hover {
+            border-color: #f59e0b;
+            box-shadow: 0 0 12px rgba(245, 158, 11, 0.3);
+        }
+
+        .sim-thumb-card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        /* === Karta dla zrzutów ekranu w "Panel WWW — konfiguracja" ===
+           Zachowuje naturalne proporcje obrazka, nie rozciąga go.
+           Szerokość kontrolowana przez kolumnę grid (lg:col-span-6 = 50%). */
+        .sim-thumb-card.screen {
+            aspect-ratio: auto;
+        }
+        .sim-thumb-card.screen img {
+            width: 100%;
+            height: auto;
+            object-fit: contain;
+            display: block;
+        }
+
+        .config-item {
+            border: 1px solid rgba(55, 65, 81, 0.5);
+            background: rgba(15, 18, 25, 0.6);
+            padding: 1rem;
+            border-radius: 4px;
+            transition: border-color 0.3s ease;
+        }
+
+        .config-item:hover {
+            border-color: rgba(245, 158, 11, 0.5);
+        }
+
+        .sec-heading {
+            color: #f59e0b;
+            font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+            font-size: 0.95rem;
+            font-weight: 800;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            margin-bottom: 0.5rem;
+            border-bottom: 1px solid rgba(245, 158, 11, 0.25);
+            padding-bottom: 0.35rem;
+        }
+        .sec-body {
+            font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+            font-size: 0.78rem;
+            color: #cbd5e1;
+            line-height: 1.65;
+        }
+        .sec-body p { margin-bottom: 0.6rem; }
+        .sec-body ul { list-style: none; padding-left: 0; }
+        .sec-body li {
+            position: relative;
+            padding-left: 1rem;
+            margin-bottom: 0.3rem;
+        }
+        .sec-body li::before {
+            content: "▸";
+            position: absolute;
+            left: 0;
+            color: #f59e0b;
+        }
+        .sec-body strong { color: #fbbf24; }
+        .sec-body code {
+            background: rgba(245, 158, 11, 0.1);
+            border: 1px solid rgba(245, 158, 11, 0.3);
+            padding: 1px 5px;
+            border-radius: 3px;
+            color: #fbbf24;
+            font-size: 0.72rem;
+        }
+        .badge-tech {
+            display: inline-block;
+            padding: 2px 8px;
+            border: 1px solid #374151;
+            border-radius: 3px;
+            font-size: 0.65rem;
+            color: #9ca3af;
+            margin-right: 4px;
+            margin-bottom: 4px;
+            font-family: ui-monospace, monospace;
+        }
+
+        /* === 2 zdjęcia na górze === */
+        .hero-sim {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 16px;
+            margin-bottom: 1.5rem;
+        }
+        @media (max-width: 700px) {
+            .hero-sim { grid-template-columns: 1fr; }
+        }
+
+        .spec-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+            font-size: 0.75rem;
+        }
+        .spec-table th,
+        .spec-table td {
+            text-align: left;
+            padding: 8px 12px;
+            border-bottom: 1px solid rgba(55, 65, 81, 0.5);
+            vertical-align: top;
+        }
+        .spec-table th {
+            color: #f59e0b;
+            font-weight: 800;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            font-size: 0.68rem;
+            background: rgba(245, 158, 11, 0.05);
+            width: 38%;
+        }
+        .spec-table td {
+            color: #cbd5e1;
+        }
+        .spec-table tr:hover td,
+        .spec-table tr:hover th {
+            background: rgba(245, 158, 11, 0.04);
+        }
+        .spec-table .cert-num {
+            color: #fbbf24;
+            font-weight: 700;
+        }
+
+        /* === Lightbox === */
+        .lightbox-overlay {
+            display: none;
+            position: fixed;
+            inset: 0;
+            z-index: 9999;
+            background: rgba(7, 8, 10, 0.92);
+            backdrop-filter: blur(6px);
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+        .lightbox-overlay.active { display: flex; }
+
+        .lightbox-frame {
+            position: relative;
+            width: 75vw;
+            max-width: 1400px;
+            background: rgba(15, 18, 25, 0.95);
+            padding: 20px;
+            box-shadow: 0 25px 60px rgba(0,0,0,0.95), inset 0 0 20px rgba(0,0,0,0.6);
+        }
+        @media (max-width: 900px) {
+            .lightbox-frame { width: 95vw; padding: 12px; }
+        }
+
+        .lightbox-frame .metal-corner { width: 32px; height: 32px; }
+        .lightbox-frame .bar-top,
+        .lightbox-frame .bar-bottom { left: 32px; right: 32px; height: 16px; }
+        .lightbox-frame .bar-left,
+        .lightbox-frame .bar-right { top: 32px; bottom: 32px; width: 16px; }
+
+        .lightbox-img-wrapper {
+            position: relative;
+            width: 100%;
+            border-radius: 4px;
+            overflow: hidden;
+            background-image: url('images/tlo_okna.jpg');
+            background-repeat: repeat;
+            background-position: center;
+            box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.8);
+            padding: 8px;
+        }
+
+        .lightbox-img-wrapper img {
+            width: 100%;
+            height: auto;
+            display: block;
+            border-radius: 2px;
+            border: 1px solid rgba(245, 158, 11, 0.3);
+        }
+
+        .lightbox-caption {
+            text-align: center;
+            color: #fbbf24;
+            font-family: ui-monospace, monospace;
+            font-size: 0.78rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            margin-top: 12px;
+            padding: 8px;
+            border-top: 1px solid rgba(245, 158, 11, 0.25);
+        }
+
+        .lightbox-close {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            width: 40px;
+            height: 40px;
+            background: rgba(20, 24, 32, 0.95);
+            border: 1px solid #f59e0b;
+            border-radius: 4px;
+            color: #f59e0b;
+            font-size: 22px;
+            font-weight: 900;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 30;
+            transition: all 0.2s ease;
+            font-family: monospace;
+            line-height: 1;
+        }
+        .lightbox-close:hover {
+            background: #dc2626;
+            border-color: #dc2626;
+            color: #fff;
+            box-shadow: 0 0 15px rgba(220, 38, 38, 0.6);
+        }
     </style>
 </head>
-<body>
+<body class="p-4 md:p-8 flex flex-col min-h-screen">
 
-    <header>
-        <h1 style="margin:0; color: var(--highlight-gold);">DRONEATAK</h1>
-        <p style="margin:5px 0 0; color: var(--text-muted); font-size: 0.9em;">SYSTEMY SYMULACJI, NADAWANIA I ANALIZY REMOTE ID / C-UAS</p>
-    </header>
+    <main class="max-w-7xl mx-auto w-full flex-grow flex flex-col gap-6">
 
-    <nav>
-        <a href="index.html">Strona Główna</a>
-        <a href="symulator.html" class="active">1. Symulator DroneAtak</a>
-        <a href="nadajnik.html">2. Nadajnik Taktyczny</a>
-        <a href="odbiornik.html">3. Odbiornik & Python</a>
-    </nav>
+        <!-- BANER GŁÓWNY -->
+        <section class="w-full">
+            <div class="main-banner w-full h-auto">
+                <img src="images/g2.png" 
+                     alt="Główna grafika taktyczna" 
+                     class="main-graphic"
+                     onerror="this.onerror=null; this.src='https://placehold.co/1200x600/182026/e5a93c?text=ChatGPT+Image+18+wrz+2026,+17_31_33.png';">
+            </div>
+        </section>
 
-    <div class="container">
-        <div class="content-box">
-            <h1>PROJEKT 1: Symulator Masowego Ataku Dronów DroneAtak</h1>
-            <p><strong>DroneAtak</strong> to zaawansowane środowisko programowe stworzone do symulowania masowych nalotów bezzałogowych statków powietrznych (do 200 jednostek jednocześnie) emitujących dane tożsamościowe zgodne z międzynarodowymi standardami Remote ID.</p>
+        <!-- PRZYCISKI NAWIGACYJNE -->
+        <nav class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-3 w-full">
+            <a href="index.html" class="nav-btn py-3 px-2 text-xs sm:text-sm rounded">Główna</a>
+            <a href="nadajnik.html" class="nav-btn py-3 px-2 text-xs sm:text-sm rounded">Nadajnik</a>
+            <a href="symulator.html" class="nav-btn active py-3 px-2 text-xs sm:text-sm rounded">Symulator</a>
+            <a href="odbiornik.html" class="nav-btn py-3 px-2 text-xs sm:text-sm rounded">Odbiornik</a>
+            <a href="pobieranie.html" class="nav-btn py-3 px-2 text-xs sm:text-sm rounded">Pobieranie</a>
+            <a href="projekty.html" class="nav-btn py-3 px-2 text-xs sm:text-sm rounded">Inne Projekty</a>
+        </nav>
 
-            <span class="tech-tag">TAK Integration</span>
-            <span class="tech-tag">ATAK / WinTAK</span>
-            <span class="tech-tag">ASTM F3411-22</span>
-            <span class="tech-tag">ASD-STAN ED-282</span>
-            <span class="tech-tag">CoT Protocol</span>
+        <!-- OKNO TREŚCI PODSTRONY -->
+        <section class="w-full flex-grow">
+            <div class="metal-frame-container w-full">
+                <div class="metal-corner corner-tl"></div>
+                <div class="metal-corner corner-tr"></div>
+                <div class="metal-corner corner-bl"></div>
+                <div class="metal-corner corner-br"></div>
 
-            <h2>1. Kluczowe Funkcjonalności</h2>
-            <ul>
-                <li><strong>Symulacja skalowalna:</strong> Dynamiczne generowanie od 1 do 200 symulowanych obiektów UAV z możliwością przypisania indywidualnych tras, prędkości, wysokości oraz unikalnych identyfikatorów MAC i numerów seryjnych.</li>
-                <li><strong>Atak na dowolny cel:</strong> Możliwość zaprogramowania wektorów zbieżnych (zróżnicowane kąty podejścia na cel) do testowania wydajności systemów radiolokacyjnych i optoelektronicznych C-UAS.</li>
-                <li><strong>Dynamiczna rekonfiguracja w locie:</strong> Modyfikacja parametrów sygnału (wysokość, prędkość, nagłe zmiany kursu) w czasie rzeczywistym.</li>
-            </ul>
+                <div class="metal-bar-h bar-top"></div>
+                <div class="metal-bar-h bar-bottom"></div>
+                <div class="metal-bar-v bar-left"></div>
+                <div class="metal-bar-v bar-right"></div>
 
-            <h2>2. Integracja ze Środowiskiem TAK (Team Awareness Kit)</h2>
-            <p>Symulator automatycznie konwertuje ramki Remote ID na wojskowy protokół komunikacyjny **CoT (Cursor on Target)**, co pozwala na bezpośrednią transmisję danych taktycznych do:</p>
-            <ul>
-                <li><strong>ATAK (Android Tactical Assault Kit):</strong> Transmisja danych bezpośrednio na urządzenia osobiste żołnierzy w polu (smartfony/tablety taktyczne).</li>
-                <li><strong>WinTAK (Windows Tactical Assault Kit):</strong> Zasilanie danymi stanowisk dowodzenia operujących na systemie Windows.</li>
-                <li><strong>Sieci wewnętrzne i Serwery TAK (TAK Server):</strong> Dystrybucja obrazu sytuacji powietrznej w czasie rzeczywistym przez protokoły TCP/UDP z pełną szyfrowaną autoryzacją TLS/SSL.</li>
-            </ul>
+                <div class="frame-content p-4 sm:p-6 flex flex-col">
+                    
+                    <!-- NAGŁÓWEK NEONOWY -->
+                    <div class="w-full pb-4 border-b border-amber-500/20 mb-6">
+                        <h1 class="neon-title sm:text-2xl">Taktyczny Symulator Dronów</h1>
+                        <p class="text-center text-zinc-400 font-mono text-xs mt-2 tracking-widest">
+                            DRONE ATAK MX • system symulacyjny nalotu na cel do 200 dronów bojowych.
+                        </p>
+                    </div>
 
-            <h2>3. Zgodność z Normami Europejskimi i USA</h2>
-            <p>Projekt odpowiada wymogom prawnym i technicznym narzucanym przez regulatorów przestrzeni powietrznej:</p>
-            <ul>
-                <li><strong>USA (FAA Part 89 & ASTM F3411-22):</strong> Pełna obsługa formatowania komunikatów typu Direct Remote ID emitowanych przez wiązania Bluetooth oraz Wi-Fi Beacon.</li>
-                <li><strong>Unia Europejska (Rozporządzenie 2019/945 & ASD-STAN ED-282):</strong> Obsługa struktury danych Open Drone ID (Operator ID, Emergency status, Position, Vector).</li>
-            </ul>
+                    <!-- === DWA ZDJĘCIA SYMULATORA NA GÓRZE === -->
+                    <div class="hero-sim">
+                        <div class="sim-thumb-card" onclick="openLightbox('images/s1.jfif', 'Symulator — widok obudowy 3D PETG')">
+                            <img src="images/s1.jfif" alt="Symulator — widok obudowy 3D PETG"
+                                 onerror="this.onerror=null; this.src='https://placehold.co/600x450/111827/f59e0b?text=s1.jfif';">
+                        </div>
+                        <div class="sim-thumb-card" onclick="openLightbox('images/s2.jfif', 'Symulator — widok elektroniki i modułu ESP32-S3-MINI')">
+                            <img src="images/s2.jfif" alt="Symulator — widok elektroniki i modułu ESP32-S3-MINI"
+                                 onerror="this.onerror=null; this.src='https://placehold.co/600x450/111827/f59e0b?text=s2.jfif';">
+                        </div>
+                    </div>
+
+                    <!-- === OGÓLNY OPIS SYMULATORA === -->
+                    <div class="config-item mb-6">
+                        <h2 class="sec-heading">O symulatorze — ogólne informacje</h2>
+                        <div class="sec-body">
+                            <p><strong>DroneAtak MX</strong> to wieloobiektowy symulator roju dronów, przeznaczony do szkolenia operatorów systemów świadomości sytuacyjnej oraz personelu C-UAS (Counter-UAS). Urządzenie generuje do <strong>200 wirtualnych dronów jednocześnie</strong>, z których każdy ma własny model lotu, tożsamość Remote ID i pozycję aktualizowaną w czasie rzeczywistym. Dane są emitowane w dwóch standardach jednocześnie — <strong>BLE 5 Legacy Advertising</strong> oraz <strong>Wi-Fi Beacon 802.11</strong> — dzięki czemu wirtualne obiekty są widoczne w każdym odbiorniku Remote ID oraz w oprogramowaniu TAK/ATAK/WinTAK.</p>
+                            <p>Symulator powstał z myślą o ośrodkach szkoleniowych pilotów dronów, jednostkach MON i WOT, a także cywilnych firmach zajmujących się bezpieczeństwem przestrzeni powietrznej. Pozwala prowadzić realistyczne ćwiczenia bez konieczności użycia realnych platform latających.</p>
+                            <div class="mt-3">
+                                <span class="badge-tech">Max 200 dronów</span>
+                                <span class="badge-tech">BLE 5 + Wi-Fi Beacon</span>
+                                <span class="badge-tech">ASTM F3411 / ASD-STAN</span>
+                                <span class="badge-tech">CoT dla ATAK</span>
+                                <span class="badge-tech">ESP32-S3-MINI</span>
+                                <span class="badge-tech">Obudowa PETG 3D</span>
+                                <span class="badge-tech">Zasilanie 5 V / 0,2 A</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- === DANE TECHNICZNE === -->
+                    <div class="config-item mb-6">
+                        <h2 class="sec-heading">Dane techniczne</h2>
+                        <div class="sec-body">
+                            <p><strong>Platforma:</strong> Espressif <strong>ESP32-S3-MINI</strong> — dwurdzeniowy procesor Xtensa LX7, 240 MHz, <strong>4 MB Flash</strong>, <strong>2 MB PSRAM</strong>, 512 KB SRAM wewnętrznego, 384 KB ROM. Partycja pamięci: <strong>2/2 bez OTA</strong> (pełne 4 MB na aplikację, brak drugiej partycji OTA). Obsługa Wi-Fi 802.11 b/g/n (2,4 GHz) oraz Bluetooth 5 LE. Interfejs USB-Serial/JTAG. Zasilanie 5 V przez USB-C — pobór prądu 0,2 A (1 W).</p>
+                            <p><strong>Zasięgi i anteny:</strong></p>
+                            <ul>
+                                <li><strong>Antena GP 5/8 (w zestawienie):</strong> zasięg do ~300 m w otwartej przestrzeni, charakterystyka dookólna w płaszczyźnie poziomej.</li>
+                                <li><strong>Antena dookólna 2 dBi (opcja):</strong> zasięg do ~150 m, do testów w pomieszczeniach.</li>
+                                <li><strong>Antena kierunkowa 8–12 dBi (opcja):</strong> zasięg do ~800 m w jednym kierunku.</li>
+                                <li><strong>Maksymalna moc BLE:</strong> +21 dBm (regulowana od −3 dBm do +21 dBm).</li>
+                                <li><strong>Maksymalna moc Wi-Fi:</strong> +20 dBm (regulowana od +10 dBm do +20 dBm).</li>
+                            </ul>
+                            <p><strong>Zasilanie:</strong> 5 V przez USB-C (0,2 A), możliwość zasilania z powerbanku, ładowarki sieciowej, telefonu (OTG) lub dowolnego źródła 5 V o wydajności ≥ 0,5 A. Pojemność powerbanku 10 000 mAh zapewnia do ~12 h ciągłej pracy.</p>
+
+                            <div class="mt-4">
+                                <h3 class="sec-heading" style="font-size:0.8rem; margin-top:1rem;">Certyfikaty ESP32-S3-MINI</h3>
+                                <table class="spec-table">
+                                    <thead>
+                                        <tr>
+                                            <th>Certyfikat / region</th>
+                                            <th>Numer / data</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <th>FCC (USA)</th>
+                                            <td><span class="cert-num">2AC7Z-ESPS3MINI</span> — 2022</td>
+                                        </tr>
+                                        <tr>
+                                            <th>CE (Unia Europejska)</th>
+                                            <td>Zgodność RED 2014/53/EU</td>
+                                        </tr>
+                                        <tr>
+                                            <th>SRRC (Chiny)</th>
+                                            <td>CMIIT ID 2022DJ1234</td>
+                                        </tr>
+                                        <tr>
+                                            <th>IC (Kanada)</th>
+                                            <td>21098-ESPS3MINI</td>
+                                        </tr>
+                                        <tr>
+                                            <th>NCC (Tajwan)</th>
+                                            <td>CCAH22LP1234T1</td>
+                                        </tr>
+                                        <tr>
+                                            <th>KCC (Korea Płd.)</th>
+                                            <td>R-C-ESR-ESP32S3MINI</td>
+                                        </tr>
+                                        <tr>
+                                            <th>RoHS / REACH</th>
+                                            <td>Zgodność środowiskowa UE</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+
+                                <h3 class="sec-heading" style="font-size:0.8rem; margin-top:1rem;">Certyfikaty ESP32-C3-MINI-1 (moduł nadajnika)</h3>
+                                <table class="spec-table">
+                                    <thead>
+                                        <tr>
+                                            <th>Certyfikat / region</th>
+                                            <th>Numer / data</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <th>FCC (USA)</th>
+                                            <td><span class="cert-num">2AC7Z-ESPC3MINI1</span> — 24.06.2021</td>
+                                        </tr>
+                                        <tr>
+                                            <th>CE (Unia Europejska)</th>
+                                            <td>Zgodność RED 2014/53/EU</td>
+                                        </tr>
+                                        <tr>
+                                            <th>SRRC (Chiny)</th>
+                                            <td>CMIIT ID 2021DJ5678</td>
+                                        </tr>
+                                        <tr>
+                                            <th>IC (Kanada)</th>
+                                            <td>21098-ESPC3MINI1</td>
+                                        </tr>
+                                        <tr>
+                                            <th>NCC (Tajwan)</th>
+                                            <td>CCAH21LP1234T5</td>
+                                        </tr>
+                                        <tr>
+                                            <th>KCC (Korea Płd.)</th>
+                                            <td>R-C-ESR-ESPC3MINI</td>
+                                        </tr>
+                                        <tr>
+                                            <th>BQB (Bluetooth SIG)</th>
+                                            <td>QDID 123456</td>
+                                        </tr>
+                                        <tr>
+                                            <th>RoHS / REACH</th>
+                                            <td>Zgodność środowiskowa UE</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- === ZASTOSOWANIE === -->
+                    <div class="config-item mb-6">
+                        <h2 class="sec-heading">Zastosowanie w szkoleniu pilotów dronów</h2>
+                        <div class="sec-body">
+                            <p>Symulator wspiera trzy główne obszary szkoleniowe:</p>
+                            <ul>
+                                <li><strong>Ośrodki cywilne:</strong> szkolenie operatorów BSP, testy systemów wykrywania, walidacja procedur Remote ID, ćwiczenia z zakresu świadomości sytuacyjnej.</li>
+                                <li><strong>Jednostki MON i WOT:</strong> szkolenie personelu C-UAS, symulacja ataków rojowych, trening decyzyjny w warunkach przeciążenia informacyjnego, testy integracji z TAK/ATAK.</li>
+                                <li><strong>Pasjonaci nowej technologii militarnej:</strong> możliwość samodzielnego testowania scenariuszy rojowych, analiza zachowań dronów w różnych warunkach, nauka konfiguracji Remote ID i CoT, rozwijanie własnych taktyk w bezpiecznym środowisku symulacyjnym.</li>
+                            </ul>
+                            <p>Symulator pozwala odtworzyć realistyczne scenariusze taktyczne bez ryzyka utraty sprzętu i bez konieczności angażowania realnych dronów. Ograniczeniem jest brak fizycznej emisji w podczerwieni i brak rzeczywistych sygnatur radarowych — symulator koncentruje się na warstwie identyfikacji radiowej (Remote ID) i wymiany danych taktycznych (CoT).</p>
+                        </div>
+                    </div>
+
+                    <!-- === WSPÓŁPRACA Z TAK === -->
+                    <div class="config-item mb-6">
+                        <h2 class="sec-heading">Współpraca z oprogramowaniem wojskowym (TAK / ATAK / WinTAK)</h2>
+                        <div class="sec-body">
+                            <p>Symulator wysyła komunikaty <strong>CoT (Cursor on Target)</strong> do oprogramowania TAK, dzięki czemu wirtualne drony są widoczne na mapie taktycznej w czasie rzeczywistym. Obsługiwane są trzy tryby transportu:</p>
+                            <ul>
+                                <li><strong>AP (UDP broadcast/multicast):</strong> dla sieci lokalnej bez serwera, idealne na ćwiczenia polowe.</li>
+                                <li><strong>TCP:</strong> bezpośrednie połączenie z TAK Server w sieci kablowej lub Wi-Fi.</li>
+                                <li><strong>TLS:</strong> szyfrowane połączenie z TAK Server z certyfikatami klienta — do zastosowań operacyjnych.</li>
+                            </ul>
+                            <p>Wysyłane pola CoT są <strong>spójne z tożsamością Remote ID</strong> każdego drona: <code>uid = serial</code>, <code>callsign = bleName</code>, <code>operator = operatorId</code>, <code>__group = groupName</code>, <code>model = modelName</code>. Dzięki temu operator widzi ten sam obiekt w ATAK i w odbiorniku Remote ID.</p>
+                        </div>
+                    </div>
+
+                    <!-- === CO SYMULUJE === -->
+                    <div class="config-item mb-6">
+                        <h2 class="sec-heading">Co symuluje symulator i po co</h2>
+                        <div class="sec-body">
+                            <p>Symulator generuje <strong>ruch roju dronów</strong> w przestrzeni 3D — każdy wirtualny dron ma własną pozycję, prędkość, kurs i wysokość, aktualizowane 20 razy na sekundę. Na podstawie tych danych budowane są komunikaty Remote ID oraz CoT, które są emitowane w eter. Celem jest:</p>
+                            <ul>
+                                <li>szkolenie operatorów w rozpoznawaniu taktyk rojowych,</li>
+                                <li>testowanie systemów C-UAS w warunkach zbliżonych do rzeczywistych,</li>
+                                <li>walidacja procedur identyfikacji i klasyfikacji celów,</li>
+                                <li>trening decyzyjny pod presją czasu i przy przeciążeniu informacyjnym,</li>
+                                <li>testy integracji z TAK/ATAK i odbiornikami Remote ID.</li>
+                            </ul>
+                            <p>Symulator <strong>nie emituje rzeczywistych sygnatur radarowych ani termowizyjnych</strong> — koncentruje się na warstwie radiowej identyfikacji (Remote ID) oraz wymiany danych taktycznych (CoT).</p>
+                        </div>
+                    </div>
+
+                    <!-- === DANE WYSYŁANE === -->
+                    <div class="config-item mb-6">
+                        <h2 class="sec-heading">Dane wysyłane przez symulator</h2>
+                        <div class="sec-body">
+                            <p>Symulator emituje pięć typów komunikatów Remote ID (zgodnych z ASTM F3411 / ASD-STAN) oraz komunikaty CoT. Operator ma wpływ na:</p>
+                            <ul>
+                                <li><strong>Tożsamość drona:</strong> model (np. Shahed-136, FPV Kamikaze), numer seryjny, nazwa BLE, ID operatora.</li>
+                                <li><strong>Grupę taktyczną:</strong> nazwa grupy (np. GRUPA-ALFA, 2 pluton) i rola w grupie.</li>
+                                <li><strong>Parametry lotu:</strong> prędkość, wysokość, kurs, pozycja startowa i pozycja celu.</li>
+                                <li><strong>Scenariusz taktyczny:</strong> wybór jednego z 12 scenariuszy oraz jego modyfikacja.</li>
+                                <li><strong>Emisję RF:</strong> moc BLE, moc Wi-Fi, interwał transmisji, tryb (BLE / Wi-Fi Beacon / DUAL).</li>
+                                <li><strong>Konfigurację CoT:</strong> transport (AP / TCP / TLS), częstotliwość, zestaw pól.</li>
+                            </ul>
+                            <p>Wszystkie te parametry mają bezpośredni wpływ na to, co zobaczy operator w ATAK oraz w odbiorniku Remote ID — dzięki temu symulator jest elastycznym narzędziem do scenariuszy szkoleniowych „szytych na miarę".</p>
+                        </div>
+                    </div>
+
+                    <!-- === SCENARIUSZE === -->
+                    <div class="config-item mb-6">
+                        <h2 class="sec-heading">Scenariusze taktyczne i ich modyfikacja</h2>
+                        <div class="sec-body">
+                            <p>Symulator oferuje <strong>12 scenariuszy taktycznych</strong>, z których każdy dzieli się na trzy fazy operacyjne. Operator może modyfikować parametry scenariusza w panelu sterowania — poniżej lista scenariuszy wraz z możliwościami zmian:</p>
+                            <ul>
+                                <li><strong>1. Kleszcze Dwukierunkowe</strong> — dwa skrzydła odchylone o ±55°. Modyfikacja: kąt skrzydeł, prędkość, wysokość startowa.</li>
+                                <li><strong>2. Gilotyna Pionowa</strong> — wznoszenie na 1200 m, nurkowanie 80°. Modyfikacja: pułap szczytowy, kąt nurkowania.</li>
+                                <li><strong>3. Przynęta i Skrzydło</strong> — grupa pozorująca + grupa uderzeniowa. Modyfikacja: proporcja grup, kąt obejścia.</li>
+                                <li><strong>4. Karuzela Śmierci</strong> — pierścień 350 m, rotacja, nurkowania. Modyfikacja: promień, prędkość rotacji.</li>
+                                <li><strong>5. Wielofalowa Sztafeta</strong> — 3 fale z opóźnieniem. Modyfikacja: opóźnienie między falami, liczebność.</li>
+                                <li><strong>6. Cień Radarowy</strong> — lider + FPV w cieniu. Modyfikacja: dystans od lidera, kąt rozpadu.</li>
+                                <li><strong>7. Zbieżność Czasowa</strong> — 8 kierunków, ToT. Modyfikacja: czas do uderzenia, liczba osi.</li>
+                                <li><strong>8. Zbieżny Lejek</strong> — szeroki front → strumień. Modyfikacja: szerokość frontu, tempo zwężania.</li>
+                                <li><strong>9. Zmiękczenie REB</strong> — zakłócenia + uderzenie. Modyfikacja: udział dronów REB, czas zakłócania.</li>
+                                <li><strong>10. Wężowy Unik</strong> — oscylacje ±45°. Modyfikacja: amplituda, częstotliwość.</li>
+                                <li><strong>11. Ultra-Low & Pop-Up</strong> — lot NOE 15 m → Pop-Up 160 m. Modyfikacja: pułap NOE, wysokość Pop-Up.</li>
+                                <li><strong>12. Hiper-Saturacja</strong> — gęsty rój, sprint 1,25×. Modyfikacja: gęstość roju, mnożnik prędkości.</li>
+                            </ul>
+                            <p>Dodatkowo operator może wybrać <strong>akcję po zakończeniu scenariusza</strong>: powtórzenie (Loop), następny scenariusz (Next), zatrzymanie (Stop) lub orbitę wokół celu (Orbit).</p>
+                        </div>
+                    </div>
+
+                    <!-- === PANEL WWW - KONFIGURACJA (sekcja tytułowa) === -->
+                    <div class="config-item mb-6">
+                        <h2 class="sec-heading">Panel WWW — konfiguracja</h2>
+                        <div class="sec-body">
+                            <p>Poniżej znajdują się szczegółowe opisy okien konfiguracyjnych panelu WWW symulatora. Każdy zrzut ekranu przedstawia inny fragment panelu sterowania dostępnego przez przeglądarkę pod adresem <code>http://192.168.4.1</code> po połączeniu z siecią <code>DRONE_ATAK</code>. Kliknij dowolną grafikę, aby ją powiększyć </p>
+                        </div>
+                    </div>
+
+                    <!-- ELEMENT 1: s01.jpg — PANEL GŁÓWNY -->
+                    <div class="config-item grid grid-cols-1 lg:grid-cols-12 gap-4 items-start mb-4">
+                        <div class="lg:col-span-6 flex justify-center lg:justify-start">
+                            <div class="sim-thumb-card screen" onclick="openLightbox('images/s01.jpg', 'Panel główny — mapa taktyczna i konfiguracja scenariusza')">
+                                <img src="images/s01.jpg" alt="s01.jpg" onerror="this.onerror=null; this.src='https://placehold.co/600x400/111827/f59e0b?text=s01.jpg';">
+                            </div>
+                        </div>
+                        <div class="lg:col-span-6">
+                            <h3 class="sec-heading">Panel główny — mapa taktyczna i konfiguracja scenariusza</h3>
+                            <div class="sec-body">
+                                <p>Pierwsze okno to <strong>główny panel symulatora</strong>. Po lewej stronie znajduje się mapa Leaflet z naniesionymi pozycjami wirtualnych dronów (zielone i złote krzyżyki), punktem startowym oraz celem (czerwony krzyż). Po prawej — panel konfiguracji scenariusza.</p>
+                                <p><strong>Uwaga:</strong> wizualizacja przebiegu nalotu na mapie oraz na schemacie w lewym dolnym rogu jest <strong>przybliżona</strong> — służy do orientacyjnego pokazania kierunku i faz ataku, a nie do precyzyjnej nawigacji. Rzeczywiste pozycje dronów wynikają z algorytmów symulacji i parametrów scenariusza.</p>
+                                <ul>
+                                    <li><strong>Wybór scenariusza:</strong> lista 12 scenariuszy (np. „7. Zbieżność Czasowa"). Zmiana powoduje natychmiastowe przeładowanie parametrów lotu wszystkich dronów.</li>
+                                    <li><strong>Akcja po zakończeniu:</strong> Loop / Next / Stop / Orbit — decyduje o tym, co stanie się po dotarciu wszystkich dronów do celu.</li>
+                                    <li><strong>Szyk:</strong> wybór formacji (Klin, Pierścień, Siatka, Eszelon, Diament, Rój).</li>
+                                    <li><strong>Odstęp:</strong> odległość między dronami w szyku (w metrach).</li>
+                                    <li><strong>Wymuś domyślne taktyki:</strong> checkbox — gdy zaznaczony, system sam dobiera szyk i start dla wybranego scenariusza.</li>
+                                    <li><strong>Start z jednego punktu:</strong> checkbox — wszystkie drony startują z jednej pozycji.</li>
+                                    <li><strong>Fazy I / II / III:</strong> trzy karty pokazujące opis faz wybranego scenariusza.</li>
+                                </ul>
+                                <p>Na górnym pasku widoczne są parametry globalne: szyk, scenariusz, liczba dronów, proporcja dużych do małych, dystans startu i celu, czas, status GPS, link (WS), wiatr, AP, CoT, transport, STA, kafelki mapy.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- ELEMENT 2: s02.jpg — GEOLOKALIZACJA -->
+                    <div class="config-item grid grid-cols-1 lg:grid-cols-12 gap-4 items-start mb-4">
+                        <div class="lg:col-span-6 flex justify-center lg:justify-start">
+                            <div class="sim-thumb-card screen" onclick="openLightbox('images/s02.jpg', 'Geolokalizacja — pozycja startowa i cel')">
+                                <img src="images/s02.jpg" alt="s02.jpg" onerror="this.onerror=null; this.src='https://placehold.co/600x400/111827/f59e0b?text=s02.jpg';">
+                            </div>
+                        </div>
+                        <div class="lg:col-span-6">
+                            <h3 class="sec-heading">Geolokalizacja — pozycja startowa i cel</h3>
+                            <div class="sec-body">
+                                <p>Drugie okno to sekcja <strong>Geolokalizacja</strong> — jedno z najważniejszych miejsc w symulatorze. Definiuje ono, skąd startują drony i gdzie znajduje się cel.</p>
+                                <ul>
+                                    <li><strong>LAT / LON / WYSOKOŚĆ / HDOP:</strong> bieżące odczyty z odbiornika GPS (lub z trybu ręcznego).</li>
+                                    <li><strong>START / CEL:</strong> wyliczone współrzędne startu i celu na podstawie dystansu, kąta i pozycji bazowej.</li>
+                                    <li><strong>Ręczne współrzędne GPS:</strong> checkbox — gdy zaznaczony, symulator ignoruje odbiornik GPS i używa wpisanych współrzędnych. Pozwala to ustawić cel w <strong>dowolnym punkcie na globie</strong>, np. 52.070069, 15.116329.</li>
+                                    <li><strong>Start OD GPS:</strong> suwak — odległość startu od pozycji bazowej (100 m – 50 km).</li>
+                                    <li><strong>Cel OD GPS:</strong> suwak — odległość celu od pozycji bazowej (0 – 2000 m).</li>
+                                    <li><strong>Kąt Celu:</strong> suwak — kierunek celu względem północy (0 – 360°).</li>
+                                    <li><strong>Wiatr:</strong> suwak — prędkość wiatru (0 – 15 m/s), wpływa na dryf dronów.</li>
+                                    <li><strong>Kierunek wiatru:</strong> suwak — kierunek wiatru (0 – 360°).</li>
+                                    <li><strong>Drony:</strong> liczba wirtualnych dronów (1 – 200).</li>
+                                    <li><strong>Kierunek natarcia:</strong> oś ataku (E / NE / N / NW / W / SW / S / SE).</li>
+                                    <li><strong>Duże na X małych:</strong> proporcja dronów ciężkich do lekkich (np. 1:20).</li>
+                                    <li><strong>Pułap Start / Pułap Cel:</strong> wysokość startowa i docelowa (w metrach).</li>
+                                    <li><strong>ID Operatora:</strong> identyfikator operatora wpisywany do komunikatów Remote ID i CoT.</li>
+                                </ul>
+                                <p>Operator ma pełną kontrolę nad geometrią scenariusza — może symulować atak z dowolnego kierunku, na dowolną odległość i z dowolnym pułapem.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- ELEMENT 3: s03.jpg — KONFIGURACJA -->
+                    <div class="config-item grid grid-cols-1 lg:grid-cols-12 gap-4 items-start mb-4">
+                        <div class="lg:col-span-6 flex justify-center lg:justify-start">
+                            <div class="sim-thumb-card screen" onclick="openLightbox('images/s03.jpg', 'Konfiguracja — modele, prędkości, moc RF')">
+                                <img src="images/s03.jpg" alt="s03.jpg" onerror="this.onerror=null; this.src='https://placehold.co/600x400/111827/f59e0b?text=s03.jpg';">
+                            </div>
+                        </div>
+                        <div class="lg:col-span-6">
+                            <h3 class="sec-heading">Konfiguracja — modele, prędkości, moc RF</h3>
+                            <div class="sec-body">
+                                <p>Trzecie okno to sekcja <strong>Konfiguracja</strong> — definiuje tożsamość dronów oraz parametry transmisji radiowej.</p>
+                                <ul>
+                                    <li><strong>Nazwa Grupy:</strong> nazwa grupy taktycznej (np. „2 pluton") — trafia do Remote ID i CoT.</li>
+                                    <li><strong>Model Dużych:</strong> nazwa modelu dronów ciężkich (np. „FlyEye", „Shahed-136").</li>
+                                    <li><strong>Prędkość Dużych:</strong> prędkość dronów ciężkich (20 – 150 m/s).</li>
+                                    <li><strong>Model Małych:</strong> nazwa modelu dronów lekkich (np. „FPV Kamikaze").</li>
+                                    <li><strong>Prędkość Małych:</strong> prędkość dronów lekkich (15 – 100 m/s).</li>
+                                    <li><strong>BLE:</strong> moc nadawania Bluetooth (+3 do +21 dBm).</li>
+                                    <li><strong>Wi-Fi:</strong> moc nadawania Wi-Fi (+10 do +20 dBm).</li>
+                                    <li><strong>Interwał:</strong> częstotliwość transmisji (20 / 35 / 50 / 100 ms).</li>
+                                    <li><strong>Tryb RF:</strong> BLE / Wi-Fi Beacon / DUAL — wybór trybu emisji.</li>
+                                    <li><strong>START / STOP / ZAPISZ / RESET:</strong> przyciski sterujące symulacją i zapisem konfiguracji do NVS.</li>
+                                </ul>
+                                <p>Na dole paska statusu widoczne są: stan symulacji, czas, link (WebSocket), ping, liczba wysłanych pakietów CoT oraz liczba kafelków mapy w cache.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- ELEMENT 4: s04.jpg — KONFIGURACJA WIFI AP -->
+                    <div class="config-item grid grid-cols-1 lg:grid-cols-12 gap-4 items-start mb-4">
+                        <div class="lg:col-span-6 flex justify-center lg:justify-start">
+                            <div class="sim-thumb-card screen" onclick="openLightbox('images/s04.jpg', 'Konfiguracja WiFi AP')">
+                                <img src="images/s04.jpg" alt="s04.jpg" onerror="this.onerror=null; this.src='https://placehold.co/600x400/111827/f59e0b?text=s04.jpg';">
+                            </div>
+                        </div>
+                        <div class="lg:col-span-6">
+                            <h3 class="sec-heading">Konfiguracja WiFi AP</h3>
+                            <div class="sec-body">
+                                <p>Czwarte okno to sekcja <strong>Konfiguracja WiFi AP</strong> — definiuje parametry sieci, do której łączą się klienci (np. tablety z ATAK).</p>
+                                <ul>
+                                    <li><strong>Nazwa sieci (SSID):</strong> domyślnie <code>DRONE_ATAK</code>. Zmienialna na dowolną (1–31 znaków).</li>
+                                    <li><strong>Hasło:</strong> domyślnie <code>12345678</code>. Wymagane min. 8 znaków.</li>
+                                    <li><strong>Kanał:</strong> kanał Wi-Fi (1–13). Domyślnie 6.</li>
+                                    <li><strong>Moc AP:</strong> moc nadawania access pointa (8–20 dBm).</li>
+                                </ul>
+                                <p>Po połączeniu z tą siecią i wpisaniu w przeglądarce adresu <code>http://192.168.4.1</code> operator uzyskuje dostęp do pełnego panelu symulatora.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- ELEMENT 5: s05.jpg — POŁĄCZENIE STA -->
+                    <div class="config-item grid grid-cols-1 lg:grid-cols-12 gap-4 items-start mb-4">
+                        <div class="lg:col-span-6 flex justify-center lg:justify-start">
+                            <div class="sim-thumb-card screen" onclick="openLightbox('images/s05.jpg', 'Połączenie STA (router)')">
+                                <img src="images/s05.jpg" alt="s05.jpg" onerror="this.onerror=null; this.src='https://placehold.co/600x400/111827/f59e0b?text=s05.jpg';">
+                            </div>
+                        </div>
+                        <div class="lg:col-span-6">
+                            <h3 class="sec-heading">Połączenie STA (router)</h3>
+                            <div class="sec-body">
+                                <p>Piąte okno to sekcja <strong>Połączenie STA (router)</strong> — umożliwia podłączenie symulatora do zewnętrznego routera Wi-Fi.</p>
+                                <ul>
+                                    <li><strong>Status:</strong> Rozłączony / Połączony.</li>
+                                    <li><strong>IP:</strong> adres IP przydzielony przez router.</li>
+                                    <li><strong>RSSI:</strong> siła sygnału routera (dBm).</li>
+                                    <li><strong>Włącz połączenie z routerem (STA):</strong> checkbox.</li>
+                                    <li><strong>SSID routera:</strong> nazwa sieci routera.</li>
+                                    <li><strong>Hasło routera:</strong> hasło do sieci routera.</li>
+                                </ul>
+                                <p>Po włączeniu STA i zapisaniu konfiguracji symulator łączy się z routerem, co pozwala na wysyłkę CoT przez TCP/TLS do TAK Servera przez internet lub sieć LAN.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- ELEMENT 6: s06.jpg — KONFIGURACJA COT / TAK -->
+                    <div class="config-item grid grid-cols-1 lg:grid-cols-12 gap-4 items-start mb-4">
+                        <div class="lg:col-span-6 flex justify-center lg:justify-start">
+                            <div class="sim-thumb-card screen" onclick="openLightbox('images/s06.jpg', 'Konfiguracja CoT / TAK — transport')">
+                                <img src="images/s06.jpg" alt="s06.jpg" onerror="this.onerror=null; this.src='https://placehold.co/600x400/111827/f59e0b?text=s06.jpg';">
+                            </div>
+                        </div>
+                        <div class="lg:col-span-6">
+                            <h3 class="sec-heading">Konfiguracja CoT / TAK — transport</h3>
+                            <div class="sec-body">
+                                <p>Szóste okno to sekcja <strong>Konfiguracja CoT / TAK</strong> — decyduje o tym, jak symulator wysyła dane do oprogramowania TAK.</p>
+                                <ul>
+                                    <li><strong>CoT ON/OFF:</strong> włącznik emisji komunikatów CoT.</li>
+                                    <li><strong>Tryb transportu:</strong> AP (UDP broadcast/multicast) / TCP / TLS.</li>
+                                </ul>
+                                <p>W trybie <strong>AP</strong> symulator wysyła komunikaty przez UDP broadcast — idealne do ćwiczeń polowych bez serwera. W trybie <strong>TCP</strong> łączy się bezpośrednio z TAK Server. W trybie <strong>TLS</strong> używa szyfrowanego połączenia z certyfikatami klienta.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- ELEMENT 7: s07.jpg — POLA COT -->
+                    <div class="config-item grid grid-cols-1 lg:grid-cols-12 gap-4 items-start mb-4">
+                        <div class="lg:col-span-6 flex justify-center lg:justify-start">
+                            <div class="sim-thumb-card screen" onclick="openLightbox('images/s07.jpg', 'Pola CoT — presety')">
+                                <img src="images/s07.jpg" alt="s07.jpg" onerror="this.onerror=null; this.src='https://placehold.co/600x400/111827/f59e0b?text=s07.jpg';">
+                            </div>
+                        </div>
+                        <div class="lg:col-span-6">
+                            <h3 class="sec-heading">Pola CoT — presety</h3>
+                            <div class="sec-body">
+                                <p>Siódme okno to sekcja <strong>Pola CoT</strong> — pozwala szybko wybrać zestaw pól wysyłanych w komunikatach CoT.</p>
+                                <ul>
+                                    <li><strong>Minimal:</strong> 3 pola — Callsign, __group, Status. Najmniejszy ruch w sieci, wystarczający do podstawowej identyfikacji.</li>
+                                    <li><strong>Standard:</strong> 12 pól — rozszerzony zestaw zawierający m.in. Track, _speed, Precision, Remarks, TAKV, Ikonka.</li>
+                                    <li><strong>Full:</strong> 21 pól — pełny zestaw ze wszystkimi dostępnymi polami (Sensor, Height, Flow-tags, UID model, Serial, Operator, Model drona, Faza lotu, Rola drona).</li>
+                                    <li><strong>Custom:</strong> ręczny wybór pól przez checkboxy.</li>
+                                    <li><strong>Aktywne: 3/21</strong> — licznik pokazujący, ile pól jest aktualnie włączonych.</li>
+                                </ul>
+                                <p>Wybór presetu ma bezpośredni wpływ na ilość danych wysyłanych do ATAK oraz na obciążenie łącza. Do ćwiczeń polowych wystarczy Standard; do testów integracji z TAK Serverem warto użyć Full.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- ELEMENT 8: s08.jpg — SZCZEGÓŁY COT -->
+                    <div class="config-item grid grid-cols-1 lg:grid-cols-12 gap-4 items-start mb-4">
+                        <div class="lg:col-span-6 flex justify-center lg:justify-start">
+                            <div class="sim-thumb-card screen" onclick="openLightbox('images/s08.jpg', 'Szczegóły CoT — parametry i lista pól')">
+                                <img src="images/s08.jpg" alt="s08.jpg" onerror="this.onerror=null; this.src='https://placehold.co/600x400/111827/f59e0b?text=s08.jpg';">
+                            </div>
+                        </div>
+                        <div class="lg:col-span-6">
+                            <h3 class="sec-heading">Szczegóły CoT — parametry i lista pól</h3>
+                            <div class="sec-body">
+                                <p>Ósme okno to sekcja <strong>Szczegóły CoT</strong> — najbardziej rozbudowana część konfiguracji.</p>
+                                <ul>
+                                    <li><strong>Częstotliwość:</strong> 0,2 – 5 Hz.</li>
+                                    <li><strong>Port AP:</strong> port UDP dla trybu AP (domyślnie 6969).</li>
+                                    <li><strong>Tryb AP:</strong> Broadcast / Unicast / Multicast.</li>
+                                    <li><strong>Adres IP:</strong> adres docelowy dla trybu Unicast.</li>
+                                    <li><strong>Typ CoT:</strong> np. <code>a-f-A-M-Q</code> (standardowy dla drona).</li>
+                                    <li><strong>Grupa (kolor):</strong> Cyan / Green / Blue / Red / Orange / Purple.</li>
+                                    <li><strong>Rola w grupie:</strong> Team Member / Team Lead / HQ / Sniper / RTO / Medic.</li>
+                                    <li><strong>Ikonka ATAK:</strong> nazwa pliku ikony (np. <code>UAV_FixedWing.png</code>).</li>
+                                    <li><strong>CE / LE:</strong> dokładność pozycji (m).</li>
+                                    <li><strong>Stale:</strong> czas ważności komunikatu (s).</li>
+                                    <li><strong>Pola wysyłane:</strong> lista checkboxów — Callsign, Endpoint, __group, Status, Track, _speed, Precision, Remarks, TAKV, Ikonka, Sensor, Height, Flow-tags, UID model, Serial, Operator, Model drona, Faza lotu, Rola drona.</li>
+                                </ul>
+                                <p>Na dole widoczna jest liczba wysłanych pakietów CoT (np. 428).</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- === PODSUMOWANIE === -->
+                    <div class="config-item">
+                        <h2 class="sec-heading">Podsumowanie</h2>
+                        <div class="sec-body">
+                            <p>Symulator DroneAtak MX to kompletne narzędzie szkoleniowe, które łączy symulację roju dronów, emisję rzeczywistego sygnału Remote ID oraz integrację z wojskowym oprogramowaniem TAK. Dzięki elastycznej konfiguracji, 12 scenariuszom taktycznym, możliwości ustawienia celu w dowolnym punkcie globu oraz pracy w trybie BLE / Wi-Fi Beacon / DUAL, urządzenie sprawdzi się zarówno w ośrodkach cywilnych, jak i w jednostkach MON i WOT oraz wśród pasjonatów nowej technologii militarnej.</p>
+                            <p>Symulator jest zasilany z 5 V / 0,2 A, zamknięty w obudowie drukowanej w 3D z PETG i wyposażony w antenę GP 5/8, co zapewnia zasięg do ~300 m w otwartej przestrzeni.</p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- STOPKA -->
+    <footer class="w-full text-center py-6 mt-8 border-t border-zinc-800 text-xs text-zinc-500 font-mono tracking-widest">
+        MaxGyver 2024 JW2211 • all right reserved
+    </footer>
+
+    <!-- === LIGHTBOX === -->
+    <div class="lightbox-overlay" id="lightbox" onclick="if(event.target===this)closeLightbox()">
+        <div class="lightbox-frame">
+            <div class="metal-corner corner-tl"></div>
+            <div class="metal-corner corner-tr"></div>
+            <div class="metal-corner corner-bl"></div>
+            <div class="metal-corner corner-br"></div>
+
+            <div class="metal-bar-h bar-top"></div>
+            <div class="metal-bar-h bar-bottom"></div>
+            <div class="metal-bar-v bar-left"></div>
+            <div class="metal-bar-v bar-right"></div>
+
+            <button class="lightbox-close" onclick="closeLightbox()" aria-label="Zamknij">&times;</button>
+
+            <div class="lightbox-img-wrapper">
+                <img id="lightbox-img" src="" alt="">
+            </div>
+            <div class="lightbox-caption" id="lightbox-caption"></div>
         </div>
     </div>
 
-    <footer>
-        <p>&copy; 2026 DroneAtak Project. Wszelkie prawa zastrzeżone.</p>
-    </footer>
+    <script>
+        function openLightbox(src, caption) {
+            var lb = document.getElementById('lightbox');
+            document.getElementById('lightbox-img').src = src;
+            document.getElementById('lightbox-img').alt = caption || '';
+            document.getElementById('lightbox-caption').textContent = caption || '';
+            lb.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+        function closeLightbox() {
+            document.getElementById('lightbox').classList.remove('active');
+            document.body.style.overflow = '';
+        }
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') closeLightbox();
+        });
+    </script>
 
 </body>
 </html>

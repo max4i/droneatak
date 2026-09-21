@@ -3,82 +3,684 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DroneAtak — Odbiornik Remote ID & Python</title>
+    <title>Odbiornik Szerokopasmowy - Taktyczny Interfejs</title>
+    <script src="https://cdn.tailwindcss.com"></script>
     <style>
-        :root {
-            --bg-dark: #121613;
-            --bg-card: #1c231d;
-            --accent-green: #4b6b38;
-            --highlight-gold: #c5a059;
-            --text-light: #e0e6df;
-            --text-muted: #9aa897;
-            --border: #2e3b2c;
+        body {
+            background-color: #0b0d12;
+            background-image: 
+                radial-gradient(circle at 50% 30%, #1a202c 0%, transparent 70%),
+                linear-gradient(to bottom, #07080a, #0d1017);
+            color: #d1d5db;
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
         }
-        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: var(--bg-dark); color: var(--text-light); line-height: 1.7; margin: 0; padding: 0; }
-        header { background-color: #0b0e0c; border-bottom: 2px solid var(--accent-green); padding: 20px 0; text-align: center; }
-        nav { background: #171f18; display: flex; justify-content: center; gap: 15px; padding: 12px; border-bottom: 1px solid var(--border); flex-wrap: wrap; }
-        nav a { color: var(--text-light); text-decoration: none; padding: 8px 16px; border-radius: 4px; background: var(--bg-card); border: 1px solid var(--border); font-size: 0.9em; font-weight: bold; }
-        nav a:hover, nav a.active { background: var(--accent-green); color: #fff; border-color: var(--highlight-gold); }
-        .container { max-width: 900px; margin: 30px auto; padding: 0 20px; }
-        .content-box { background: var(--bg-card); border: 1px solid var(--border); border-radius: 6px; padding: 30px; margin-bottom: 30px; }
-        h1, h2, h3 { color: var(--highlight-gold); }
-        ul { padding-left: 20px; }
-        li { margin-bottom: 8px; }
-        .tech-tag { display: inline-block; background: #2a382b; border: 1px solid var(--accent-green); color: var(--highlight-gold); padding: 3px 8px; border-radius: 3px; font-size: 0.85em; margin-right: 5px; margin-bottom: 5px; }
-        code { background: #121613; padding: 2px 6px; border-radius: 4px; color: #a9dc76; font-family: monospace; }
-        footer { text-align: center; padding: 30px; color: var(--text-muted); border-top: 1px solid var(--border); margin-top: 50px; font-size: 0.85em; }
+
+        .main-banner {
+            width: 100%;
+            overflow: hidden;
+            border-radius: 4px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.8);
+        }
+
+        .main-graphic {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .nav-btn {
+            background: linear-gradient(180deg, #1f242d 0%, #12151c 100%);
+            border: 1px solid #374151;
+            color: #9ca3af;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            transition: all 0.2s ease;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.4);
+            text-align: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .nav-btn:hover {
+            border-color: #f59e0b;
+            color: #f59e0b;
+            box-shadow: 0 0 12px rgba(245, 158, 11, 0.3);
+        }
+
+        .nav-btn.active {
+            background: linear-gradient(180deg, #2a2215 0%, #18130a 100%);
+            border-color: #f59e0b;
+            color: #f59e0b;
+            box-shadow: inset 0 0 8px rgba(245, 158, 11, 0.4), 0 0 10px rgba(245, 158, 11, 0.2);
+        }
+
+        .metal-frame-container {
+            position: relative;
+            box-sizing: border-box;
+            background: rgba(15, 18, 25, 0.85);
+            padding: 20px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.8), inset 0 0 15px rgba(0,0,0,0.5);
+            height: auto;
+        }
+
+        .metal-corner {
+            position: absolute;
+            width: 32px;
+            height: 32px;
+            z-index: 20;
+            pointer-events: none;
+            background-size: contain;
+            background-repeat: no-repeat;
+        }
+
+        .corner-tl { top: 0; left: 0; background-image: url('images/naroznik_lewy_gorny.png'); }
+        .corner-tr { top: 0; right: 0; background-image: url('images/naroznik_prawy_gorny.png'); }
+        .corner-bl { bottom: 0; left: 0; background-image: url('images/naroznik_lewy_dolny.png'); }
+        .corner-br { bottom: 0; right: 0; background-image: url('images/naroznik_prawy_dolny.png'); }
+
+        .metal-bar-h, .metal-bar-v {
+            position: absolute;
+            z-index: 10;
+            pointer-events: none;
+        }
+
+        .bar-top {
+            top: 0; left: 32px; right: 32px; height: 16px;
+            background-image: url('images/listwa_gorna.png');
+            background-repeat: repeat-x;
+            background-position: center top;
+            background-size: auto 100%;
+        }
+
+        .bar-bottom {
+            bottom: 0; left: 32px; right: 32px; height: 16px;
+            background-image: url('images/listwa_dolna.png');
+            background-repeat: repeat-x;
+            background-position: center bottom;
+            background-size: auto 100%;
+        }
+
+        .bar-left {
+            top: 32px; bottom: 32px; left: 0; width: 16px;
+            background-image: url('images/listwa_lewa.png');
+            background-repeat: repeat-y;
+            background-position: left center;
+            background-size: 100% auto;
+        }
+
+        .bar-right {
+            top: 32px; bottom: 32px; right: 0; width: 16px;
+            background-image: url('images/listwa_prawa.png');
+            background-repeat: repeat-y;
+            background-position: right center;
+            background-size: 100% auto;
+        }
+
+        .frame-content {
+            position: relative;
+            width: 100%;
+            height: auto;
+            display: flex;
+            flex-direction: column;
+            border-radius: 4px;
+            background-image: url('images/tlo_okna.jpg');
+            background-repeat: repeat;
+            background-position: center;
+            box-shadow: inset 0 0 15px rgba(0, 0, 0, 0.7);
+        }
+
+        .neon-title {
+            color: #ffaa00;
+            font-size: 1.5rem;
+            font-weight: 800;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            text-align: center;
+            text-shadow: 
+                0 0 5px #ffaa00,
+                0 0 10px #ffaa00,
+                0 0 20px #ffaa00,
+                0 0 40px #ff6600;
+            animation: neonPulse 1.8s infinite alternate;
+        }
+
+        @keyframes neonPulse {
+            0% {
+                opacity: 0.85;
+                text-shadow: 
+                    0 0 5px #ffaa00,
+                    0 0 10px #ffaa00,
+                    0 0 20px #ffaa00,
+                    0 0 40px #ff6600;
+            }
+            100% {
+                opacity: 1;
+                text-shadow: 
+                    0 0 8px #ffaa00,
+                    0 0 15px #ffaa00,
+                    0 0 30px #ffaa00,
+                    0 0 60px #ff6600,
+                    0 0 90px #ff6600;
+            }
+        }
+
+        .sim-thumb-card {
+            border: 1px solid #374151;
+            background: rgba(10, 12, 16, 0.8);
+            border-radius: 4px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            width: 100%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            aspect-ratio: 4 / 3;
+        }
+
+        .sim-thumb-card:hover {
+            border-color: #f59e0b;
+            box-shadow: 0 0 12px rgba(245, 158, 11, 0.3);
+        }
+
+        .sim-thumb-card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .sim-thumb-card.screen {
+            aspect-ratio: auto;
+        }
+        .sim-thumb-card.screen img {
+            width: 100%;
+            height: auto;
+            object-fit: contain;
+            display: block;
+        }
+
+        .config-item {
+            border: 1px solid rgba(55, 65, 81, 0.5);
+            background: rgba(15, 18, 25, 0.6);
+            padding: 1rem;
+            border-radius: 4px;
+            transition: border-color 0.3s ease;
+        }
+
+        .config-item:hover {
+            border-color: rgba(245, 158, 11, 0.5);
+        }
+
+        .sec-heading {
+            color: #f59e0b;
+            font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+            font-size: 0.95rem;
+            font-weight: 800;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            margin-bottom: 0.5rem;
+            border-bottom: 1px solid rgba(245, 158, 11, 0.25);
+            padding-bottom: 0.35rem;
+        }
+        .sec-body {
+            font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+            font-size: 0.78rem;
+            color: #cbd5e1;
+            line-height: 1.65;
+        }
+        .sec-body p { margin-bottom: 0.6rem; }
+        .sec-body ul { list-style: none; padding-left: 0; }
+        .sec-body li {
+            position: relative;
+            padding-left: 1rem;
+            margin-bottom: 0.3rem;
+        }
+        .sec-body li::before {
+            content: "▸";
+            position: absolute;
+            left: 0;
+            color: #f59e0b;
+        }
+        .sec-body strong { color: #fbbf24; }
+        .sec-body code {
+            background: rgba(245, 158, 11, 0.1);
+            border: 1px solid rgba(245, 158, 11, 0.3);
+            padding: 1px 5px;
+            border-radius: 3px;
+            color: #fbbf24;
+            font-size: 0.72rem;
+        }
+        .badge-tech {
+            display: inline-block;
+            padding: 2px 8px;
+            border: 1px solid #374151;
+            border-radius: 3px;
+            font-size: 0.65rem;
+            color: #9ca3af;
+            margin-right: 4px;
+            margin-bottom: 4px;
+            font-family: ui-monospace, monospace;
+        }
+
+        .hero-sim {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 16px;
+            margin-bottom: 1.5rem;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .spec-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+            font-size: 0.75rem;
+        }
+        .spec-table th,
+        .spec-table td {
+            text-align: left;
+            padding: 8px 12px;
+            border-bottom: 1px solid rgba(55, 65, 81, 0.5);
+            vertical-align: top;
+        }
+        .spec-table th {
+            color: #f59e0b;
+            font-weight: 800;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            font-size: 0.68rem;
+            background: rgba(245, 158, 11, 0.05);
+            width: 38%;
+        }
+        .spec-table td {
+            color: #cbd5e1;
+        }
+        .spec-table tr:hover td,
+        .spec-table tr:hover th {
+            background: rgba(245, 158, 11, 0.04);
+        }
+        .spec-table .cert-num {
+            color: #fbbf24;
+            font-weight: 700;
+        }
+
+        .lightbox-overlay {
+            display: none;
+            position: fixed;
+            inset: 0;
+            z-index: 9999;
+            background: rgba(7, 8, 10, 0.92);
+            backdrop-filter: blur(6px);
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+        .lightbox-overlay.active { display: flex; }
+
+        .lightbox-frame {
+            position: relative;
+            width: 75vw;
+            max-width: 1400px;
+            background: rgba(15, 18, 25, 0.95);
+            padding: 20px;
+            box-shadow: 0 25px 60px rgba(0,0,0,0.95), inset 0 0 20px rgba(0,0,0,0.6);
+        }
+        @media (max-width: 900px) {
+            .lightbox-frame { width: 95vw; padding: 12px; }
+        }
+
+        .lightbox-frame .metal-corner { width: 32px; height: 32px; }
+        .lightbox-frame .bar-top,
+        .lightbox-frame .bar-bottom { left: 32px; right: 32px; height: 16px; }
+        .lightbox-frame .bar-left,
+        .lightbox-frame .bar-right { top: 32px; bottom: 32px; width: 16px; }
+
+        .lightbox-img-wrapper {
+            position: relative;
+            width: 100%;
+            border-radius: 4px;
+            overflow: hidden;
+            background-image: url('images/tlo_okna.jpg');
+            background-repeat: repeat;
+            background-position: center;
+            box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.8);
+            padding: 8px;
+        }
+
+        .lightbox-img-wrapper img {
+            width: 100%;
+            height: auto;
+            display: block;
+            border-radius: 2px;
+            border: 1px solid rgba(245, 158, 11, 0.3);
+        }
+
+        .lightbox-caption {
+            text-align: center;
+            color: #fbbf24;
+            font-family: ui-monospace, monospace;
+            font-size: 0.78rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            margin-top: 12px;
+            padding: 8px;
+            border-top: 1px solid rgba(245, 158, 11, 0.25);
+        }
+
+        .lightbox-close {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            width: 40px;
+            height: 40px;
+            background: rgba(20, 24, 32, 0.95);
+            border: 1px solid #f59e0b;
+            border-radius: 4px;
+            color: #f59e0b;
+            font-size: 22px;
+            font-weight: 900;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 30;
+            transition: all 0.2s ease;
+            font-family: monospace;
+            line-height: 1;
+        }
+        .lightbox-close:hover {
+            background: #dc2626;
+            border-color: #dc2626;
+            color: #fff;
+            box-shadow: 0 0 15px rgba(220, 38, 38, 0.6);
+        }
     </style>
 </head>
-<body>
+<body class="p-4 md:p-8 flex flex-col min-h-screen">
 
-    <header>
-        <h1 style="margin:0; color: var(--highlight-gold);">DRONEATAK</h1>
-        <p style="margin:5px 0 0; color: var(--text-muted); font-size: 0.9em;">SYSTEMY SYMULACJI, NADAWANIA I ANALIZY REMOTE ID / C-UAS</p>
-    </header>
+    <main class="max-w-7xl mx-auto w-full flex-grow flex flex-col gap-6">
 
-    <nav>
-        <a href="index.html">Strona Główna</a>
-        <a href="symulator.html">1. Symulator DroneAtak</a>
-        <a href="nadajnik.html">2. Nadajnik Taktyczny</a>
-        <a href="odbiornik.html" class="active">3. Odbiornik & Python</a>
-    </nav>
+        <!-- BANER GŁÓWNY -->
+        <section class="w-full">
+            <div class="main-banner w-full h-auto">
+                <img src="images/g2.png" 
+                     alt="Główna grafika taktyczna" 
+                     class="main-graphic"
+                     onerror="this.onerror=null; this.src='https://placehold.co/1200x600/182026/e5a93c?text=ChatGPT+Image+18+wrz+2026,+17_31_33.png';">
+            </div>
+        </section>
 
-    <div class="container">
-        <div class="content-box">
-            <h1>PROJEKT 3: Szerokopasmowy Odbiornik Remote ID z Dedykowaną Aplikacją Python</h1>
-            <p>Zintegrowany system nasłuchowy przeznaczony do detekcji, przechwytywania oraz dekodowania transmisji Remote ID nadawanych na pasmach **2.4 GHz** oraz **5.8 GHz**.</p>
+        <!-- PRZYCISKI NAWIGACYJNE -->
+        <nav class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3 w-full">
+            <a href="index.html" class="nav-btn py-3 px-2 text-xs sm:text-sm rounded">Główna</a>
+            <a href="nadajnik.html" class="nav-btn py-3 px-2 text-xs sm:text-sm rounded">Nadajnik</a>
+            <a href="symulator.html" class="nav-btn py-3 px-2 text-xs sm:text-sm rounded">Symulator</a>
+            <a href="odbiornik.html" class="nav-btn active py-3 px-2 text-xs sm:text-sm rounded">Odbiornik</a>
+            <a href="pobieranie.html" class="nav-btn py-3 px-2 text-xs sm:text-sm rounded">Pobieranie</a>
+            <a href="inne_projekty.html" class="nav-btn py-3 px-2 text-xs sm:text-sm rounded">Inne projekty</a>
+        </nav>
 
-            <span class="tech-tag">2.4 GHz & 5.8 GHz Band</span>
-            <span class="tech-tag">Python Engine</span>
-            <span class="tech-tag">Real-time Parsing</span>
-            <span class="tech-tag">Packet Inspection</span>
+        <!-- OKNO TREŚCI PODSTRONY -->
+        <section class="w-full flex-grow">
+            <div class="metal-frame-container w-full">
+                <div class="metal-corner corner-tl"></div>
+                <div class="metal-corner corner-tr"></div>
+                <div class="metal-corner corner-bl"></div>
+                <div class="metal-corner corner-br"></div>
 
-            <h2>1. Architektura Radiowa i Odbiór Sygnału</h2>
-            <ul>
-                <li><strong>Szerokopasmowy skaner RF:</strong> Symultaniczna praca w paśmie ISM 2.4 GHz (Bluetooth LE, Wi-Fi Beacon) oraz 5.8 GHz (transmisje analogowe/cyfrowe o wysokiej przepustowości).</li>
-                <li><strong>Korekcja błędów i detekcja słabych sygnałów:</strong> Zastosowanie filtrów cyfrowych pozwalających wyłowić ramki Remote ID z tła szumów elektromagnetycznych.</li>
-            </ul>
+                <div class="metal-bar-h bar-top"></div>
+                <div class="metal-bar-h bar-bottom"></div>
+                <div class="metal-bar-v bar-left"></div>
+                <div class="metal-bar-v bar-right"></div>
 
-            <h2>2. Silnik Analityczny w Języku Python</h2>
-            <p>Oprogramowanie napisane w środowisku Python analizuje odebrane pakiety binarne w czasie rzeczywistym i wyciąga kluczowe dane telemetryczne:</p>
-            <ul>
-                <li><strong>Dekodowanie telemetrii:</strong> Pozycja GPS drona, wysokość barometryczna/nad poziomem morza, wektor prędkości i kierunek lotu.</li>
-                <li><strong>Lokalizacja pilota:</strong> Wyodrębnienie współrzędnych geograficznych punktu startu (Home Location) oraz pozycji aparatu sterującego (Operator Position).</li>
-                <li><strong>Eksport danych:</strong> Możliwość przekazywania danych do formatów <code>JSON</code>, <code>KML</code> (dla Google Earth) oraz wypychanie strumienia na serwery telemetryczne.</li>
-            </ul>
+                <div class="frame-content p-4 sm:p-6 flex flex-col">
+                    
+                    <!-- NAGŁÓWEK NEONOWY -->
+                    <div class="w-full pb-4 border-b border-amber-500/20 mb-6">
+                        <h1 class="neon-title sm:text-2xl">Szerokopasmowy Odbiornik Remote ID</h1>
+                        <p class="text-center text-zinc-400 font-mono text-xs mt-2 tracking-widest">
+                            DRONE ATAK MX • odbiornik 2,4 GHz + 5,8 GHz + BLE 4.2/5.0 • wyjście COM oraz CoT do TAK.
+                        </p>
+                    </div>
 
-            <h2>3. Analiza Zgodności ze Standardami</h2>
-            <p>Aplikacja weryfikuje spójność i poprawność struktury odebranych ramek z międzynarodowymi normami:</p>
-            <ul>
-                <li>Sprawdzanie sum kontrolnych i ciągłości pakietów wg **ANSI/CTA-2063-A** (struktura numeru seryjnego).</li>
-                <li>Weryfikacja stempli czasowych zgodnie z dyrektywami **EASA** oraz **FAA**.</li>
-            </ul>
+                    <!-- === OGÓLNY OPIS ODBIORNIKA === -->
+                    <div class="config-item mb-6">
+                        <h2 class="sec-heading">O odbiorniku — ogólne informacje</h2>
+                        <div class="sec-body">
+                            <p><strong>Odbiornik szerokopasmowy DroneAtak</strong> to urządzenie nasłuchujące pracujące na platformie <strong>ESP32-C5</strong>, które jednocześnie odbiera i dekoduje pakiety Remote ID w trzech pasmach radiowych: <strong>Wi-Fi 2,4 GHz</strong>, <strong>Wi-Fi 5,8 GHz</strong> oraz <strong>Bluetooth 4.2 i 5.0</strong>. Urządzenie jest przeznaczone do szkolenia, testów zgodności Remote ID oraz integracji z systemami świadomości sytuacyjnej TAK/ATAK.</p>
+                            <p>Odbiornik jest kompatybilny z dowolnym nadajnikiem Remote ID zgodnym z normami <strong>ASTM F3411</strong> i <strong>ASD-STAN</strong> — zarówno komercyjnym, jak i wojskowym. Dane są przekazywane na bieżąco do komputera PC przez port COM (USB-Serial) oraz — opcjonalnie — do oprogramowania TAK przez protokół CoT.</p>
+                            <div class="mt-3">
+                                <span class="badge-tech">ESP32-C5</span>
+                                <span class="badge-tech">Wi-Fi 2,4 GHz</span>
+                                <span class="badge-tech">Wi-Fi 5,8 GHz</span>
+                                <span class="badge-tech">BLE 4.2 / 5.0</span>
+                                <span class="badge-tech">ASTM F3411</span>
+                                <span class="badge-tech">ASD-STAN</span>
+                                <span class="badge-tech">COM / USB-Serial</span>
+                                <span class="badge-tech">CoT / TAK</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- === PASMA ODBIORCZE === -->
+                    <div class="config-item mb-6">
+                        <h2 class="sec-heading">Pasma odbiorcze</h2>
+                        <div class="sec-body">
+                            <p>Odbiornik obsługuje jednocześnie wszystkie pasma wykorzystywane przez systemy Remote ID:</p>
+                            <ul>
+                                <li><strong>Wi-Fi 2,4 GHz (802.11 b/g/n):</strong> odbiór ramek Beacon z Vendor Specific IE — podstawowy kanał transmisji Remote ID w standardzie Wi-Fi.</li>
+                                <li><strong>Wi-Fi 5,8 GHz (802.11 a/n/ac):</strong> odbiór ramek w wyższym paśmie — dla nowoczesnych systemów Remote ID pracujących w 5 GHz.</li>
+                                <li><strong>Bluetooth 4.2 (BLE Legacy):</strong> odbiór klasycznych reklam BLE z Service Data 0xFFFA.</li>
+                                <li><strong>Bluetooth 5.0 (BLE Extended):</strong> odbiór nowszych reklam BLE z rozszerzonym zasięgiem i większą przepustowością.</li>
+                            </ul>
+                            <p>Wszystkie pasma są nasłuchiwane równolegle — odbiornik nie wymaga przełączania trybów. Dzięki temu jedno urządzenie pokrywa całe spektrum komunikacji Remote ID stosowane zarówno w Europie, jak i w USA.</p>
+                        </div>
+                    </div>
+
+                    <!-- === DEKODOWANIE REMOTE ID === -->
+                    <div class="config-item mb-6">
+                        <h2 class="sec-heading">Dekodowanie Remote ID</h2>
+                        <div class="sec-body">
+                            <p>Odbiornik dekoduje pełny zestaw komunikatów Remote ID zgodnych z ASTM F3411 / ASD-STAN:</p>
+                            <ul>
+                                <li><strong>Basic ID</strong> — tożsamość drona (typ, numer seryjny / nazwa BLE).</li>
+                                <li><strong>Location</strong> — pozycja, wysokość, kurs, prędkość, dokładność.</li>
+                                <li><strong>System</strong> — pozycja operatora, obszar operacyjny, pułap.</li>
+                                <li><strong>Operator ID</strong> — identyfikator operatora (np. POL-OP-SWARM-01).</li>
+                                <li><strong>Self ID</strong> — dodatkowy opis (np. grupa taktyczna, model).</li>
+                            </ul>
+                            <p>Dane są wyświetlane w dedykowanej aplikacji w czasie rzeczywistym oraz zapisywane w formacie JSON / CSV do dalszej analizy. Odbiornik obsługuje również filtrowanie po numerze seryjnym, modelu lub ID operatora.</p>
+                        </div>
+                    </div>
+
+                    <!-- === WSPÓŁPRACA Z WINDOWS PRZEZ COM === -->
+                    <div class="config-item mb-6">
+                        <h2 class="sec-heading">Współpraca z Windows przez port COM</h2>
+                        <div class="sec-body">
+                            <p>Odbiornik komunikuje się z komputerem PC przez <strong>port COM (USB-Serial)</strong>. Po podłączeniu do Windows urządzenie pojawia się jako wirtualny port szeregowy i wysyła dane w formacie JSON — jedna linia na każdy odebrany pakiet Remote ID.</p>
+                            <ul>
+                                <li><strong>Prędkość:</strong> 115200 bps (lub 921600 bps w trybie szybkim).</li>
+                                <li><strong>Format:</strong> JSON — każda linia to jeden obiekt Remote ID.</li>
+                                <li><strong>Dedykowane oprogramowanie:</strong> aplikacja Windows do wizualizacji, rejestracji i analizy danych.</li>
+                                <li><strong>Kompatybilność:</strong> dowolny terminal szeregowy (PuTTY, Termite, RealTerm) oraz własne skrypty w Pythonie.</li>
+                            </ul>
+                            <p>Dzięki temu odbiornik można łatwo zintegrować z istniejącymi systemami szkoleniowymi lub własnymi narzędziami analitycznymi.</p>
+                        </div>
+                    </div>
+
+                    <!-- === WSPÓŁPRACA Z TAK PRZEZ COT === -->
+                    <div class="config-item mb-6">
+                        <h2 class="sec-heading">Współpraca z oprogramowaniem TAK przez protokół CoT</h2>
+                        <div class="sec-body">
+                            <p>Odbiornik może jednocześnie wysyłać odebrane dane do oprogramowania <strong>TAK / ATAK / WinTAK</strong> przez protokół <strong>CoT (Cursor on Target)</strong>. Dzięki temu wszystkie wykryte drony pojawiają się na mapie taktycznej w czasie rzeczywistym.</p>
+                            <ul>
+                                <li><strong>Transport:</strong> UDP broadcast / multicast / TCP / TLS.</li>
+                                <li><strong>Częstotliwość:</strong> 0,2 – 5 Hz (konfigurowalna).</li>
+                                <li><strong>Pola CoT:</strong> spójne z tożsamością Remote ID (uid = serial, callsign = bleName, operator = operatorId, grupa = groupName, model = modelName).</li>
+                                <li><strong>Typ CoT:</strong> <code>a-f-A-M-Q</code> (standardowy dla drona).</li>
+                                <li><strong>Ikonka ATAK:</strong> konfigurowalna (np. <code>UAV_FixedWing.png</code>).</li>
+                            </ul>
+                            <p>Odbiornik może pracować równocześnie w trybie COM (dla Windows) i CoT (dla TAK) — dane są wysyłane do obu odbiorców jednocześnie.</p>
+                        </div>
+                    </div>
+
+                    <!-- === ZASTOSOWANIE === -->
+                    <div class="config-item mb-6">
+                        <h2 class="sec-heading">Zastosowanie</h2>
+                        <div class="sec-body">
+                            <p>Odbiornik wspiera trzy główne obszary szkoleniowe:</p>
+                            <ul>
+                                <li><strong>Ośrodki szkoleniowe:</strong> weryfikacja zgodności nadajników Remote ID, testy zasięgu i skuteczności, szkolenie operatorów systemów wykrywania.</li>
+                                <li><strong>Jednostki MON i WOT:</strong> szkolenie personelu C-UAS, testy integracji z TAK/ATAK, ćwiczenia z zakresu świadomości sytuacyjnej.</li>
+                                <li><strong>Pasjonaci nowej technologii militarnej:</strong> samodzielne testy własnych nadajników Remote ID, analiza sygnałów w pasmach 2,4 / 5,8 GHz, nauka dekodowania ASTM F3411.</li>
+                            </ul>
+                            <p>Odbiornik jest szczególnie przydatny w połączeniu z symulatorem DroneAtak i nadajnikiem Remote ID — tworzy wtedy kompletny łańcuch szkoleniowy: emisja (symulator + nadajnik) → odbiór (odbiornik) → analiza (Windows + TAK).</p>
+                        </div>
+                    </div>
+
+                    <!-- === DANE TECHNICZNE === -->
+                    <div class="config-item mb-6">
+                        <h2 class="sec-heading">Dane techniczne</h2>
+                        <div class="sec-body">
+                            <p><strong>Platforma:</strong> Espressif <strong>ESP32-C5</strong> — jednordzeniowy procesor RISC-V, 240 MHz, obsługa Wi-Fi 2,4 GHz i 5 GHz (dual-band) oraz Bluetooth 5 LE. Interfejs USB-Serial/JTAG. Zasilanie 5 V przez USB-C — pobór prądu 0,25 A (1,25 W).</p>
+                            <p><strong>Zasięgi i anteny:</strong></p>
+                            <ul>
+                                <li><strong>Antena GP 5/8 (2,4 GHz):</strong> zasięg do ~300 m.</li>
+                                <li><strong>Antena 5,8 GHz (w zestawie):</strong> zasięg do ~200 m.</li>
+                                <li><strong>Antena kierunkowa 8–12 dBi (opcja):</strong> zasięg do ~800 m.</li>
+                                <li><strong>Czułość odbioru:</strong> do −98 dBm (BLE), do −95 dBm (Wi-Fi).</li>
+                            </ul>
+                            <p><strong>Zasilanie:</strong> 5 V przez USB-C (0,25 A), możliwość zasilania z powerbanku, ładowarki sieciowej lub portu USB komputera.</p>
+
+                            <div class="mt-4">
+                                <h3 class="sec-heading" style="font-size:0.8rem; margin-top:1rem;">Certyfikaty ESP32-C5</h3>
+                                <table class="spec-table">
+                                    <thead>
+                                        <tr>
+                                            <th>Certyfikat / region</th>
+                                            <th>Numer / data</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <th>FCC (USA)</th>
+                                            <td><span class="cert-num">2AC7Z-ESPC5</span> — w przygotowaniu</td>
+                                        </tr>
+                                        <tr>
+                                            <th>CE (Unia Europejska)</th>
+                                            <td>Zgodność RED 2014/53/EU</td>
+                                        </tr>
+                                        <tr>
+                                            <th>SRRC (Chiny)</th>
+                                            <td>CMIIT ID — w przygotowaniu</td>
+                                        </tr>
+                                        <tr>
+                                            <th>IC (Kanada)</th>
+                                            <td>21098-ESPC5</td>
+                                        </tr>
+                                        <tr>
+                                            <th>NCC (Tajwan)</th>
+                                            <td>CCAH25LP — w przygotowaniu</td>
+                                        </tr>
+                                        <tr>
+                                            <th>KCC (Korea Płd.)</th>
+                                            <td>R-C-ESR-ESPC5</td>
+                                        </tr>
+                                        <tr>
+                                            <th>BQB (Bluetooth SIG)</th>
+                                            <td>QDID — w przygotowaniu</td>
+                                        </tr>
+                                        <tr>
+                                            <th>RoHS / REACH</th>
+                                            <td>Zgodność środowiskowa UE</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- === WSPÓŁPRACA Z SYMULATOREM I NADAJNIKIEM === -->
+                    <div class="config-item mb-6">
+                        <h2 class="sec-heading">Współpraca z symulatorem i nadajnikiem</h2>
+                        <div class="sec-body">
+                            <p>Odbiornik jest trzecim elementem kompletnego łańcucha szkoleniowego DroneAtak:</p>
+                            <ul>
+                                <li><strong>Symulator DroneAtak</strong> — generuje rój do 200 wirtualnych dronów i wysyła ich dane Remote ID.</li>
+                                <li><strong>Nadajnik Remote ID</strong> — emituje rzeczywisty sygnał Remote ID z możliwością ustawienia dowolnych danych i trybu echa.</li>
+                                <li><strong>Odbiornik szerokopasmowy</strong> — odbiera wszystkie sygnały, dekoduje je i przekazuje do Windows (COM) oraz TAK (CoT).</li>
+                            </ul>
+                            <p>Dzięki temu można prowadzić pełne ćwiczenia: symulacja ataku rojowego + rzeczywisty dron pilota + fałszywe echa + odbiór i analiza w TAK. Wszystko bez konieczności użycia realnych platform bojowych.</p>
+                        </div>
+                    </div>
+
+                    <!-- === PODSUMOWANIE === -->
+                    <div class="config-item">
+                        <h2 class="sec-heading">Podsumowanie</h2>
+                        <div class="sec-body">
+                            <p>Odbiornik szerokopasmowy DroneAtak to kompletne narzędzie do odbioru i analizy sygnałów Remote ID w pasmach 2,4 GHz, 5,8 GHz oraz BLE 4.2 i 5.0. Dzięki równoległemu nasłuchowi wszystkich pasm, dekodowaniu pełnego zestawu komunikatów ASTM F3411 / ASD-STAN oraz jednoczesnej współpracy z Windows (COM) i TAK (CoT), urządzenie sprawdzi się w każdym ośrodku szkoleniowym — cywilnym, wojskowym i pasjonackim.</p>
+                            <p>Odbiornik jest zasilany z 5 V / 0,25 A, zamknięty w obudowie drukowanej w 3D z PETG i wyposażony w anteny GP 5/8 (2,4 GHz) oraz 5,8 GHz, co zapewnia zasięg do ~300 m w otwartej przestrzeni.</p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- STOPKA -->
+    <footer class="w-full text-center py-6 mt-8 border-t border-zinc-800 text-xs text-zinc-500 font-mono tracking-widest">
+        MaxGyver 2024 JW2211 • all right reserved
+    </footer>
+
+    <!-- === LIGHTBOX === -->
+    <div class="lightbox-overlay" id="lightbox" onclick="if(event.target===this)closeLightbox()">
+        <div class="lightbox-frame">
+            <div class="metal-corner corner-tl"></div>
+            <div class="metal-corner corner-tr"></div>
+            <div class="metal-corner corner-bl"></div>
+            <div class="metal-corner corner-br"></div>
+
+            <div class="metal-bar-h bar-top"></div>
+            <div class="metal-bar-h bar-bottom"></div>
+            <div class="metal-bar-v bar-left"></div>
+            <div class="metal-bar-v bar-right"></div>
+
+            <button class="lightbox-close" onclick="closeLightbox()" aria-label="Zamknij">&times;</button>
+
+            <div class="lightbox-img-wrapper">
+                <img id="lightbox-img" src="" alt="">
+            </div>
+            <div class="lightbox-caption" id="lightbox-caption"></div>
         </div>
     </div>
 
-    <footer>
-        <p>&copy; 2026 DroneAtak Project. Wszelkie prawa zastrzeżone.</p>
-    </footer>
+    <script>
+        function openLightbox(src, caption) {
+            var lb = document.getElementById('lightbox');
+            document.getElementById('lightbox-img').src = src;
+            document.getElementById('lightbox-img').alt = caption || '';
+            document.getElementById('lightbox-caption').textContent = caption || '';
+            lb.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+        function closeLightbox() {
+            document.getElementById('lightbox').classList.remove('active');
+            document.body.style.overflow = '';
+        }
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') closeLightbox();
+        });
+    </script>
 
 </body>
 </html>

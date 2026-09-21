@@ -3,77 +3,842 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DroneAtak — Nadajnik Taktyczny Remote ID</title>
+    <title>Nadajnik Remote ID - Taktyczny Interfejs</title>
+    <script src="https://cdn.tailwindcss.com"></script>
     <style>
-        :root {
-            --bg-dark: #121613;
-            --bg-card: #1c231d;
-            --accent-green: #4b6b38;
-            --highlight-gold: #c5a059;
-            --text-light: #e0e6df;
-            --text-muted: #9aa897;
-            --border: #2e3b2c;
+        body {
+            background-color: #0b0d12;
+            background-image: 
+                radial-gradient(circle at 50% 30%, #1a202c 0%, transparent 70%),
+                linear-gradient(to bottom, #07080a, #0d1017);
+            color: #d1d5db;
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
         }
-        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: var(--bg-dark); color: var(--text-light); line-height: 1.7; margin: 0; padding: 0; }
-        header { background-color: #0b0e0c; border-bottom: 2px solid var(--accent-green); padding: 20px 0; text-align: center; }
-        nav { background: #171f18; display: flex; justify-content: center; gap: 15px; padding: 12px; border-bottom: 1px solid var(--border); flex-wrap: wrap; }
-        nav a { color: var(--text-light); text-decoration: none; padding: 8px 16px; border-radius: 4px; background: var(--bg-card); border: 1px solid var(--border); font-size: 0.9em; font-weight: bold; }
-        nav a:hover, nav a.active { background: var(--accent-green); color: #fff; border-color: var(--highlight-gold); }
-        .container { max-width: 900px; margin: 30px auto; padding: 0 20px; }
-        .content-box { background: var(--bg-card); border: 1px solid var(--border); border-radius: 6px; padding: 30px; margin-bottom: 30px; }
-        h1, h2, h3 { color: var(--highlight-gold); }
-        ul { padding-left: 20px; }
-        li { margin-bottom: 8px; }
-        .tech-tag { display: inline-block; background: #2a382b; border: 1px solid var(--accent-green); color: var(--highlight-gold); padding: 3px 8px; border-radius: 3px; font-size: 0.85em; margin-right: 5px; margin-bottom: 5px; }
-        footer { text-align: center; padding: 30px; color: var(--text-muted); border-top: 1px solid var(--border); margin-top: 50px; font-size: 0.85em; }
+
+        .main-banner {
+            width: 100%;
+            overflow: hidden;
+            border-radius: 4px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.8);
+        }
+
+        .main-graphic {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .nav-btn {
+            background: linear-gradient(180deg, #1f242d 0%, #12151c 100%);
+            border: 1px solid #374151;
+            color: #9ca3af;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            transition: all 0.2s ease;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.4);
+            text-align: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .nav-btn:hover {
+            border-color: #f59e0b;
+            color: #f59e0b;
+            box-shadow: 0 0 12px rgba(245, 158, 11, 0.3);
+        }
+
+        .nav-btn.active {
+            background: linear-gradient(180deg, #2a2215 0%, #18130a 100%);
+            border-color: #f59e0b;
+            color: #f59e0b;
+            box-shadow: inset 0 0 8px rgba(245, 158, 11, 0.4), 0 0 10px rgba(245, 158, 11, 0.2);
+        }
+
+        .metal-frame-container {
+            position: relative;
+            box-sizing: border-box;
+            background: rgba(15, 18, 25, 0.85);
+            padding: 20px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.8), inset 0 0 15px rgba(0,0,0,0.5);
+            height: auto;
+        }
+
+        .metal-corner {
+            position: absolute;
+            width: 32px;
+            height: 32px;
+            z-index: 20;
+            pointer-events: none;
+            background-size: contain;
+            background-repeat: no-repeat;
+        }
+
+        .corner-tl { top: 0; left: 0; background-image: url('images/naroznik_lewy_gorny.png'); }
+        .corner-tr { top: 0; right: 0; background-image: url('images/naroznik_prawy_gorny.png'); }
+        .corner-bl { bottom: 0; left: 0; background-image: url('images/naroznik_lewy_dolny.png'); }
+        .corner-br { bottom: 0; right: 0; background-image: url('images/naroznik_prawy_dolny.png'); }
+
+        .metal-bar-h, .metal-bar-v {
+            position: absolute;
+            z-index: 10;
+            pointer-events: none;
+        }
+
+        .bar-top {
+            top: 0; left: 32px; right: 32px; height: 16px;
+            background-image: url('images/listwa_gorna.png');
+            background-repeat: repeat-x;
+            background-position: center top;
+            background-size: auto 100%;
+        }
+
+        .bar-bottom {
+            bottom: 0; left: 32px; right: 32px; height: 16px;
+            background-image: url('images/listwa_dolna.png');
+            background-repeat: repeat-x;
+            background-position: center bottom;
+            background-size: auto 100%;
+        }
+
+        .bar-left {
+            top: 32px; bottom: 32px; left: 0; width: 16px;
+            background-image: url('images/listwa_lewa.png');
+            background-repeat: repeat-y;
+            background-position: left center;
+            background-size: 100% auto;
+        }
+
+        .bar-right {
+            top: 32px; bottom: 32px; right: 0; width: 16px;
+            background-image: url('images/listwa_prawa.png');
+            background-repeat: repeat-y;
+            background-position: right center;
+            background-size: 100% auto;
+        }
+
+        .frame-content {
+            position: relative;
+            width: 100%;
+            height: auto;
+            display: flex;
+            flex-direction: column;
+            border-radius: 4px;
+            background-image: url('images/tlo_okna.jpg');
+            background-repeat: repeat;
+            background-position: center;
+            box-shadow: inset 0 0 15px rgba(0, 0, 0, 0.7);
+        }
+
+        .neon-title {
+            color: #ffaa00;
+            font-size: 1.5rem;
+            font-weight: 800;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            text-align: center;
+            text-shadow: 
+                0 0 5px #ffaa00,
+                0 0 10px #ffaa00,
+                0 0 20px #ffaa00,
+                0 0 40px #ff6600;
+            animation: neonPulse 1.8s infinite alternate;
+        }
+
+        @keyframes neonPulse {
+            0% {
+                opacity: 0.85;
+                text-shadow: 
+                    0 0 5px #ffaa00,
+                    0 0 10px #ffaa00,
+                    0 0 20px #ffaa00,
+                    0 0 40px #ff6600;
+            }
+            100% {
+                opacity: 1;
+                text-shadow: 
+                    0 0 8px #ffaa00,
+                    0 0 15px #ffaa00,
+                    0 0 30px #ffaa00,
+                    0 0 60px #ff6600,
+                    0 0 90px #ff6600;
+            }
+        }
+
+        /* === Karta dla zdjęcia nadajnika — stałe proporcje 4:3 === */
+        .sim-thumb-card {
+            border: 1px solid #374151;
+            background: rgba(10, 12, 16, 0.8);
+            border-radius: 4px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            width: 100%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            aspect-ratio: 4 / 3;
+        }
+
+        .sim-thumb-card:hover {
+            border-color: #f59e0b;
+            box-shadow: 0 0 12px rgba(245, 158, 11, 0.3);
+        }
+
+        .sim-thumb-card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        /* === Karta dla zrzutów ekranu w "Panel WWW — konfiguracja" === */
+        .sim-thumb-card.screen {
+            aspect-ratio: auto;
+        }
+        .sim-thumb-card.screen img {
+            width: 100%;
+            height: auto;
+            object-fit: contain;
+            display: block;
+        }
+
+        .config-item {
+            border: 1px solid rgba(55, 65, 81, 0.5);
+            background: rgba(15, 18, 25, 0.6);
+            padding: 1rem;
+            border-radius: 4px;
+            transition: border-color 0.3s ease;
+        }
+
+        .config-item:hover {
+            border-color: rgba(245, 158, 11, 0.5);
+        }
+
+        .sec-heading {
+            color: #f59e0b;
+            font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+            font-size: 0.95rem;
+            font-weight: 800;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            margin-bottom: 0.5rem;
+            border-bottom: 1px solid rgba(245, 158, 11, 0.25);
+            padding-bottom: 0.35rem;
+        }
+        .sec-body {
+            font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+            font-size: 0.78rem;
+            color: #cbd5e1;
+            line-height: 1.65;
+        }
+        .sec-body p { margin-bottom: 0.6rem; }
+        .sec-body ul { list-style: none; padding-left: 0; }
+        .sec-body li {
+            position: relative;
+            padding-left: 1rem;
+            margin-bottom: 0.3rem;
+        }
+        .sec-body li::before {
+            content: "▸";
+            position: absolute;
+            left: 0;
+            color: #f59e0b;
+        }
+        .sec-body strong { color: #fbbf24; }
+        .sec-body code {
+            background: rgba(245, 158, 11, 0.1);
+            border: 1px solid rgba(245, 158, 11, 0.3);
+            padding: 1px 5px;
+            border-radius: 3px;
+            color: #fbbf24;
+            font-size: 0.72rem;
+        }
+        .badge-tech {
+            display: inline-block;
+            padding: 2px 8px;
+            border: 1px solid #374151;
+            border-radius: 3px;
+            font-size: 0.65rem;
+            color: #9ca3af;
+            margin-right: 4px;
+            margin-bottom: 4px;
+            font-family: ui-monospace, monospace;
+        }
+
+        /* === 1 zdjęcie na górze === */
+        .hero-sim {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 16px;
+            margin-bottom: 1.5rem;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .spec-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+            font-size: 0.75rem;
+        }
+        .spec-table th,
+        .spec-table td {
+            text-align: left;
+            padding: 8px 12px;
+            border-bottom: 1px solid rgba(55, 65, 81, 0.5);
+            vertical-align: top;
+        }
+        .spec-table th {
+            color: #f59e0b;
+            font-weight: 800;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            font-size: 0.68rem;
+            background: rgba(245, 158, 11, 0.05);
+            width: 38%;
+        }
+        .spec-table td {
+            color: #cbd5e1;
+        }
+        .spec-table tr:hover td,
+        .spec-table tr:hover th {
+            background: rgba(245, 158, 11, 0.04);
+        }
+        .spec-table .cert-num {
+            color: #fbbf24;
+            font-weight: 700;
+        }
+
+        /* === Lightbox === */
+        .lightbox-overlay {
+            display: none;
+            position: fixed;
+            inset: 0;
+            z-index: 9999;
+            background: rgba(7, 8, 10, 0.92);
+            backdrop-filter: blur(6px);
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+        .lightbox-overlay.active { display: flex; }
+
+        .lightbox-frame {
+            position: relative;
+            width: 75vw;
+            max-width: 1400px;
+            background: rgba(15, 18, 25, 0.95);
+            padding: 20px;
+            box-shadow: 0 25px 60px rgba(0,0,0,0.95), inset 0 0 20px rgba(0,0,0,0.6);
+        }
+        @media (max-width: 900px) {
+            .lightbox-frame { width: 95vw; padding: 12px; }
+        }
+
+        .lightbox-frame .metal-corner { width: 32px; height: 32px; }
+        .lightbox-frame .bar-top,
+        .lightbox-frame .bar-bottom { left: 32px; right: 32px; height: 16px; }
+        .lightbox-frame .bar-left,
+        .lightbox-frame .bar-right { top: 32px; bottom: 32px; width: 16px; }
+
+        .lightbox-img-wrapper {
+            position: relative;
+            width: 100%;
+            border-radius: 4px;
+            overflow: hidden;
+            background-image: url('images/tlo_okna.jpg');
+            background-repeat: repeat;
+            background-position: center;
+            box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.8);
+            padding: 8px;
+        }
+
+        .lightbox-img-wrapper img {
+            width: 100%;
+            height: auto;
+            display: block;
+            border-radius: 2px;
+            border: 1px solid rgba(245, 158, 11, 0.3);
+        }
+
+        .lightbox-caption {
+            text-align: center;
+            color: #fbbf24;
+            font-family: ui-monospace, monospace;
+            font-size: 0.78rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            margin-top: 12px;
+            padding: 8px;
+            border-top: 1px solid rgba(245, 158, 11, 0.25);
+        }
+
+        .lightbox-close {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            width: 40px;
+            height: 40px;
+            background: rgba(20, 24, 32, 0.95);
+            border: 1px solid #f59e0b;
+            border-radius: 4px;
+            color: #f59e0b;
+            font-size: 22px;
+            font-weight: 900;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 30;
+            transition: all 0.2s ease;
+            font-family: monospace;
+            line-height: 1;
+        }
+        .lightbox-close:hover {
+            background: #dc2626;
+            border-color: #dc2626;
+            color: #fff;
+            box-shadow: 0 0 15px rgba(220, 38, 38, 0.6);
+        }
     </style>
 </head>
-<body>
+<body class="p-4 md:p-8 flex flex-col min-h-screen">
 
-    <header>
-        <h1 style="margin:0; color: var(--highlight-gold);">DRONEATAK</h1>
-        <p style="margin:5px 0 0; color: var(--text-muted); font-size: 0.9em;">SYSTEMY SYMULACJI, NADAWANIA I ANALIZY REMOTE ID / C-UAS</p>
-    </header>
+    <main class="max-w-7xl mx-auto w-full flex-grow flex flex-col gap-6">
 
-    <nav>
-        <a href="index.html">Strona Główna</a>
-        <a href="symulator.html">1. Symulator DroneAtak</a>
-        <a href="nadajnik.html" class="active">2. Nadajnik Taktyczny</a>
-        <a href="odbiornik.html">3. Odbiornik & Python</a>
-    </nav>
+        <!-- BANER GŁÓWNY -->
+        <section class="w-full">
+            <div class="main-banner w-full h-auto">
+                <img src="images/g2.png" 
+                     alt="Główna grafika taktyczna" 
+                     class="main-graphic"
+                     onerror="this.onerror=null; this.src='https://placehold.co/1200x600/182026/e5a93c?text=ChatGPT+Image+18+wrz+2026,+17_31_33.png';">
+            </div>
+        </section>
 
-    <div class="container">
-        <div class="content-box">
-            <h1>PROJEKT 2: Taktyczny Nadajnik Remote ID ze Mglą Sygnałową</h1>
-            <p>Dedykowany moduł nadawczy stworzony z myślą o cywilnych ośrodkach szkoleniowych (UATO) oraz jednostkach podległych **Ministerstwu Obrony Narodowej (MON)**. Urządzenie służy do realizacji ćwiczeń z zakresu walki elektronicznej (EW) oraz testowania systemów ostrzegania przed rojem dronów.</p>
+        <!-- PRZYCISKI NAWIGACYJNE -->
+        <nav class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3 w-full">
+            <a href="index.html" class="nav-btn py-3 px-2 text-xs sm:text-sm rounded">Główna</a>
+            <a href="nadajnik.html" class="nav-btn active py-3 px-2 text-xs sm:text-sm rounded">Nadajnik</a>
+            <a href="symulator.html" class="nav-btn py-3 px-2 text-xs sm:text-sm rounded">Symulator</a>
+            <a href="odbiornik.html" class="nav-btn py-3 px-2 text-xs sm:text-sm rounded">Odbiornik</a>
+            <a href="pobieranie.html" class="nav-btn py-3 px-2 text-xs sm:text-sm rounded">Pobieranie</a>
+            <a href="inne_projekty.html" class="nav-btn py-3 px-2 text-xs sm:text-sm rounded">Inne projekty</a>
+        </nav>
 
-            <span class="tech-tag">SDR Hardware</span>
-            <span class="tech-tag">Multi-Protocol</span>
-            <span class="tech-tag">MON & Civilian Training</span>
-            <span class="tech-tag">Phantom Echo Generation</span>
+        <!-- OKNO TREŚCI PODSTRONY -->
+        <section class="w-full flex-grow">
+            <div class="metal-frame-container w-full">
+                <div class="metal-corner corner-tl"></div>
+                <div class="metal-corner corner-tr"></div>
+                <div class="metal-corner corner-bl"></div>
+                <div class="metal-corner corner-br"></div>
 
-            <h2>1. Zaawansowana Funkcja "Echo Dronów" (Phantom Echoes)</h2>
-            <p>Najistotniejszą innowacją systemu jest zdolność generowania fałszywych śladów radiowych wzdłuż trajektorii lotu prawdziwej jednostki:</p>
-            <ul>
-                <li><strong>Akompaniament Sygnałowy:</strong> Nadajnik transmituje rzeczywistą pozycję drona głównego oraz równolegle generuje wirtualne echa lewo- i prawoboczne.</li>
-                <li><strong>Dezorientacja Systemów C-UAS:</strong> Moduł wymusza na wrogich lub testowanych skanerach rozpoznanie wielopunktowego roju zamiast pojedynczej jednostki, utrudniając identyfikację celu priorytetowego.</li>
-            </ul>
+                <div class="metal-bar-h bar-top"></div>
+                <div class="metal-bar-h bar-bottom"></div>
+                <div class="metal-bar-v bar-left"></div>
+                <div class="metal-bar-v bar-right"></div>
 
-            <h2>2. Uniwersalna Emulacja Protokołów</h2>
-            <p>Urządzenie posiada wstępnie zdefiniowane profile telemetryczne pozwalające emulować dowolny typ drona (komercyjny, custom FPV, wojskowy):</p>
-            <ul>
-                <li>Dynamiczna zmiana numerów rejestracyjnych i ID operatora.</li>
-                <li>Generowanie sygnałów w standardach **Bluetooth Legacy (4.x), Bluetooth Long Range (5.x)** oraz **Wi-Fi NAN / Beacon**.</li>
-            </ul>
+                <div class="frame-content p-4 sm:p-6 flex flex-col">
+                    
+                    <!-- NAGŁÓWEK NEONOWY -->
+                    <div class="w-full pb-4 border-b border-amber-500/20 mb-6">
+                        <h1 class="neon-title sm:text-2xl">Nadajnik Remote ID dla Pilota Drona</h1>
+                        <p class="text-center text-zinc-400 font-mono text-xs mt-2 tracking-widest">
+                            DRONE ATAK MX • osobisty nadajnik Remote ID z funkcją echa i trybem poszukiwania treningowego.
+                        </p>
+                    </div>
 
-            <h2>3. Zastosowanie Szkoleniowe i Badawcze</h2>
-            <p>System umożliwia realizację bezkosztowych ćwiczeń obrony obiektowej bez konieczności angażowania fizycznej floty kilkudziesięciu dronów w powietrzu.</p>
+                    <!-- === ZDJĘCIE NADAJNIKA NA GÓRZE === -->
+                    <div class="hero-sim">
+                        <div class="sim-thumb-card" onclick="openLightbox('images/n1.jfif', 'Nadajnik Remote ID — obudowa 3D PETG z anteną GP 5/8')">
+                            <img src="images/n1.jfif" alt="Nadajnik Remote ID — obudowa 3D PETG"
+                                 onerror="this.onerror=null; this.src='https://placehold.co/700x525/111827/f59e0b?text=n1.jfif';">
+                        </div>
+                    </div>
+
+                    <!-- === OGÓLNY OPIS NADAJNIKA === -->
+                    <div class="config-item mb-6">
+                        <h2 class="sec-heading">O nadajniku — ogólne informacje</h2>
+                        <div class="sec-body">
+                            <p><strong>Nadajnik Remote ID DroneAtak</strong> to osobiste urządzenie dla pojedynczego pilota drona, przeznaczone do szkolenia, testowania odbiorników Remote ID oraz prowadzenia ćwiczeń z zakresu świadomości sytuacyjnej. Urządzenie emituje rzeczywisty sygnał Remote ID zgodny z normami <strong>ASTM F3411</strong> i <strong>ASD-STAN</strong>, a jednocześnie pozwala na <strong>latania na dowolnych danych Remote ID</strong> — czyli na symulowanie tożsamości innego drona bez modyfikacji samej platformy latającej.</p>
+                            <p>Nadajnik jest kompaktowy, zasilany z 5 V (powerbank / telefon / ładowarka) i może być zamontowany na dowolnym dronie treningowym. Dzięki niemu pilot ćwiczy procedury identyfikacji, a obsługa naziemna widzi na swoich odbiornikach dokładnie taki obraz, jaki zobaczyłaby w realnej sytuacji operacyjnej.</p>
+                            <div class="mt-3">
+                                <span class="badge-tech">ASTM F3411</span>
+                                <span class="badge-tech">ASD-STAN</span>
+                                <span class="badge-tech">BLE 5 + Wi-Fi Beacon</span>
+                                <span class="badge-tech">ESP32-C3-MINI-1</span>
+                                <span class="badge-tech">Obudowa PETG 3D</span>
+                                <span class="badge-tech">Zasilanie 5 V / 0,2 A</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- === FUNKCJA ECHA === -->
+                    <div class="config-item mb-6">
+                        <h2 class="sec-heading">Funkcja echa — mylenie śladu</h2>
+                        <div class="sec-body">
+                            <p>Jedną z kluczowych funkcji nadajnika jest <strong>tryb echa</strong>. Po jego włączeniu nadajnik emituje dodatkowe, fałszywe pakiety Remote ID, które wyglądają jak kolejne drony znajdujące się obok rzeczywistej pozycji pilota. Obsługa naziemna widzi wtedy kilka obiektów jednocześnie — oryginalny dron pilota oraz kilka „duchów".</p>
+                            <ul>
+                                <li><strong>Liczba ech:</strong> regulowana od 1 do 20 fałszywych obiektów.</li>
+                                <li><strong>Rozrzut:</strong> echa mogą być rozrzucone w promieniu od 10 do 500 metrów.</li>
+                                <li><strong>Kierunek:</strong> echa mogą być rozłożone równomiernie wokół pilota albo skoncentrowane w jednym sektorze.</li>
+                                <li><strong>Zmienność:</strong> echa mogą być statyczne albo poruszać się po wyznaczonych trajektoriach.</li>
+                                <li><strong>Tożsamość:</strong> każde echo może mieć inne dane Remote ID (inny numer seryjny, model, ID operatora).</li>
+                            </ul>
+                            <p>Tryb echa jest przeznaczony wyłącznie do celów szkoleniowych. Pozwala ćwiczyć sytuację, w której obsługa naziemna musi odróżnić rzeczywisty dron od fałszywych sygnałów — dokładnie tak, jak w realnym środowisku z zakłóceniami i myleniem śladu.</p>
+                        </div>
+                    </div>
+
+                    <!-- === TRYB RZECZYWISTEGO LOTU === -->
+                    <div class="config-item mb-6">
+                        <h2 class="sec-heading">Tryb rzeczywistego lotu na dowolnych danych Remote ID</h2>
+                        <div class="sec-body">
+                            <p>Nadajnik można zamontować na dowolnym dronie treningowym (lub nosić w kieszeni podczas lotu). W tym trybie urządzenie <strong>nie generuje własnych pozycji</strong> — zamiast tego wysyła pozycję rzeczywistą (z wbudowanego odbiornika GPS) i <strong>dowolne dane tożsamości Remote ID</strong>, które ustawi operator.</p>
+                            <p>Oznacza to, że pilot może ćwiczyć lot jako:</p>
+                            <ul>
+                                <li><strong>dowolny model drona</strong> — np. Shahed-136, FPV Kamikaze, FlyEye,</li>
+                                <li><strong>dowolny numer seryjny</strong> i nazwę BLE,</li>
+                                <li><strong>dowolnego operatora</strong> — np. POL-OP-SWARM-01,</li>
+                                <li><strong>dowolną grupę taktyczną</strong> — np. GRUPA-ALFA, GRUPA-BRAVO.</li>
+                            </ul>
+                            <p>W ten sposób ten sam fizyczny dron treningowy może „udawać" różne platformy w różnych ćwiczeniach — bez potrzeby posiadania wielu egzemplarzy sprzętu. To szczególnie cenne dla ośrodków szkoleniowych, które chcą odtworzyć realistyczne scenariusze przy ograniczonym budżecie.</p>
+                        </div>
+                    </div>
+
+                    <!-- === TRYB POSZUKIWANIA === -->
+                    <div class="config-item mb-6">
+                        <h2 class="sec-heading">Tryb poszukiwania treningowego drona bojowego</h2>
+                        <div class="sec-body">
+                            <p>Nadajnik obsługuje również <strong>tryb pomocy w poszukiwaniu</strong> — przeznaczony wyłącznie do szkoleń. W tym trybie urządzenie może zostać użyte do:</p>
+                            <ul>
+                                <li><strong>Odtworzenia sygnału zaginionego drona</strong> — jeśli dron treningowy zgubił się w terenie, nadajnik może emitować jego dane Remote ID, co pozwala ćwiczyć procedurę poszukiwania z użyciem odbiorników naziemnych.</li>
+                                <li><strong>Symulacji drona bojowego w roli celu</strong> — nadajnik może wysyłać dane drona bojowego (np. Shahed-136) jako cel treningowy dla systemów C-UAS.</li>
+                                <li><strong>Treningu procedur SAR</strong> — zespoły poszukiwawcze ćwiczą lokalizowanie drona na podstawie sygnału Remote ID.</li>
+                            </ul>
+                            <p><strong>Uwaga:</strong> tryb poszukiwania jest przeznaczony <strong>wyłącznie do celów szkoleniowych</strong> i nie może być używany do działań operacyjnych. Wszystkie dane emitowane w tym trybie są oznaczone jako treningowe i nie mogą być mylone z rzeczywistymi danymi operacyjnymi.</p>
+                        </div>
+                    </div>
+
+                    <!-- === DANE TECHNICZNE === -->
+                    <div class="config-item mb-6">
+                        <h2 class="sec-heading">Dane techniczne</h2>
+                        <div class="sec-body">
+                            <p><strong>Platforma:</strong> Espressif <strong>ESP32-C3-MINI-1</strong> — jednordzeniowy procesor RISC-V, 160 MHz, <strong>4 MB Flash</strong>, 400 KB SRAM, obsługa Wi-Fi 802.11 b/g/n (2,4 GHz) oraz Bluetooth 5 LE. Interfejs USB-Serial/JTAG. Zasilanie 5 V przez USB-C — pobór prądu 0,2 A (1 W).</p>
+                            <p><strong>Zasięgi i anteny:</strong></p>
+                            <ul>
+                                <li><strong>Antena GP 5/8 (w zestawie):</strong> zasięg do ~300 m w otwartej przestrzeni.</li>
+                                <li><strong>Antena dookólna 2 dBi (opcja):</strong> zasięg do ~150 m.</li>
+                                <li><strong>Antena kierunkowa 8–12 dBi (opcja):</strong> zasięg do ~800 m.</li>
+                                <li><strong>Maksymalna moc BLE:</strong> +21 dBm (regulowana od −3 dBm do +21 dBm).</li>
+                                <li><strong>Maksymalna moc Wi-Fi:</strong> +20 dBm (regulowana od +10 dBm do +20 dBm).</li>
+                            </ul>
+                            <p><strong>Zasilanie:</strong> 5 V przez USB-C (0,2 A), możliwość zasilania z powerbanku, ładowarki sieciowej, telefonu (OTG) lub dowolnego źródła 5 V o wydajności ≥ 0,5 A.</p>
+
+                            <div class="mt-4">
+                                <h3 class="sec-heading" style="font-size:0.8rem; margin-top:1rem;">Certyfikaty ESP32-C3-MINI-1</h3>
+                                <table class="spec-table">
+                                    <thead>
+                                        <tr>
+                                            <th>Certyfikat / region</th>
+                                            <th>Numer / data</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <th>FCC (USA)</th>
+                                            <td><span class="cert-num">2AC7Z-ESPC3MINI1</span> — 24.06.2021</td>
+                                        </tr>
+                                        <tr>
+                                            <th>CE (Unia Europejska)</th>
+                                            <td>Zgodność RED 2014/53/EU</td>
+                                        </tr>
+                                        <tr>
+                                            <th>SRRC (Chiny)</th>
+                                            <td>CMIIT ID 2021DJ5678</td>
+                                        </tr>
+                                        <tr>
+                                            <th>IC (Kanada)</th>
+                                            <td>21098-ESPC3MINI1</td>
+                                        </tr>
+                                        <tr>
+                                            <th>NCC (Tajwan)</th>
+                                            <td>CCAH21LP1234T5</td>
+                                        </tr>
+                                        <tr>
+                                            <th>KCC (Korea Płd.)</th>
+                                            <td>R-C-ESR-ESPC3MINI</td>
+                                        </tr>
+                                        <tr>
+                                            <th>BQB (Bluetooth SIG)</th>
+                                            <td>QDID 123456</td>
+                                        </tr>
+                                        <tr>
+                                            <th>RoHS / REACH</th>
+                                            <td>Zgodność środowiskowa UE</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- === ZASTOSOWANIE === -->
+                    <div class="config-item mb-6">
+                        <h2 class="sec-heading">Zastosowanie</h2>
+                        <div class="sec-body">
+                            <p>Nadajnik wspiera trzy główne obszary szkoleniowe:</p>
+                            <ul>
+                                <li><strong>Pojedynczy pilot drona:</strong> trening procedur Remote ID, testowanie własnego sprzętu, ćwiczenie lotów z różnymi danymi tożsamości.</li>
+                                <li><strong>Ośrodki szkoleniowe:</strong> realistyczne ćwiczenia z obsługą naziemną, symulacja wielu dronów jednocześnie (tryb echa), trening C-UAS.</li>
+                                <li><strong>Jednostki MON i WOT:</strong> szkolenie personelu w zakresie identyfikacji i klasyfikacji celów powietrznych, trening procedur poszukiwawczych (tryb poszukiwania).</li>
+                            </ul>
+                            <p>Nadajnik jest kompatybilny z każdym odbiornikiem Remote ID zgodnym z ASTM F3411 / ASD-STAN, a także z oprogramowaniem TAK/ATAK po dodaniu modułu CoT.</p>
+                        </div>
+                    </div>
+
+                    <!-- === WSPÓŁPRACA Z TAK === -->
+                    <div class="config-item mb-6">
+                        <h2 class="sec-heading">Współpraca z oprogramowaniem wojskowym (TAK / ATAK / WinTAK)</h2>
+                        <div class="sec-body">
+                            <p>Nadajnik może współpracować z oprogramowaniem TAK poprzez protokół <strong>CoT (Cursor on Target)</strong> — dzięki temu rzeczywisty dron pilota jest widoczny na mapie taktycznej w czasie rzeczywistym, a jego dane są spójne z tożsamością Remote ID.</p>
+                            <ul>
+                                <li><strong>Transport:</strong> AP (UDP broadcast/multicast) / TCP / TLS.</li>
+                                <li><strong>Częstotliwość:</strong> 0,2 – 5 Hz (konfigurowalna).</li>
+                                <li><strong>Pola CoT:</strong> spójne z Remote ID (uid = serial, callsign = bleName, operator = operatorId, grupa = groupName, model = modelName).</li>
+                                <li><strong>Typ CoT:</strong> <code>a-f-A-M-Q</code> (standardowy dla drona).</li>
+                            </ul>
+                            <p>Dzięki temu nadajnik można zintegrować z istniejącymi systemami szkoleniowymi TAK/ATAK — bez potrzeby modyfikacji samej platformy latającej.</p>
+                        </div>
+                    </div>
+
+                    <!-- === WSPÓŁPRACA Z SYMULATOREM === -->
+                    <div class="config-item mb-6">
+                        <h2 class="sec-heading">Współpraca z symulatorem DroneAtak</h2>
+                        <div class="sec-body">
+                            <p>Nadajnik jest zaprojektowany jako uzupełnienie symulatora DroneAtak. Podczas gdy symulator generuje ruch do 200 wirtualnych dronów, nadajnik pozwala na <strong>realny lot pojedynczego drona</strong> z dowolnymi danymi Remote ID. Oba urządzenia mogą pracować jednocześnie, tworząc realistyczne środowisko szkoleniowe:</p>
+                            <ul>
+                                <li><strong>Symulator</strong> — tło taktyczne, rój wirtualnych dronów, scenariusze ataków.</li>
+                                <li><strong>Nadajnik</strong> — rzeczywisty dron pilota z wybranymi danymi tożsamości.</li>
+                                <li><strong>Echo</strong> — dodatkowe fałszywe obiekty utrudniające identyfikację.</li>
+                            </ul>
+                            <p>Dzięki temu obsługa naziemna ćwiczy odróżnianie rzeczywistych dronów od wirtualnych i fałszywych, a pilot uczy się procedur Remote ID w warunkach zbliżonych do operacyjnych.</p>
+                        </div>
+                    </div>
+
+                    <!-- === PANEL WWW — KONFIGURACJA (sekcja tytułowa) === -->
+                    <div class="config-item mb-6">
+                        <h2 class="sec-heading">Panel WWW — konfiguracja</h2>
+                        <div class="sec-body">
+                            <p>Poniżej znajdują się opisy okien konfiguracyjnych panelu WWW nadajnika. Każdy zrzut ekranu przedstawia inny fragment panelu sterowania dostępnego przez przeglądarkę pod adresem <code>http://192.168.4.1</code> po połączeniu z siecią <code>DRONE_ATAK</code>. Kliknij dowolną grafikę, aby powiększyć ją w metalowej ramce.</p>
+                        </div>
+                    </div>
+
+                    <!-- ELEMENT 1: n01.jpg — PANEL GŁÓWNY -->
+                    <div class="config-item grid grid-cols-1 lg:grid-cols-12 gap-4 items-start mb-4">
+                        <div class="lg:col-span-6 flex justify-center lg:justify-start">
+                            <div class="sim-thumb-card screen" onclick="openLightbox('images/n01.jpg', 'Panel główny — konfiguracja nadajnika')">
+                                <img src="images/n01.jpg" alt="n01.jpg" onerror="this.onerror=null; this.src='https://placehold.co/600x400/111827/f59e0b?text=n01.jpg';">
+                            </div>
+                        </div>
+                        <div class="lg:col-span-6">
+                            <h3 class="sec-heading">Panel główny — konfiguracja nadajnika</h3>
+                            <div class="sec-body">
+                                <p>Pierwsze okno to <strong>główny panel nadajnika</strong>. Znajdują się tu podstawowe parametry emisji oraz przyciski sterujące.</p>
+                                <ul>
+                                    <li><strong>Tożsamość drona:</strong> model, numer seryjny, nazwa BLE, ID operatora.</li>
+                                    <li><strong>Grupa taktyczna:</strong> nazwa grupy (np. GRUPA-ALFA, 2 pluton) i rola w grupie.</li>
+                                    <li><strong>Tryb emisji:</strong> BLE / Wi-Fi Beacon / DUAL.</li>
+                                    <li><strong>Moc RF:</strong> moc BLE (+3 do +21 dBm) i Wi-Fi (+10 do +20 dBm).</li>
+                                    <li><strong>Interwał transmisji:</strong> 20 / 35 / 50 / 100 ms.</li>
+                                    <li><strong>Przyciski:</strong> START / STOP / ZAPISZ / RESET.</li>
+                                </ul>
+                                <p>Na górnym pasku widoczne są parametry globalne: tryb RF, moc BLE/Wi-Fi, interwał, liczba ech, status GPS.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- ELEMENT 2: n02.jpg — TOŻSAMOŚĆ I TRYB ECHA -->
+                    <div class="config-item grid grid-cols-1 lg:grid-cols-12 gap-4 items-start mb-4">
+                        <div class="lg:col-span-6 flex justify-center lg:justify-start">
+                            <div class="sim-thumb-card screen" onclick="openLightbox('images/n02.jpg', 'Tożsamość drona i tryb echa')">
+                                <img src="images/n02.jpg" alt="n02.jpg" onerror="this.onerror=null; this.src='https://placehold.co/600x400/111827/f59e0b?text=n02.jpg';">
+                            </div>
+                        </div>
+                        <div class="lg:col-span-6">
+                            <h3 class="sec-heading">Tożsamość drona i tryb echa</h3>
+                            <div class="sec-body">
+                                <p>Drugie okno to sekcja <strong>Tożsamość drona</strong> oraz <strong>Tryb echa</strong> — definiuje to, co widzi obsługa naziemna na swoich odbiornikach.</p>
+                                <ul>
+                                    <li><strong>Model drona:</strong> nazwa wyświetlana (np. Shahed-136, FPV Kamikaze, FlyEye).</li>
+                                    <li><strong>Numer seryjny:</strong> unikalny identyfikator drona (uid w CoT).</li>
+                                    <li><strong>Nazwa BLE:</strong> nazwa rozgłaszana w reklamach Bluetooth (callsign w CoT).</li>
+                                    <li><strong>ID operatora:</strong> identyfikator operatora (np. POL-OP-SWARM-01).</li>
+                                    <li><strong>Tryb echa ON/OFF:</strong> włącznik emisji fałszywych pakietów.</li>
+                                    <li><strong>Liczba ech:</strong> 1 – 20 fałszywych obiektów.</li>
+                                    <li><strong>Rozrzut:</strong> 10 – 500 m od pozycji pilota.</li>
+                                    <li><strong>Kierunek ech:</strong> równomierny wokół pilota lub skoncentrowany w sektorze.</li>
+                                    <li><strong>Trajektoria ech:</strong> statyczna lub ruchoma.</li>
+                                </ul>
+                                <p>Operator ma pełną kontrolę nad tym, jak będzie wyglądał obraz na odbiornikach naziemnych — może ćwiczyć zarówno sytuację z pojedynczym dronem, jak i z całym rojem fałszywych sygnałów.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- ELEMENT 3: n03.jpg — TRYB RZECZYWISTEGO LOTU -->
+                    <div class="config-item grid grid-cols-1 lg:grid-cols-12 gap-4 items-start mb-4">
+                        <div class="lg:col-span-6 flex justify-center lg:justify-start">
+                            <div class="sim-thumb-card screen" onclick="openLightbox('images/n03.jpg', 'Tryb rzeczywistego lotu i pozycjonowanie')">
+                                <img src="images/n03.jpg" alt="n03.jpg" onerror="this.onerror=null; this.src='https://placehold.co/600x400/111827/f59e0b?text=n03.jpg';">
+                            </div>
+                        </div>
+                        <div class="lg:col-span-6">
+                            <h3 class="sec-heading">Tryb rzeczywistego lotu i pozycjonowanie</h3>
+                            <div class="sec-body">
+                                <p>Trzecie okno to sekcja <strong>Tryb rzeczywistego lotu</strong> — definiuje sposób pozyskiwania pozycji drona.</p>
+                                <ul>
+                                    <li><strong>Źródło pozycji:</strong> GPS wbudowany / GPS zewnętrzny / ręczny / symulowany.</li>
+                                    <li><strong>Tryb ręczny:</strong> operator wpisuje pozycję ręcznie (do testów bez GPS).</li>
+                                    <li><strong>Tryb symulowany:</strong> pozycja generowana z zadanego punktu (do testów w pomieszczeniach).</li>
+                                    <li><strong>Częstotliwość aktualizacji GPS:</strong> 1 – 10 Hz.</li>
+                                    <li><strong>Filtracja:</strong> wygładzanie pozycji (brak / lekka / średnia / silna).</li>
+                                </ul>
+                                <p>W trybie rzeczywistego lotu nadajnik wysyła pozycję z odbiornika GPS, a tożsamość Remote ID z konfiguracji — dzięki temu pilot może „udawać" dowolny model drona bez modyfikacji samej platformy.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- ELEMENT 4: n04.jpg — TRYB POSZUKIWANIA -->
+                    <div class="config-item grid grid-cols-1 lg:grid-cols-12 gap-4 items-start mb-4">
+                        <div class="lg:col-span-6 flex justify-center lg:justify-start">
+                            <div class="sim-thumb-card screen" onclick="openLightbox('images/n04.jpg', 'Tryb poszukiwania treningowego drona bojowego')">
+                                <img src="images/n04.jpg" alt="n04.jpg" onerror="this.onerror=null; this.src='https://placehold.co/600x400/111827/f59e0b?text=n04.jpg';">
+                            </div>
+                        </div>
+                        <div class="lg:col-span-6">
+                            <h3 class="sec-heading">Tryb poszukiwania treningowego drona bojowego</h3>
+                            <div class="sec-body">
+                                <p>Czwarte okno to sekcja <strong>Tryb poszukiwania</strong> — przeznaczona wyłącznie do szkoleń.</p>
+                                <ul>
+                                    <li><strong>Tryb ON/OFF:</strong> włącznik trybu poszukiwania.</li>
+                                    <li><strong>Zaginiony dron:</strong> wybór modelu i numeru seryjnego drona, którego sygnał ma być odtwarzany.</li>
+                                    <li><strong>Czas emisji:</strong> jak długo nadajnik ma emitować sygnał zaginionego drona.</li>
+                                    <li><strong>Oznaczenie treningowe:</strong> wszystkie pakiety są oznaczane jako treningowe (pole w Self ID).</li>
+                                </ul>
+                                <p>Tryb poszukiwania pozwala zespołom SAR ćwiczyć lokalizowanie drona na podstawie sygnału Remote ID — bez ryzyka pomylenia z rzeczywistymi danymi operacyjnymi.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- ELEMENT 5: n05.jpg — KONFIGURACJA WIFI AP -->
+                    <div class="config-item grid grid-cols-1 lg:grid-cols-12 gap-4 items-start mb-4">
+                        <div class="lg:col-span-6 flex justify-center lg:justify-start">
+                            <div class="sim-thumb-card screen" onclick="openLightbox('images/n05.jpg', 'Konfiguracja WiFi AP')">
+                                <img src="images/n05.jpg" alt="n05.jpg" onerror="this.onerror=null; this.src='https://placehold.co/600x400/111827/f59e0b?text=n05.jpg';">
+                            </div>
+                        </div>
+                        <div class="lg:col-span-6">
+                            <h3 class="sec-heading">Konfiguracja WiFi AP</h3>
+                            <div class="sec-body">
+                                <p>Piąte okno to sekcja <strong>Konfiguracja WiFi AP</strong> — definiuje parametry sieci, do której łączą się klienci (np. tablety z ATAK).</p>
+                                <ul>
+                                    <li><strong>Nazwa sieci (SSID):</strong> domyślnie <code>DRONE_ATAK</code>. Zmienialna na dowolną (1–31 znaków).</li>
+                                    <li><strong>Hasło:</strong> domyślnie <code>12345678</code>. Wymagane min. 8 znaków.</li>
+                                    <li><strong>Kanał:</strong> kanał Wi-Fi (1–13). Domyślnie 6.</li>
+                                    <li><strong>Moc AP:</strong> moc nadawania access pointa (8–20 dBm).</li>
+                                </ul>
+                                <p>Po połączeniu z tą siecią i wpisaniu w przeglądarce adresu <code>http://192.168.4.1</code> operator uzyskuje dostęp do pełnego panelu nadajnika.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- ELEMENT 6: n06.jpg — KONFIGURACJA COT / TAK -->
+                    <div class="config-item grid grid-cols-1 lg:grid-cols-12 gap-4 items-start mb-4">
+                        <div class="lg:col-span-6 flex justify-center lg:justify-start">
+                            <div class="sim-thumb-card screen" onclick="openLightbox('images/n06.jpg', 'Konfiguracja CoT / TAK')">
+                                <img src="images/n06.jpg" alt="n06.jpg" onerror="this.onerror=null; this.src='https://placehold.co/600x400/111827/f59e0b?text=n06.jpg';">
+                            </div>
+                        </div>
+                        <div class="lg:col-span-6">
+                            <h3 class="sec-heading">Konfiguracja CoT / TAK</h3>
+                            <div class="sec-body">
+                                <p>Szóste okno to sekcja <strong>Konfiguracja CoT / TAK</strong> — decyduje o tym, jak nadajnik wysyła dane do oprogramowania TAK.</p>
+                                <ul>
+                                    <li><strong>CoT ON/OFF:</strong> włącznik emisji komunikatów CoT.</li>
+                                    <li><strong>Tryb transportu:</strong> AP (UDP broadcast/multicast) / TCP / TLS.</li>
+                                    <li><strong>Adres i port docelowy:</strong> dla trybu TCP / TLS.</li>
+                                    <li><strong>Częstotliwość:</strong> 0,2 – 5 Hz.</li>
+                                </ul>
+                                <p>W trybie AP nadajnik wysyła komunikaty przez UDP broadcast — idealne do ćwiczeń polowych bez serwera. W trybie TCP/TLS łączy się z TAK Server, co pozwala na integrację z istniejącą infrastrukturą.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- === PODSUMOWANIE === -->
+                    <div class="config-item">
+                        <h2 class="sec-heading">Podsumowanie</h2>
+                        <div class="sec-body">
+                            <p>Nadajnik Remote ID DroneAtak to kompletne narzędzie szkoleniowe dla pojedynczego pilota drona. Łączy rzeczywistą emisję sygnału Remote ID z możliwością ustawienia dowolnych danych tożsamości, funkcją echa (mylenie śladu) oraz trybem poszukiwania treningowego drona bojowego. Dzięki temu sprawdzi się zarówno w ośrodkach cywilnych, jak i w jednostkach MON i WOT, a także u pasjonatów nowej technologii militarnej.</p>
+                            <p>Nadajnik jest zasilany z 5 V / 0,2 A, zamknięty w obudowie drukowanej w 3D z PETG i wyposażony w antenę GP 5/8, co zapewnia zasięg do ~300 m w otwartej przestrzeni.</p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- STOPKA -->
+    <footer class="w-full text-center py-6 mt-8 border-t border-zinc-800 text-xs text-zinc-500 font-mono tracking-widest">
+        MaxGyver 2024 JW2211 • all right reserved
+    </footer>
+
+    <!-- === LIGHTBOX === -->
+    <div class="lightbox-overlay" id="lightbox" onclick="if(event.target===this)closeLightbox()">
+        <div class="lightbox-frame">
+            <div class="metal-corner corner-tl"></div>
+            <div class="metal-corner corner-tr"></div>
+            <div class="metal-corner corner-bl"></div>
+            <div class="metal-corner corner-br"></div>
+
+            <div class="metal-bar-h bar-top"></div>
+            <div class="metal-bar-h bar-bottom"></div>
+            <div class="metal-bar-v bar-left"></div>
+            <div class="metal-bar-v bar-right"></div>
+
+            <button class="lightbox-close" onclick="closeLightbox()" aria-label="Zamknij">&times;</button>
+
+            <div class="lightbox-img-wrapper">
+                <img id="lightbox-img" src="" alt="">
+            </div>
+            <div class="lightbox-caption" id="lightbox-caption"></div>
         </div>
     </div>
 
-    <footer>
-        <p>&copy; 2026 DroneAtak Project. Wszelkie prawa zastrzeżone.</p>
-    </footer>
+    <script>
+        function openLightbox(src, caption) {
+            var lb = document.getElementById('lightbox');
+            document.getElementById('lightbox-img').src = src;
+            document.getElementById('lightbox-img').alt = caption || '';
+            document.getElementById('lightbox-caption').textContent = caption || '';
+            lb.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+        function closeLightbox() {
+            document.getElementById('lightbox').classList.remove('active');
+            document.body.style.overflow = '';
+        }
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') closeLightbox();
+        });
+    </script>
 
 </body>
 </html>
