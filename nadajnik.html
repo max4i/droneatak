@@ -270,7 +270,6 @@
             font-family: ui-monospace, monospace;
         }
 
-        /* === 1 zdjęcie na górze === */
         .hero-sim {
             display: grid;
             grid-template-columns: 1fr;
@@ -315,7 +314,6 @@
             font-weight: 700;
         }
 
-        /* === Lightbox === */
         .lightbox-overlay {
             display: none;
             position: fixed;
@@ -416,9 +414,9 @@
         <section class="w-full">
             <div class="main-banner w-full h-auto">
                 <img src="images/g2.png" 
-                     alt="Główna grafika taktyczna" 
+                     alt="Główna grafika taktyczna DroneAtak" 
                      class="main-graphic"
-                     onerror="this.onerror=null; this.src='https://placehold.co/1200x600/182026/e5a93c?text=ChatGPT+Image+18+wrz+2026,+17_31_33.png';">
+                     onerror="this.onerror=null; this.src='https://placehold.co/1200x600/182026/e5a93c?text=g2.png';">
             </div>
         </section>
 
@@ -468,31 +466,28 @@
                         <h2 class="sec-heading">O nadajniku — ogólne informacje</h2>
                         <div class="sec-body">
                             <p><strong>Nadajnik Remote ID DroneAtak</strong> to osobiste urządzenie dla pojedynczego pilota drona, przeznaczone do szkolenia, testowania odbiorników Remote ID oraz prowadzenia ćwiczeń z zakresu świadomości sytuacyjnej. Urządzenie emituje rzeczywisty sygnał Remote ID zgodny z normami <strong>ASTM F3411</strong> i <strong>ASD-STAN</strong>, a jednocześnie pozwala na <strong>latania na dowolnych danych Remote ID</strong> — czyli na symulowanie tożsamości innego drona bez modyfikacji samej platformy latającej.</p>
-                            <p>Nadajnik jest kompaktowy, zasilany z 5 V (powerbank / telefon / ładowarka) i może być zamontowany na dowolnym dronie treningowym. Dzięki niemu pilot ćwiczy procedury identyfikacji, a obsługa naziemna widzi na swoich odbiornikach dokładnie taki obraz, jaki zobaczyłaby w realnej sytuacji operacyjnej.</p>
+                            <p>Nadajnik jest kompaktowy, zasilany z 5 V (powerbank / telefon / ładowarka / FC) i może być zamontowany na dowolnym dronie treningowym. Dzięki niemu pilot ćwiczy procedury identyfikacji, a obsługa naziemna widzi na swoich odbiornikach dokładnie taki obraz, jaki zobaczyłaby w realnej sytuacji operacyjnej.</p>
                             <div class="mt-3">
                                 <span class="badge-tech">ASTM F3411</span>
                                 <span class="badge-tech">ASD-STAN</span>
                                 <span class="badge-tech">BLE 5 + Wi-Fi Beacon</span>
                                 <span class="badge-tech">ESP32-C3-MINI-1</span>
-                                <span class="badge-tech">Obudowa PETG 3D</span>
-                                <span class="badge-tech">Zasilanie 5 V / 0,2 A</span>
+                                <span class="badge-tech">Zasilanie 5 V</span>
                             </div>
                         </div>
                     </div>
 
                     <!-- === FUNKCJA ECHA === -->
                     <div class="config-item mb-6">
-                        <h2 class="sec-heading">Funkcja echa — mylenie śladu</h2>
+                        <h2 class="sec-heading">Funkcja echa — mylenie śladu i Swarm Engine</h2>
                         <div class="sec-body">
-                            <p>Jedną z kluczowych funkcji nadajnika jest <strong>tryb echa</strong>. Po jego włączeniu nadajnik emituje dodatkowe, fałszywe pakiety Remote ID, które wyglądają jak kolejne drony znajdujące się obok rzeczywistej pozycji pilota. Obsługa naziemna widzi wtedy kilka obiektów jednocześnie — oryginalny dron pilota oraz kilka „duchów".</p>
+                            <p>Jedną z kluczowych funkcji nadajnika jest <strong>tryb echa (Swarm Engine)</strong>. Po jego włączeniu nadajnik emituje dodatkowe, fałszywe pakiety Remote ID, które wyglądają jak kolejne drony znajdujące się w pobliżu rzeczywistej pozycji pilota. Obsługa naziemna widzi wtedy całą grupę obiektów jednocześnie — oryginalny dron pilota oraz rój celów pozornych.</p>
                             <ul>
-                                <li><strong>Liczba ech:</strong> regulowana od 1 do 20 fałszywych obiektów.</li>
-                                <li><strong>Rozrzut:</strong> echa mogą być rozrzucone w promieniu od 10 do 500 metrów.</li>
-                                <li><strong>Kierunek:</strong> echa mogą być rozłożone równomiernie wokół pilota albo skoncentrowane w jednym sektorze.</li>
-                                <li><strong>Zmienność:</strong> echa mogą być statyczne albo poruszać się po wyznaczonych trajektoriach.</li>
-                                <li><strong>Tożsamość:</strong> każde echo może mieć inne dane Remote ID (inny numer seryjny, model, ID operatora).</li>
+                                <li><strong>Liczba ech:</strong> płynnie regulowana suwakiem w zakresie od 0 do 50 celów pozornych.</li>
+                                <li><strong>Rozrzut odległości:</strong> dystans pomiędzy dronami regulowany od 25 do 300 metrów.</li>
+                                <li><strong>Szyk roju / Ugrupowanie:</strong> wybór formacji taktycznej (np. Kwadrat / Siatka z dronem w środku).</li>
+                                <li><strong>Tożsamość i OPSEC:</strong> każde echo posiada unikalny adres MAC i sygnaturę UAS ID zsynchronizowaną z kursem. Dane ech generowane są w Pamięci RAM i nie obciążają logów.</li>
                             </ul>
-                            <p>Tryb echa jest przeznaczony wyłącznie do celów szkoleniowych. Pozwala ćwiczyć sytuację, w której obsługa naziemna musi odróżnić rzeczywisty dron od fałszywych sygnałów — dokładnie tak, jak w realnym środowisku z zakłóceniami i myleniem śladu.</p>
                         </div>
                     </div>
 
@@ -500,29 +495,14 @@
                     <div class="config-item mb-6">
                         <h2 class="sec-heading">Tryb rzeczywistego lotu na dowolnych danych Remote ID</h2>
                         <div class="sec-body">
-                            <p>Nadajnik można zamontować na dowolnym dronie treningowym (lub nosić w kieszeni podczas lotu). W tym trybie urządzenie <strong>nie generuje własnych pozycji</strong> — zamiast tego wysyła pozycję rzeczywistą (z wbudowanego odbiornika GPS) i <strong>dowolne dane tożsamości Remote ID</strong>, które ustawi operator.</p>
+                            <p>Nadajnik można zamontować na dowolnym dronie treningowym. Urządzenie wysyła rzeczywistą pozycję z wbudowanego modułu GPS oraz <strong>dowolne dane tożsamości Remote ID</strong> ustawione w panelu konfiguracyjnym.</p>
                             <p>Oznacza to, że pilot może ćwiczyć lot jako:</p>
                             <ul>
-                                <li><strong>dowolny model drona</strong> — np. Shahed-136, FPV Kamikaze, FlyEye,</li>
-                                <li><strong>dowolny numer seryjny</strong> i nazwę BLE,</li>
-                                <li><strong>dowolnego operatora</strong> — np. POL-OP-SWARM-01,</li>
-                                <li><strong>dowolną grupę taktyczną</strong> — np. GRUPA-ALFA, GRUPA-BRAVO.</li>
+                                <li><strong>dowolny typ statku i klasa UE</strong> — np. Quadcopter / Multirotor w klasie C6 (STS-02),</li>
+                                <li><strong>dowolny numer seryjny</strong> — np. <code>MaxGyver2024-2026</code>,</li>
+                                <li><strong>dowolny zarejestrowany operator</strong> — np. <code>POL_MAXIIII001-9x2</code> z chronionym PIN-em (OPSEC Privacy Guard),</li>
+                                <li><strong>dowolny opis misji / Self ID</strong> — np. <code>WKP</code>.</li>
                             </ul>
-                            <p>W ten sposób ten sam fizyczny dron treningowy może „udawać" różne platformy w różnych ćwiczeniach — bez potrzeby posiadania wielu egzemplarzy sprzętu. To szczególnie cenne dla ośrodków szkoleniowych, które chcą odtworzyć realistyczne scenariusze przy ograniczonym budżecie.</p>
-                        </div>
-                    </div>
-
-                    <!-- === TRYB POSZUKIWANIA === -->
-                    <div class="config-item mb-6">
-                        <h2 class="sec-heading">Tryb poszukiwania treningowego drona bojowego</h2>
-                        <div class="sec-body">
-                            <p>Nadajnik obsługuje również <strong>tryb pomocy w poszukiwaniu</strong> — przeznaczony wyłącznie do szkoleń. W tym trybie urządzenie może zostać użyte do:</p>
-                            <ul>
-                                <li><strong>Odtworzenia sygnału zaginionego drona</strong> — jeśli dron treningowy zgubił się w terenie, nadajnik może emitować jego dane Remote ID, co pozwala ćwiczyć procedurę poszukiwania z użyciem odbiorników naziemnych.</li>
-                                <li><strong>Symulacji drona bojowego w roli celu</strong> — nadajnik może wysyłać dane drona bojowego (np. Shahed-136) jako cel treningowy dla systemów C-UAS.</li>
-                                <li><strong>Treningu procedur SAR</strong> — zespoły poszukiwawcze ćwiczą lokalizowanie drona na podstawie sygnału Remote ID.</li>
-                            </ul>
-                            <p><strong>Uwaga:</strong> tryb poszukiwania jest przeznaczony <strong>wyłącznie do celów szkoleniowych</strong> i nie może być używany do działań operacyjnych. Wszystkie dane emitowane w tym trybie są oznaczone jako treningowe i nie mogą być mylone z rzeczywistymi danymi operacyjnymi.</p>
                         </div>
                     </div>
 
@@ -530,16 +510,14 @@
                     <div class="config-item mb-6">
                         <h2 class="sec-heading">Dane techniczne</h2>
                         <div class="sec-body">
-                            <p><strong>Platforma:</strong> Espressif <strong>ESP32-C3-MINI-1</strong> — jednordzeniowy procesor RISC-V, 160 MHz, <strong>4 MB Flash</strong>, 400 KB SRAM, obsługa Wi-Fi 802.11 b/g/n (2,4 GHz) oraz Bluetooth 5 LE. Interfejs USB-Serial/JTAG. Zasilanie 5 V przez USB-C — pobór prądu 0,2 A (1 W).</p>
-                            <p><strong>Zasięgi i anteny:</strong></p>
+                            <p><strong>Platforma:</strong> Espressif <strong>ESP32-C3-MINI-1</strong> — procesor RISC-V 160 MHz, <strong>4 MB Flash</strong>, 400 KB SRAM, obsługa Wi-Fi 802.11 b/g/n (2,4 GHz) oraz Bluetooth 5 LE / Legacy. Interfejs USB-Serial/JTAG. Zasilanie 5 V.</p>
+                            <p><strong>Moc i pasmo RF:</strong></p>
                             <ul>
-                                <li><strong>Antena GP 5/8 (w zestawie):</strong> zasięg do ~300 m w otwartej przestrzeni.</li>
-                                <li><strong>Antena dookólna 2 dBi (opcja):</strong> zasięg do ~150 m.</li>
-                                <li><strong>Antena kierunkowa 8–12 dBi (opcja):</strong> zasięg do ~800 m.</li>
-                                <li><strong>Maksymalna moc BLE:</strong> +21 dBm (regulowana od −3 dBm do +21 dBm).</li>
-                                <li><strong>Maksymalna moc Wi-Fi:</strong> +20 dBm (regulowana od +10 dBm do +20 dBm).</li>
+                                <li><strong>Pasmo Wi-Fi:</strong> Wybór kanału (1–13, domyślnie 6), moc nadawcza regulowana do +20 dBm (np. +8 dBm).</li>
+                                <li><strong>Moc BLE:</strong> Regulowana od 0 dBm do +21 dBm.</li>
+                                <li><strong>Obsługiwane protokoły:</strong> Wi-Fi Beacon 802.11, BLE 4.2 Legacy, BLE 5.0 Extended (Coded PHY).</li>
+                                <li><strong>Interwał emisji:</strong> Konfigurowalny (od 20 ms do 500 ms).</li>
                             </ul>
-                            <p><strong>Zasilanie:</strong> 5 V przez USB-C (0,2 A), możliwość zasilania z powerbanku, ładowarki sieciowej, telefonu (OTG) lub dowolnego źródła 5 V o wydajności ≥ 0,5 A.</p>
 
                             <div class="mt-4">
                                 <h3 class="sec-heading" style="font-size:0.8rem; margin-top:1rem;">Certyfikaty ESP32-C3-MINI-1</h3>
@@ -568,18 +546,6 @@
                                             <td>21098-ESPC3MINI1</td>
                                         </tr>
                                         <tr>
-                                            <th>NCC (Tajwan)</th>
-                                            <td>CCAH21LP1234T5</td>
-                                        </tr>
-                                        <tr>
-                                            <th>KCC (Korea Płd.)</th>
-                                            <td>R-C-ESR-ESPC3MINI</td>
-                                        </tr>
-                                        <tr>
-                                            <th>BQB (Bluetooth SIG)</th>
-                                            <td>QDID 123456</td>
-                                        </tr>
-                                        <tr>
                                             <th>RoHS / REACH</th>
                                             <td>Zgodność środowiskowa UE</td>
                                         </tr>
@@ -589,203 +555,217 @@
                         </div>
                     </div>
 
-                    <!-- === ZASTOSOWANIE === -->
-                    <div class="config-item mb-6">
-                        <h2 class="sec-heading">Zastosowanie</h2>
-                        <div class="sec-body">
-                            <p>Nadajnik wspiera trzy główne obszary szkoleniowe:</p>
-                            <ul>
-                                <li><strong>Pojedynczy pilot drona:</strong> trening procedur Remote ID, testowanie własnego sprzętu, ćwiczenie lotów z różnymi danymi tożsamości.</li>
-                                <li><strong>Ośrodki szkoleniowe:</strong> realistyczne ćwiczenia z obsługą naziemną, symulacja wielu dronów jednocześnie (tryb echa), trening C-UAS.</li>
-                                <li><strong>Jednostki MON i WOT:</strong> szkolenie personelu w zakresie identyfikacji i klasyfikacji celów powietrznych, trening procedur poszukiwawczych (tryb poszukiwania).</li>
-                            </ul>
-                            <p>Nadajnik jest kompatybilny z każdym odbiornikiem Remote ID zgodnym z ASTM F3411 / ASD-STAN, a także z oprogramowaniem TAK/ATAK po dodaniu modułu CoT.</p>
-                        </div>
-                    </div>
-
-                    <!-- === WSPÓŁPRACA Z TAK === -->
-                    <div class="config-item mb-6">
-                        <h2 class="sec-heading">Współpraca z oprogramowaniem wojskowym (TAK / ATAK / WinTAK)</h2>
-                        <div class="sec-body">
-                            <p>Nadajnik może współpracować z oprogramowaniem TAK poprzez protokół <strong>CoT (Cursor on Target)</strong> — dzięki temu rzeczywisty dron pilota jest widoczny na mapie taktycznej w czasie rzeczywistym, a jego dane są spójne z tożsamością Remote ID.</p>
-                            <ul>
-                                <li><strong>Transport:</strong> AP (UDP broadcast/multicast) / TCP / TLS.</li>
-                                <li><strong>Częstotliwość:</strong> 0,2 – 5 Hz (konfigurowalna).</li>
-                                <li><strong>Pola CoT:</strong> spójne z Remote ID (uid = serial, callsign = bleName, operator = operatorId, grupa = groupName, model = modelName).</li>
-                                <li><strong>Typ CoT:</strong> <code>a-f-A-M-Q</code> (standardowy dla drona).</li>
-                            </ul>
-                            <p>Dzięki temu nadajnik można zintegrować z istniejącymi systemami szkoleniowymi TAK/ATAK — bez potrzeby modyfikacji samej platformy latającej.</p>
-                        </div>
-                    </div>
-
-                    <!-- === WSPÓŁPRACA Z SYMULATOREM === -->
-                    <div class="config-item mb-6">
-                        <h2 class="sec-heading">Współpraca z symulatorem DroneAtak</h2>
-                        <div class="sec-body">
-                            <p>Nadajnik jest zaprojektowany jako uzupełnienie symulatora DroneAtak. Podczas gdy symulator generuje ruch do 200 wirtualnych dronów, nadajnik pozwala na <strong>realny lot pojedynczego drona</strong> z dowolnymi danymi Remote ID. Oba urządzenia mogą pracować jednocześnie, tworząc realistyczne środowisko szkoleniowe:</p>
-                            <ul>
-                                <li><strong>Symulator</strong> — tło taktyczne, rój wirtualnych dronów, scenariusze ataków.</li>
-                                <li><strong>Nadajnik</strong> — rzeczywisty dron pilota z wybranymi danymi tożsamości.</li>
-                                <li><strong>Echo</strong> — dodatkowe fałszywe obiekty utrudniające identyfikację.</li>
-                            </ul>
-                            <p>Dzięki temu obsługa naziemna ćwiczy odróżnianie rzeczywistych dronów od wirtualnych i fałszywych, a pilot uczy się procedur Remote ID w warunkach zbliżonych do operacyjnych.</p>
-                        </div>
-                    </div>
-
                     <!-- === PANEL WWW — KONFIGURACJA (sekcja tytułowa) === -->
                     <div class="config-item mb-6">
-                        <h2 class="sec-heading">Panel WWW — konfiguracja</h2>
+                        <h2 class="sec-heading">Panel WWW — interfejs konfiguracyjny</h2>
                         <div class="sec-body">
-                            <p>Poniżej znajdują się opisy okien konfiguracyjnych panelu WWW nadajnika. Każdy zrzut ekranu przedstawia inny fragment panelu sterowania dostępnego przez przeglądarkę pod adresem <code>http://192.168.4.1</code> po połączeniu z siecią <code>DRONE_ATAK</code>. Kliknij dowolną grafikę, aby powiększyć ją w metalowej ramce.</p>
+                            <p>Poniżej znajdują się zrzuty ekranu z poszczególnych modułów panelu konfiguracyjnego nadajnika. Interfejs jest dostępny przez przeglądarkę WWW pod adresem <code>http://192.168.4.1</code> po połączeniu z punktem dostępowym Wi-Fi. Kliknij wybraną grafikę, aby otworzyć powiększenie w taktycznej ramce.</p>
                         </div>
                     </div>
 
-                    <!-- ELEMENT 1: n01.jpg — PANEL GŁÓWNY -->
+                    <!-- ELEMENT 1: tytul.jpg — STATUS I DANE GPS -->
                     <div class="config-item grid grid-cols-1 lg:grid-cols-12 gap-4 items-start mb-4">
                         <div class="lg:col-span-6 flex justify-center lg:justify-start">
-                            <div class="sim-thumb-card screen" onclick="openLightbox('images/n01.jpg', 'Panel główny — konfiguracja nadajnika')">
-                                <img src="images/n01.jpg" alt="n01.jpg" onerror="this.onerror=null; this.src='https://placehold.co/600x400/111827/f59e0b?text=n01.jpg';">
+                            <div class="sim-thumb-card screen" onclick="openLightbox('images/tytul.jpg', 'Nagłówek panelu oraz odczyty GPS w czasie rzeczywistym')">
+                                <img src="images/tytul.jpg" alt="tytul.jpg" onerror="this.onerror=null; this.src='https://placehold.co/600x200/111827/f59e0b?text=tytul.jpg';">
                             </div>
                         </div>
                         <div class="lg:col-span-6">
-                            <h3 class="sec-heading">Panel główny — konfiguracja nadajnika</h3>
+                            <h3 class="sec-heading">Nagłówek systemu & Dane GPS</h3>
                             <div class="sec-body">
-                                <p>Pierwsze okno to <strong>główny panel nadajnika</strong>. Znajdują się tu podstawowe parametry emisji oraz przyciski sterujące.</p>
+                                <p>Główna sekcja informacyjna nadajnika prezentuje aktualny status oprogramowania oraz precyzyjne odczyty z modułu GNSS/GPS.</p>
                                 <ul>
-                                    <li><strong>Tożsamość drona:</strong> model, numer seryjny, nazwa BLE, ID operatora.</li>
-                                    <li><strong>Grupa taktyczna:</strong> nazwa grupy (np. GRUPA-ALFA, 2 pluton) i rola w grupie.</li>
-                                    <li><strong>Tryb emisji:</strong> BLE / Wi-Fi Beacon / DUAL.</li>
-                                    <li><strong>Moc RF:</strong> moc BLE (+3 do +21 dBm) i Wi-Fi (+10 do +20 dBm).</li>
-                                    <li><strong>Interwał transmisji:</strong> 20 / 35 / 50 / 100 ms.</li>
-                                    <li><strong>Przyciski:</strong> START / STOP / ZAPISZ / RESET.</li>
+                                    <li><strong>Oznaczenie modułu:</strong> <code>RemoteID_MX - BSP/UAV/Kamikaze/FPV</code> (wersja oprogramowania np. 0.2025.03.27.01).</li>
+                                    <li><strong>Wybór języka:</strong> Szybkie przełączanie języka interfejsu (np. Polski).</li>
+                                    <li><strong>Dane pozycji GNSS:</strong> Szerokość i długość geograficzna, wysokość n.p.m. (ASL) oraz aktualna prędkość.</li>
+                                    <li><strong>Status Fixa:</strong> Informacja o liczbie śledzonych satelitów (np. <code>FIX OK (17 sat)</code>) oraz zapamiętanej pozycji startowej.</li>
                                 </ul>
-                                <p>Na górnym pasku widoczne są parametry globalne: tryb RF, moc BLE/Wi-Fi, interwał, liczba ech, status GPS.</p>
                             </div>
                         </div>
                     </div>
 
-                    <!-- ELEMENT 2: n02.jpg — TOŻSAMOŚĆ I TRYB ECHA -->
+                    <!-- ELEMENT 2: identyfikacja.jpg — 1. IDENTYFIKACJA STATKU I OPERATORA -->
                     <div class="config-item grid grid-cols-1 lg:grid-cols-12 gap-4 items-start mb-4">
                         <div class="lg:col-span-6 flex justify-center lg:justify-start">
-                            <div class="sim-thumb-card screen" onclick="openLightbox('images/n02.jpg', 'Tożsamość drona i tryb echa')">
-                                <img src="images/n02.jpg" alt="n02.jpg" onerror="this.onerror=null; this.src='https://placehold.co/600x400/111827/f59e0b?text=n02.jpg';">
+                            <div class="sim-thumb-card screen" onclick="openLightbox('images/identyfikacja.jpg', '1. Identyfikacja statku i operatora (zgodność z EU 2019/945)')">
+                                <img src="images/identyfikacja.jpg" alt="identyfikacja.jpg" onerror="this.onerror=null; this.src='https://placehold.co/600x300/111827/f59e0b?text=identyfikacja.jpg';">
                             </div>
                         </div>
                         <div class="lg:col-span-6">
-                            <h3 class="sec-heading">Tożsamość drona i tryb echa</h3>
+                            <h3 class="sec-heading">1. Identyfikacja statku i operatora</h3>
                             <div class="sec-body">
-                                <p>Drugie okno to sekcja <strong>Tożsamość drona</strong> oraz <strong>Tryb echa</strong> — definiuje to, co widzi obsługa naziemna na swoich odbiornikach.</p>
+                                <p>Sekcja odpowiedzialna za oficjalne parametry tożsamości Remote ID emitowane w pasmie 2.4 GHz zgodnie z normami unijnymi EU 2019/945 i 2019/947.</p>
                                 <ul>
-                                    <li><strong>Model drona:</strong> nazwa wyświetlana (np. Shahed-136, FPV Kamikaze, FlyEye).</li>
-                                    <li><strong>Numer seryjny:</strong> unikalny identyfikator drona (uid w CoT).</li>
-                                    <li><strong>Nazwa BLE:</strong> nazwa rozgłaszana w reklamach Bluetooth (callsign w CoT).</li>
-                                    <li><strong>ID operatora:</strong> identyfikator operatora (np. POL-OP-SWARM-01).</li>
-                                    <li><strong>Tryb echa ON/OFF:</strong> włącznik emisji fałszywych pakietów.</li>
-                                    <li><strong>Liczba ech:</strong> 1 – 20 fałszywych obiektów.</li>
-                                    <li><strong>Rozrzut:</strong> 10 – 500 m od pozycji pilota.</li>
-                                    <li><strong>Kierunek ech:</strong> równomierny wokół pilota lub skoncentrowany w sektorze.</li>
-                                    <li><strong>Trajektoria ech:</strong> statyczna lub ruchoma.</li>
+                                    <li><strong>Nazwa Bluetooth:</strong> Rozgłaszana nazwa urządzenia w pakietach rozgłoszeniowych (np. <code>RemoteID_MX</code>).</li>
+                                    <li><strong>Numer seryjny drona:</strong> Unikalny identyfikator sprzętowy (np. <code>MaxGyver2024-2026</code>).</li>
+                                    <li><strong>EU Operator Registration ID:</strong> Numer rejestracyjny operatora wraz z Tajnym PIN-em.</li>
+                                    <li><strong>OPSEC Privacy Guard:</strong> Wbudowana ochrona prywatności — Tajny PIN jest automatycznie odcinany i usuwany przed emisją radiową.</li>
+                                    <li><strong>Typ statku i klasa UE:</strong> Wybór konstrukcji (np. Multirotor / Quadcopter) oraz kategorii (np. Klasa C6 STS-02).</li>
+                                    <li><strong>Self ID / Opis misji:</strong> Dowolny tekst misji lub identyfikator taktyczny (np. <code>WKP</code>).</li>
                                 </ul>
-                                <p>Operator ma pełną kontrolę nad tym, jak będzie wyglądał obraz na odbiornikach naziemnych — może ćwiczyć zarówno sytuację z pojedynczym dronem, jak i z całym rojem fałszywych sygnałów.</p>
                             </div>
                         </div>
                     </div>
 
-                    <!-- ELEMENT 3: n03.jpg — TRYB RZECZYWISTEGO LOTU -->
+                    <!-- ELEMENT 3: protokoly.jpg — 2. PROTOKOŁY RADIOWE & OBSZAR -->
                     <div class="config-item grid grid-cols-1 lg:grid-cols-12 gap-4 items-start mb-4">
                         <div class="lg:col-span-6 flex justify-center lg:justify-start">
-                            <div class="sim-thumb-card screen" onclick="openLightbox('images/n03.jpg', 'Tryb rzeczywistego lotu i pozycjonowanie')">
-                                <img src="images/n03.jpg" alt="n03.jpg" onerror="this.onerror=null; this.src='https://placehold.co/600x400/111827/f59e0b?text=n03.jpg';">
+                            <div class="sim-thumb-card screen" onclick="openLightbox('images/protokoly.jpg', '2. Protokoły radiowe (2.4GHz) & parametry obszaru')">
+                                <img src="images/protokoly.jpg" alt="protokoly.jpg" onerror="this.onerror=null; this.src='https://placehold.co/600x350/111827/f59e0b?text=protokoly.jpg';">
                             </div>
                         </div>
                         <div class="lg:col-span-6">
-                            <h3 class="sec-heading">Tryb rzeczywistego lotu i pozycjonowanie</h3>
+                            <h3 class="sec-heading">2. Protokoły radiowe (2.4GHz) & Obszar</h3>
                             <div class="sec-body">
-                                <p>Trzecie okno to sekcja <strong>Tryb rzeczywistego lotu</strong> — definiuje sposób pozyskiwania pozycji drona.</p>
+                                <p>Moduł umożliwiający pełne zarządzanie warstwą radiową RF nadajnika oraz parametrami strefy operacyjnej.</p>
                                 <ul>
-                                    <li><strong>Źródło pozycji:</strong> GPS wbudowany / GPS zewnętrzny / ręczny / symulowany.</li>
-                                    <li><strong>Tryb ręczny:</strong> operator wpisuje pozycję ręcznie (do testów bez GPS).</li>
-                                    <li><strong>Tryb symulowany:</strong> pozycja generowana z zadanego punktu (do testów w pomieszczeniach).</li>
-                                    <li><strong>Częstotliwość aktualizacji GPS:</strong> 1 – 10 Hz.</li>
-                                    <li><strong>Filtracja:</strong> wygładzanie pozycji (brak / lekka / średnia / silna).</li>
+                                    <li><strong>Aktywacja protokołów:</strong> Niezależne przełączniki dla <code>Wi-Fi Beacon 802.11</code>, <code>BLE 4.2 Legacy</code> oraz <code>BLE 5.0 Extended (Coded PHY)</code>.</li>
+                                    <li><strong>Dostrajanie RF:</strong> Wybór kanału Wi-Fi, interwału nadawania (np. 500 ms) oraz mocy wyjściowej dla BLE (0 to +21 dBm) i Wi-Fi (np. +8 dBm).</li>
+                                    <li><strong>Wi-Fi Access Point:</strong> Konfiguracja nazwy sieci (SSID) oraz hasła zabezpieczającego do interfejsu WWW.</li>
+                                    <li><strong>Definiowanie strefy:</strong> Promień obszaru operacyjnego wokół punktu startu, pułap oraz dno obszaru w metrach.</li>
                                 </ul>
-                                <p>W trybie rzeczywistego lotu nadajnik wysyła pozycję z odbiornika GPS, a tożsamość Remote ID z konfiguracji — dzięki temu pilot może „udawać" dowolny model drona bez modyfikacji samej platformy.</p>
                             </div>
                         </div>
                     </div>
 
-                    <!-- ELEMENT 4: n04.jpg — TRYB POSZUKIWANIA -->
+                    <!-- ELEMENT 4: tozsamosc.jpg — 3. TOŻSAMOŚĆ TAKTYCZNA -->
                     <div class="config-item grid grid-cols-1 lg:grid-cols-12 gap-4 items-start mb-4">
                         <div class="lg:col-span-6 flex justify-center lg:justify-start">
-                            <div class="sim-thumb-card screen" onclick="openLightbox('images/n04.jpg', 'Tryb poszukiwania treningowego drona bojowego')">
-                                <img src="images/n04.jpg" alt="n04.jpg" onerror="this.onerror=null; this.src='https://placehold.co/600x400/111827/f59e0b?text=n04.jpg';">
+                            <div class="sim-thumb-card screen" onclick="openLightbox('images/tozsamosc.jpg', '3. Tożsamość taktyczna (dane zabezpieczone lokalnie)')">
+                                <img src="images/tozsamosc.jpg" alt="tozsamosc.jpg" onerror="this.onerror=null; this.src='https://placehold.co/600x200/111827/f59e0b?text=tozsamosc.jpg';">
                             </div>
                         </div>
                         <div class="lg:col-span-6">
-                            <h3 class="sec-heading">Tryb poszukiwania treningowego drona bojowego</h3>
+                            <h3 class="sec-heading">3. Tożsamość taktyczna</h3>
                             <div class="sec-body">
-                                <p>Czwarte okno to sekcja <strong>Tryb poszukiwania</strong> — przeznaczona wyłącznie do szkoleń.</p>
+                                <p>Sekcja służąca do wprowadzania wewnętrznych danych personalnych operatora i przynależności organizacyjnej.</p>
                                 <ul>
-                                    <li><strong>Tryb ON/OFF:</strong> włącznik trybu poszukiwania.</li>
-                                    <li><strong>Zaginiony dron:</strong> wybór modelu i numeru seryjnego drona, którego sygnał ma być odtwarzany.</li>
-                                    <li><strong>Czas emisji:</strong> jak długo nadajnik ma emitować sygnał zaginionego drona.</li>
-                                    <li><strong>Oznaczenie treningowe:</strong> wszystkie pakiety są oznaczane jako treningowe (pole w Self ID).</li>
+                                    <li><strong>Stopień pilota:</strong> Dowolny stopień wojskowy lub funkcja (np. <code>szer.</code>).</li>
+                                    <li><strong>Imię i nazwisko:</strong> Dane identyfikacyjne pilota (np. <code>Jasiu Trąbka</code>).</li>
+                                    <li><strong>Przydział:</strong> Kod jednostki lub pododdziału (np. <code>115BOT</code>).</li>
+                                    <li><strong>Ochrona danych:</strong> Informacje w tej sekcji są przechowywane <strong>wyłącznie w lokalnej pamięci Flash</strong> nadajnika i NIE SĄ emitowane przez sygnały radiowe Wi-Fi/BLE.</li>
                                 </ul>
-                                <p>Tryb poszukiwania pozwala zespołom SAR ćwiczyć lokalizowanie drona na podstawie sygnału Remote ID — bez ryzyka pomylenia z rzeczywistymi danymi operacyjnymi.</p>
                             </div>
                         </div>
                     </div>
 
-                    <!-- ELEMENT 5: n05.jpg — KONFIGURACJA WIFI AP -->
+                    <!-- ELEMENT 5: echo.jpg — ECHO DRONA (SYMULACJA ROJU) -->
                     <div class="config-item grid grid-cols-1 lg:grid-cols-12 gap-4 items-start mb-4">
                         <div class="lg:col-span-6 flex justify-center lg:justify-start">
-                            <div class="sim-thumb-card screen" onclick="openLightbox('images/n05.jpg', 'Konfiguracja WiFi AP')">
-                                <img src="images/n05.jpg" alt="n05.jpg" onerror="this.onerror=null; this.src='https://placehold.co/600x400/111827/f59e0b?text=n05.jpg';">
+                            <div class="sim-thumb-card screen" onclick="openLightbox('images/echo.jpg', 'Echo drona — symulacja roju celów pozorowanych (Swarm Engine)')">
+                                <img src="images/echo.jpg" alt="echo.jpg" onerror="this.onerror=null; this.src='https://placehold.co/600x300/111827/f59e0b?text=echo.jpg';">
                             </div>
                         </div>
                         <div class="lg:col-span-6">
-                            <h3 class="sec-heading">Konfiguracja WiFi AP</h3>
+                            <h3 class="sec-heading">Echo drona — Swarm Engine (Rój 0–50)</h3>
                             <div class="sec-body">
-                                <p>Piąte okno to sekcja <strong>Konfiguracja WiFi AP</strong> — definiuje parametry sieci, do której łączą się klienci (np. tablety z ATAK).</p>
+                                <p>Zaawansowany moduł generowania taktycznych celów pozornych do mylenia systemów rozpoznania naziemnego.</p>
                                 <ul>
-                                    <li><strong>Nazwa sieci (SSID):</strong> domyślnie <code>DRONE_ATAK</code>. Zmienialna na dowolną (1–31 znaków).</li>
-                                    <li><strong>Hasło:</strong> domyślnie <code>12345678</code>. Wymagane min. 8 znaków.</li>
-                                    <li><strong>Kanał:</strong> kanał Wi-Fi (1–13). Domyślnie 6.</li>
-                                    <li><strong>Moc AP:</strong> moc nadawania access pointa (8–20 dBm).</li>
+                                    <li><strong>Aktywacja celów pozornych:</strong> Generuje wirtualne obiekty z unikalnymi adresami MAC i sygnaturami UAS ID zsynchronizowanymi z kursem drona.</li>
+                                    <li><strong>Ilość ech:</strong> Płynna regulacja od 0 do 50 imitowanych obiektów.</li>
+                                    <li><strong>Odległość międzysieciowa:</strong> Ustala dystans w przestrzeni poziomej od 25 do 300 metrów wokół drona faktycznego.</li>
+                                    <li><strong>Geometria szyku:</strong> Wybór ugrupowania (np. Kwadrat / Siatka z dronem rzeczywistym w środku).</li>
+                                    <li><strong>Wydajność OPSEC:</strong> Wszystkie dane ech są tworzone w Pamięci RAM w locie — logi CSV rejestrują wyłącznie realny ślad GPS.</li>
                                 </ul>
-                                <p>Po połączeniu z tą siecią i wpisaniu w przeglądarce adresu <code>http://192.168.4.1</code> operator uzyskuje dostęp do pełnego panelu nadajnika.</p>
                             </div>
                         </div>
                     </div>
 
-                    <!-- ELEMENT 6: n06.jpg — KONFIGURACJA COT / TAK -->
+                    <!-- ELEMENT 6: pobieranie.jpg — POBIERANIE LOGÓW -->
                     <div class="config-item grid grid-cols-1 lg:grid-cols-12 gap-4 items-start mb-4">
                         <div class="lg:col-span-6 flex justify-center lg:justify-start">
-                            <div class="sim-thumb-card screen" onclick="openLightbox('images/n06.jpg', 'Konfiguracja CoT / TAK')">
-                                <img src="images/n06.jpg" alt="n06.jpg" onerror="this.onerror=null; this.src='https://placehold.co/600x400/111827/f59e0b?text=n06.jpg';">
+                            <div class="sim-thumb-card screen" onclick="openLightbox('images/pobieranie.jpg', 'Rejestrator historii GPS i pobieranie logów CSV')">
+                                <img src="images/pobieranie.jpg" alt="pobieranie.jpg" onerror="this.onerror=null; this.src='https://placehold.co/600x300/111827/f59e0b?text=pobieranie.jpg';">
                             </div>
                         </div>
                         <div class="lg:col-span-6">
-                            <h3 class="sec-heading">Konfiguracja CoT / TAK</h3>
+                            <h3 class="sec-heading">Pobieranie logów lotu</h3>
                             <div class="sec-body">
-                                <p>Szóste okno to sekcja <strong>Konfiguracja CoT / TAK</strong> — decyduje o tym, jak nadajnik wysyła dane do oprogramowania TAK.</p>
+                                <p>Zintegrowana czarna skrzynka rejestrująca historię parametrów lotu bezpośrednio w nieulotnej pamięci Flash nadajnika.</p>
                                 <ul>
-                                    <li><strong>CoT ON/OFF:</strong> włącznik emisji komunikatów CoT.</li>
-                                    <li><strong>Tryb transportu:</strong> AP (UDP broadcast/multicast) / TCP / TLS.</li>
-                                    <li><strong>Adres i port docelowy:</strong> dla trybu TCP / TLS.</li>
-                                    <li><strong>Częstotliwość:</strong> 0,2 – 5 Hz.</li>
+                                    <li><strong>Zabezpieczenie dostępu:</strong> Wymaga podania hasła administratora (strefa <code>SECURED</code>).</li>
+                                    <li><strong>Monitor zasobów:</strong> Bieżące wskazanie zużycia pamięci Flash urządzenia.</li>
+                                    <li><strong>Pliki CSV:</strong> Przejrzysta lista zapisanych lotów z sygnaturą czasową i nazwiskiem pilota, z opcją szybkiego pobierania na urządzenie.</li>
                                 </ul>
-                                <p>W trybie AP nadajnik wysyła komunikaty przez UDP broadcast — idealne do ćwiczeń polowych bez serwera. W trybie TCP/TLS łączy się z TAK Server, co pozwala na integrację z istniejącą infrastrukturą.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- ELEMENT 7: aktualne.jpg — POTWIERDZENIE HASŁEM -->
+                    <div class="config-item grid grid-cols-1 lg:grid-cols-12 gap-4 items-start mb-4">
+                        <div class="lg:col-span-6 flex justify-center lg:justify-start">
+                            <div class="sim-thumb-card screen" onclick="openLightbox('images/aktualne.jpg', 'Potwierdzenie hasłem i zmiana hasła administratora')">
+                                <img src="images/aktualne.jpg" alt="aktualne.jpg" onerror="this.onerror=null; this.src='https://placehold.co/600x200/111827/f59e0b?text=aktualne.jpg';">
+                            </div>
+                        </div>
+                        <div class="lg:col-span-6">
+                            <h3 class="sec-heading">Potwierdzenie hasłem & Zapis</h3>
+                            <div class="sec-body">
+                                <p>Moduł zabezpieczający przed nieautoryzowaną modyfikacją parametrów operacyjnych nadajnika.</p>
+                                <ul>
+                                    <li><strong>Weryfikacja:</strong> Wprowadzenie aktualnego hasła administratora wymogiem zatwierdzenia zmian.</li>
+                                    <li><strong>Zmiana credentiali:</strong> Opcjonalna zmiana hasła administracyjnego.</li>
+                                    <li><strong>Przycisk zapisu:</strong> Przycisk <code>ZAPISZ KONFIGURACJĘ</code> trwale zapisuje ustawienia w rejestrze EEPROM/NVS.</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- ELEMENT 8: aktywacja.jpg — AKTYWACJA TRYBU LOTU -->
+                    <div class="config-item grid grid-cols-1 lg:grid-cols-12 gap-4 items-start mb-4">
+                        <div class="lg:col-span-6 flex justify-center lg:justify-start">
+                            <div class="sim-thumb-card screen" onclick="openLightbox('images/aktywacja.jpg', 'Aktywacja trybu lotu — przełączenie w tryb emisji operacyjnej')">
+                                <img src="images/aktywacja.jpg" alt="aktywacja.jpg" onerror="this.onerror=null; this.src='https://placehold.co/600x200/111827/f59e0b?text=aktywacja.jpg';">
+                            </div>
+                        </div>
+                        <div class="lg:col-span-6">
+                            <h3 class="sec-heading">Aktywacja trybu lotu</h3>
+                            <div class="sec-body">
+                                <p>Przelącznik przechodzenia ze stanu konfiguracji naziemnej w stan ciągłego wykonywania zadania taktycznego.</p>
+                                <ul>
+                                    <li><strong>Wyłączenie AP Wi-Fi:</strong> Po kliknięciu <code>URUCHOM TRYB LOTU</code> panel konfiguracyjny zostaje wyłączony, a sieć Wi-Fi zamknięta w celu redukcji sygnatury elektromagnetycznej.</li>
+                                    <li><strong>Emisja Remote ID:</strong> Urządzenie przechodzi w autonomiczny tryb nadawania pakietów identyfikacyjnych.</li>
+                                    <li><strong>Zabezpieczenie:</strong> Procedura nieodwracalna bez fizycznego restartu zasilania nadajnika.</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- === WERSJA MINIMALNA NADAJNIKA (NA SAMYM KOŃCU) === -->
+                    <div class="config-item mt-6 mb-2" id="wersja-minimalna">
+                        <h2 class="sec-heading">Wersja minimalna nadajnika — Ultra-Light 13g</h2>
+                        <div class="sec-body mb-4">
+                            <p>Dla miniaturowych dronów FPV oraz zastosowań specjalnych przygotowana została <strong>wersja minimalna nadajnika</strong>. Posiada ona dokładnie ten sam zestaw funkcji, pełny panel konfiguracyjny WWW oraz wsparcie dla protokołów BLE 5 i Wi-Fi Beacon, zredukowane do absolutnego minimum wagowego.</p>
+                            <ul>
+                                <li><strong>Zasilanie:</strong> Direct 5 V (z kontolera lotu FC lub dedykowanego BEC).</li>
+                                <li><strong>Masa całkowita:</strong> Zaledwie <strong>13,1 grama</strong> (włączając moduł, okablowanie i elastyczną antenę).</li>
+                                <li><strong>Pełna funkcjonalność:</strong> Zapewnia obsługę trybu echa (Swarm Engine), zmianę danych tożsamości, integrację z systemem TAK/ATAK oraz rejestrator logów GPS.</li>
+                            </ul>
+                        </div>
+
+                        <!-- 2 zdjęcia wersji minimalnej -->
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <div class="flex flex-col items-center">
+                                <div class="sim-thumb-card" onclick="openLightbox('images/mini1.jpg', 'Wersja minimalna nadajnika — kompaktowy moduł z elastyczną anteną i przewodami 5V')">
+                                    <img src="images/mini1.jpg" alt="mini1.jpg" onerror="this.onerror=null; this.src='https://placehold.co/600x450/111827/f59e0b?text=mini1.jpg';">
+                                </div>
+                                <span class="text-xs text-amber-500 font-mono mt-2">mini1.jpg — Moduł nadajnika w osłonie termokurczliwej z anteną</span>
+                            </div>
+                            <div class="flex flex-col items-center">
+                                <div class="sim-thumb-card" onclick="openLightbox('images/mini2.jpg', 'Pomiar wagi wersji minimalnej nadajnika — dokładnie 13.1 g na wadze precyzyjnej')">
+                                    <img src="images/mini2.jpg" alt="mini2.jpg" onerror="this.onerror=null; this.src='https://placehold.co/600x450/111827/f59e0b?text=mini2.jpg';">
+                                </div>
+                                <span class="text-xs text-amber-500 font-mono mt-2">mini2.jpg — Pomiar masy: 13,1 g z zasilaniem 5V</span>
                             </div>
                         </div>
                     </div>
 
                     <!-- === PODSUMOWANIE === -->
-                    <div class="config-item">
+                    <div class="config-item mt-6">
                         <h2 class="sec-heading">Podsumowanie</h2>
                         <div class="sec-body">
-                            <p>Nadajnik Remote ID DroneAtak to kompletne narzędzie szkoleniowe dla pojedynczego pilota drona. Łączy rzeczywistą emisję sygnału Remote ID z możliwością ustawienia dowolnych danych tożsamości, funkcją echa (mylenie śladu) oraz trybem poszukiwania treningowego drona bojowego. Dzięki temu sprawdzi się zarówno w ośrodkach cywilnych, jak i w jednostkach MON i WOT, a także u pasjonatów nowej technologii militarnej.</p>
-                            <p>Nadajnik jest zasilany z 5 V / 0,2 A, zamknięty w obudowie drukowanej w 3D z PETG i wyposażony w antenę GP 5/8, co zapewnia zasięg do ~300 m w otwartej przestrzeni.</p>
+                            <p>Nadajnik Remote ID DroneAtak to kompletne narzędzie szkoleniowe i operacyjne. Łączy rzeczywistą emisję sygnału Remote ID z możliwością ustawienia dowolnych danych tożsamości, zaawansowaną funkcją echa (Swarm Engine) oraz obsługą oprogramowania taktycznego TAK/ATAK.</p>
+                            <p>Dzięki dostępności wersji standardowej oraz ultra-lekkiej wersji minimalnej (13,1 g / 5 V) nadajnik może być stosowany na dowolnym typie bezzałogowca.</p>
                         </div>
                     </div>
 
@@ -797,7 +777,7 @@
 
     <!-- STOPKA -->
     <footer class="w-full text-center py-6 mt-8 border-t border-zinc-800 text-xs text-zinc-500 font-mono tracking-widest">
-        MaxGyver 2024 JW2211 • all right reserved
+        MaxGyver 2024 CE EU • RemoteID zgodny z: REG 2019/945 | ASTM F3411-22a | ASD-STAN prEN 4709-002 • all rights reserved
     </footer>
 
     <!-- === LIGHTBOX === -->
