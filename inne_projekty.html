@@ -192,36 +192,26 @@
             border-bottom: 1px solid rgba(245, 158, 11, 0.25);
             padding-bottom: 0.35rem;
         }
+
         .sec-body {
             font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
             font-size: 0.78rem;
             color: #cbd5e1;
             line-height: 1.65;
         }
+
         .sec-body p { margin-bottom: 0.6rem; }
-        .sec-body ul { list-style: none; padding-left: 0; }
-        .sec-body li {
-            position: relative;
-            padding-left: 1rem;
-            margin-bottom: 0.3rem;
+
+        .project-img {
+            width: 100%;
+            height: auto;
+            display: block;
+            object-fit: contain;
+            transition: transform 0.3s ease;
         }
-        .sec-body li::before {
-            content: "▸";
-            position: absolute;
-            left: 0;
-            color: #f59e0b;
-        }
-        .sec-body strong { color: #fbbf24; }
-        .badge-tech {
-            display: inline-block;
-            padding: 2px 8px;
-            border: 1px solid #374151;
-            border-radius: 3px;
-            font-size: 0.65rem;
-            color: #9ca3af;
-            margin-right: 4px;
-            margin-bottom: 4px;
-            font-family: ui-monospace, monospace;
+
+        .project-img:hover {
+            transform: scale(1.02);
         }
     </style>
 </head>
@@ -235,7 +225,7 @@
                 <img src="images/g2.png" 
                      alt="Główna grafika taktyczna" 
                      class="main-graphic"
-                     onerror="this.onerror=null; this.src='https://placehold.co/1200x600/182026/e5a93c?text=ChatGPT+Image+18+wrz+2026,+17_31_33.png';">
+                     onerror="this.onerror=null; this.src='https://placehold.co/1200x600/182026/e5a93c?text=Baner+Główny';">
             </div>
         </section>
 
@@ -265,62 +255,160 @@
                 <div class="frame-content p-4 sm:p-6 flex flex-col">
                     
                     <!-- NAGŁÓWEK NEONOWY -->
-                    <div class="w-full pb-4 border-b border-amber-500/20 mb-6">
-                        <h1 class="neon-title sm:text-2xl">Inne Projekty i Moduły Taktyczne</h1>
-                        <p class="text-center text-zinc-400 font-mono text-xs mt-2 tracking-widest">
-                            DRONE ATAK MX • dodatkowe projekty, prototypy i rozszerzenia sprzętowe.
-                        </p>
+                    <div class="w-full pb-4 border-b border-amber-500/20 mb-6 text-center">
+                        <h1 class="neon-title sm:text-2xl">Projekty powiązane ze szkoleniem pilotów dronów</h1>
                     </div>
 
-                    <!-- KARTA PROJEKTU 1 -->
+                    <!-- PROJEKT 1 -->
                     <div class="config-item mb-6">
-                        <h2 class="sec-heading">Mobilna Stacja Przekaźnikowa CoT / Mesh</h2>
+                        <h2 class="sec-heading">System zrzutu granatów 40mm (8 x 1) - Szkoleniowy</h2>
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 my-3">
+                            <div class="overflow-hidden rounded border border-zinc-700/60 bg-zinc-900/50 flex items-center justify-center">
+                                <img src="images/p01.jpg" alt="Zdjęcie p01.jpg" class="project-img" onerror="this.onerror=null; this.src='https://placehold.co/600x400/182026/f59e0b?text=p01.jpg';">
+                            </div>
+                            <div class="overflow-hidden rounded border border-zinc-700/60 bg-zinc-900/50 flex items-center justify-center">
+                                <img src="images/p02.jpg" alt="Zdjęcie p02.jpg" class="project-img" onerror="this.onerror=null; this.src='https://placehold.co/600x400/182026/f59e0b?text=p02.jpg';">
+                            </div>
+                        </div>
                         <div class="sec-body">
-                            <p>Autonomiczny węzeł retransmisyjny przeznaczony do rozszerzania zasięgu sieci taktycznej TAK/ATAK w trudnym terenie. Moduł agreguje dane z nadajników i odbiorników Remote ID oraz przekazuje je z wykorzystaniem szyfrowanego łącza radiowego LoRa / Meshtastic.</p>
-                            <ul>
-                                <li><strong>Zasięg retransmisji:</strong> do 15 km w widoczności optycznej.</li>
-                                <li><strong>Zasilanie:</strong> wbudowane ogniwa LiFePO4 z panelem słonecznym.</li>
-                                <li><strong>Protokół:</strong> CoT / Protobuf / LoRaWAN.</li>
-                            </ul>
-                            <div class="mt-3">
-                                <span class="badge-tech">LoRa 868 MHz</span>
-                                <span class="badge-tech">TAK Server Mesh</span>
-                                <span class="badge-tech">IP67</span>
-                                <span class="badge-tech">Solar Powered</span>
+                            <p>Prosty i niezawodny system zrzutu 8 sztuk amunicji lub granatów szkoleniowych kalibru 40mm przeznaczony do montażu na dronach. Konstrukcja zoptymalizowana pod kątem łatwego druku 3D oraz bezawaryjnego działania podczas ćwiczeń taktycznych i szkoleń pilotów.</p>
+                            <div class="mt-4 pt-2 border-t border-zinc-800/80">
+                                <a href="https://cults3d.com/en/3d-model/gadget/polnish-drone-drop-grenade-40mm-8-x-1-for-training-wery-simple" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 px-4 py-2 text-xs font-mono font-bold uppercase text-amber-400 bg-amber-500/10 border border-amber-500/30 rounded hover:bg-amber-500/20 hover:border-amber-500 transition-all">
+                                    <span>Zobacz projekt na Cults3D</span>
+                                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
+                                </a>
                             </div>
                         </div>
                     </div>
 
-                    <!-- KARTA PROJEKTU 2 -->
+                    <!-- PROJEKT 2 -->
                     <div class="config-item mb-6">
-                        <h2 class="sec-heading">Analizator Widma RF i Detektor Zakłóceń</h2>
+                        <h2 class="sec-heading">Prosty system zrzutu granatów F1 dla modelu Talon</h2>
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 my-3">
+                            <div class="overflow-hidden rounded border border-zinc-700/60 bg-zinc-900/50 flex items-center justify-center">
+                                <img src="images/p03.jpg" alt="Zdjęcie p03.jpg" class="project-img" onerror="this.onerror=null; this.src='https://placehold.co/600x400/182026/f59e0b?text=p03.jpg';">
+                            </div>
+                            <div class="overflow-hidden rounded border border-zinc-700/60 bg-zinc-900/50 flex items-center justify-center">
+                                <img src="images/p04.jpg" alt="Zdjęcie p04.jpg" class="project-img" onerror="this.onerror=null; this.src='https://placehold.co/600x400/182026/f59e0b?text=p04.jpg';">
+                            </div>
+                        </div>
                         <div class="sec-body">
-                            <p>Kompaktowy moduł skanujący pasma 2,4 GHz, 5,8 GHz oraz pasma ISM w celu wykrywania emisji sygnałów sterujących (RC), transmisji wideo (FPV) oraz aktywnego jammingu. Integracja z panelem centralnym umożliwia generowanie alertów taktycznych.</p>
-                            <ul>
-                                <li><strong>Zakres skanowania:</strong> 70 MHz – 6 GHz.</li>
-                                <li><strong>Wykrywanie:</strong> sygnały FPV (analog/digital), telemetryczne, jamming RF.</li>
-                            </ul>
-                            <div class="mt-3">
-                                <span class="badge-tech">SDR Platform</span>
-                                <span class="badge-tech">Skaner RF</span>
-                                <span class="badge-tech">C-UAS Early Warning</span>
+                            <p>Lekki i prosty mechanizm zrzutu granatu F1 przeznaczony do montażu na samolocie bezzałogowym / płatowcu Talon. Dedykowany do treningów precyzyjnego zrzutu z modeli samolotów.</p>
+                            <div class="mt-4 pt-2 border-t border-zinc-800/80">
+                                <a href="https://cults3d.com/en/3d-model/gadget/a-very-simple-polish-f1-grenade-drop-system-from-a-talon-aircraft-model" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 px-4 py-2 text-xs font-mono font-bold uppercase text-amber-400 bg-amber-500/10 border border-amber-500/30 rounded hover:bg-amber-500/20 hover:border-amber-500 transition-all">
+                                    <span>Zobacz projekt na Cults3D</span>
+                                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
+                                </a>
                             </div>
                         </div>
                     </div>
 
-                    <!-- KARTA PROJEKTU 3 -->
+                    <!-- PROJEKT 3 -->
+                    <div class="config-item mb-6">
+                        <h2 class="sec-heading">System zrzutu granatów 40mm x 6 Mark4 v2 (Dron 10 cali)</h2>
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 my-3">
+                            <div class="overflow-hidden rounded border border-zinc-700/60 bg-zinc-900/50 flex items-center justify-center">
+                                <img src="images/p05.jpg" alt="Zdjęcie p05.jpg" class="project-img" onerror="this.onerror=null; this.src='https://placehold.co/600x400/182026/f59e0b?text=p05.jpg';">
+                            </div>
+                            <div class="overflow-hidden rounded border border-zinc-700/60 bg-zinc-900/50 flex items-center justify-center">
+                                <img src="images/p06.jpg" alt="Zdjęcie p06.jpg" class="project-img" onerror="this.onerror=null; this.src='https://placehold.co/600x400/182026/f59e0b?text=p06.jpg';">
+                            </div>
+                        </div>
+                        <div class="sec-body">
+                            <p>Zaawansowany moduł zrzutowy na 6 granatów szkoleniowych 40mm, dedykowany do dronów o średnicy ramy 10 cali. Wersja Mark4 v2 zapewnia bezpieczne blokowanie i precyzyjne zwalnianie ładunku.</p>
+                            <div class="mt-4 pt-2 border-t border-zinc-800/80">
+                                <a href="https://cults3d.com/en/3d-model/tool/polish-drop-system-40mm-grenade-x-6-mark4-v2-10-inch-simple" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 px-4 py-2 text-xs font-mono font-bold uppercase text-amber-400 bg-amber-500/10 border border-amber-500/30 rounded hover:bg-amber-500/20 hover:border-amber-500 transition-all">
+                                    <span>Zobacz projekt na Cults3D</span>
+                                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- PROJEKT 4 -->
+                    <div class="config-item mb-6">
+                        <h2 class="sec-heading">Uniwersalny system zrzutu F1 / RGO88 / RG42 (Dron 10 cali)</h2>
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 my-3">
+                            <div class="overflow-hidden rounded border border-zinc-700/60 bg-zinc-900/50 flex items-center justify-center">
+                                <img src="images/p07.jpg" alt="Zdjęcie p07.jpg" class="project-img" onerror="this.onerror=null; this.src='https://placehold.co/600x400/182026/f59e0b?text=p07.jpg';">
+                            </div>
+                            <div class="overflow-hidden rounded border border-zinc-700/60 bg-zinc-900/50 flex items-center justify-center">
+                                <img src="images/p08.jpg" alt="Zdjęcie p08.jpg" class="project-img" onerror="this.onerror=null; this.src='https://placehold.co/600x400/182026/f59e0b?text=p08.jpg';">
+                            </div>
+                        </div>
+                        <div class="sec-body">
+                            <p>Uniwersalny system zrzutowy kompatybilny z wieloma typami granatów szkoleniowych i ćwiczebnych (F1, RGO-88, RG-42). Zaprojektowany z myślą o uniwersalnych dronach 10-calowych.</p>
+                            <div class="mt-4 pt-2 border-t border-zinc-800/80">
+                                <a href="https://cults3d.com/en/3d-model/tool/polish-drop-system-universal-f1-rro88-rg42-10-inch-drone" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 px-4 py-2 text-xs font-mono font-bold uppercase text-amber-400 bg-amber-500/10 border border-amber-500/30 rounded hover:bg-amber-500/20 hover:border-amber-500 transition-all">
+                                    <span>Zobacz projekt na Cults3D</span>
+                                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- PROJEKT 5 -->
+                    <div class="config-item mb-6">
+                        <h2 class="sec-heading">System zrzutu granatów 40mm M433 / NGC1-40 x 6 Mark4 v2</h2>
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 my-3">
+                            <div class="overflow-hidden rounded border border-zinc-700/60 bg-zinc-900/50 flex items-center justify-center">
+                                <img src="images/p09.jpg" alt="Zdjęcie p09.jpg" class="project-img" onerror="this.onerror=null; this.src='https://placehold.co/600x400/182026/f59e0b?text=p09.jpg';">
+                            </div>
+                            <div class="overflow-hidden rounded border border-zinc-700/60 bg-zinc-900/50 flex items-center justify-center">
+                                <img src="images/p10.jpg" alt="Zdjęcie p10.jpg" class="project-img" onerror="this.onerror=null; this.src='https://placehold.co/600x400/182026/f59e0b?text=p10.jpg';">
+                            </div>
+                        </div>
+                        <div class="sec-body">
+                            <p>Wyspecjalizowany system zrzutowy na 6 granatów 40mm M433 / NGC1-40 przeznaczony do ciężkich dronów szkoleniowych 10-calowych. Charakteryzuje się wzmocnioną konstrukcją i ergonomicznym montażem.</p>
+                            <div class="mt-4 pt-2 border-t border-zinc-800/80">
+                                <a href="https://cults3d.com/en/3d-model/gadget/polish-drop-system-40mm-m433-ngc1-40-grenade-x-6-mark4-v2-10-inch" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 px-4 py-2 text-xs font-mono font-bold uppercase text-amber-400 bg-amber-500/10 border border-amber-500/30 rounded hover:bg-amber-500/20 hover:border-amber-500 transition-all">
+                                    <span>Zobacz projekt na Cults3D</span>
+                                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- PROJEKT 6 -->
+                    <div class="config-item mb-6">
+                        <h2 class="sec-heading">System zrzutu ładunków RPG-7 Mark4 v2 (Dron 10 cali)</h2>
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 my-3">
+                            <div class="overflow-hidden rounded border border-zinc-700/60 bg-zinc-900/50 flex items-center justify-center">
+                                <img src="images/p11.jpg" alt="Zdjęcie p11.jpg" class="project-img" onerror="this.onerror=null; this.src='https://placehold.co/600x400/182026/f59e0b?text=p11.jpg';">
+                            </div>
+                            <div class="overflow-hidden rounded border border-zinc-700/60 bg-zinc-900/50 flex items-center justify-center">
+                                <img src="images/p12.jpg" alt="Zdjęcie p12.jpg" class="project-img" onerror="this.onerror=null; this.src='https://placehold.co/600x400/182026/f59e0b?text=p12.jpg';">
+                            </div>
+                        </div>
+                        <div class="sec-body">
+                            <p>System zrzutowy przystosowany do przenoszenia i zrzutu makiet lub ładunków ćwiczebnych typu RPG-7 za pomocą dronów wielowirnikowych z ramą 10 cali.</p>
+                            <div class="mt-4 pt-2 border-t border-zinc-800/80">
+                                <a href="https://cults3d.com/en/3d-model/tool/polish-drop-system-rpg7-mark4-v2-10-inch" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 px-4 py-2 text-xs font-mono font-bold uppercase text-amber-400 bg-amber-500/10 border border-amber-500/30 rounded hover:bg-amber-500/20 hover:border-amber-500 transition-all">
+                                    <span>Zobacz projekt na Cults3D</span>
+                                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- PROJEKT 7 -->
                     <div class="config-item">
-                        <h2 class="sec-heading">System Autonomicznego Pozycjonowania UWB</h2>
+                        <h2 class="sec-heading">System zrzutu granatów F1 i RG42 dla ramy Tarot</h2>
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 my-3">
+                            <div class="overflow-hidden rounded border border-zinc-700/60 bg-zinc-900/50 flex items-center justify-center">
+                                <img src="images/p13.jpg" alt="Zdjęcie p13.jpg" class="project-img" onerror="this.onerror=null; this.src='https://placehold.co/600x400/182026/f59e0b?text=p13.jpg';">
+                            </div>
+                            <div class="overflow-hidden rounded border border-zinc-700/60 bg-zinc-900/50 flex items-center justify-center">
+                                <img src="images/p14.jpg" alt="Zdjęcie p14.jpg" class="project-img" onerror="this.onerror=null; this.src='https://placehold.co/600x400/182026/f59e0b?text=p14.jpg';">
+                            </div>
+                        </div>
                         <div class="sec-body">
-                            <p>Lokalny system pozycjonowania wewnątrzbudynkowego (Indoor positioning) oparty na technologii Ultra-Wideband (UWB). Pozwala na precyzyjne śledzenie pozycji jednostek oraz dronów w środowisku bez dostępu do sygnału GPS (GPS-denied environment).</p>
-                            <ul>
-                                <li><strong>Dokładność:</strong> do 10 cm.</li>
-                                <li><strong>Opóźnienie:</strong> &lt; 20 ms.</li>
-                            </ul>
-                            <div class="mt-3">
-                                <span class="badge-tech">UWB IEEE 802.15.4z</span>
-                                <span class="badge-tech">GPS-Denied Tracking</span>
-                                <span class="badge-tech">RTLS</span>
+                            <p>System zrzutu granatów F1 oraz RG42 stworzony specjalnie dla popularnej platformy ramy Tarot. Zapewnia stabilny montaż i pewny mechanizm zwalniający.</p>
+                            <div class="mt-4 pt-2 border-t border-zinc-800/80">
+                                <a href="https://cults3d.com/en/3d-model/tool/polish-drone-drop-grenade-f1-and-rg42-for-tarot-frame" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 px-4 py-2 text-xs font-mono font-bold uppercase text-amber-400 bg-amber-500/10 border border-amber-500/30 rounded hover:bg-amber-500/20 hover:border-amber-500 transition-all">
+                                    <span>Zobacz projekt na Cults3D</span>
+                                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
+                                </a>
                             </div>
                         </div>
                     </div>
