@@ -1,34 +1,53 @@
-```html
 <!DOCTYPE html>
 <html lang="pl">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <!-- SEO -->
-    <title>DroneAtak – symulatory dronów, Remote ID i systemy szkoleniowe</title>
+    <!-- SEO & Metadata -->
+    <title>DroneAtak – Symulatory Dronów, Remote ID i Taktyczne Systemy Szkoleniowe BSP</title>
 
-    <meta name="description" content="DroneAtak to projekty symulatorów dronów, systemów Remote ID oraz narzędzi szkoleniowych dla operatorów BSP. Projekty do symulacji, testów i szkolenia pilotów dronów.">
+    <meta name="description" content="DroneAtak – pierwszy na świecie zintegrowany system symulacji roju dronów, nadajników i odbiorników Remote ID. Narzędzie dedykowane do szkolenia pilotów dronów FPV Kamikaze, UAV, Wojska Polskiego, WOT i służb porządkowych.">
+    <meta name="keywords" content="drony, symulator dronów, Remote ID, BSP, FPV kamikaze, UAV, szkolenie pilotów dronów, WOT, Wojsko Polskie, C-UAS, Swarm Engine, TAK, ATAK, OpenDroneID, MaxGyver">
 
     <meta name="robots" content="index, follow">
     <meta name="author" content="DroneAtak">
 
-    <!-- Canonical -->
+    <!-- Canonical URL -->
     <link rel="canonical" href="https://droneatak.pl/">
 
-    <!-- Open Graph -->
+    <!-- Open Graph (Facebook / Social Media) -->
     <meta property="og:type" content="website">
-    <meta property="og:title" content="DroneAtak – symulatory dronów, Remote ID i systemy szkoleniowe">
-    <meta property="og:description" content="Projekty symulatorów dronów, systemów Remote ID oraz narzędzi szkoleniowych dla operatorów BSP.">
+    <meta property="og:title" content="DroneAtak – Symulatory Dronów, Remote ID i Systemy Szkoleniowe BSP">
+    <meta property="og:description" content="Pierwszy na świecie zintegrowany system symulacji wielu dronów, nadajników Remote ID oraz integracji taktycznej CoT/ATAK dla wojska i służb.">
     <meta property="og:url" content="https://droneatak.pl/">
     <meta property="og:image" content="https://droneatak.pl/images/g2.png">
+    <meta property="og:image:alt" content="Baner taktyczny DroneAtak">
+    <meta property="og:site_name" content="DroneAtak">
     <meta property="og:locale" content="pl_PL">
 
-    <!-- Twitter / X -->
+    <!-- Twitter Cards -->
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="DroneAtak – symulatory dronów i systemy szkoleniowe">
-    <meta name="twitter:description" content="Projekty symulatorów dronów, Remote ID oraz narzędzi szkoleniowych dla operatorów BSP.">
+    <meta name="twitter:title" content="DroneAtak – Symulatory Dronów i Remote ID">
+    <meta name="twitter:description" content="Zaawansowane projekty symulatorów dronów, nadajników Remote ID oraz narzędzi szkoleniowych dla operatorów BSP.">
     <meta name="twitter:image" content="https://droneatak.pl/images/g2.png">
+
+    <!-- Schema.org Mikrodane Structured Data (JSON-LD) -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "SoftwareApplication",
+      "name": "DroneAtak Remote ID & Simulator System",
+      "operatingSystem": "Cross-platform",
+      "applicationCategory": "EducationalApplication",
+      "description": "Zintegrowany system symulacji wielu dronów oraz nadajnik/odbiornik Remote ID przeznaczony do szkoleń taktycznych operatorów BSP.",
+      "url": "https://droneatak.pl/",
+      "author": {
+        "@type": "Organization",
+        "name": "DroneAtak"
+      }
+    }
+    </script>
 
     <script src="https://cdn.tailwindcss.com"></script>
 
@@ -108,29 +127,10 @@
             background-repeat: no-repeat;
         }
 
-        .corner-tl {
-            top: 0;
-            left: 0;
-            background-image: url('images/naroznik_lewy_gorny.png');
-        }
-
-        .corner-tr {
-            top: 0;
-            right: 0;
-            background-image: url('images/naroznik_prawy_gorny.png');
-        }
-
-        .corner-bl {
-            bottom: 0;
-            left: 0;
-            background-image: url('images/naroznik_lewy_dolny.png');
-        }
-
-        .corner-br {
-            bottom: 0;
-            right: 0;
-            background-image: url('images/naroznik_prawy_dolny.png');
-        }
+        .corner-tl { top: 0; left: 0; background-image: url('images/naroznik_lewy_gorny.png'); }
+        .corner-tr { top: 0; right: 0; background-image: url('images/naroznik_prawy_gorny.png'); }
+        .corner-bl { bottom: 0; left: 0; background-image: url('images/naroznik_lewy_dolny.png'); }
+        .corner-br { bottom: 0; right: 0; background-image: url('images/naroznik_prawy_dolny.png'); }
 
         .metal-bar-h,
         .metal-bar-v {
@@ -140,10 +140,7 @@
         }
 
         .bar-top {
-            top: 0;
-            left: 32px;
-            right: 32px;
-            height: 16px;
+            top: 0; left: 32px; right: 32px; height: 16px;
             background-image: url('images/listwa_gorna.png');
             background-repeat: repeat-x;
             background-position: center top;
@@ -151,10 +148,7 @@
         }
 
         .bar-bottom {
-            bottom: 0;
-            left: 32px;
-            right: 32px;
-            height: 16px;
+            bottom: 0; left: 32px; right: 32px; height: 16px;
             background-image: url('images/listwa_dolna.png');
             background-repeat: repeat-x;
             background-position: center bottom;
@@ -162,10 +156,7 @@
         }
 
         .bar-left {
-            top: 32px;
-            bottom: 32px;
-            left: 0;
-            width: 16px;
+            top: 32px; bottom: 32px; left: 0; width: 16px;
             background-image: url('images/listwa_lewa.png');
             background-repeat: repeat-y;
             background-position: left center;
@@ -173,10 +164,7 @@
         }
 
         .bar-right {
-            top: 32px;
-            bottom: 32px;
-            right: 0;
-            width: 16px;
+            top: 32px; bottom: 32px; right: 0; width: 16px;
             background-image: url('images/listwa_prawa.png');
             background-repeat: repeat-y;
             background-position: right center;
@@ -214,6 +202,34 @@
             animation: neonPulse 1.8s infinite alternate;
         }
 
+        .neon-yellow-title {
+            color: #facc15;
+            font-size: 1.4rem;
+            font-weight: 800;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            text-align: center;
+            text-shadow:
+                0 0 5px #facc15,
+                0 0 10px #eab308,
+                0 0 20px #ca8a04;
+            animation: neonYellowPulse 1.5s infinite alternate;
+        }
+
+        .neon-red-title {
+            color: #ef4444;
+            font-size: 1.4rem;
+            font-weight: 800;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            text-align: center;
+            text-shadow:
+                0 0 5px #ef4444,
+                0 0 10px #dc2626,
+                0 0 20px #b91c1c;
+            animation: neonRedPulse 1.2s infinite alternate;
+        }
+
         .section-title {
             color: #f59e0b;
             font-size: 1.1rem;
@@ -236,18 +252,22 @@
             box-shadow: 0 0 15px rgba(245, 158, 11, 0.12);
         }
 
-        .project-card h2 {
-            color: #e5e7eb;
-            font-size: 1rem;
+        .project-card h2, .project-card h3 {
+            color: #fbbf24;
+            font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+            font-size: 0.95rem;
             font-weight: 700;
             margin-bottom: 8px;
+            border-bottom: 1px solid rgba(245, 158, 11, 0.2);
+            padding-bottom: 4px;
         }
 
         .project-card p {
             color: #9ca3af;
             font-size: 0.85rem;
-            line-height: 1.6;
+            line-height: 1.65;
             margin: 0;
+            font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
         }
 
         @keyframes neonPulse {
@@ -259,7 +279,6 @@
                     0 0 20px #ffaa00,
                     0 0 40px #ff6600;
             }
-
             100% {
                 opacity: 1;
                 text-shadow:
@@ -269,6 +288,16 @@
                     0 0 60px #ff6600,
                     0 0 90px #ff6600;
             }
+        }
+
+        @keyframes neonYellowPulse {
+            0% { opacity: 0.8; text-shadow: 0 0 4px #facc15, 0 0 8px #eab308; }
+            100% { opacity: 1; text-shadow: 0 0 8px #fef08a, 0 0 16px #facc15, 0 0 30px #ca8a04; }
+        }
+
+        @keyframes neonRedPulse {
+            0% { opacity: 0.8; text-shadow: 0 0 4px #ef4444, 0 0 8px #dc2626; }
+            100% { opacity: 1; text-shadow: 0 0 8px #fca5a5, 0 0 16px #ef4444, 0 0 30px #b91c1c; }
         }
     </style>
 </head>
@@ -338,157 +367,181 @@
                 <div class="frame-content p-6 md:p-10">
 
                     <!-- GŁÓWNY TYTUŁ -->
-                    <header class="text-center max-w-4xl mb-10">
+                    <header class="text-center max-w-4xl w-full mb-8">
 
-                        <h1 class="neon-text mb-5">
+                        <h1 class="neon-text mb-4">
                             DroneAtak
                         </h1>
 
-                        <p class="text-xl md:text-2xl text-zinc-200 font-semibold mb-4">
+                        <p class="text-xl md:text-2xl text-zinc-200 font-semibold mb-3">
                             Symulatory dronów, systemy Remote ID i narzędzia szkoleniowe
                         </p>
 
                         <p class="text-zinc-400 text-sm md:text-base leading-7">
-                            Projekt skupiający się na tworzeniu oprogramowania,
-                            systemów testowych i narzędzi wspierających szkolenie
+                            Polski zaawansowany projekt techniczny skupiający się na tworzeniu oprogramowania układowego, 
+                            autorskiego sprzętu mikroprocesorowego oraz systemów taktycznych wspierających szkolenie
                             operatorów bezzałogowych statków powietrznych (BSP).
                         </p>
 
                     </header>
 
-                    <!-- INFORMACJA O BUDOWIE -->
-                    <div class="w-full max-w-4xl mb-10 p-5 text-center border border-amber-900/50 bg-black/30 rounded">
-
-                        <div class="section-title mb-3">
-                            Projekt w budowie
+                    <!-- OSTRZEŻENIE 1: ŻÓŁTY NEON (PRZEZNACZENIE SYSTMU) -->
+                    <div class="w-full max-w-4xl mb-8 p-6 border border-yellow-500/60 bg-yellow-950/20 rounded text-center shadow-lg">
+                        <div class="neon-yellow-title mb-4">
+                            UWAGA
                         </div>
-
-                        <p class="text-zinc-400 text-sm leading-6">
-                            Serwis DroneAtak jest obecnie rozwijany.
-                            Poszczególne moduły, dokumentacja oraz materiały
-                            szkoleniowe będą sukcesywnie udostępniane.
+                        <p class="text-yellow-100 text-sm md:text-base font-semibold leading-relaxed">
+                            Projekty przeznaczone tylko i wyłącznie do szkolenia pilotów dronów FPV KAMIKAZE oraz UAV na potrzeby klas wojskowych, grup prowojskowych, grup szkoleniowych na potrzeby Polskiej Armii i innych służb. Żołnierzy WOT i JW. Tylko w strefach w których Zarządca takiej strefy zezwoli na takie loty.
                         </p>
-
                     </div>
 
-                    <!-- OBSZARY PROJEKTU -->
-                    <section class="w-full max-w-5xl">
+                    <!-- OSTRZEŻENIE 2: CZERWONY NEON (CZEGO NIE WOLNO ROBIĆ + ODPOWIEDZIALNOŚĆ PRAWNA) -->
+                    <div class="w-full max-w-4xl mb-10 p-6 border border-red-600/70 bg-red-950/25 rounded text-left shadow-xl">
+                        <div class="neon-red-title mb-5">
+                            CZEGO NIE WOLNO ROBIĆ
+                        </div>
+
+                        <div class="space-y-4 text-zinc-300 text-xs sm:text-sm leading-relaxed font-mono">
+                            <p>
+                                <strong class="text-red-400">1. Bezawaryjny zakaz podszywania się pod innych użytkowników:</strong><br>
+                                Bezsprzecznie zabrania się podszywania pod innych użytkowników dronów cywilnych oraz komercyjnych, a także bezprawnego wykorzystywania ich danych identyfikacyjnych, takich jak numer rejestracyjny operatora (Operator ID), numer pilota (Pilot ID) czy fabryczne numery seryjne.
+                            </p>
+
+                            <p>
+                                <strong class="text-red-400">2. Zakaz podszywania się pod drony służb państwowych i administracji:</strong><br>
+                                Kategorycznie zabrania się podawania za drony specjalne w zarządzaniu innych służb – w tym m.in. Policji (drony policyjne nadzorujące ruch pojazdów), służb Straży Miejskiej / Gminnej, Straży Granicznej, Państwowej Straży Pożarnej, jak również dronów w administracji państwowej przeznaczonych do kontroli jakości powietrza, inspekcji dymu z kominów czy badania materiałów palnych.
+                            </p>
+
+                            <p>
+                                <strong class="text-red-400">3. Zakaz wywoływania fałszywych zagrożeń i interwencji:</strong><br>
+                                Zabrania się wykonywania lotów oraz transmisji danych radiowych w miejscach i warunkach, gdzie mogłoby to wprowadzić mylne zagrożenie i wywołać nieuzasadnioną interwencję odpowiedzialnych służb ratunkowych, porządkowych i wojskowych.
+                            </p>
+
+                            <!-- ODPOWIEDZIALNOŚĆ KARNA I WYKROCZENIOWA -->
+                            <div class="mt-6 pt-4 border-t border-red-900/60 bg-black/40 p-4 rounded text-xs leading-6">
+                                <h3 class="text-red-400 font-bold uppercase tracking-wider text-sm mb-2 text-center">
+                                    Sankcje prawne i artykuły Kodeksu Karnego oraz Wykroczeń
+                                </h3>
+                                <p class="mb-2 text-zinc-400">
+                                    Naruszenie powyższych zasad wiąże się ze ścisłą odpowiedzialnością karną wynikającą z przepisów polskiego prawa:
+                                </p>
+                                <ul class="list-disc pl-5 space-y-2 text-zinc-300">
+                                    <li>
+                                        <strong class="text-red-300">Art. 190a § 2 KK (Podszywanie się / Kradzież tożsamości):</strong> Podszywanie się pod inną osobę przy użyciu jej danych (np. nr operatora lub pilota) w celu wyrządzenia szkody – podlega karze pozbawienia wolności <strong>od 6 miesięcy do lat 8</strong>.
+                                    </li>
+                                    <li>
+                                        <strong class="text-red-300">Art. 227 KK (Przywłaszczenie funkcji publicznej):</strong> Wyzyskanie błędnego przekonania o wykonywaniu zadań służbowych (np. podszywanie się pod drona policyjnego lub inspekcji środowiska) – podlega karze grzywny, ograniczenia wolności albo pozbawienia wolności <strong>do roku</strong>.
+                                    </li>
+                                    <li>
+                                        <strong class="text-red-300">Art. 224a KK (Fałszywy alarm i zagrożenie):</strong> Wprowadzenie w błąd organu porządku publicznego i wywołanie czynności służb poprzez stwarzanie fałszywego wrażenia zagrożenia – podlega karze pozbawienia wolności <strong>od 6 miesięcy do lat 8</strong>.
+                                    </li>
+                                    <li>
+                                        <strong class="text-red-300">Art. 66 § 1 KW (Wywołanie niepotrzebnej czynności służb):</strong> Bezpodstawne wprowadzenie w błąd organu lub wywołanie niepotrzebnej interwencji Policji, Straży Pożarnej czy innych służb – podlega karze aresztu, ograniczenia wolności albo grzywny <strong>do 1 500 zł</strong>.
+                                    </li>
+                                    <li>
+                                        <strong class="text-red-300">Art. 212 Ustawy Prawo Lotnicze:</strong> Wykonywanie lotu BSP z naruszeniem przepisów ruchu lotniczego lub stwarzanie zagrożenia w przestrzeni powietrznej – podlega karze pozbawienia wolności <strong>do lat 5</strong>.
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- SEKCJA: PIERWSZY PROJEKT TEGO TYPU NA ŚWIECIE & ZAWARTOŚĆ SERWERA -->
+                    <section class="w-full max-w-4xl mb-10 p-6 border border-amber-500/40 bg-black/40 rounded text-left">
+                        <h2 class="section-title text-center text-lg md:text-xl mb-4">
+                            Pierwszy taki projekt na świecie – Przegląd serwisu DroneAtak
+                        </h2>
+
+                        <div class="text-zinc-300 text-sm leading-7 space-y-4 font-mono">
+                            <p>
+                                Prezentowany na tym serwerze <strong>nadajnik Remote ID oraz wieloobiektowy symulator dronów</strong> stanowią <strong>pierwszy tego typu zintegrowany projekt na świecie</strong>. Rozwiązanie to unikalnie łączy fizyczny moduł emisyjny (Radio Hardware na mikrokontrolerach ESP32) z zaawansowanym silnikiem symulacji programowej (Swarm Engine) oraz natywną integracją taktyczną z systemami dowodzenia wojskowego <strong>TAK / ATAK / WinTAK</strong> poprzez komunikaty <strong>CoT (Cursor on Target)</strong>.
+                            </p>
+                            <p>
+                                System pozwala na symulację złożonych scenariuszy nalotu rojowego <strong>do 200 symulowanych obiektów jednocześnie</strong> oraz emisję radiową (Wi-Fi Beacon / BLE 4.2 i 5.0 Coded PHY) dla <strong>do 50 celów pozornych</strong> w czasie rzeczywistym. Poniżej znajduje się zestawienie kluczowych modułów oraz narzędzi dostępnych na serwerze <code>droneatak.pl</code>:
+                            </p>
+                        </div>
+                    </section>
+
+                    <!-- OBSZARY PROJEKTU (GŁÓWNE PRODUKTY I PODSTRONY NA SERWERZE) -->
+                    <section class="w-full max-w-5xl mb-10">
 
                         <h2 class="section-title text-center mb-6">
-                            Obszary projektu
+                            Zawartość serwera i moduły projektu
                         </h2>
 
                         <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
 
                             <article class="project-card">
-
                                 <h2>
-                                    Symulator wielu dronów
+                                    1. Taktyczny Symulator Dronów (do 200 dronów)
                                 </h2>
-
                                 <p>
-                                    Projekt symulatora umożliwiającego jednoczesną
-                                    pracę z dużą liczbą symulowanych obiektów.
-                                    Zakładanym kierunkiem rozwoju jest obsługa
-                                    scenariuszy obejmujących do 200 dronów.
+                                    Zaawansowany symulator roju dronów oparty na układzie ESP32-S3. Umożliwia generowanie do 200 obiektów w przestrzeni 3D z 12 wbudowanymi scenariuszami taktycznymi (np. Kleszcze Dwukierunkowe, Gilotyna, Karuzela Śmierci, Hiper-Saturacja). Posiada bezpośrednie strumieniowanie CoT (UDP/TCP/TLS) do aplikacji ATAK oraz opcję ustawienia punktu celu w dowolnym miejscu na globie.
                                 </p>
-
                             </article>
 
                             <article class="project-card">
-
                                 <h2>
-                                    Nadajnik Remote ID
+                                    2. Nadajnik Remote ID & Swarm Engine (13g Mini)
                                 </h2>
-
                                 <p>
-                                    System testowy przeznaczony do generowania
-                                    danych Remote ID oraz przygotowywania
-                                    scenariuszy z wieloma symulowanymi źródłami.
-                                    Projekt zakłada możliwość symulacji do
-                                    50 jednoczesnych obiektów.
+                                    Osobisty nadajnik Remote ID dla pilota drona zasilany z 5 V. Wyposażony w funkcję echa (Swarm Engine generujący do 50 celów pozornych z szykiem i rozrzutem 25-300m) oraz możliwość lotu na dowolnych danych tożsamości. Sekcja prezentuje również wersję minimalną Ultra-Light o wadze zaledwie 13,1 grama dla dronów FPV.
                                 </p>
-
                             </article>
 
                             <article class="project-card">
-
                                 <h2>
-                                    Odbiornik Remote ID
+                                    3. Odbiornik Remote ID – Mx PRO (v2)
                                 </h2>
-
                                 <p>
-                                    Odbiornik i narzędzia do wizualizacji oraz
-                                    analizy danych Remote ID. Projekt rozwijany
-                                    z myślą o zastosowaniach testowych i
-                                    szkoleniowych operatorów BSP.
+                                    Stacjonarno-mobilny odbiornik taktyczny oparty na procesorze ESP32-C5 z dwupasmową obsługą Wi-Fi (2.4 GHz oraz 5 GHz) i BLE. Wykorzystuje oficjalny silnik OpenDroneID core do dekodowania, agregacji i filtracji do 300 celów w bazie danych wraz z przekazywaniem danych do systemów dowodzenia TAK i panelem Web UI.
                                 </p>
-
                             </article>
 
                             <article class="project-card">
-
                                 <h2>
-                                    Szkolenie operatorów BSP
+                                    4. Taktyczne Systemy Zrzutowe (Druk 3D)
                                 </h2>
-
                                 <p>
-                                    Narzędzia i scenariusze wspierające szkolenie
-                                    pilotów dronów oraz pracę grup szkoleniowych.
-                                    Projekty mogą być wykorzystywane w środowisku
-                                    instytucjonalnym i cywilnym.
+                                    Kompletna baza autorskich projektów mechanizmów zrzutowych do wydruku 3D (darmowe i płatne modele Cults3D). Dedykowane dla amunicji i granatów ćwiczebnych/szkoleniowych (40mm, F1, RGO-88, RG-42, RPG-7) z montażem na dronach 10-calowych, płatowcach Talon oraz ramach Tarot.
                                 </p>
-
                             </article>
 
                             <article class="project-card">
-
                                 <h2>
-                                    Systemy symulacyjne
+                                    5. Systemy Szkolenia Operatorów i C-UAS
                                 </h2>
-
                                 <p>
-                                    Projekty związane z przygotowaniem kontrolowanych
-                                    scenariuszy szkoleniowych, w tym symulacją
-                                    zdarzeń i zadań wykonywanych przez operatora.
-                                    Rozwiązania mają charakter testowy i szkoleniowy.
+                                    Gotowe scenariusze i narzędzia pomocnicze do prowadzenia ćwiczeń walki radioelektronicznej, weryfikacji świadomości sytuacyjnej oraz testowania systemów antydronowych (Counter-UAS) dla klas wojskowych, jednostek WOT, Wojska Polskiego oraz grup prowojskowych.
                                 </p>
-
                             </article>
 
                             <article class="project-card">
-
                                 <h2>
-                                    Oprogramowanie i dokumentacja
+                                    6. Oprogramowanie, Firmware i Logi
                                 </h2>
-
                                 <p>
-                                    Oprogramowanie, firmware, instrukcje oraz
-                                    materiały techniczne związane z rozwijanymi
-                                    projektami. Materiały będą publikowane
-                                    sukcesywnie w sekcji pobierania.
+                                    Sekcja pobierania plików, w tym oprogramowania układowego (firmware) dla nadajników i odbiorników, wzorców logów GPS w formacie CSV oraz materiałów instruktażowo-szkoleniowych sukcesywnie udostępnianych dla użytkowników.
                                 </p>
-
                             </article>
 
                         </div>
 
                     </section>
 
-                    <!-- INFORMACJA KOŃCOWA -->
-                    <section class="max-w-4xl mt-10 text-center">
+                    <!-- INFORMACJA KOŃCOWA: CEL PROJEKTU -->
+                    <section class="max-w-4xl w-full text-center mt-4">
 
-                        <h2 class="section-title mb-4">
+                        <h2 class="section-title mb-3">
                             Cel projektu
                         </h2>
 
-                        <p class="text-zinc-400 text-sm leading-7">
-                            Celem projektu DroneAtak jest tworzenie praktycznych
-                            narzędzi umożliwiających prowadzenie testów,
-                            eksperymentów oraz szkoleń związanych z bezzałogowymi
+                        <p class="text-zinc-400 text-sm leading-7 font-mono">
+                            Celem projektu DroneAtak jest tworzenie nowatorskich, praktycznych
+                            narzędzi umożliwiających prowadzenie testów, eksperymentów oraz szkoleń taktycznych związanych z bezzałogowymi
                             statkami powietrznymi. Systemy są rozwijane etapami,
-                            a ich funkcjonalność będzie rozszerzana wraz z
-                            rozwojem poszczególnych projektów.
+                            a ich funkcjonalność jest stale rozszerzana wraz z
+                            rozwojem poszczególnych modułów.
                         </p>
 
                     </section>
@@ -502,17 +555,8 @@
 
     <!-- STOPKA -->
     <footer class="w-full text-center py-6 mt-8 border-t border-zinc-800 text-xs text-zinc-500 font-mono tracking-widest">
-
-        <div>
-            DroneAtak • MaxGyver 2024 JW2211
-        </div>
-
-        <div class="mt-2 text-zinc-600">
-            Projekty i narzędzia szkoleniowe związane z technologią BSP
-        </div>
-
+        DroneAtak • MaxGyver 2024 JW2211
     </footer>
 
 </body>
 </html>
-```
