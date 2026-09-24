@@ -4,43 +4,37 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <!-- SEO & Metadata -->
-    <title>DroneAtak – Symulatory Dronów, Remote ID i Taktyczne Systemy Szkoleniowe BSP</title>
-
-    <meta name="description" content="DroneAtak – pierwszy na świecie zintegrowany system symulacji roju dronów, nadajników i odbiorników Remote ID. Narzędzie dedykowane do szkolenia pilotów dronów FPV Kamikaze, UAV, Wojska Polskiego, WOT i służb porządkowych.">
-    <meta name="keywords" content="drony, symulator dronów, Remote ID, BSP, FPV kamikaze, UAV, szkolenie pilotów dronów, WOT, Wojsko Polskie, C-UAS, Swarm Engine, TAK, ATAK, OpenDroneID, MaxGyver">
-
+    <!-- SEO Google -->
+    <title>DroneAtak – Symulatory Dronów, Remote ID Mx ECHO i Systemy Szkoleniowe</title>
+    <meta name="description" content="DroneAtak – innowacyjne symulatory dronów, nadajniki i odbiorniki Remote ID Mx ECHO. Systemy szkoleniowe dla pilotów dronów FPV Kamikaze, UAV, Wojska Polskiego i WOT.">
+    <meta name="keywords" content="drony, symulator dronów, Remote ID, Remote ID Mx ECHO, BSP, FPV kamikaze, UAV, szkolenie pilotów dronów, WOT, Wojsko Polskie, C-UAS, Swarm Engine, MaxGyver">
     <meta name="robots" content="index, follow">
     <meta name="author" content="DroneAtak">
-
-    <!-- Canonical URL -->
     <link rel="canonical" href="https://droneatak.pl/">
 
-    <!-- Open Graph (Facebook / Social Media) -->
+    <!-- Open Graph / Social Media -->
     <meta property="og:type" content="website">
-    <meta property="og:title" content="DroneAtak – Symulatory Dronów, Remote ID i Systemy Szkoleniowe BSP">
-    <meta property="og:description" content="Pierwszy na świecie zintegrowany system symulacji wielu dronów, nadajników Remote ID oraz integracji taktycznej CoT/ATAK dla wojska i służb.">
+    <meta property="og:title" content="DroneAtak – Symulatory Dronów, Remote ID Mx ECHO i Systemy Szkoleniowe BSP">
+    <meta property="og:description" content="Pierwszy na świecie zintegrowany system symulacji wielu dronów, nadajników Remote ID Mx ECHO oraz integracji taktycznej CoT/ATAK.">
     <meta property="og:url" content="https://droneatak.pl/">
     <meta property="og:image" content="https://droneatak.pl/images/g2.png">
-    <meta property="og:image:alt" content="Baner taktyczny DroneAtak">
-    <meta property="og:site_name" content="DroneAtak">
     <meta property="og:locale" content="pl_PL">
 
-    <!-- Twitter Cards -->
+    <!-- Twitter / X -->
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="DroneAtak – Symulatory Dronów i Remote ID">
-    <meta name="twitter:description" content="Zaawansowane projekty symulatorów dronów, nadajników Remote ID oraz narzędzi szkoleniowych dla operatorów BSP.">
+    <meta name="twitter:title" content="DroneAtak – Symulatory Dronów i Remote ID Mx ECHO">
+    <meta name="twitter:description" content="Zaawansowane projekty symulatorów dronów, Remote ID Mx ECHO oraz narzędzi szkoleniowych dla operatorów BSP.">
     <meta name="twitter:image" content="https://droneatak.pl/images/g2.png">
 
-    <!-- Schema.org Mikrodane Structured Data (JSON-LD) -->
+    <!-- Schema.org JSON-LD -->
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
       "@type": "SoftwareApplication",
-      "name": "DroneAtak Remote ID & Simulator System",
+      "name": "DroneAtak Remote ID Mx ECHO & Simulator System",
       "operatingSystem": "Cross-platform",
       "applicationCategory": "EducationalApplication",
-      "description": "Zintegrowany system symulacji wielu dronów oraz nadajnik/odbiornik Remote ID przeznaczony do szkoleń taktycznych operatorów BSP.",
+      "description": "Zintegrowany system symulacji wielu dronów oraz nadajnik/odbiornik Remote ID Mx ECHO przeznaczony do szkoleń taktycznych operatorów BSP.",
       "url": "https://droneatak.pl/",
       "author": {
         "@type": "Organization",
@@ -270,24 +264,29 @@
             font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
         }
 
+        .hero-img-card {
+            border: 1px solid #374151;
+            background: rgba(10, 12, 16, 0.8);
+            border-radius: 4px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            aspect-ratio: 16 / 9;
+        }
+
+        .hero-img-card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
         @keyframes neonPulse {
-            0% {
-                opacity: 0.85;
-                text-shadow:
-                    0 0 5px #ffaa00,
-                    0 0 10px #ffaa00,
-                    0 0 20px #ffaa00,
-                    0 0 40px #ff6600;
-            }
-            100% {
-                opacity: 1;
-                text-shadow:
-                    0 0 8px #ffaa00,
-                    0 0 15px #ffaa00,
-                    0 0 30px #ffaa00,
-                    0 0 60px #ff6600,
-                    0 0 90px #ff6600;
-            }
+            0% { opacity: 0.85; text-shadow: 0 0 5px #ffaa00, 0 0 10px #ffaa00, 0 0 20px #ffaa00, 0 0 40px #ff6600; }
+            100% { opacity: 1; text-shadow: 0 0 8px #ffaa00, 0 0 15px #ffaa00, 0 0 30px #ffaa00, 0 0 60px #ff6600, 0 0 90px #ff6600; }
         }
 
         @keyframes neonYellowPulse {
@@ -306,45 +305,21 @@
 
     <main class="max-w-7xl mx-auto w-full flex-grow flex flex-col gap-6">
 
-        <!-- BANER GŁÓWNY -->
+        <!-- BANER GŁÓWNY (POJEDYNCZY) -->
         <section class="w-full">
             <div class="main-banner">
-                <img
-                    src="images/g2.png"
-                    alt="DroneAtak – systemy szkoleniowe, symulatory dronów i technologie Remote ID"
-                    class="main-graphic"
-                >
+                <img src="images/g2.png" alt="DroneAtak – systemy szkoleniowe, symulatory dronów i technologie Remote ID" class="main-graphic">
             </div>
         </section>
 
         <!-- NAWIGACJA -->
-        <nav
-            class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3 w-full"
-            aria-label="Główna nawigacja"
-        >
-            <a href="index.html" class="nav-btn active py-3 px-2 text-xs sm:text-sm rounded">
-                Główna
-            </a>
-
-            <a href="nadajnik.html" class="nav-btn py-3 px-2 text-xs sm:text-sm rounded">
-                Nadajnik
-            </a>
-
-            <a href="symulator.html" class="nav-btn py-3 px-2 text-xs sm:text-sm rounded">
-                Symulator
-            </a>
-
-            <a href="odbiornik.html" class="nav-btn py-3 px-2 text-xs sm:text-sm rounded">
-                Odbiornik
-            </a>
-
-            <a href="pobieranie.html" class="nav-btn py-3 px-2 text-xs sm:text-sm rounded">
-                Pobieranie
-            </a>
-
-            <a href="inne_projekty.html" class="nav-btn py-3 px-2 text-xs sm:text-sm rounded">
-                Inne projekty
-            </a>
+        <nav class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3 w-full" aria-label="Główna nawigacja">
+            <a href="index.html" class="nav-btn active py-3 px-2 text-xs sm:text-sm rounded">Główna</a>
+            <a href="nadajnik.html" class="nav-btn py-3 px-2 text-xs sm:text-sm rounded">Nadajnik</a>
+            <a href="symulator.html" class="nav-btn py-3 px-2 text-xs sm:text-sm rounded">Symulator</a>
+            <a href="odbiornik.html" class="nav-btn py-3 px-2 text-xs sm:text-sm rounded">Odbiornik</a>
+            <a href="pobieranie.html" class="nav-btn py-3 px-2 text-xs sm:text-sm rounded">Pobieranie</a>
+            <a href="inne_projekty.html" class="nav-btn py-3 px-2 text-xs sm:text-sm rounded">Inne projekty</a>
         </nav>
 
         <!-- GŁÓWNA TREŚĆ -->
@@ -367,39 +342,39 @@
                 <div class="frame-content p-6 md:p-10">
 
                     <!-- GŁÓWNY TYTUŁ -->
-                    <header class="text-center max-w-4xl w-full mb-8">
-
-                        <h1 class="neon-text mb-4">
-                            DroneAtak
-                        </h1>
-
+                    <header class="text-center max-w-4xl w-full mb-6">
+                        <h1 class="neon-text mb-4">DroneAtak</h1>
                         <p class="text-xl md:text-2xl text-zinc-200 font-semibold mb-3">
-                            Symulatory dronów, systemy Remote ID i narzędzia szkoleniowe
+                            Symulatory dronów, Remote ID Mx ECHO i narzędzia szkoleniowe
                         </p>
-
                         <p class="text-zinc-400 text-sm md:text-base leading-7">
                             Polski zaawansowany projekt techniczny skupiający się na tworzeniu oprogramowania układowego, 
                             autorskiego sprzętu mikroprocesorowego oraz systemów taktycznych wspierających szkolenie
                             operatorów bezzałogowych statków powietrznych (BSP).
                         </p>
-
                     </header>
 
-                    <!-- OSTRZEŻENIE 1: ŻÓŁTY NEON (PRZEZNACZENIE SYSTMU) -->
-                    <div class="w-full max-w-4xl mb-8 p-6 border border-yellow-500/60 bg-yellow-950/20 rounded text-center shadow-lg">
-                        <div class="neon-yellow-title mb-4">
-                            UWAGA
+                    <!-- 2 GRAFIKI NA GÓRZE OPISU (g1.jpg i g2.jpg OBOK SIEBIE) -->
+                    <div class="w-full max-w-4xl mb-8 grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div class="hero-img-card">
+                            <img src="images/g1.jpg" alt="DroneAtak – Grafika opisu 1" onerror="this.onerror=null; this.src='images/g2.png';">
                         </div>
+                        <div class="hero-img-card">
+                            <img src="images/g2.jpg" alt="DroneAtak – Grafika opisu 2" onerror="this.onerror=null; this.src='images/g2.png';">
+                        </div>
+                    </div>
+
+                    <!-- OSTRZEŻENIE 1: ŻÓŁTY NEON -->
+                    <div class="w-full max-w-4xl mb-8 p-6 border border-yellow-500/60 bg-yellow-950/20 rounded text-center shadow-lg">
+                        <div class="neon-yellow-title mb-4">UWAGA</div>
                         <p class="text-yellow-100 text-sm md:text-base font-semibold leading-relaxed">
                             Projekty przeznaczone tylko i wyłącznie do szkolenia pilotów dronów FPV KAMIKAZE oraz UAV na potrzeby klas wojskowych, grup prowojskowych, grup szkoleniowych na potrzeby Polskiej Armii i innych służb. Żołnierzy WOT i JW. Tylko w strefach w których Zarządca takiej strefy zezwoli na takie loty.
                         </p>
                     </div>
 
-                    <!-- OSTRZEŻENIE 2: CZERWONY NEON (CZEGO NIE WOLNO ROBIĆ + ODPOWIEDZIALNOŚĆ PRAWNA) -->
+                    <!-- OSTRZEŻENIE 2: CZERWONY NEON -->
                     <div class="w-full max-w-4xl mb-10 p-6 border border-red-600/70 bg-red-950/25 rounded text-left shadow-xl">
-                        <div class="neon-red-title mb-5">
-                            CZEGO NIE WOLNO ROBIĆ
-                        </div>
+                        <div class="neon-red-title mb-5">CZEGO NIE WOLNO ROBIĆ</div>
 
                         <div class="space-y-4 text-zinc-300 text-xs sm:text-sm leading-relaxed font-mono">
                             <p>
@@ -417,7 +392,6 @@
                                 Zabrania się wykonywania lotów oraz transmisji danych radiowych w miejscach i warunkach, gdzie mogłoby to wprowadzić mylne zagrożenie i wywołać nieuzasadnioną interwencję odpowiedzialnych służb ratunkowych, porządkowych i wojskowych.
                             </p>
 
-                            <!-- ODPOWIEDZIALNOŚĆ KARNA I WYKROCZENIOWA -->
                             <div class="mt-6 pt-4 border-t border-red-900/60 bg-black/40 p-4 rounded text-xs leading-6">
                                 <h3 class="text-red-400 font-bold uppercase tracking-wider text-sm mb-2 text-center">
                                     Sankcje prawne i artykuły Kodeksu Karnego oraz Wykroczeń
@@ -427,29 +401,29 @@
                                 </p>
                                 <ul class="list-disc pl-5 space-y-2 text-zinc-300">
                                     <li>
-                                        <strong class="text-red-300">Art. 190a § 2 KK (Podszywanie się / Kradzież tożsamości):</strong> Podszywanie się pod inną osobę przy użyciu jej danych (np. nr operatora lub pilota) w celu wyrządzenia szkody – podlega karze pozbawienia wolności <strong>od 6 miesięcy do lat 8</strong>.
+                                        <strong class="text-red-300">Art. 190a § 2 KK (Podszywanie się / Kradzież tożsamości):</strong> Podszywanie się pod inną osobę przy użyciu jej danych – podlega karze pozbawienia wolności <strong>od 6 miesięcy do lat 8</strong>.
                                     </li>
                                     <li>
-                                        <strong class="text-red-300">Art. 227 KK (Przywłaszczenie funkcji publicznej):</strong> Wyzyskanie błędnego przekonania o wykonywaniu zadań służbowych (np. podszywanie się pod drona policyjnego lub inspekcji środowiska) – podlega karze grzywny, ograniczenia wolności albo pozbawienia wolności <strong>do roku</strong>.
+                                        <strong class="text-red-300">Art. 227 KK (Przywłaszczenie funkcji publicznej):</strong> Podszywanie się pod drona służb lub inspekcji – podlega karze grzywny, ograniczenia wolności albo pozbawienia wolności <strong>do roku</strong>.
                                     </li>
                                     <li>
-                                        <strong class="text-red-300">Art. 224a KK (Fałszywy alarm i zagrożenie):</strong> Wprowadzenie w błąd organu porządku publicznego i wywołanie czynności służb poprzez stwarzanie fałszywego wrażenia zagrożenia – podlega karze pozbawienia wolności <strong>od 6 miesięcy do lat 8</strong>.
+                                        <strong class="text-red-300">Art. 224a KK (Fałszywy alarm i zagrożenie):</strong> Wprowadzenie w błąd organu porządku publicznego – podlega karze pozbawienia wolności <strong>od 6 miesięcy do lat 8</strong>.
                                     </li>
                                     <li>
-                                        <strong class="text-red-300">Art. 66 § 1 KW (Wywołanie niepotrzebnej czynności służb):</strong> Bezpodstawne wprowadzenie w błąd organu lub wywołanie niepotrzebnej interwencji Policji, Straży Pożarnej czy innych służb – podlega karze aresztu, ograniczenia wolności albo grzywny <strong>do 1 500 zł</strong>.
+                                        <strong class="text-red-300">Art. 66 § 1 KW (Wywołanie niepotrzebnej czynności służb):</strong> Bezpodstawna interwencja służb – podlega karze aresztu, ograniczenia wolności albo grzywny <strong>do 1 500 zł</strong>.
                                     </li>
                                     <li>
-                                        <strong class="text-red-300">Art. 212 Ustawy Prawo Lotnicze:</strong> Wykonywanie lotu BSP z naruszeniem przepisów ruchu lotniczego lub stwarzanie zagrożenia w przestrzeni powietrznej – podlega karze pozbawienia wolności <strong>do lat 5</strong>.
+                                        <strong class="text-red-300">Art. 212 Ustawy Prawo Lotnicze:</strong> Wykonywanie lotu BSP z naruszeniem przepisów – podlega karze pozbawienia wolności <strong>do lat 5</strong>.
                                     </li>
                                 </ul>
                             </div>
                         </div>
                     </div>
 
-                    <!-- SEKCJA: PIERWSZY PROJEKT TEGO TYPU NA ŚWIECIE & ZAWARTOŚĆ SERWERA -->
+                    <!-- SEKCJA: PIERWSZY PROJEKT TEGO TYPU NA ŚWIECIE -->
                     <section class="w-full max-w-4xl mb-10 p-6 border border-amber-500/40 bg-black/40 rounded text-left">
                         <h2 class="section-title text-center text-lg md:text-xl mb-4">
-                            Pierwszy taki projekt na świecie – Przegląd serwisu DroneAtak
+                            Pierwszy taki projekt na świecie
                         </h2>
 
                         <div class="text-zinc-300 text-sm leading-7 space-y-4 font-mono">
@@ -457,12 +431,12 @@
                                 Prezentowany na tym serwerze <strong>nadajnik Remote ID oraz wieloobiektowy symulator dronów</strong> stanowią <strong>pierwszy tego typu zintegrowany projekt na świecie</strong>. Rozwiązanie to unikalnie łączy fizyczny moduł emisyjny (Radio Hardware na mikrokontrolerach ESP32) z zaawansowanym silnikiem symulacji programowej (Swarm Engine) oraz natywną integracją taktyczną z systemami dowodzenia wojskowego <strong>TAK / ATAK / WinTAK</strong> poprzez komunikaty <strong>CoT (Cursor on Target)</strong>.
                             </p>
                             <p>
-                                System pozwala na symulację złożonych scenariuszy nalotu rojowego <strong>do 200 symulowanych obiektów jednocześnie</strong> oraz emisję radiową (Wi-Fi Beacon / BLE 4.2 i 5.0 Coded PHY) dla <strong>do 50 celów pozornych</strong> w czasie rzeczywistym. Poniżej znajduje się zestawienie kluczowych modułów oraz narzędzi dostępnych na serwerze <code>droneatak.pl</code>:
+                                System pozwala na symulację złożonych scenariuszy nalotu rojowego <strong>do 200 symulowanych obiektów jednocześnie</strong> oraz emisję radiową (Wi-Fi Beacon / BLE 4.2 i 5.0 Coded PHY) dla <strong>do 50 celów pozornych</strong> w czasie rzeczywistym.
                             </p>
                         </div>
                     </section>
 
-                    <!-- OBSZARY PROJEKTU (GŁÓWNE PRODUKTY I PODSTRONY NA SERWERZE) -->
+                    <!-- OBSZARY PROJEKTU (MODUŁY 1-4) -->
                     <section class="w-full max-w-5xl mb-10">
 
                         <h2 class="section-title text-center mb-6">
@@ -472,56 +446,30 @@
                         <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
 
                             <article class="project-card">
-                                <h2>
-                                    1. Taktyczny Symulator Dronów (do 200 dronów)
-                                </h2>
+                                <h2>1. Taktyczny Symulator Dronów (do 200 dronów)</h2>
                                 <p>
                                     Zaawansowany symulator roju dronów oparty na układzie ESP32-S3. Umożliwia generowanie do 200 obiektów w przestrzeni 3D z 12 wbudowanymi scenariuszami taktycznymi (np. Kleszcze Dwukierunkowe, Gilotyna, Karuzela Śmierci, Hiper-Saturacja). Posiada bezpośrednie strumieniowanie CoT (UDP/TCP/TLS) do aplikacji ATAK oraz opcję ustawienia punktu celu w dowolnym miejscu na globie.
                                 </p>
                             </article>
 
                             <article class="project-card">
-                                <h2>
-                                    2. Nadajnik Remote ID & Swarm Engine (13g Mini)
-                                </h2>
+                                <h2>2. Nadajnik Remote ID & Swarm Engine (13g Mini)</h2>
                                 <p>
                                     Osobisty nadajnik Remote ID dla pilota drona zasilany z 5 V. Wyposażony w funkcję echa (Swarm Engine generujący do 50 celów pozornych z szykiem i rozrzutem 25-300m) oraz możliwość lotu na dowolnych danych tożsamości. Sekcja prezentuje również wersję minimalną Ultra-Light o wadze zaledwie 13,1 grama dla dronów FPV.
                                 </p>
                             </article>
 
                             <article class="project-card">
-                                <h2>
-                                    3. Odbiornik Remote ID – Mx PRO (v2)
-                                </h2>
+                                <h2>3. Odbiornik Remote ID – Mx ECHO</h2>
                                 <p>
                                     Stacjonarno-mobilny odbiornik taktyczny oparty na procesorze ESP32-C5 z dwupasmową obsługą Wi-Fi (2.4 GHz oraz 5 GHz) i BLE. Wykorzystuje oficjalny silnik OpenDroneID core do dekodowania, agregacji i filtracji do 300 celów w bazie danych wraz z przekazywaniem danych do systemów dowodzenia TAK i panelem Web UI.
                                 </p>
                             </article>
 
                             <article class="project-card">
-                                <h2>
-                                    4. Taktyczne Systemy Zrzutowe (Druk 3D)
-                                </h2>
+                                <h2>4. Taktyczne Systemy Zrzutowe (Druk 3D)</h2>
                                 <p>
                                     Kompletna baza autorskich projektów mechanizmów zrzutowych do wydruku 3D (darmowe i płatne modele Cults3D). Dedykowane dla amunicji i granatów ćwiczebnych/szkoleniowych (40mm, F1, RGO-88, RG-42, RPG-7) z montażem na dronach 10-calowych, płatowcach Talon oraz ramach Tarot.
-                                </p>
-                            </article>
-
-                            <article class="project-card">
-                                <h2>
-                                    5. Systemy Szkolenia Operatorów i C-UAS
-                                </h2>
-                                <p>
-                                    Gotowe scenariusze i narzędzia pomocnicze do prowadzenia ćwiczeń walki radioelektronicznej, weryfikacji świadomości sytuacyjnej oraz testowania systemów antydronowych (Counter-UAS) dla klas wojskowych, jednostek WOT, Wojska Polskiego oraz grup prowojskowych.
-                                </p>
-                            </article>
-
-                            <article class="project-card">
-                                <h2>
-                                    6. Oprogramowanie, Firmware i Logi
-                                </h2>
-                                <p>
-                                    Sekcja pobierania plików, w tym oprogramowania układowego (firmware) dla nadajników i odbiorników, wzorców logów GPS w formacie CSV oraz materiałów instruktażowo-szkoleniowych sukcesywnie udostępnianych dla użytkowników.
                                 </p>
                             </article>
 
@@ -531,11 +479,7 @@
 
                     <!-- INFORMACJA KOŃCOWA: CEL PROJEKTU -->
                     <section class="max-w-4xl w-full text-center mt-4">
-
-                        <h2 class="section-title mb-3">
-                            Cel projektu
-                        </h2>
-
+                        <h2 class="section-title mb-3">Cel projektu</h2>
                         <p class="text-zinc-400 text-sm leading-7 font-mono">
                             Celem projektu DroneAtak jest tworzenie nowatorskich, praktycznych
                             narzędzi umożliwiających prowadzenie testów, eksperymentów oraz szkoleń taktycznych związanych z bezzałogowymi
@@ -543,7 +487,6 @@
                             a ich funkcjonalność jest stale rozszerzana wraz z
                             rozwojem poszczególnych modułów.
                         </p>
-
                     </section>
 
                 </div>
@@ -553,9 +496,9 @@
 
     </main>
 
-    <!-- STOPKA -->
+    <!-- UJEDNOLICONA STOPKA -->
     <footer class="w-full text-center py-6 mt-8 border-t border-zinc-800 text-xs text-zinc-500 font-mono tracking-widest">
-        DroneAtak • MaxGyver 2024 JW2211
+        MaxGyver 2024 CE EU • RemoteID zgodny z: REG 2019/945 | ASTM F3411-22a | ASD-STAN prEN 4709-002 • all rights reserved
     </footer>
 
 </body>

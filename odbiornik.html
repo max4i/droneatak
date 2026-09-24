@@ -3,7 +3,43 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Odbiornik Remote ID - Taktyczny Interfejs</title>
+
+    <!-- SEO Google -->
+    <title>Taktyczny Odbiornik Remote ID Mx ECHO – DroneAtak</title>
+    <meta name="description" content="Odbiornik Remote ID Mx ECHO oparty na ESP32-C5. Dwupasmowa detekcja Wi-Fi (2.4 GHz + 5 GHz) oraz BLE, silnik OpenDroneID, agregacja celów i integracja z TAK/ATAK.">
+    <meta name="keywords" content="odbiornik Remote ID, Remote ID Mx ECHO, ESP32-C5, OpenDroneID, detekcja dronów, C-UAS, ATAK, CoT, DroneAtak">
+    <meta name="robots" content="index, follow">
+    <meta name="author" content="DroneAtak">
+    <link rel="canonical" href="https://droneatak.pl/odbiornik.html">
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Taktyczny Odbiornik Remote ID Mx ECHO – DroneAtak">
+    <meta property="og:description" content="Dwupasmowy odbiornik Remote ID Mx ECHO z systemem detekcji, dekodowania OpenDroneID i agregacji celów dla systemów TAK/ATAK.">
+    <meta property="og:url" content="https://droneatak.pl/odbiornik.html">
+    <meta property="og:image" content="https://droneatak.pl/images/g2.png">
+    <meta property="og:locale" content="pl_PL">
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Taktyczny Odbiornik Remote ID Mx ECHO">
+    <meta name="twitter:description" content="Odbiornik Remote ID Mx ECHO oparty na ESP32-C5. Agregacja celów i strumieniowanie CoT do ATAK.">
+    <meta name="twitter:image" content="https://droneatak.pl/images/g2.png">
+
+    <!-- Schema.org JSON-LD -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Product",
+      "name": "Taktyczny Odbiornik Remote ID Mx ECHO",
+      "description": "Stacjonarno-mobilny odbiornik sygnałów Remote ID najnowszej generacji oparty na ESP32-C5 z obsługą 2.4 GHz, 5 GHz i BLE.",
+      "brand": {
+        "@type": "Brand",
+        "name": "DroneAtak"
+      }
+    }
+    </script>
+
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
         body {
@@ -169,7 +205,6 @@
             }
         }
 
-        /* === Karty ze zdjęciami sprzętu — stałe proporcje 4:3 === */
         .sim-thumb-card {
             border: 1px solid #374151;
             background: rgba(10, 12, 16, 0.8);
@@ -193,17 +228,6 @@
             width: 100%;
             height: 100%;
             object-fit: cover;
-            display: block;
-        }
-
-        /* === Karty dla zrzutów ekranu w "Panel WWW" === */
-        .sim-thumb-card.screen {
-            aspect-ratio: auto;
-        }
-        .sim-thumb-card.screen img {
-            width: 100%;
-            height: auto;
-            object-fit: contain;
             display: block;
         }
 
@@ -314,7 +338,6 @@
             font-weight: 700;
         }
 
-        /* === Lightbox === */
         .lightbox-overlay {
             display: none;
             position: fixed;
@@ -414,21 +437,21 @@
         <!-- BANER GŁÓWNY -->
         <section class="w-full">
             <div class="main-banner w-full h-auto">
-                <img src="images/ChatGPT Image 18 wrz 2026, 17_31_33.png" 
+                <img src="images/g2.png" 
                      alt="Główna grafika taktyczna" 
                      class="main-graphic"
-                     onerror="this.onerror=null; this.src='https://placehold.co/1200x600/182026/e5a93c?text=ChatGPT+Image+18+wrz+2026,+17_31_33.png';">
+                     onerror="this.onerror=null; this.src='https://placehold.co/1200x600/182026/e5a93c?text=Baner+Główny';">
             </div>
         </section>
 
         <!-- PRZYCISKI NAWIGACYJNE -->
-        <nav class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-3 w-full">
+        <nav class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3 w-full">
             <a href="index.html" class="nav-btn py-3 px-2 text-xs sm:text-sm rounded">Główna</a>
             <a href="nadajnik.html" class="nav-btn py-3 px-2 text-xs sm:text-sm rounded">Nadajnik</a>
             <a href="symulator.html" class="nav-btn py-3 px-2 text-xs sm:text-sm rounded">Symulator</a>
             <a href="odbiornik.html" class="nav-btn active py-3 px-2 text-xs sm:text-sm rounded">Odbiornik</a>
             <a href="pobieranie.html" class="nav-btn py-3 px-2 text-xs sm:text-sm rounded">Pobieranie</a>
-            <a href="projekty.html" class="nav-btn py-3 px-2 text-xs sm:text-sm rounded">Inne Projekty</a>
+            <a href="inne_projekty.html" class="nav-btn py-3 px-2 text-xs sm:text-sm rounded">Inne Projekty</a>
         </nav>
 
         <!-- OKNO TREŚCI PODSTRONY -->
@@ -448,20 +471,20 @@
                     
                     <!-- NAGŁÓWEK NEONOWY -->
                     <div class="w-full pb-4 border-b border-amber-500/20 mb-6">
-                        <h1 class="neon-title sm:text-2xl">Taktyczny Odbiornik Remote ID — Mx PRO (v2)</h1>
+                        <h1 class="neon-title sm:text-2xl">Taktyczny Odbiornik Remote ID — Mx ECHO</h1>
                         <p class="text-center text-zinc-400 font-mono text-xs mt-2 tracking-widest">
-                            REMOTE ID ODBIORNIK MX PRO • System detekcji, dekodowania OpenDroneID i agregacji roju dronów.
+                            REMOTE ID ODBIORNIK MX ECHO • System detekcji, dekodowania OpenDroneID i agregacji roju dronów.
                         </p>
                     </div>
 
                     <!-- === DWA ZDJĘCIA ODBIORNIKA NA GÓRZE === -->
                     <div class="hero-sim">
-                        <div class="sim-thumb-card" onclick="openLightbox('images/o1.jfif', 'Odbiornik Remote ID — widok obudowy taktycznej')">
-                            <img src="images/o1.jfif" alt="Odbiornik Remote ID — widok obudowy taktycznej"
+                        <div class="sim-thumb-card" onclick="openLightbox('images/o1.jfif', 'Odbiornik Remote ID Mx ECHO — widok obudowy taktycznej')">
+                            <img src="images/o1.jfif" alt="Odbiornik Remote ID Mx ECHO — widok obudowy taktycznej"
                                  onerror="this.onerror=null; this.src='https://placehold.co/600x450/111827/f59e0b?text=o1.jfif';">
                         </div>
-                        <div class="sim-thumb-card" onclick="openLightbox('images/o2.jfif', 'Odbiornik Remote ID — moduł ESP32-C5 i tory RF')">
-                            <img src="images/o2.jfif" alt="Odbiornik Remote ID — moduł ESP32-C5 i tory RF"
+                        <div class="sim-thumb-card" onclick="openLightbox('images/o2.jfif', 'Odbiornik Remote ID Mx ECHO — moduł ESP32-C5 i tory RF')">
+                            <img src="images/o2.jfif" alt="Odbiornik Remote ID Mx ECHO — moduł ESP32-C5 i tory RF"
                                  onerror="this.onerror=null; this.src='https://placehold.co/600x450/111827/f59e0b?text=o2.jfif';">
                         </div>
                     </div>
@@ -470,7 +493,7 @@
                     <div class="config-item mb-6">
                         <h2 class="sec-heading">O odbiorniku — ogólne informacje</h2>
                         <div class="sec-body">
-                            <p><strong>RemoteID_odbiornik_Mx PRO (v2)</strong> to zaawansowany stacjonarno-mobilny odbiornik sygnałów Remote ID najnowszej generacji. Urządzenie zostało zaprojektowane do wykrywania, identyfikacji oraz ciągłego śledzenia pozycji statków powietrznych (BSP) w czasie rzeczywistym. Baza dekodowania opiera się na oficjalnej bibliotece <strong>OpenDroneID (opendroneid-core-c)</strong>, co gwarantuje 100% zgodności ze standardami <strong>ASTM F3411</strong> oraz <strong>ASD-STAN</strong>.</p>
+                            <p><strong>RemoteID_odbiornik_Mx ECHO</strong> to zaawansowany stacjonarno-mobilny odbiornik sygnałów Remote ID najnowszej generacji. Urządzenie zostało zaprojektowane do wykrywania, identyfikacji oraz ciągłego śledzenia pozycji statków powietrznych (BSP) w czasie rzeczywistym. Baza dekodowania opiera się na oficjalnej bibliotece <strong>OpenDroneID (opendroneid-core-c)</strong>, co gwarantuje 100% zgodności ze standardami <strong>ASTM F3411</strong> oraz <strong>ASD-STAN</strong>.</p>
                             <p>Odbiornik wykorzystuje nowoczesny układ <strong>ESP32-C5</strong> obsługujący wielopasmowy odbiór sygnałów na częstotliwościach <strong>2,4 GHz oraz 5 GHz</strong>, a także łączność <strong>Bluetooth LE (BLE 4.2 Legacy oraz BLE 5.x Extended Advertising)</strong>. System jest wyposażony w aktywne narzędzie agregacji danych (RID Aggregator), skaner RF oraz wielokanałową wysyłkę danych do oprogramowania dowodzenia TAK/ATAK/WinTAK i dedykowanych protokołów binarnych Mx (CBOR).</p>
                             <div class="mt-3">
                                 <span class="badge-tech">ESP32-C5</span>
@@ -490,12 +513,12 @@
                         <h2 class="sec-heading">Specyfikacja techniczna i architektura kodu</h2>
                         <div class="sec-body">
                             <p><strong>Platforma i system:</strong> Urządzenie bazuje na mikrokontrolerze <strong>Espressif ESP32-C5</strong>, pracującym pod kontrolą systemu czasu rzeczywistego <strong>FreeRTOS</strong> w środowisku <strong>ESP-IDF / PlatformIO</strong>. Pamięć Flash wynosząca <strong>4 MB</strong> została zoptymalizowana pod kątem maksymalnej wydajności i stabilności operacyjnej — zrezygnowano z podwójnej partycji OTA i systemu plików SPIFFS na rzecz jednej produkcyjnej partycji aplikacji (ok. 3.94 MB).</p>
-                            <p><strong>Architektura 4 plików źródłowych:</strong> Kod źródłowy firmware został zbudowany w rygorystycznym, modułowym rygorze 4 plików główne, co zapewnia minimalny narzut kompilacyjny, wysoki poziom audytowalności oraz gwarancję braku wycieków pamięci Heap:</p>
+                            <p><strong>Architektura 4 plików źródłowych:</strong> Kod źródłowy firmware został zbudowany w rygorystycznym, modułowym rygorze 4 plików głównych, co zapewnia minimalny narzut kompilacyjny, wysoki poziom audytowalności oraz gwarancję braku wycieków pamięci Heap:</p>
                             <ul>
                                 <li><code>main.c</code> — inicjalizacja systemu, zadania FreeRTOS, scheduler RF, pętla główna i obsługa WDT (Watchdog).</li>
                                 <li><code>rid_core.c</code> — warstwa HAL OpenDroneID (odid_hal_esp32), pętla dekodowania ramek RF, baza danych RID DB oraz algorytm agregacji celów.</li>
                                 <li><code>comms.c</code> — protokół binarnego strumieniowania Mx (CBOR), silnik CoT (Cursor on Target), serwer Web UI oraz komunikacja WebSocket.</li>
-                                <li><code>config.c</code> — pamięć NVS, zarządzenie konfiguracją, szyfrowana autoryzacja PBKDF2/scrypt, logi i diagnostyka.</li>
+                                <li><code>config.c</code> — pamięć NVS, zarządzanie konfiguracją, szyfrowana autoryzacja PBKDF2/scrypt, logi i diagnostyka.</li>
                             </ul>
 
                             <div class="mt-4">
@@ -565,178 +588,11 @@
                         </div>
                     </div>
 
-                    <!-- === PANEL WWW - KONFIGURACJA ODBIORNIKA (sekcja tytułowa) === -->
-                    <div class="config-item mb-6">
-                        <h2 class="sec-heading">Panel WWW — interfejs i konfiguracja</h2>
+                    <!-- === PODSUMOWANIE === -->
+                    <div class="config-item">
+                        <h2 class="sec-heading">Podsumowanie</h2>
                         <div class="sec-body">
-                            <p>Interfejs użytkownika (Web UI) został wbudowany bezpośrednio w plik wykonywalny firmware (za pomocą zasobu <code>EMBED_FILES</code>), zapewniając błyskawiczne ładowanie bez zależności od dysków Flash. Strona dostosowana jest do stylistyki militarnej (odcienie khaki, grafitu i bursztynu). Poniższe zrzuty ekranu prezentują kluczowe moduły operacyjne i konfiguracyjne systemu odbiornika:</p>
-                        </div>
-                    </div>
-
-                    <!-- ELEMENT 1: tytul.jpg — NAGŁÓWEK I DANE GPS -->
-                    <div class="config-item grid grid-cols-1 lg:grid-cols-12 gap-4 items-start mb-4">
-                        <div class="lg:col-span-6 flex justify-center lg:justify-start">
-                            <div class="sim-thumb-card screen" onclick="openLightbox('images/tytul.jpg', 'Nagłówek systemu i Dane GPS')">
-                                <img src="images/tytul.jpg" alt="tytul.jpg" onerror="this.onerror=null; this.src='https://placehold.co/600x400/111827/f59e0b?text=tytul.jpg';">
-                            </div>
-                        </div>
-                        <div class="lg:col-span-6">
-                            <h3 class="sec-heading">Nagłówek systemu oraz sekcja Dane GPS</h3>
-                            <div class="sec-body">
-                                <p>Główna sekcja informacyjna interfejsu RemoteID_MX[cite: 14]:</p>
-                                <ul>
-                                    <li><strong>Informacje o systemie:</strong> Nagłówek identyfikacyjny BSP/UAV z numerem wersji oprogramowania układowego (np. <code>wer. 0.2026.03.27.01</code>) oraz przeznaczeniem szkoleniowo-taktycznym[cite: 14].</li>
-                                    <li><strong>Szerokość i Długość geograficzna:</strong> Wyświetlanie współrzędnych GPS odbiornika w czasie rzeczywistym[cite: 14].</li>
-                                    <li><strong>Wysokość i Prędkość:</strong> Wysokość n.p.m. (HYS. ASL) oraz bieżąca prędkość poruszania się odbiornika[cite: 14].</li>
-                                    <li><strong>Status Fix:</strong> Liczba śledzonych satelitów (np. <code>FIX OK (17 sat)</code>) oraz zapamiętana pozycja startowa drona[cite: 14].</li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- ELEMENT 2: identyfikacja.jpg — 1. IDENTYFIKACJA STATKU I OPERATORA -->
-                    <div class="config-item grid grid-cols-1 lg:grid-cols-12 gap-4 items-start mb-4">
-                        <div class="lg:col-span-6 flex justify-center lg:justify-start">
-                            <div class="sim-thumb-card screen" onclick="openLightbox('images/identyfikacja.jpg', '1. Identyfikacja Statku i Operatora')">
-                                <img src="images/identyfikacja.jpg" alt="identyfikacja.jpg" onerror="this.onerror=null; this.src='https://placehold.co/600x400/111827/f59e0b?text=identyfikacja.jpg';">
-                            </div>
-                        </div>
-                        <div class="lg:col-span-6">
-                            <h3 class="sec-heading">1. Identyfikacja Statku i Operatora</h3>
-                            <div class="sec-body">
-                                <p>Moduł parametryzacji danych certyfikacyjnych i tożsamościowych drona zgodnie z normą EU 2019/945 / 2019/947[cite: 10]:</p>
-                                <ul>
-                                    <li><strong>Nazwa Bluetooth:</strong> Rozpoznawalna nazwa identyfikacyjna nadajnika (np. <code>DroneID_MX_</code>)[cite: 10].</li>
-                                    <li><strong>Numer Seryjny Drona:</strong> Dedykowany numer fabryczny lub taktyczny (np. <code>MaxGyver2024-2026</code>)[cite: 10].</li>
-                                    <li><strong>EU Operator Registration ID:</strong> Numer rejestracyjny operatora UE wraz z tajnym PIN-em (np. <code>POL_MAXIIII001-9x2</code>)[cite: 10]. Ochrona OPSEC Privacy Guard automatycznie usuwa PIN przed emisją[cite: 10].</li>
-                                    <li><strong>Typ i Klasa UE:</strong> Klasyfikacja statku (np. <code>Multirotor / Quadcopter</code>) oraz klasa operacyjna UE (np. <code>Klasa C6 (STS-02)</code>)[cite: 10].</li>
-                                    <li><strong>Self ID / Opis misji:</strong> Swobodny identyfikator taktyczny misji (np. <code>WKP</code>)[cite: 10].</li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- ELEMENT 3: protokoly.jpg — 2. PROTOKOŁY RADIOWE (2.4GHZ) & OBSZAR -->
-                    <div class="config-item grid grid-cols-1 lg:grid-cols-12 gap-4 items-start mb-4">
-                        <div class="lg:col-span-6 flex justify-center lg:justify-start">
-                            <div class="sim-thumb-card screen" onclick="openLightbox('images/protokoly.jpg', '2. Protokoły Radiowe (2.4GHz) & Obszar')">
-                                <img src="images/protokoly.jpg" alt="protokoly.jpg" onerror="this.onerror=null; this.src='https://placehold.co/600x400/111827/f59e0b?text=protokoly.jpg';">
-                            </div>
-                        </div>
-                        <div class="lg:col-span-6">
-                            <h3 class="sec-heading">2. Protokoły Radiowe (2.4GHz) & Obszar</h3>
-                            <div class="sec-body">
-                                <p>Konfiguracja parametrów nadawczych sygnału radiowego RF oraz strefy przestrzennej[cite: 12]:</p>
-                                <ul>
-                                    <li><strong>Wybór protokołów:</strong> Przełączniki dla Wi-Fi Beacon 802.11, BLE 4.2 Legacy oraz BLE 5.0 Extended (Coded PHY)[cite: 12].</li>
-                                    <li><strong>Kanał i Moc RF:</strong> Konfiguracja kanału Wi-Fi (np. Kanał 6), interwału nadawania w ms oraz mocy wyjściowej BLE (0 dBm) i Wi-Fi (+8 dBm)[cite: 12].</li>
-                                    <li><strong>Konfiguracja Wi-Fi AP:</strong> Nazwa SSID punktu dostępowego (np. <code>RemoteID_MX</code>) oraz minimum 8-znakowe hasło dostępu[cite: 12].</li>
-                                    <li><strong>Wymiary Obszaru:</strong> Określenie promienia strefy operacyjnej wokół punktu startu (w metrach) oraz pułapu i dna obszaru[cite: 12].</li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- ELEMENT 4: tozsamosc.jpg — 3. TOŻSAMOŚĆ TAKTYCZNA -->
-                    <div class="config-item grid grid-cols-1 lg:grid-cols-12 gap-4 items-start mb-4">
-                        <div class="lg:col-span-6 flex justify-center lg:justify-start">
-                            <div class="sim-thumb-card screen" onclick="openLightbox('images/tozsamosc.jpg', '3. Tożsamość Taktyczna')">
-                                <img src="images/tozsamosc.jpg" alt="tozsamosc.jpg" onerror="this.onerror=null; this.src='https://placehold.co/600x400/111827/f59e0b?text=tozsamosc.jpg';">
-                            </div>
-                        </div>
-                        <div class="lg:col-span-6">
-                            <h3 class="sec-heading">3. Tożsamość Taktyczna</h3>
-                            <div class="sec-body">
-                                <p>Wewnętrzne dane identyfikacyjne operatora i jednostki przechowywane bezpiecznie w pamięci lokalnej[cite: 13]:</p>
-                                <ul>
-                                    <li><strong>Stopień pilota:</strong> Stopień służbowy/wojskowy operatora (np. <code>szer.</code>)[cite: 13].</li>
-                                    <li><strong>Imię i Nazwisko:</strong> Dane imienne pilota odpowiedzialnego za misję (np. <code>Jasiu Trąbka</code>)[cite: 13].</li>
-                                    <li><strong>Przydział:</strong> Oznaczenie przydziału taktycznego lub podmiotu (np. <code>115BOT</code>)[cite: 13].</li>
-                                    <li><strong>Bezpieczeństwo OPSEC:</strong> Ostrzeżenie potwierdzające, że dane osobowe NIE są wysyłane drogą radiową przez Wi-Fi ani BLE[cite: 13].</li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- ELEMENT 5: echo.jpg — ECHO DRONA (SYMULACJA ROJU 0-50) -->
-                    <div class="config-item grid grid-cols-1 lg:grid-cols-12 gap-4 items-start mb-4">
-                        <div class="lg:col-span-6 flex justify-center lg:justify-start">
-                            <div class="sim-thumb-card screen" onclick="openLightbox('images/echo.jpg', 'Echo Drona (Symulacja Roju 0-50)')">
-                                <img src="images/echo.jpg" alt="echo.jpg" onerror="this.onerror=null; this.src='https://placehold.co/600x400/111827/f59e0b?text=echo.jpg';">
-                            </div>
-                        </div>
-                        <div class="lg:col-span-6">
-                            <h3 class="sec-heading">Echo Drona (Symulacja Roju 0-50)</h3>
-                            <div class="sec-body">
-                                <p>Moduł generowania celów pozorowanych i imitacji formacji roju dronów (Swarm Engine)[cite: 9]:</p>
-                                <ul>
-                                    <li><strong>Generowanie pozoratorów:</strong> Generuje pakiety z unikalnymi adresami MAC i sygnaturami UAS ID zsynchronizowanymi z fizycznym kursem drona[cite: 9].</li>
-                                    <li><strong>Ilość imitowanych ech:</strong> Płynna regulacja liczby pozorowanych dronów w zakresie od 0 do 50 ech[cite: 9].</li>
-                                    <li><strong>Odległość między dronami:</strong> Ustawianie dystansu poziomego w osi lub prostopadle do kursu (25 – 300 m)[cite: 9].</li>
-                                    <li><strong>Formacja szyku:</strong> Wybór ugrupowania roju (np. <code>Kwadrat / Siatka (Dron w środku)</code>)[cite: 9].</li>
-                                    <li><strong>OPSEC Flash Memory:</strong> Dane ech są generowane wyłącznie w pamięci RAM w locie. Do dziennika CSV trafia tylko dron z fizycznym modułem GPS[cite: 9].</li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- ELEMENT 6: pobieranie.jpg — POBIERANIE LOGÓW -->
-                    <div class="config-item grid grid-cols-1 lg:grid-cols-12 gap-4 items-start mb-4">
-                        <div class="lg:col-span-6 flex justify-center lg:justify-start">
-                            <div class="sim-thumb-card screen" onclick="openLightbox('images/pobieranie.jpg', 'Pobieranie Logów GPS')">
-                                <img src="images/pobieranie.jpg" alt="pobieranie.jpg" onerror="this.onerror=null; this.src='https://placehold.co/600x400/111827/f59e0b?text=pobieranie.jpg';">
-                            </div>
-                        </div>
-                        <div class="lg:col-span-6">
-                            <h3 class="sec-heading">Pobieranie Logów z Pamięci Flash</h3>
-                            <div class="sec-body">
-                                <p>Zabezpieczony panel eksportu zarejestrowanych tras i parametrów lotu z pamięci nieulotnej[cite: 11]:</p>
-                                <ul>
-                                    <li><strong>Autoryzacja dostępu:</strong> Dostęp do listy wymagający podania hasła administratora i kliknięcia przycisku "Odblokuj"[cite: 11].</li>
-                                    <li><strong>Pojemność Flash:</strong> Wskaźnik zużycia pamięci podręcznej (np. <code>Zużycie pamięci: 0.0%</code>)[cite: 11].</li>
-                                    <li><strong>Lista zarejestrowanych tras:</strong> Zestawienie plików CSV zawierających znacznik czasu, nazwę misji oraz rozmiar pliku z możliwością szybkiego pobrania na urządzenie[cite: 11].</li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- ELEMENT 7: aktualne.jpg — POTWIERDZENIE HASŁEM -->
-                    <div class="config-item grid grid-cols-1 lg:grid-cols-12 gap-4 items-start mb-4">
-                        <div class="lg:col-span-6 flex justify-center lg:justify-start">
-                            <div class="sim-thumb-card screen" onclick="openLightbox('images/aktualne.jpg', 'Potwierdzenie Hasłem i Zapis Konfiguracji')">
-                                <img src="images/aktualne.jpg" alt="aktualne.jpg" onerror="this.onerror=null; this.src='https://placehold.co/600x400/111827/f59e0b?text=aktualne.jpg';">
-                            </div>
-                        </div>
-                        <div class="lg:col-span-6">
-                            <h3 class="sec-heading">Potwierdzenie Hasłem i Zapis Konfiguracji</h3>
-                            <div class="sec-body">
-                                <p>Moduł autoryzacji wymagany do zachowania zmian w pamięci NVS mikrokontrolera[cite: 7]:</p>
-                                <ul>
-                                    <li><strong>Weryfikacja tożsamości:</strong> Wprowadzenie aktualnego hasła administratora zabezpieczające przed nieuprawnionym nadpisaniem parametru[cite: 7].</li>
-                                    <li><strong>Opcjonalna zmiana hasła:</strong> Pole umożliwiające natychmiastową zmianę klucza administracyjnego[cite: 7].</li>
-                                    <li><strong>Przycisk zatwierdzający:</strong> Przycisk "ZAPISZ KONFIGURACJĘ" zapisujący pełny stan odbiornika[cite: 7].</li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- ELEMENT 8: aktywacja.jpg — AKTYWACJA TRYBU LOTU -->
-                    <div class="config-item grid grid-cols-1 lg:grid-cols-12 gap-4 items-start mb-4">
-                        <div class="lg:col-span-6 flex justify-center lg:justify-start">
-                            <div class="sim-thumb-card screen" onclick="openLightbox('images/aktywacja.jpg', 'Aktywacja Trybu Lotu')">
-                                <img src="images/aktywacja.jpg" alt="aktywacja.jpg" onerror="this.onerror=null; this.src='https://placehold.co/600x400/111827/f59e0b?text=aktywacja.jpg';">
-                            </div>
-                        </div>
-                        <div class="lg:col-span-6">
-                            <h3 class="sec-heading">Aktywacja Trybu Lotu</h3>
-                            <div class="sec-body">
-                                <p>Ostateczne uzbrojenie urządzenia i przejście w autonomiczny tryb nadawczo-odbiorczy[cite: 8]:</p>
-                                <ul>
-                                    <li><strong>Wyłączenie panelu WWW:</strong> Po uruchomieniu panel konfiguracyjny zostanie wyłączony, a połączenie Wi-Fi przerwane w celu ochrony widma radiowego[cite: 8].</li>
-                                    <li><strong>Rozpoczęcie emisji:</strong> Rozpoczęcie ciągłego nadawania i odbierania sygnału RemoteID w wybranym trybie[cite: 8].</li>
-                                    <li><strong>Procedura nieodwracalna:</strong> Zabezpieczenie przed przypadkowym wyłączeniem — ponowna konfiguracja wymaga wykonania restartu sprzętowego[cite: 8].</li>
-                                </ul>
-                            </div>
+                            <p>Odbiornik Remote ID Mx ECHO to kompletne rozwiązanie stacjonarno-mobilne do ciągłego monitorowania przestrzeni powietrznej pod kątem obecności bezzałogowców. Dzięki obsłudze pasm 2.4 GHz i 5 GHz oraz integracji z taktycznymi systemami dowodzenia TAK/ATAK, urządzenie doskonale odpowiada potrzebom szkoleniowym i operacyjnym.</p>
                         </div>
                     </div>
 
@@ -745,6 +601,11 @@
         </section>
 
     </main>
+
+    <!-- STOPKA -->
+    <footer class="w-full text-center py-6 mt-8 border-t border-zinc-800 text-xs text-zinc-500 font-mono tracking-widest">
+        MaxGyver 2024 CE EU • RemoteID zgodny z: REG 2019/945 | ASTM F3411-22a | ASD-STAN prEN 4709-002 • all rights reserved
+    </footer>
 
     <!-- LIGHTBOX OVERLAY -->
     <div id="lightbox" class="lightbox-overlay" onclick="closeLightbox(event)">
@@ -759,7 +620,7 @@
             <div class="metal-bar-v bar-left"></div>
             <div class="metal-bar-v bar-right"></div>
             <div class="lightbox-img-wrapper">
-                <img id="lightbox-img" src="" alt="Podgląd grafiki">
+                <img id="lightbox-img" src="" alt="Podgląd sprzętu">
             </div>
             <div id="lightbox-caption" class="lightbox-caption"></div>
         </div>
