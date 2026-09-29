@@ -234,7 +234,7 @@
             display: block;
         }
 
-        /* === Karta dla zrzutów ekranu w "Panel WWW — konfiguracja" === */
+        /* === Karta dla zrzutów ekranu — dopasowanie do szerokości === */
         .sim-thumb-card.screen {
             aspect-ratio: auto;
         }
@@ -601,7 +601,7 @@
                         </div>
                     </div>
 
-                    <!-- ELEMENT 1: tytul.jpg — STATUS I DANE GPS -->
+                    <!-- ELEMENT 1: STATUS I DANE GPS -->
                     <div class="config-item grid grid-cols-1 lg:grid-cols-12 gap-4 items-start mb-4">
                         <div class="lg:col-span-6 flex justify-center lg:justify-start">
                             <div class="sim-thumb-card screen" onclick="openLightbox('images/tytul.jpg', 'Nagłówek panelu oraz odczyty GPS w czasie rzeczywistym')">
@@ -622,15 +622,15 @@
                         </div>
                     </div>
 
-                    <!-- ELEMENT 2: identyfikacja.jpg — 1. IDENTYFIKACJA STATKU I OPERATORA -->
+                    <!-- ELEMENT 2: IDENTYFIKACJA STATKU I OPERATORA -->
                     <div class="config-item grid grid-cols-1 lg:grid-cols-12 gap-4 items-start mb-4">
                         <div class="lg:col-span-6 flex justify-center lg:justify-start">
-                            <div class="sim-thumb-card screen" onclick="openLightbox('images/identyfikacja.jpg', '1. Identyfikacja statku i operatora (zgodność z EU 2019/945)')">
+                            <div class="sim-thumb-card screen" onclick="openLightbox('images/identyfikacja.jpg', 'Identyfikacja statku i operatora (zgodność z EU 2019/945)')">
                                 <img src="images/identyfikacja.jpg" alt="identyfikacja.jpg" onerror="this.onerror=null; this.src='https://placehold.co/600x300/111827/f59e0b?text=identyfikacja.jpg';">
                             </div>
                         </div>
                         <div class="lg:col-span-6">
-                            <h3 class="sec-heading">1. Identyfikacja statku i operatora</h3>
+                            <h3 class="sec-heading">Identyfikacja statku i operatora</h3>
                             <div class="sec-body">
                                 <p>Sekcja odpowiedzialna za oficjalne parametry tożsamości Remote ID emitowane w pasmie 2.4 GHz zgodnie z normami unijnymi EU 2019/945 i 2019/947.</p>
                                 <ul>
@@ -645,15 +645,37 @@
                         </div>
                     </div>
 
-                    <!-- ELEMENT 3: protokoly.jpg — 2. PROTOKOŁY RADIOWE & OBSZAR -->
+                    <!-- ELEMENT 2B: GENERATOR NUMERU SERYJNEGO I MARKI DRONA -->
                     <div class="config-item grid grid-cols-1 lg:grid-cols-12 gap-4 items-start mb-4">
                         <div class="lg:col-span-6 flex justify-center lg:justify-start">
-                            <div class="sim-thumb-card screen" onclick="openLightbox('images/protokoly.jpg', '2. Protokoły radiowe (2.4GHz) & parametry obszaru')">
+                            <div class="sim-thumb-card screen" onclick="openLightbox('images/dji.jpg', 'Generator numeru seryjnego i wybór marki drona (DJI, Autel, Parrot itp.)')">
+                                <img src="images/dji.jpg" alt="dji.jpg" onerror="this.onerror=null; this.src='https://placehold.co/600x600/111827/f59e0b?text=dji.jpg';">
+                            </div>
+                        </div>
+                        <div class="lg:col-span-6">
+                            <h3 class="sec-heading">Generator numeru seryjnego & Wybór marki</h3>
+                            <div class="sec-body">
+                                <p>Narzędzie wbudowane w panel, pozwalające na natychmiastowe wybranie produkcyjnej marki drona lub modułu Remote ID, pod jaką dany obiekt będzie widoczny na skanerach przestrzeni.</p>
+                                <ul>
+                                    <li><strong>14 fabrycznych marek dronów:</strong> Szybki wybór dedykowanego prefiksu (np. DJI, Autel Robotics, Parrot, Skydio, Yuneec, Hubsan, FIMI Xiaomi, senseFly, Wingtra, Quantum-Systems, Delair, AeroVironment, Teal Drones, BRINC).</li>
+                                    <li><strong>6 marek modułów Remote ID:</strong> Dedykowane prefiksy modułów zewnętrznych (Dronetag, BlueMark, Aerobits, uAvionix, Sagetech, Pierce Aerospace).</li>
+                                    <li><strong>Własny numer seryjny:</strong> Opcja ręcznego wprowadzenia dowolnego autorskiego ciągu znaków.</li>
+                                    <li><strong>Brak zewnętrznych baz danych:</strong> Oprogramowanie układowe generuje poprawną strukturę i prefiksy całkowicie autonomicznie, bez połączenia z siecią Internet.</li>
+                                    <li><strong>Specyfika odbiorników i skanerów:</strong> Programy konsumenckie DJI odczytują wyłącznie własne numery seryjne DJI, podczas gdy profesjonalne stacje detekcji oraz systemy C-UAS dekodują pakiety wszystkich producentów.</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- ELEMENT 3: PROTOKOŁY RADIOWE & OBSZAR -->
+                    <div class="config-item grid grid-cols-1 lg:grid-cols-12 gap-4 items-start mb-4">
+                        <div class="lg:col-span-6 flex justify-center lg:justify-start">
+                            <div class="sim-thumb-card screen" onclick="openLightbox('images/protokoly.jpg', 'Protokoły radiowe (2.4GHz) & parametry obszaru')">
                                 <img src="images/protokoly.jpg" alt="protokoly.jpg" onerror="this.onerror=null; this.src='https://placehold.co/600x350/111827/f59e0b?text=protokoly.jpg';">
                             </div>
                         </div>
                         <div class="lg:col-span-6">
-                            <h3 class="sec-heading">2. Protokoły radiowe (2.4GHz) & Obszar</h3>
+                            <h3 class="sec-heading">Protokoły radiowe (2.4GHz) & Obszar</h3>
                             <div class="sec-body">
                                 <p>Moduł umożliwiający pełne zarządzanie warstwą radiową RF nadajnika oraz parametrami strefy operacyjnej.</p>
                                 <ul>
@@ -666,15 +688,15 @@
                         </div>
                     </div>
 
-                    <!-- ELEMENT 4: tozsamosc.jpg — 3. TOŻSAMOŚĆ TAKTYCZNA -->
+                    <!-- ELEMENT 4: TOŻSAMOŚĆ TAKTYCZNA -->
                     <div class="config-item grid grid-cols-1 lg:grid-cols-12 gap-4 items-start mb-4">
                         <div class="lg:col-span-6 flex justify-center lg:justify-start">
-                            <div class="sim-thumb-card screen" onclick="openLightbox('images/tozsamosc.jpg', '3. Tożsamość taktyczna (dane zabezpieczone lokalnie)')">
+                            <div class="sim-thumb-card screen" onclick="openLightbox('images/tozsamosc.jpg', 'Tożsamość taktyczna (dane zabezpieczone lokalnie)')">
                                 <img src="images/tozsamosc.jpg" alt="tozsamosc.jpg" onerror="this.onerror=null; this.src='https://placehold.co/600x200/111827/f59e0b?text=tozsamosc.jpg';">
                             </div>
                         </div>
                         <div class="lg:col-span-6">
-                            <h3 class="sec-heading">3. Tożsamość taktyczna</h3>
+                            <h3 class="sec-heading">Tożsamość taktyczna</h3>
                             <div class="sec-body">
                                 <p>Sekcja służąca do wprowadzania wewnętrznych danych personalnych operatora i przynależności organizacyjnej.</p>
                                 <ul>
@@ -687,7 +709,7 @@
                         </div>
                     </div>
 
-                    <!-- ELEMENT 5: echo.jpg — ECHO DRONA (SYMULACJA ROJU) -->
+                    <!-- ELEMENT 5: ECHO DRONA (SYMULACJA ROJU) -->
                     <div class="config-item grid grid-cols-1 lg:grid-cols-12 gap-4 items-start mb-4">
                         <div class="lg:col-span-6 flex justify-center lg:justify-start">
                             <div class="sim-thumb-card screen" onclick="openLightbox('images/echo.jpg', 'Echo drona — symulacja roju celów pozorowanych (Swarm Engine)')">
@@ -709,7 +731,7 @@
                         </div>
                     </div>
 
-                    <!-- ELEMENT 6: pobieranie.jpg — POBIERANIE LOGÓW -->
+                    <!-- ELEMENT 6: POBIERANIE LOGÓW -->
                     <div class="config-item grid grid-cols-1 lg:grid-cols-12 gap-4 items-start mb-4">
                         <div class="lg:col-span-6 flex justify-center lg:justify-start">
                             <div class="sim-thumb-card screen" onclick="openLightbox('images/pobieranie.jpg', 'Rejestrator historii GPS i pobieranie logów CSV')">
@@ -729,7 +751,7 @@
                         </div>
                     </div>
 
-                    <!-- ELEMENT 7: aktualne.jpg — POTWIERDZENIE HASŁEM -->
+                    <!-- ELEMENT 7: POTWIERDZENIE HASŁEM -->
                     <div class="config-item grid grid-cols-1 lg:grid-cols-12 gap-4 items-start mb-4">
                         <div class="lg:col-span-6 flex justify-center lg:justify-start">
                             <div class="sim-thumb-card screen" onclick="openLightbox('images/aktualne.jpg', 'Potwierdzenie hasłem i zmiana hasła administratora')">
@@ -749,7 +771,7 @@
                         </div>
                     </div>
 
-                    <!-- ELEMENT 8: aktywacja.jpg — AKTYWACJA TRYBU LOTU -->
+                    <!-- ELEMENT 8: AKTYWACJA TRYBU LOTU -->
                     <div class="config-item grid grid-cols-1 lg:grid-cols-12 gap-4 items-start mb-4">
                         <div class="lg:col-span-6 flex justify-center lg:justify-start">
                             <div class="sim-thumb-card screen" onclick="openLightbox('images/aktywacja.jpg', 'Aktywacja trybu lotu — przełączenie w tryb emisji operacyjnej')">
@@ -759,7 +781,7 @@
                         <div class="lg:col-span-6">
                             <h3 class="sec-heading">Aktywacja trybu lotu</h3>
                             <div class="sec-body">
-                                <p>Przelącznik przechodzenia ze stanu konfiguracji naziemnej w stan ciągłego wykonywania zadania taktycznego.</p>
+                                <p>Przełącznik przechodzenia ze stanu konfiguracji naziemnej w stan ciągłego wykonywania zadania taktycznego.</p>
                                 <ul>
                                     <li><strong>Wyłączenie AP Wi-Fi:</strong> Po kliknięciu <code>URUCHOM TRYB LOTU</code> panel konfiguracyjny zostaje wyłączony, a sieć Wi-Fi zamknięta w celu redukcji sygnatury elektromagnetycznej.</li>
                                     <li><strong>Emisja Remote ID:</strong> Urządzenie przechodzi w autonomiczny tryb nadawania pakietów identyfikacyjnych.</li>
@@ -769,13 +791,13 @@
                         </div>
                     </div>
 
-                    <!-- === WERSJA MINIMALNA NADAJNIKA (NA SAMYM KOŃCU) === -->
-                    <div class="config-item mt-6 mb-2" id="wersja-minimalna">
+                    <!-- === WERSJA MINIMALNA NADAJNIKA === -->
+                    <div class="config-item mt-6 mb-6" id="wersja-minimalna">
                         <h2 class="sec-heading">Wersja minimalna nadajnika — Ultra-Light 13g</h2>
                         <div class="sec-body mb-4">
                             <p>Dla miniaturowych dronów FPV oraz zastosowań specjalnych przygotowana została <strong>wersja minimalna nadajnika</strong>. Posiada ona dokładnie ten sam zestaw funkcji, pełny panel konfiguracyjny WWW oraz wsparcie dla protokołów BLE 5 i Wi-Fi Beacon, zredukowane do absolutnego minimum wagowego.</p>
                             <ul>
-                                <li><strong>Zasilanie:</strong> Direct 5 V (z kontolera lotu FC lub dedykowanego BEC).</li>
+                                <li><strong>Zasilanie:</strong> Direct 5 V (z kontrolera lotu FC lub dedykowanego BEC).</li>
                                 <li><strong>Masa całkowita:</strong> Zaledwie <strong>13,1 grama</strong> (włączając moduł, okablowanie i elastyczną antenę).</li>
                                 <li><strong>Pełna funkcjonalność:</strong> Zapewnia obsługę trybu echa (Swarm Engine), zmianę danych tożsamości, integrację z systemem TAK/ATAK oraz rejestrator logów GPS.</li>
                             </ul>
@@ -784,22 +806,73 @@
                         <!-- 2 zdjęcia wersji minimalnej -->
                         <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                             <div class="flex flex-col items-center">
-                                <div class="sim-thumb-card" onclick="openLightbox('images/mini1.jpg', 'Wersja minimalna nadajnika — kompaktowy moduł z elastyczną anteną i przewodami 5V')">
+                                <div class="sim-thumb-card" onclick="openLightbox('images/mini1.jpg', 'Moduł nadajnika w osłonie termokurczliwej z anteną')">
                                     <img src="images/mini1.jpg" alt="mini1.jpg" onerror="this.onerror=null; this.src='https://placehold.co/600x450/111827/f59e0b?text=mini1.jpg';">
                                 </div>
-                                <span class="text-xs text-amber-500 font-mono mt-2">mini1.jpg — Moduł nadajnika w osłonie termokurczliwej z anteną</span>
+                                <span class="text-xs text-amber-500 font-mono mt-2">Moduł nadajnika w osłonie termokurczliwej z anteną</span>
                             </div>
                             <div class="flex flex-col items-center">
-                                <div class="sim-thumb-card" onclick="openLightbox('images/mini2.jpg', 'Pomiar wagi wersji minimalnej nadajnika — dokładnie 13.1 g na wadze precyzyjnej')">
+                                <div class="sim-thumb-card" onclick="openLightbox('images/mini2.jpg', 'Pomiar masy: 13,1 g z zasilaniem 5V')">
                                     <img src="images/mini2.jpg" alt="mini2.jpg" onerror="this.onerror=null; this.src='https://placehold.co/600x450/111827/f59e0b?text=mini2.jpg';">
                                 </div>
-                                <span class="text-xs text-amber-500 font-mono mt-2">mini2.jpg — Pomiar masy: 13,1 g z zasilaniem 5V</span>
+                                <span class="text-xs text-amber-500 font-mono mt-2">Pomiar masy: 13,1 g z zasilaniem 5V</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- === PRZYKŁADOWY WIDOK SYMULACJI ECHA (SKANERY / SYSTEMY C-UAS) === -->
+                    <div class="config-item mt-2 mb-6">
+                        <h2 class="sec-heading">Widok symulacji echa w systemach skanujących przestrzeń (C-UAS / Remote ID)</h2>
+                        <div class="sec-body mb-4">
+                            <p>Poniżej przedstawiono przykładowy widok echa generowanego w eterze, obserwowany od strony odbiorników, stacji detekcji radiowej oraz oprogramowania skanującego przestrzeń powietrzną (np. skanery OpenDroneID, stacje antydronowe C-UAS, systemy dowodzenia ATAK/TAK):</p>
+                            <ul>
+                                <li><strong>Montaż na fizycznym dronie:</strong> Nadajnik musi być fizycznie podczepiony pod prawdziwego drona w locie i pobierać jego rzeczywiste odczyty z GPS.</li>
+                                <li><strong>Jeden dron realny, reszta to cienie:</strong> Spośród wszystkich wykrytych obiektów na ekranach stacji monitorujących <strong>tylko jeden obiekt jest fizycznym, latającym dronem</strong>. Pozostałe obiekty (aż do 50 sztuk) stanowią wyłącznie cyfrowe "cienie" / cele pozorne generowane radiowo przez silnik <em>Swarm Engine</em>.</li>
+                                <li><strong>Dynamiczne ugrupowanie:</strong> Cele pozorne poruszają się w zadanym w konfiguracji szyku (np. kwadrat, siatka, promień rozrzutu 25–300 m), podążając idealnie za śladem nawigacyjnym prawdziwej maszyny i myląc systemy rozpoznania stacji naziemnych.</li>
+                            </ul>
+                        </div>
+
+                        <!-- Górny wiersz: 3 zdjęcia (widok1 do widok3) -->
+                        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mb-4">
+                            <div class="flex flex-col items-center">
+                                <div class="sim-thumb-card screen" onclick="openLightbox('images/widok1.jpg', 'Wykrycie roju ech w skanerze')">
+                                    <img src="images/widok1.jpg" alt="widok1.jpg" onerror="this.onerror=null; this.src='https://placehold.co/600x400/111827/f59e0b?text=widok1.jpg';">
+                                </div>
+                                <span class="text-xs text-amber-500 font-mono mt-2 text-center">Wykrycie roju ech w skanerze</span>
+                            </div>
+                            <div class="flex flex-col items-center">
+                                <div class="sim-thumb-card screen" onclick="openLightbox('images/widok2.jpg', 'Rozrzut przestrzenny celów pozornych')">
+                                    <img src="images/widok2.jpg" alt="widok2.jpg" onerror="this.onerror=null; this.src='https://placehold.co/600x400/111827/f59e0b?text=widok2.jpg';">
+                                </div>
+                                <span class="text-xs text-amber-500 font-mono mt-2 text-center">Rozrzut przestrzenny celów pozornych</span>
+                            </div>
+                            <div class="flex flex-col items-center">
+                                <div class="sim-thumb-card screen" onclick="openLightbox('images/widok3.jpg', 'Pozycje i ślady dronów-cieni')">
+                                    <img src="images/widok3.jpg" alt="widok3.jpg" onerror="this.onerror=null; this.src='https://placehold.co/600x400/111827/f59e0b?text=widok3.jpg';">
+                                </div>
+                                <span class="text-xs text-amber-500 font-mono mt-2 text-center">Pozycje i ślady dronów-cieni</span>
+                            </div>
+                        </div>
+
+                        <!-- Dolny wiersz: 2 zdjęcia (widok4 i widok5) - wycentrowane -->
+                        <div class="flex flex-col sm:flex-row justify-center gap-4 max-w-4xl mx-auto w-full">
+                            <div class="flex flex-col items-center w-full sm:w-1/2 lg:w-1/3">
+                                <div class="sim-thumb-card screen" onclick="openLightbox('images/widok4.jpg', 'Wizualizacja na mapie sytuacyjnej')">
+                                    <img src="images/widok4.jpg" alt="widok4.jpg" onerror="this.onerror=null; this.src='https://placehold.co/600x400/111827/f59e0b?text=widok4.jpg';">
+                                </div>
+                                <span class="text-xs text-amber-500 font-mono mt-2 text-center">Wizualizacja na mapie sytuacyjnej</span>
+                            </div>
+                            <div class="flex flex-col items-center w-full sm:w-1/2 lg:w-1/3">
+                                <div class="sim-thumb-card screen" onclick="openLightbox('images/widok5.jpg', 'Zagęszczenie sygnałów w eterze')">
+                                    <img src="images/widok5.jpg" alt="widok5.jpg" onerror="this.onerror=null; this.src='https://placehold.co/600x400/111827/f59e0b?text=widok5.jpg';">
+                                </div>
+                                <span class="text-xs text-amber-500 font-mono mt-2 text-center">Zagęszczenie sygnałów w eterze</span>
                             </div>
                         </div>
                     </div>
 
                     <!-- === PODSUMOWANIE === -->
-                    <div class="config-item mt-6">
+                    <div class="config-item mt-2">
                         <h2 class="sec-heading">Podsumowanie</h2>
                         <div class="sec-body">
                             <p>Nadajnik Remote ID DroneAtak to kompletne narzędzie szkoleniowe i operacyjne. Łączy rzeczywistą emisję sygnału Remote ID z możliwością ustawienia dowolnych danych tożsamości, zaawansowaną funkcją echa (Swarm Engine) oraz obsługą oprogramowania taktycznego TAK/ATAK.</p>
