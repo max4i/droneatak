@@ -264,6 +264,7 @@
             font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
         }
 
+        /* DYNAMICZNE DOPASOWANIE DO SZEROKOŚCI GRAFIKI */
         .hero-img-card {
             border: 1px solid #374151;
             background: rgba(10, 12, 16, 0.8);
@@ -271,16 +272,11 @@
             overflow: hidden;
             transition: all 0.3s ease;
             width: 100%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            aspect-ratio: 16 / 9;
         }
 
         .hero-img-card img {
             width: 100%;
-            height: 100%;
-            object-fit: cover;
+            height: auto;
             display: block;
         }
 
@@ -348,19 +344,17 @@
                             Symulatory dronów, Remote ID Mx ECHO i narzędzia szkoleniowe
                         </p>
                         <p class="text-zinc-400 text-sm md:text-base leading-7">
-                            Polski zaawansowany projekt techniczny skupiający się na tworzeniu oprogramowania układowego, 
-                            autorskiego sprzętu mikroprocesorowego oraz systemów taktycznych wspierających szkolenie
-                            operatorów bezzałogowych statków powietrznych (BSP).
+                            Polski projekt skupiający się na tworzeniu oprogramowania układowego, autorskiego sprzętu mikroprocesorowego oraz systemów taktycznych wspierających szkolenie operatorów bezzałogowych statków powietrznych (BSP) oraz do testowania i sprawdzania systemów antydronowych w jednostkach wojskowych, poligonach, placach ćwiczeń oraz lotniskach cywilnych i wojskowych.
                         </p>
                     </header>
 
-                    <!-- 2 GRAFIKI NA GÓRZE OPISU (g1.jpg i g2.jpg OBOK SIEBIE) -->
+                    <!-- 2 GRAFIKI NA GÓRZE OPISU (g3.png i g4.png OBOK SIEBIE - DYNAMICZNA WYSOKOŚĆ) -->
                     <div class="w-full max-w-4xl mb-8 grid grid-cols-1 md:grid-cols-2 gap-4">
                         <div class="hero-img-card">
-                            <img src="images/g1.jpg" alt="DroneAtak – Grafika opisu 1" onerror="this.onerror=null; this.src='images/g2.png';">
+                            <img src="images/g3.png" alt="DroneAtak – Grafika opisu 3" onerror="this.onerror=null; this.src='images/g3.png';">
                         </div>
                         <div class="hero-img-card">
-                            <img src="images/g2.jpg" alt="DroneAtak – Grafika opisu 2" onerror="this.onerror=null; this.src='images/g2.png';">
+                            <img src="images/g4.png" alt="DroneAtak – Grafika opisu 4" onerror="this.onerror=null; this.src='images/g4.png';">
                         </div>
                     </div>
 
@@ -390,6 +384,11 @@
                             <p>
                                 <strong class="text-red-400">3. Zakaz wywoływania fałszywych zagrożeń i interwencji:</strong><br>
                                 Zabrania się wykonywania lotów oraz transmisji danych radiowych w miejscach i warunkach, gdzie mogłoby to wprowadzić mylne zagrożenie i wywołać nieuzasadnioną interwencję odpowiedzialnych służb ratunkowych, porządkowych i wojskowych.
+                            </p>
+
+                            <p>
+                                <strong class="text-red-400">4. Wymóg zgody na testowanie systemów antydronowych (C-UAS):</strong><br>
+                                Sprawdzenie i testowanie skuteczności działania systemów antydronowych oraz stacji detekcji radiowej może odbywać się <strong>wyłącznie za pełną wiedzą i bezwzględną zgodą zarządcy strefy powietrznej lub terenu</strong>, nad którym prowadzone są szkolenia żołnierzy oraz operatorów dronów. Uruchamianie procedur testowych bez wcześniejszej formalnej koordynacji z dowództwem jednostki, zarządem poligonu lub kierownictwem lotniska jest kategorycznie zabronione.
                             </p>
 
                             <div class="mt-6 pt-4 border-t border-red-900/60 bg-black/40 p-4 rounded text-xs leading-6">
@@ -431,7 +430,13 @@
                                 Prezentowany na tym serwerze <strong>nadajnik Remote ID oraz wieloobiektowy symulator dronów</strong> stanowią <strong>pierwszy tego typu zintegrowany projekt na świecie</strong>. Rozwiązanie to unikalnie łączy fizyczny moduł emisyjny (Radio Hardware na mikrokontrolerach ESP32) z zaawansowanym silnikiem symulacji programowej (Swarm Engine) oraz natywną integracją taktyczną z systemami dowodzenia wojskowego <strong>TAK / ATAK / WinTAK</strong> poprzez komunikaty <strong>CoT (Cursor on Target)</strong>.
                             </p>
                             <p>
-                                System pozwala na symulację złożonych scenariuszy nalotu rojowego <strong>do 200 symulowanych obiektów jednocześnie</strong> oraz emisję radiową (Wi-Fi Beacon / BLE 4.2 i 5.0 Coded PHY) dla <strong>do 50 celów pozornych</strong> w czasie rzeczywistym.
+                                Warto podkreślić kluczową różnicę zasadniczą pomiędzy dwoma głównymi urządzeniami wchodzącymi w skład systemu:
+                            </p>
+                            <p>
+                                • <strong>Taktyczny Symulator Nalotu (do 200 dronów):</strong> Jest urządzeniem czysto symulacyjnym, które <strong>nie potrzebuje rzeczywistych danych GPS ani odbiornika satelitarnego</strong>. Generuje ono kompletną dynamikę lotu roju dronów programowo w przestrzeni 3D i może działać na dowolnie zdefiniowanych, wirtualnych współrzędnych geograficznych na całym globie (np. na wskazanym obszarze ćwiczeń poligonowych), imitując nalot bojowy bez konieczności użycia realnego drona w powietrzu.
+                            </p>
+                            <p>
+                                • <strong>Osobisty Nadajnik Remote ID z funkcją Echa:</strong> W przeciwieństwie do symulatora, nadajnik ten <strong>musi być zamontowany na fizycznym, latającym dronie i wymaga realnych danych GPS/GNSS</strong>. Nie służy do bezzałogowego generowania ataku z ziemi, lecz nadaje rzeczywistą pozycję pojedynczego drona w locie. Na podstawie tego prawdziwego śladu GPS wbudowany silnik <em>Swarm Engine</em> potrafi wygenerować w eterze do 50 sztuk wirtualnych "ech" (celów pozornych), których trajektorie są dynamicznie powielane i dopasowywane do kursu rzeczywistego drona.
                             </p>
                         </div>
                     </section>
@@ -448,28 +453,28 @@
                             <article class="project-card">
                                 <h2>1. Taktyczny Symulator Dronów (do 200 dronów)</h2>
                                 <p>
-                                    Zaawansowany symulator roju dronów oparty na układzie ESP32-S3. Umożliwia generowanie do 200 obiektów w przestrzeni 3D z 12 wbudowanymi scenariuszami taktycznymi (np. Kleszcze Dwukierunkowe, Gilotyna, Karuzela Śmierci, Hiper-Saturacja). Posiada bezpośrednie strumieniowanie CoT (UDP/TCP/TLS) do aplikacji ATAK oraz opcję ustawienia punktu celu w dowolnym miejscu na globie.
+                                    Zaawansowany symulator roju dronów oparty na układzie ESP32-S3. Generuje czysto programowy atak do 200 obiektów w przestrzeni 3D z 12 scenariuszami taktycznymi. <strong>Nie wymaga fizycznego drona ani sygnału GPS</strong> – umożliwia symulację na dowolnych wpisanych współrzędnych geograficznych, transmitując pakiety CoT/Remote ID bezpośrednio do systemów ATAK i stanowisk C-UAS na poligonach.
                                 </p>
                             </article>
 
                             <article class="project-card">
                                 <h2>2. Nadajnik Remote ID & Swarm Engine (13g Mini)</h2>
                                 <p>
-                                    Osobisty nadajnik Remote ID dla pilota drona zasilany z 5 V. Wyposażony w funkcję echa (Swarm Engine generujący do 50 celów pozornych z szykiem i rozrzutem 25-300m) oraz możliwość lotu na dowolnych danych tożsamości. Sekcja prezentuje również wersję minimalną Ultra-Light o wadze zaledwie 13,1 grama dla dronów FPV.
+                                    Osobisty moduł <strong>montowany bezpośrednio na realnym dronie</strong>, wymagający rzeczywistych odczytów z GPS. Prawdziwa trasa przelotu drona jest w czasie rzeczywistym powielana przez silnik Swarm Engine, wyliczający do 50 wirtualnych celów pozornych (ech) poruszających się w zadanej formacji wokół fizycznej platformy. Dostępny także w wersji Ultra-Light 13,1 g dla dronów FPV.
                                 </p>
                             </article>
 
                             <article class="project-card">
                                 <h2>3. Odbiornik Remote ID – Mx ECHO</h2>
                                 <p>
-                                    Stacjonarno-mobilny odbiornik taktyczny oparty na procesorze ESP32-C5 z dwupasmową obsługą Wi-Fi (2.4 GHz oraz 5 GHz) i BLE. Wykorzystuje oficjalny silnik OpenDroneID core do dekodowania, agregacji i filtracji do 300 celów w bazie danych wraz z przekazywaniem danych do systemów dowodzenia TAK i panelem Web UI.
+                                    Stacjonarno-mobilny odbiornik taktyczny oparty na procesorze ESP32-C5 z dwupasmową obsługą Wi-Fi (2.4 GHz oraz 5 GHz) i BLE. Wykorzystuje silnik OpenDroneID core do dekodowania i agregacji do 300 celów w bazie danych. Służy do ciągłego monitorowania przestrzeni oraz sprawdzania skuteczności wykrywania systemów antydronowych na poligonach i lotniskach.
                                 </p>
                             </article>
 
                             <article class="project-card">
-                                <h2>4. Taktyczne Systemy Zrzutowe (Druk 3D)</h2>
+                                <h2>4. Systemy Zrzutowe (Druk 3D)</h2>
                                 <p>
-                                    Kompletna baza autorskich projektów mechanizmów zrzutowych do wydruku 3D (darmowe i płatne modele Cults3D). Dedykowane dla amunicji i granatów ćwiczebnych/szkoleniowych (40mm, F1, RGO-88, RG-42, RPG-7) z montażem na dronach 10-calowych, płatowcach Talon oraz ramach Tarot.
+                                    Baza autorskich projektów mechanizmów wykonanych w prostej technice druku 3D (darmowe i płatne modele Cults3D). Pomysły i rozwiązania zostały bezpośrednio zaczerpnięte z realiów działań wojennych w Ukrainie. Służą do uzbrajania komercyjnych dronów FPV oraz płatowców, pozwalając zamienić je w drony kamikaze lub precyzyjne platformy zrzutowe amunicji szkoleniowej (40mm, F1, RG-42, RPG-7) na potrzeby ćwiczeń wojskowych.
                                 </p>
                             </article>
 
@@ -481,7 +486,7 @@
                     <section class="max-w-4xl w-full text-center mt-4">
                         <h2 class="section-title mb-3">Cel projektu</h2>
                         <p class="text-zinc-400 text-sm leading-7 font-mono">
-                            Celem projektu DroneAtak jest tworzenie nowatorskich, praktycznych
+                            Celem projektu DroneAtak jest tworzenie nowatorskich, practical
                             narzędzi umożliwiających prowadzenie testów, eksperymentów oraz szkoleń taktycznych związanych z bezzałogowymi
                             statkami powietrznymi. Systemy są rozwijane etapami,
                             a ich funkcjonalność jest stale rozszerzana wraz z
