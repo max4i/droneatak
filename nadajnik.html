@@ -296,27 +296,6 @@
             color: #fbbf24;
             font-size: 0.72rem;
         }
-        .badge-tech {
-            display: inline-block;
-            padding: 2px 8px;
-            border: 1px solid #374151;
-            border-radius: 3px;
-            font-size: 0.65rem;
-            color: #9ca3af;
-            margin-right: 4px;
-            margin-bottom: 4px;
-            font-family: ui-monospace, monospace;
-        }
-
-        .hero-sim {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 16px;
-            margin-bottom: 1.5rem;
-            max-width: 700px;
-            margin-left: auto;
-            margin-right: auto;
-        }
 
         .spec-table {
             width: 100%;
@@ -491,11 +470,19 @@
                         </p>
                     </div>
 
-                    <!-- === ZDJĘCIE NADAJNIKA NA GÓRZE === -->
-                    <div class="hero-sim">
-                        <div class="sim-thumb-card" onclick="openLightbox('images/n1.jfif', 'Nadajnik Remote ID — obudowa 3D PETG z anteną GP 5/8')">
-                            <img src="images/n1.jfif" alt="Nadajnik Remote ID — obudowa 3D PETG"
-                                 onerror="this.onerror=null; this.src='https://placehold.co/700x525/111827/f59e0b?text=n1.jfif';">
+                    <!-- === ZDJĘCIA NADAJNIKA NA GÓRZE (n1.jpg do n4.jpg obok siebie) === -->
+                    <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 mb-6 w-full">
+                        <div class="sim-thumb-card" onclick="openLightbox('images/n1.jpg', 'Nadajnik Remote ID — zdjęcie 1')">
+                            <img src="images/n1.jpg" alt="n1.jpg" onerror="this.onerror=null; this.src='https://placehold.co/600x450/111827/f59e0b?text=n1.jpg';">
+                        </div>
+                        <div class="sim-thumb-card" onclick="openLightbox('images/n2.jpg', 'Nadajnik Remote ID — zdjęcie 2')">
+                            <img src="images/n2.jpg" alt="n2.jpg" onerror="this.onerror=null; this.src='https://placehold.co/600x450/111827/f59e0b?text=n2.jpg';">
+                        </div>
+                        <div class="sim-thumb-card" onclick="openLightbox('images/n3.jpg', 'Nadajnik Remote ID — zdjęcie 3')">
+                            <img src="images/n3.jpg" alt="n3.jpg" onerror="this.onerror=null; this.src='https://placehold.co/600x450/111827/f59e0b?text=n3.jpg';">
+                        </div>
+                        <div class="sim-thumb-card" onclick="openLightbox('images/n4.jpg', 'Nadajnik Remote ID — zdjęcie 4')">
+                            <img src="images/n4.jpg" alt="n4.jpg" onerror="this.onerror=null; this.src='https://placehold.co/600x450/111827/f59e0b?text=n4.jpg';">
                         </div>
                     </div>
 
@@ -505,13 +492,6 @@
                         <div class="sec-body">
                             <p><strong>Nadajnik Remote ID DroneAtak</strong> to osobiste urządzenie dla pojedynczego pilota drona, przeznaczone do szkolenia, testowania odbiorników Remote ID oraz prowadzenia ćwiczeń z zakresu świadomości sytuacyjnej. Urządzenie emituje rzeczywisty sygnał Remote ID zgodny z normami <strong>ASTM F3411</strong> i <strong>ASD-STAN</strong>, a jednocześnie pozwala na <strong>latania na dowolnych danych Remote ID</strong> — czyli na symulowanie tożsamości innego drona bez modyfikacji samej platformy latającej.</p>
                             <p>Nadajnik jest kompaktowy, zasilany z 5 V (powerbank / telefon / ładowarka / FC) i może być zamontowany na dowolnym dronie treningowym. Dzięki niemu pilot ćwiczy procedury identyfikacji, a obsługa naziemna widzi na swoich odbiornikach dokładnie taki obraz, jaki zobaczyłaby w realnej sytuacji operacyjnej.</p>
-                            <div class="mt-3">
-                                <span class="badge-tech">ASTM F3411</span>
-                                <span class="badge-tech">ASD-STAN</span>
-                                <span class="badge-tech">BLE 5 + Wi-Fi Beacon</span>
-                                <span class="badge-tech">ESP32-C3-MINI-1</span>
-                                <span class="badge-tech">Zasilanie 5 V</span>
-                            </div>
                         </div>
                     </div>
 
@@ -655,7 +635,7 @@
                         <div class="lg:col-span-6">
                             <h3 class="sec-heading">Generator numeru seryjnego & Wybór marki</h3>
                             <div class="sec-body">
-                                <p>Narzędzie wbudowane w panel, pozwalające na natychmiastowe wybranie produkcyjnej marki drona lub modułu Remote ID, pod jaką dany obiekt będzie widoczny na skanerach przestrzeni.</p>
+                                <p>Narzędzie wbudowane w panel, pozwalające na natychmiastowe wybranie produkcyjnej marki drona lub modułu Remote ID, pod jakną dany obiekt będzie widoczny na skanerach przestrzeni.</p>
                                 <ul>
                                     <li><strong>14 fabrycznych marek dronów:</strong> Szybki wybór dedykowanego prefiksu (np. DJI, Autel Robotics, Parrot, Skydio, Yuneec, Hubsan, FIMI Xiaomi, senseFly, Wingtra, Quantum-Systems, Delair, AeroVironment, Teal Drones, BRINC).</li>
                                     <li><strong>6 marek modułów Remote ID:</strong> Dedykowane prefiksy modułów zewnętrznych (Dronetag, BlueMark, Aerobits, uAvionix, Sagetech, Pierce Aerospace).</li>
@@ -867,6 +847,25 @@
                                     <img src="images/widok5.jpg" alt="widok5.jpg" onerror="this.onerror=null; this.src='https://placehold.co/600x400/111827/f59e0b?text=widok5.jpg';">
                                 </div>
                                 <span class="text-xs text-amber-500 font-mono mt-2 text-center">Zagęszczenie sygnałów w eterze</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- === REAL PHOTO (4 GRAFIKI OBOK SIEBIE nr1.jpg DO nr4.jpg) === -->
+                    <div class="config-item mb-6">
+                        <h2 class="sec-heading">REAL PHOTO</h2>
+                        <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 mt-4 w-full">
+                            <div class="sim-thumb-card" onclick="openLightbox('images/nr1.jpg', 'REAL PHOTO — Zdjęcie 1')">
+                                <img src="images/nr1.jpg" alt="nr1.jpg" onerror="this.onerror=null; this.src='https://placehold.co/600x450/111827/f59e0b?text=nr1.jpg';">
+                            </div>
+                            <div class="sim-thumb-card" onclick="openLightbox('images/nr2.jpg', 'REAL PHOTO — Zdjęcie 2')">
+                                <img src="images/nr2.jpg" alt="nr2.jpg" onerror="this.onerror=null; this.src='https://placehold.co/600x450/111827/f59e0b?text=nr2.jpg';">
+                            </div>
+                            <div class="sim-thumb-card" onclick="openLightbox('images/nr3.jpg', 'REAL PHOTO — Zdjęcie 3')">
+                                <img src="images/nr3.jpg" alt="nr3.jpg" onerror="this.onerror=null; this.src='https://placehold.co/600x450/111827/f59e0b?text=nr3.jpg';">
+                            </div>
+                            <div class="sim-thumb-card" onclick="openLightbox('images/nr4.jpg', 'REAL PHOTO — Zdjęcie 4')">
+                                <img src="images/nr4.jpg" alt="nr4.jpg" onerror="this.onerror=null; this.src='https://placehold.co/600x450/111827/f59e0b?text=nr4.jpg';">
                             </div>
                         </div>
                     </div>
