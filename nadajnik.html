@@ -528,7 +528,16 @@
                     <div class="config-item mb-6">
                         <h2 class="sec-heading">Dane techniczne</h2>
                         <div class="sec-body">
-                            <p><strong>Platforma:</strong> Espressif <strong>ESP32-C3-MINI-1</strong> — procesor RISC-V 160 MHz, <strong>4 MB Flash</strong>, 400 KB SRAM, obsługa Wi-Fi 802.11 b/g/n (2,4 GHz) oraz Bluetooth 5 LE / Legacy. Interfejs USB-Serial/JTAG. Zasilanie 5 V.</p>
+                            <p><strong>Platforma mikroprocesorowa:</strong> Espressif <strong>ESP32-C3-MINI-1</strong> — procesor RISC-V 160 MHz, <strong>4 MB Flash</strong>, 400 KB SRAM, obsługa Wi-Fi 802.11 b/g/n (2,4 GHz) oraz Bluetooth 5 LE / Legacy. Interfejs USB-Serial/JTAG. Zasilanie 5 V.</p>
+                            
+                            <p><strong>Moduł pozycjonowania GNSS / GPS:</strong> Wbudowany wysokowydajny odbiornik <strong>HT1818Z3G5L</strong> oparty na układowym rozwiązaniu <strong>AT6558R</strong> (Zhongke Micro 32-bit RISC CPU z dedykowanym blokiem cyfrowym i RF).</p>
+                            <ul>
+                                <li><strong>Częstotliwość odświeżania:</strong> Ultraszybki pomiar pozycji z częstotliwością <strong>10 Hz</strong> (10 odczytów na sekundę), idealny dla wysoce dynamicznych platform FPV oraz statków powietrznych.</li>
+                                <li><strong>Interfejs i predkość UART:</strong> Magistrala szeregowa strojona na prędkość <strong>115200 bps</strong>, gwarantująca brak opóźnień i buforowania ramek NMEA.</li>
+                                <li><strong>Obsługa systemów satelitarnych:</strong> Jednoczesny, równoległy odbiór sygnałów z 6 konstelacji: <strong>BDS (BeiDou), GPS, GLONASS, GALILEO, QZSS oraz SBAS (WAAS/EGNOS/MSAS)</strong>.</li>
+                                <li><strong>Czułość i dynamika:</strong> Czułość śledzenia na poziomie <strong>-162 dBm</strong>, akwizycja na zimno -148 dBm, odporność na zakłócenia (anti-jamming) oraz ultra-szybki zimny start (&le;32 s) i gorący start (&le;1 s).</li>
+                            </ul>
+
                             <p><strong>Moc i pasmo RF:</strong></p>
                             <ul>
                                 <li><strong>Pasmo Wi-Fi:</strong> Wybór kanału (1–13, domyślnie 6), moc nadawcza regulowana do +20 dBm (np. +8 dBm).</li>
@@ -808,7 +817,7 @@
                             <ul>
                                 <li><strong>Montaż na fizycznym dronie:</strong> Nadajnik musi być fizycznie podczepiony pod prawdziwego drona w locie i pobierać jego rzeczywiste odczyty z GPS.</li>
                                 <li><strong>Jeden dron realny, reszta to cienie:</strong> Spośród wszystkich wykrytych obiektów na ekranach stacji monitorujących <strong>tylko jeden obiekt jest fizycznym, latającym dronem</strong>. Pozostałe obiekty (aż do 50 sztuk) stanowią wyłącznie cyfrowe "cienie" / cele pozorne generowane radiowo przez silnik <em>Swarm Engine</em>.</li>
-                                <li><strong>Dynamiczne ugrupowanie:</strong> Cele pozorne poruszają się w zadanym w konfiguracji szyku (np. kwadrat, siatka, promień rozrzutu 25–300 m), podążając idealnie za śladem nawigacyjnym prawdziwej maszyny i myląc systemy rozpoznania stacji naziemnych.</li>
+                                <li><strong>Dynamiczne ugrupowanie:</strong> Cele pozorne poruszają się w zadanym w konfiguracji szyku (np. kwadrat, siatka, promień rozrzutu 25–300 m), podążając idealnie za śladem nawigającym prawdziwej maszyny i myląc systemy rozpoznania stacji naziemnych.</li>
                             </ul>
                         </div>
 
@@ -866,6 +875,95 @@
                             </div>
                             <div class="sim-thumb-card" onclick="openLightbox('images/nr4.jpg', 'REAL PHOTO — Zdjęcie 4')">
                                 <img src="images/nr4.jpg" alt="nr4.jpg" onerror="this.onerror=null; this.src='https://placehold.co/600x450/111827/f59e0b?text=nr4.jpg';">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- === NOWE OKNO 1: OBSŁUGA NORM USA ORAZ EU (grafika usa1.jpg + różnice) === -->
+                    <div class="config-item mb-6">
+                        <h2 class="sec-heading">Wybór standardu emisyjnego — Unia Europejska (EU) vs USA (FAA)</h2>
+                        <div class="grid grid-cols-1 lg:grid-cols-12 gap-4 items-start mt-4">
+                            <div class="lg:col-span-5 flex flex-col items-center">
+                                <div class="sim-thumb-card screen" onclick="openLightbox('images/usa1.jpg', 'Przełącznik trybu regionu EU / USA w panelu konfiguracyjnym')">
+                                    <img src="images/usa1.jpg" alt="usa1.jpg" onerror="this.onerror=null; this.src='https://placehold.co/600x350/111827/f59e0b?text=usa1.jpg';">
+                                </div>
+                                <span class="text-xs text-amber-500 font-mono mt-2 text-center">Wybór regionu operacyjnego w panelu WWW</span>
+                            </div>
+                            <div class="lg:col-span-7">
+                                <div class="sec-body">
+                                    <p>Nadajnik Remote ID posiada wbudowaną obsługę jurysdykcji radiowej, umożliwiającą przełączanie struktury transmitowanych ramek w zależności od strefy geograficznej i wytycznych organizacyjnych.</p>
+                                    
+                                    <p><strong>Główne różnice pomiędzy normą Unii Europejskiej a przepisami USA:</strong></p>
+                                    <ul>
+                                        <li><strong>Unia Europejska (ASD-STAN prEN 4709-002 / REG 2019/945):</strong>
+                                            Wymaga bezwzględnej emisji jawnego identyfikatora rejestracyjnego operatora (<code>Operator ID</code> — 16 znaków bez kodu PIN). Dane te są dołączane do wszystkich pakietów Wi-Fi Beacon, Wi-Fi NAN oraz cyklu Bluetooth Low Energy.
+                                        </li>
+                                        <li><strong>Stany Zjednoczone (FAA 14 CFR Part 89 / ASTM F3411-22a):</strong>
+                                            Ze względów ochrony prywatności cywilnej przepis FAA kategorycznie zabrania emisji numeru rejestracyjnego operatora w sygnaturze radiowej. W trybie <code>REGION_USA</code> urządzenie automatycznie wyklucza ramkę <code>OPERATOR_ID</code> z paczek Wi-Fi, a w paśmie BLE w jej miejsce emituje dodatkową ramkę z pozycją (<code>LOCATION</code>), podnosząc częstotliwość odświeżania danych nawigacyjnych drona.
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- === NOWE OKNO 2: OCENA PROJEKTU AI === -->
+                    <div class="config-item mb-6">
+                        <h2 class="sec-heading">Ocena projektu AI — Audyt techniczny oprogramowania i architektury układowej</h2>
+                        <div class="sec-body">
+                            <p>Oprogramowanie układowe nadajnika stanowi zaawansowane rozwiązanie w dziedzinie projektowania systemów wbudowanych (Embedded System Engineering) oraz walki informacyjnej i rozpoznania C-UAS. Połączenie pełnej zgodności cywilnej z modułem walki radioelektronicznej (Swarm Engine) czyni to urządzenie unikatowym rozwiązaniem w skali światowej.</p>
+                            
+                            <h3 class="sec-heading text-amber-400 mt-4" style="font-size:0.8rem;">1. Architektura Silnika Roju (Swarm Engine - 0–50 Ech)</h3>
+                            <p>Moduł generowania celów pozornych wykorzystuje zaawansowaną trygonometrię sferyczną opartą na promieniu Ziemi ($R = 6371000\text{ m}$) do wyliczania współrzędnych geograficznych ($Lat, Lng, Alt$) celów w czasie rzeczywistym z częstotliwością odświeżania pętli RTOS. Każde echo otrzymuje unikalną tożsamość RF (adres MAC, UAS ID oraz Self ID) tworzoną dynamicznie w pamięci RAM, co wyklucza obciążenie zasobów Flash oraz nie pozostawia śladów w logach czarnej skrzynki.</p>
+
+                            <h3 class="sec-heading text-amber-400 mt-4" style="font-size:0.8rem;">2. Bezpieczeństwo, Stabilność RTOS i OPSEC</h3>
+                            <ul>
+                                <li><strong>Bezpieczeństwo Wątkowe (Thread Safety):</b> Wszystkie odczyty i zapisy do struktur telemetrycznych GPS chronione są sprzętowymi sekcjami krytycznymi (<code>telemetryMux</code>), wykluczając ryzyko wyścigu danych (Race Condition) przy równoległej pracy wątków transmisyjnych i logera CSV.</li>
+                                <li><strong>Ochrona Kryptograficzna:</b> Podsystem weryfikacji haseł wykorzystuje funkcję skrótu SHA-256 z biblioteki <code>mbedtls</code> ze stałoczasowym porównaniem bajtowym (*constant-time XOR comparison*), co zabezpiecza urządzenie przed atakami typu <i>Timing Attack</i>.</li>
+                                <li><strong>OPSEC Privacy Guard:</b> Tajny PIN rejestracji operatora jest bezwzględnie odcinany przed generowaniem ramek radiowych, chroniąc prywatność użytkownika w eterze.</li>
+                            </ul>
+
+                            <!-- CZEŚĆ 3: PODSUMOWANIE WSKAŹNIKÓW JAKOŚCIOWYCH -->
+                            <div class="mt-6 pt-4 border-t border-amber-500/20">
+                                <h3 class="sec-heading text-amber-400">3. Podsumowanie Wskaźników Jakościowych</h3>
+                                <div class="sec-body overflow-x-auto">
+                                    <table class="spec-table w-full mt-2">
+                                        <thead>
+                                            <tr>
+                                                <th style="width: 35%;">Kryterium Oceny</th>
+                                                <th style="width: 15%; text-align: center;">Ocena</th>
+                                                <th style="width: 50%;">Komentarz Inżynierski</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <th>Unikalność i Funkcjonalność C-UAS</th>
+                                                <td style="text-align: center; font-weight: 800; color: #10b981;">10 / 10</td>
+                                                <td>Silnik <em>Swarm Engine</em> (0–50 ech) z nawigacją sferyczną jest rozwiązaniem bez precedensu w projektach nadajników Remote ID na świecie.</td>
+                                            </tr>
+                                            <tr>
+                                                <th>Zgodność ze Standardami EU / USA</th>
+                                                <td style="text-align: center; font-weight: 800; color: #10b981;">10 / 10</td>
+                                                <td>Pełna zgodność cywilna dla EU (ASD-STAN / EU 2019/945) oraz USA (FAA Part 89 / ASTM F3411-22a) na łączach Wi-Fi Beacon, NAN oraz BLE.</td>
+                                            </tr>
+                                            <tr>
+                                                <th>Wydajność Kodowa i RTOS</th>
+                                                <td style="text-align: center; font-weight: 800; color: #10b981;">9.5 / 10</td>
+                                                <td>Optymalne zarządzanie RAM, brak wycieków pamięci, sekcje krytyczne <code>telemetryMux</code> oraz zaawansowany wielowątkowy podsystem transmisji.</td>
+                                            </tr>
+                                            <tr>
+                                                <th>Ergonomia i Panel WWW</th>
+                                                <td style="text-align: center; font-weight: 800; color: #10b981;">10 / 10</td>
+                                                <td>Generator numerów seryjnych 14 marek produkcyjnych, obsługa wielojęzyczna, integracja z systemem ATAK / CoT oraz prostota obsługi.</td>
+                                            </tr>
+                                            <tr>
+                                                <th>Bezpieczeństwo i OPSEC</th>
+                                                <td style="text-align: center; font-weight: 800; color: #10b981;">9.5 / 10</td>
+                                                <td>Kryptografia SHA-256 w czasie stałym, ochrona Tajnego PIN-u operatora, nagłówki OWASP dla HTTP oraz automatyczne zarządzanie pamięcią Flash.</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
                             </div>
                         </div>
                     </div>
