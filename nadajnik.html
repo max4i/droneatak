@@ -691,7 +691,7 @@
                                 <ul>
                                     <li><strong>Stopień pilota:</strong> Dowolny stopień wojskowy lub funkcja (np. <code>szer.</code>).</li>
                                     <li><strong>Imię i nazwisko:</strong> Dane identyfikacyjne pilota (np. <code>Jasiu Trąbka</code>).</li>
-                                    <li><strong>Przydział:</strong> Kod jednostki lub pododdziału (np. <code>115BOT</code>).</li>
+                                    <li><strong>Przydział:</strong> Kod jednostki lub pododdziału (np. <code>15LBOT</code>).</li>
                                     <li><strong>Ochrona danych:</strong> Informacje w tej sekcji są przechowywane <strong>wyłącznie w lokalnej pamięci Flash</strong> nadajnika i NIE SĄ emitowane przez sygnały radiowe Wi-Fi/BLE.</li>
                                 </ul>
                             </div>
@@ -817,7 +817,7 @@
                             <ul>
                                 <li><strong>Montaż na fizycznym dronie:</strong> Nadajnik musi być fizycznie podczepiony pod prawdziwego drona w locie i pobierać jego rzeczywiste odczyty z GPS.</li>
                                 <li><strong>Jeden dron realny, reszta to cienie:</strong> Spośród wszystkich wykrytych obiektów na ekranach stacji monitorujących <strong>tylko jeden obiekt jest fizycznym, latającym dronem</strong>. Pozostałe obiekty (aż do 50 sztuk) stanowią wyłącznie cyfrowe "cienie" / cele pozorne generowane radiowo przez silnik <em>Swarm Engine</em>.</li>
-                                <li><strong>Dynamiczne ugrupowanie:</strong> Cele pozorne poruszają się w zadanym w konfiguracji szyku (np. kwadrat, siatka, promień rozrzutu 25–300 m), podążając idealnie za śladem nawigającym prawdziwej maszyny i myląc systemy rozpoznania stacji naziemnych.</li>
+                                <li><strong>Dynamiczne ugrupowanie:</strong> Cele pozorne poruszają się w zadanym w konfiguracji szyku (np. kwadrat, siatka, promień rozrzutu 25–300 m), podążając idealnie za śladem nawigującym prawdziwej maszyny i myląc systemy rozpoznania stacji naziemnych.</li>
                             </ul>
                         </div>
 
@@ -918,9 +918,9 @@
 
                             <h3 class="sec-heading text-amber-400 mt-4" style="font-size:0.8rem;">2. Bezpieczeństwo, Stabilność RTOS i OPSEC</h3>
                             <ul>
-                                <li><strong>Bezpieczeństwo Wątkowe (Thread Safety):</b> Wszystkie odczyty i zapisy do struktur telemetrycznych GPS chronione są sprzętowymi sekcjami krytycznymi (<code>telemetryMux</code>), wykluczając ryzyko wyścigu danych (Race Condition) przy równoległej pracy wątków transmisyjnych i logera CSV.</li>
-                                <li><strong>Ochrona Kryptograficzna:</b> Podsystem weryfikacji haseł wykorzystuje funkcję skrótu SHA-256 z biblioteki <code>mbedtls</code> ze stałoczasowym porównaniem bajtowym (*constant-time XOR comparison*), co zabezpiecza urządzenie przed atakami typu <i>Timing Attack</i>.</li>
-                                <li><strong>OPSEC Privacy Guard:</b> Tajny PIN rejestracji operatora jest bezwzględnie odcinany przed generowaniem ramek radiowych, chroniąc prywatność użytkownika w eterze.</li>
+                                <li><strong>Bezpieczeństwo Wątkowe (Thread Safety):</strong> Wszystkie odczyty i zapisy do struktur telemetrycznych GPS chronione są sprzętowymi sekcjami krytycznymi (<code>telemetryMux</code>), wykluczając ryzyko wyścigu danych (Race Condition) przy równoległej pracy wątków transmisyjnych i logera CSV.</li>
+                                <li><strong>Ochrona Kryptograficzna:</strong> Podsystem weryfikacji haseł wykorzystuje funkcję skrótu SHA-256 z biblioteki <code>mbedtls</code> ze stałoczasowym porównaniem bajtowym (*constant-time XOR comparison*), co zabezpiecza urządzenie przed atakami typu <i>Timing Attack</i>.</li>
+                                <li><strong>OPSEC Privacy Guard:</strong> Tajny PIN rejestracji operatora jest bezwzględnie odcinany przed generowaniem ramek radiowych, chroniąc prywatność użytkownika w eterze.</li>
                             </ul>
 
                             <!-- CZEŚĆ 3: PODSUMOWANIE WSKAŹNIKÓW JAKOŚCIOWYCH -->
@@ -963,6 +963,29 @@
                                             </tr>
                                         </tbody>
                                     </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- === DODANO: OKNO DOTYCZĄCE ZIELONEGO OŚWIETLENIA BŁYSKOWEGO === -->
+                    <div class="config-item mb-6">
+                        <h2 class="sec-heading">DODANO — Obsługa zielonego oświetlenia błyskowego</h2>
+                        <div class="grid grid-cols-1 lg:grid-cols-12 gap-4 items-start mt-4">
+                            <div class="lg:col-span-5 flex flex-col items-center">
+                                <div class="sim-thumb-card screen" onclick="openLightbox('images/led.jpg', 'Obsługa zielonego oświetlenia błyskowego w warunkach nocnych')">
+                                    <img src="images/led.jpg" alt="led.jpg" onerror="this.onerror=null; this.src='https://placehold.co/600x350/111827/f59e0b?text=led.jpg';">
+                                </div>
+                                <span class="text-xs text-amber-500 font-mono mt-2 text-center">Moduł zielonego oświetlenia błyskowego LED</span>
+                            </div>
+                            <div class="lg:col-span-7">
+                                <div class="sec-body">
+                                    <p>Wprowadzono pełną obsługę <strong>obowiązkowego w warunkach nocnych zielonego oświetlenia błyskowego</strong>, spełniającego rygorystyczne wymagania operacyjne i przepisowe dotyczące lotów UAV po zmroku.</p>
+                                    <ul>
+                                        <li><strong>Wybór trybu pracy:</strong> Istnieje pełna możliwość włączenia lub wyłączenia oświetlenia bezpośrednio z poziomu oprogramowania i panelu sterowania.</li>
+                                        <li><strong>Częstotliwość błysków:</strong> Płynnie regulowana częstotliwość generowanych błysków <strong>do 5 Hz</strong>.</li>
+                                        <li><strong>Nadawanie alfabetem Morse’a:</strong> Unikalna funkcja pozwalająca na nadawanie dowolnego wpisanego tekstu lub numeru operatora za pomocą sygnalizacji świetlnej alfabetem Morse’a.</li>
+                                    </ul>
                                 </div>
                             </div>
                         </div>
