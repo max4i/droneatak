@@ -879,35 +879,7 @@
                         </div>
                     </div>
 
-                    <!-- === NOWE OKNO 1: OBSŁUGA NORM USA ORAZ EU (grafika usa1.jpg + różnice) === -->
-                    <div class="config-item mb-6">
-                        <h2 class="sec-heading">Wybór standardu emisyjnego — Unia Europejska (EU) vs USA (FAA)</h2>
-                        <div class="grid grid-cols-1 lg:grid-cols-12 gap-4 items-start mt-4">
-                            <div class="lg:col-span-5 flex flex-col items-center">
-                                <div class="sim-thumb-card screen" onclick="openLightbox('images/usa1.jpg', 'Przełącznik trybu regionu EU / USA w panelu konfiguracyjnym')">
-                                    <img src="images/usa1.jpg" alt="usa1.jpg" onerror="this.onerror=null; this.src='https://placehold.co/600x350/111827/f59e0b?text=usa1.jpg';">
-                                </div>
-                                <span class="text-xs text-amber-500 font-mono mt-2 text-center">Wybór regionu operacyjnego w panelu WWW</span>
-                            </div>
-                            <div class="lg:col-span-7">
-                                <div class="sec-body">
-                                    <p>Nadajnik Remote ID posiada wbudowaną obsługę jurysdykcji radiowej, umożliwiającą przełączanie struktury transmitowanych ramek w zależności od strefy geograficznej i wytycznych organizacyjnych.</p>
-                                    
-                                    <p><strong>Główne różnice pomiędzy normą Unii Europejskiej a przepisami USA:</strong></p>
-                                    <ul>
-                                        <li><strong>Unia Europejska (ASD-STAN prEN 4709-002 / REG 2019/945):</strong>
-                                            Wymaga bezwzględnej emisji jawnego identyfikatora rejestracyjnego operatora (<code>Operator ID</code> — 16 znaków bez kodu PIN). Dane te są dołączane do wszystkich pakietów Wi-Fi Beacon, Wi-Fi NAN oraz cyklu Bluetooth Low Energy.
-                                        </li>
-                                        <li><strong>Stany Zjednoczone (FAA 14 CFR Part 89 / ASTM F3411-22a):</strong>
-                                            Ze względów ochrony prywatności cywilnej przepis FAA kategorycznie zabrania emisji numeru rejestracyjnego operatora w sygnaturze radiowej. W trybie <code>REGION_USA</code> urządzenie automatycznie wyklucza ramkę <code>OPERATOR_ID</code> z paczek Wi-Fi, a w paśmie BLE w jej miejsce emituje dodatkową ramkę z pozycją (<code>LOCATION</code>), podnosząc częstotliwość odświeżania danych nawigacyjnych drona.
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- === NOWE OKNO 2: OCENA PROJEKTU AI === -->
+                    <!-- === OCENA PROJEKTU AI === -->
                     <div class="config-item mb-6">
                         <h2 class="sec-heading">Ocena projektu AI — Audyt techniczny oprogramowania i architektury układowej</h2>
                         <div class="sec-body">
@@ -968,10 +940,12 @@
                         </div>
                     </div>
 
-                    <!-- === DODANO: OKNO DOTYCZĄCE ZIELONEGO OŚWIETLENIA BŁYSKOWEGO === -->
+                    <!-- === DODANO: OKNO DODANO (ZIELONE OŚWIETLENIE + STANDARDY EMISYJNE EU/USA) === -->
                     <div class="config-item mb-6">
-                        <h2 class="sec-heading">DODANO — Obsługa zielonego oświetlenia błyskowego</h2>
-                        <div class="grid grid-cols-1 lg:grid-cols-12 gap-4 items-start mt-4">
+                        <h2 class="sec-heading">DODANO</h2>
+                        
+                        <!-- CZĘŚĆ 1: ZIELONE OŚWIETLENIE BŁYSKOWE -->
+                        <div class="grid grid-cols-1 lg:grid-cols-12 gap-4 items-start mt-4 pb-6 border-b border-amber-500/20">
                             <div class="lg:col-span-5 flex flex-col items-center">
                                 <div class="sim-thumb-card screen" onclick="openLightbox('images/led.jpg', 'Obsługa zielonego oświetlenia błyskowego w warunkach nocnych')">
                                     <img src="images/led.jpg" alt="led.jpg" onerror="this.onerror=null; this.src='https://placehold.co/600x350/111827/f59e0b?text=led.jpg';">
@@ -979,6 +953,7 @@
                                 <span class="text-xs text-amber-500 font-mono mt-2 text-center">Moduł zielonego oświetlenia błyskowego LED</span>
                             </div>
                             <div class="lg:col-span-7">
+                                <h3 class="sec-heading" style="font-size:0.85rem;">Obsługa zielonego oświetlenia błyskowego</h3>
                                 <div class="sec-body">
                                     <p>Wprowadzono pełną obsługę <strong>obowiązkowego w warunkach nocnych zielonego oświetlenia błyskowego</strong>, spełniającego rygorystyczne wymagania operacyjne i przepisowe dotyczące lotów UAV po zmroku.</p>
                                     <ul>
@@ -989,6 +964,33 @@
                                 </div>
                             </div>
                         </div>
+
+                        <!-- CZĘŚĆ 2: WYBÓR STANDARDU EMISYJNEGO (EU VS USA) -->
+                        <div class="grid grid-cols-1 lg:grid-cols-12 gap-4 items-start mt-6">
+                            <div class="lg:col-span-5 flex flex-col items-center">
+                                <div class="sim-thumb-card screen" onclick="openLightbox('images/usa1.jpg', 'Przełącznik trybu regionu EU / USA w panelu konfiguracyjnym')">
+                                    <img src="images/usa1.jpg" alt="usa1.jpg" onerror="this.onerror=null; this.src='https://placehold.co/600x350/111827/f59e0b?text=usa1.jpg';">
+                                </div>
+                                <span class="text-xs text-amber-500 font-mono mt-2 text-center">Wybór regionu operacyjnego w panelu WWW</span>
+                            </div>
+                            <div class="lg:col-span-7">
+                                <h3 class="sec-heading" style="font-size:0.85rem;">Wybór standardu emisyjnego — Unia Europejska (EU) vs USA (FAA)</h3>
+                                <div class="sec-body">
+                                    <p>Nadajnik Remote ID posiada wbudowaną obsługę jurysdykcji radiowej, umożliwiającą przełączanie struktury transmitowanych ramek w zależności od strefy geograficznej i wytycznych organizacyjnych.</p>
+                                    
+                                    <p><strong>Główne różnice pomiędzy normą Unii Europejskiej a przepisami USA:</strong></p>
+                                    <ul>
+                                        <li><strong>Unia Europejska (ASD-STAN prEN 4709-002 / REG 2019/945):</strong>
+                                            Wymaga bezwzględnej emisji jawnego identyfikatora rejestracyjnego operatora (<code>Operator ID</code> — 16 znaków bez kodu PIN). Dane te są dołączane do wszystkich pakietów Wi-Fi Beacon, Wi-Fi NAN oraz cyklu Bluetooth Low Energy.
+                                        </li>
+                                        <li><strong>Stany Zjednoczone (FAA 14 CFR Part 89 / ASTM F3411-22a):</strong>
+                                            Ze względów ochrony prywatności cywilnej przepis FAA kategorycznie zabrania emisji numeru rejestracyjnego operatora w sygnaturze radiowej. W trybie <code>REGION_USA</code> urządzenie automatycznie wyklucza ramkę <code>OPERATOR_ID</code> z paczek Wi-Fi, a w paśmie BLE w jej miejsce emituje dodatkową ramkę z pozycją (<code>LOCATION</code>), podnosząc częstotliwość odświeżania danych nawigacyjnych drona.
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
                     </div>
 
                     <!-- === PODSUMOWANIE === -->
