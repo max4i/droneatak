@@ -1,278 +1,360 @@
-<title>Kontakt – Formularz i Współpraca B2B | DroneAtak</title>
-<meta name="description" content="Skontaktuj się z autorem projektu DroneAtak. Formularz kontaktowy, zapytania B2B, testy poligonowe oraz wdrożenia C-UAS.">
-<script src="https://cdn.tailwindcss.com"></script>
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<style>
-    body {
-        background-color: #0b0d12;
-        background-image:
-            radial-gradient(circle at 50% 30%, #1a202c 0%, transparent 70%),
-            linear-gradient(to bottom, #07080a, #0d1017);
-        color: #d1d5db;
-        font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-        margin: 0;
-        padding: 0;
-        min-height: 100vh;
+    <!-- SEO Google -->
+    <title>Kontakt i Współpraca | DroneAtak</title>
+    <meta name="description" content="Skontaktuj się z twórcami projektu DroneAtak. Zapytania techniczne, szkolenia, systemy Remote ID i symulatory roju.">
+    <meta name="keywords" content="kontakt, DroneAtak, wsparcie, zapytanie, Remote ID, szkolenia BSP">
+    <meta name="robots" content="index, follow">
+    <meta name="author" content="DroneAtak">
+    <link rel="canonical" href="https://droneatak.pl/kontakt.html">
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Kontakt – DroneAtak">
+    <meta property="og:description" content="Skontaktuj się z nami w sprawach technicznych i szkoleniowych dotyczących platformy DroneAtak.">
+    <meta property="og:url" content="https://droneatak.pl/kontakt.html">
+    <meta property="og:image" content="https://droneatak.pl/images/g2.png">
+    <meta property="og:locale" content="pl_PL">
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Kontakt – DroneAtak">
+    <meta name="twitter:description" content="Skontaktuj się z twórcami DroneAtak.">
+    <meta name="twitter:image" content="https://droneatak.pl/images/g2.png">
+
+    <!-- Schema.org JSON-LD -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "ContactPage",
+      "name": "Kontakt DroneAtak",
+      "description": "Strona kontaktowa projektu DroneAtak.",
+      "url": "https://droneatak.pl/kontakt.html"
     }
+    </script>
 
-    .main-banner {
-        width: 100%;
-        overflow: hidden;
-        border-radius: 4px;
-        box-shadow: 0 15px 35px rgba(0,0,0,0.8);
-    }
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            background-color: #0b0d12;
+            background-image: 
+                radial-gradient(circle at 50% 30%, #1a202c 0%, transparent 70%),
+                linear-gradient(to bottom, #07080a, #0d1017);
+            color: #d1d5db;
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+        }
 
-    .main-graphic {
-        width: 100%;
-        height: auto;
-        display: block;
-    }
+        .main-banner {
+            width: 100%;
+            overflow: hidden;
+            border-radius: 4px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.8);
+        }
 
-    .nav-btn {
-        background: linear-gradient(180deg, #1f242d 0%, #12151c 100%);
-        border: 1px solid #374151;
-        color: #9ca3af;
-        font-weight: 600;
-        text-transform: uppercase;
-        letter-spacing: 0.02em;
-        transition: all 0.2s ease;
-        box-shadow: 0 4px 6px rgba(0,0,0,0.4);
-        text-align: center;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-size: 0.7rem;
-        padding: 10px 4px;
-    }
-    @media (min-width: 640px) {
-        .nav-btn { font-size: 0.75rem; }
-    }
-    @media (min-width: 1024px) {
-        .nav-btn { font-size: 0.78rem; }
-    }
+        .main-graphic {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
 
-    .nav-btn:hover {
-        border-color: #f59e0b;
-        color: #f59e0b;
-        box-shadow: 0 0 12px rgba(245, 158, 11, 0.3);
-    }
+        .nav-btn {
+            background: linear-gradient(180deg, #1f242d 0%, #12151c 100%);
+            border: 1px solid #374151;
+            color: #9ca3af;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.02em;
+            transition: all 0.2s ease;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.4);
+            text-align: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.7rem;
+            padding: 10px 4px;
+        }
+        @media (min-width: 640px) {
+            .nav-btn { font-size: 0.75rem; }
+        }
+        @media (min-width: 1024px) {
+            .nav-btn { font-size: 0.78rem; }
+        }
 
-    .nav-btn.active {
-        background: linear-gradient(180deg, #2a2215 0%, #18130a 100%);
-        border-color: #f59e0b;
-        color: #f59e0b;
-        box-shadow:
-            inset 0 0 8px rgba(245, 158, 11, 0.4),
-            0 0 10px rgba(245, 158, 11, 0.2);
-    }
+        .nav-btn:hover {
+            border-color: #f59e0b;
+            color: #f59e0b;
+            box-shadow: 0 0 12px rgba(245, 158, 11, 0.3);
+        }
 
-    .metal-frame-container {
-        position: relative;
-        box-sizing: border-box;
-        background: rgba(15, 18, 25, 0.85);
-        padding: 20px;
-        box-shadow: 0 15px 35px rgba(0,0,0,0.8), inset 0 0 15px rgba(0,0,0,0.5);
-    }
+        .nav-btn.active {
+            background: linear-gradient(180deg, #2a2215 0%, #18130a 100%);
+            border-color: #f59e0b;
+            color: #f59e0b;
+            box-shadow: inset 0 0 8px rgba(245, 158, 11, 0.4), 0 0 10px rgba(245, 158, 11, 0.2);
+        }
 
-    .metal-corner {
-        position: absolute;
-        width: 32px;
-        height: 32px;
-        z-index: 20;
-        pointer-events: none;
-        background-size: contain;
-        background-repeat: no-repeat;
-    }
+        .metal-frame-container {
+            position: relative;
+            box-sizing: border-box;
+            background: rgba(15, 18, 25, 0.85);
+            padding: 20px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.8), inset 0 0 15px rgba(0,0,0,0.5);
+            height: auto;
+        }
 
-    .corner-tl { top: 0; left: 0; background-image: url('images/naroznik_lewy_gorny.png'); }
-    .corner-tr { top: 0; right: 0; background-image: url('images/naroznik_prawy_gorny.png'); }
-    .corner-bl { bottom: 0; left: 0; background-image: url('images/naroznik_lewy_dolny.png'); }
-    .corner-br { bottom: 0; right: 0; background-image: url('images/naroznik_prawy_dolny.png'); }
+        .metal-corner {
+            position: absolute;
+            width: 32px;
+            height: 32px;
+            z-index: 20;
+            pointer-events: none;
+            background-size: contain;
+            background-repeat: no-repeat;
+        }
 
-    .metal-bar-h, .metal-bar-v {
-        position: absolute;
-        z-index: 10;
-        pointer-events: none;
-    }
+        .corner-tl { top: 0; left: 0; background-image: url('images/naroznik_lewy_gorny.png'); }
+        .corner-tr { top: 0; right: 0; background-image: url('images/naroznik_prawy_gorny.png'); }
+        .corner-bl { bottom: 0; left: 0; background-image: url('images/naroznik_lewy_dolny.png'); }
+        .corner-br { bottom: 0; right: 0; background-image: url('images/naroznik_prawy_dolny.png'); }
 
-    .bar-top {
-        top: 0; left: 32px; right: 32px; height: 16px;
-        background-image: url('images/listwa_gorna.png');
-        background-repeat: repeat-x;
-        background-position: center top;
-        background-size: auto 100%;
-    }
+        .metal-bar-h, .metal-bar-v {
+            position: absolute;
+            z-index: 10;
+            pointer-events: none;
+        }
 
-    .bar-bottom {
-        bottom: 0; left: 32px; right: 32px; height: 16px;
-        background-image: url('images/listwa_dolna.png');
-        background-repeat: repeat-x;
-        background-position: center bottom;
-        background-size: auto 100%;
-    }
+        .bar-top {
+            top: 0; left: 32px; right: 32px; height: 16px;
+            background-image: url('images/listwa_gorna.png');
+            background-repeat: repeat-x;
+            background-position: center top;
+            background-size: auto 100%;
+        }
 
-    .bar-left {
-        top: 32px; bottom: 32px; left: 0; width: 16px;
-        background-image: url('images/listwa_lewa.png');
-        background-repeat: repeat-y;
-        background-position: left center;
-        background-size: 100% auto;
-    }
+        .bar-bottom {
+            bottom: 0; left: 32px; right: 32px; height: 16px;
+            background-image: url('images/listwa_dolna.png');
+            background-repeat: repeat-x;
+            background-position: center bottom;
+            background-size: auto 100%;
+        }
 
-    .bar-right {
-        top: 32px; bottom: 32px; right: 0; width: 16px;
-        background-image: url('images/listwa_prawa.png');
-        background-repeat: repeat-y;
-        background-position: right center;
-        background-size: 100% auto;
-    }
+        .bar-left {
+            top: 32px; bottom: 32px; left: 0; width: 16px;
+            background-image: url('images/listwa_lewa.png');
+            background-repeat: repeat-y;
+            background-position: left center;
+            background-size: 100% auto;
+        }
 
-    .frame-content {
-        position: relative;
-        width: 100%;
-        height: 100%;
-        display: flex;
-        flex-direction: column;
-        border-radius: 4px;
-        background-image: url('images/tlo_okna.jpg');
-        background-repeat: repeat;
-        background-position: center;
-        box-shadow: inset 0 0 15px rgba(0, 0, 0, 0.7);
-    }
+        .bar-right {
+            top: 32px; bottom: 32px; right: 0; width: 16px;
+            background-image: url('images/listwa_prawa.png');
+            background-repeat: repeat-y;
+            background-position: right center;
+            background-size: 100% auto;
+        }
 
-    .neon-title {
-        color: #ffaa00;
-        font-size: 1.5rem;
-        font-weight: 800;
-        letter-spacing: 0.1em;
-        text-transform: uppercase;
-        text-align: center;
-        text-shadow: 
-            0 0 5px #ffaa00,
-            0 0 10px #ffaa00,
-            0 0 20px #ffaa00,
-            0 0 40px #ff6600;
-        animation: neonPulse 1.8s infinite alternate;
-    }
+        .frame-content {
+            position: relative;
+            width: 100%;
+            height: auto;
+            display: flex;
+            flex-direction: column;
+            border-radius: 4px;
+            background-image: url('images/tlo_okna.jpg');
+            background-repeat: repeat;
+            background-position: center;
+            box-shadow: inset 0 0 15px rgba(0, 0, 0, 0.7);
+        }
 
-    @keyframes neonPulse {
-        0% { opacity: 0.85; text-shadow: 0 0 5px #ffaa00, 0 0 10px #ffaa00, 0 0 20px #ffaa00, 0 0 40px #ff6600; }
-        100% { opacity: 1; text-shadow: 0 0 8px #ffaa00, 0 0 15px #ffaa00, 0 0 30px #ffaa00, 0 0 60px #ff6600, 0 0 90px #ff6600; }
-    }
+        .neon-title {
+            color: #ffaa00;
+            font-size: 1.5rem;
+            font-weight: 800;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            text-align: center;
+            text-shadow: 
+                0 0 5px #ffaa00,
+                0 0 10px #ffaa00,
+                0 0 20px #ffaa00,
+                0 0 40px #ff6600;
+            animation: neonPulse 1.8s infinite alternate;
+        }
 
-    .sec-heading {
-        color: #f59e0b;
-        font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
-        font-size: 0.95rem;
-        font-weight: 800;
-        letter-spacing: 0.1em;
-        text-transform: uppercase;
-        margin-bottom: 0.5rem;
-        border-bottom: 1px solid rgba(245, 158, 11, 0.25);
-        padding-bottom: 0.35rem;
-    }
+        @keyframes neonPulse {
+            0% { opacity: 0.85; text-shadow: 0 0 5px #ffaa00, 0 0 10px #ffaa00, 0 0 20px #ffaa00, 0 0 40px #ff6600; }
+            100% { opacity: 1; text-shadow: 0 0 8px #ffaa00, 0 0 15px #ffaa00, 0 0 30px #ffaa00, 0 0 60px #ff6600, 0 0 90px #ff6600; }
+        }
 
-    .form-input {
-        width: 100%;
-        background: rgba(10, 12, 17, 0.8);
-        border: 1px solid #374151;
-        color: #cbd5e1;
-        padding: 10px 14px;
-        border-radius: 4px;
-        font-family: ui-monospace, monospace;
-        font-size: 0.85rem;
-        transition: all 0.2s ease;
-    }
+        .config-item {
+            border: 1px solid rgba(55, 65, 81, 0.5);
+            background: rgba(15, 18, 25, 0.6);
+            padding: 1.25rem;
+            border-radius: 4px;
+            transition: border-color 0.3s ease;
+            margin-bottom: 1.5rem;
+        }
 
-    .form-input:focus {
-        outline: none;
-        border-color: #f59e0b;
-        box-shadow: 0 0 10px rgba(245, 158, 11, 0.2);
-    }
-</style>
+        .config-item:hover {
+            border-color: rgba(245, 158, 11, 0.5);
+        }
 
+        .sec-heading {
+            color: #f59e0b;
+            font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+            font-size: 0.95rem;
+            font-weight: 800;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            margin-bottom: 0.75rem;
+            border-bottom: 1px solid rgba(245, 158, 11, 0.25);
+            padding-bottom: 0.35rem;
+        }
 
-<main class="max-w-7xl mx-auto w-full flex-grow flex flex-col gap-6">
+        .sec-body {
+            font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+            font-size: 0.78rem;
+            color: #cbd5e1;
+            line-height: 1.65;
+        }
 
-    <!-- BANER GŁÓWNY -->
-    <section class="w-full">
-        <div class="main-banner w-full h-auto">
-            <img src="images/g2.png" alt="Główna grafika taktyczna" class="main-graphic">
-        </div>
-    </section>
+        .form-input {
+            width: 100%;
+            background: rgba(10, 12, 16, 0.8);
+            border: 1px solid #374151;
+            border-radius: 4px;
+            padding: 10px 12px;
+            color: #f3f4f6;
+            font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+            font-size: 0.8rem;
+            outline: none;
+            transition: border-color 0.2s ease;
+        }
+        .form-input:focus {
+            border-color: #f59e0b;
+            box-shadow: 0 0 8px rgba(245, 158, 11, 0.3);
+        }
+    </style>
+</head>
+<body class="p-4 md:p-8 flex flex-col min-h-screen">
 
-    <!-- PRZYCISKI NAWIGACYJNE (1 LINIA) -->
-    <nav class="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-8 gap-2 w-full">
-        <a href="index.html" class="nav-btn rounded">Główna</a>
-        <a href="nadajnik.html" class="nav-btn rounded">Nadajnik</a>
-        <a href="DroneGen.html" class="nav-btn rounded">DroneGen</a>
-        <a href="symulator.html" class="nav-btn rounded">Symulator</a>
-        <a href="odbiornik.html" class="nav-btn rounded">Odbiornik</a>
-        <a href="pobieranie.html" class="nav-btn rounded">Pobieranie</a>
-        <a href="inne_projekty.html" class="nav-btn rounded">Inne projekty</a>
-        <a href="kontakt.html" class="nav-btn active rounded">Kontakt</a>
-    </nav>
+    <main class="max-w-7xl mx-auto w-full flex-grow flex flex-col gap-6">
 
-    <!-- OKNO TREŚCI PODSTRONY -->
-    <section class="w-full flex-grow">
-        <div class="metal-frame-container w-full">
-            <div class="metal-corner corner-tl"></div>
-            <div class="metal-corner corner-tr"></div>
-            <div class="metal-corner corner-bl"></div>
-            <div class="metal-corner corner-br"></div>
-
-            <div class="metal-bar-h bar-top"></div>
-            <div class="metal-bar-h bar-bottom"></div>
-            <div class="metal-bar-v bar-left"></div>
-            <div class="metal-bar-v bar-right"></div>
-
-            <div class="frame-content p-6 md:p-10 flex flex-col items-center">
-                
-                <div class="w-full pb-4 border-b border-amber-500/20 mb-8 text-center">
-                    <h1 class="neon-title sm:text-2xl">Kontakt i Współpraca</h1>
-                    <p class="text-center text-zinc-400 font-mono text-xs mt-2 tracking-widest">
-                        SEKCJA KONTAKTOWA • Pytania techniczne, testy poligonowe, wdrożenia B2B
-                    </p>
-                </div>
-
-                <div class="w-full max-w-2xl bg-black/50 border border-zinc-700/60 p-6 rounded shadow-xl">
-                    <h2 class="sec-heading text-center mb-6">Formularz Kontaktowy</h2>
-                    
-                    <form onsubmit="event.preventDefault();" class="space-y-4">
-                        <div>
-                            <label class="block text-xs font-mono uppercase text-amber-500 mb-1">Imię i Nazwisko / Podmiot</label>
-                            <input type="text" class="form-input" placeholder="Wprowadź swoje dane..." disabled>
-                        </div>
-
-                        <div>
-                            <label class="block text-xs font-mono uppercase text-amber-500 mb-1">Adres E-mail</label>
-                            <input type="email" class="form-input" placeholder="adres@domain.com" disabled>
-                        </div>
-
-                        <div>
-                            <label class="block text-xs font-mono uppercase text-amber-500 mb-1">Temat Wiadomości</label>
-                            <input type="text" class="form-input" placeholder="Zapytanie o symulator / nadajnik / testy..." disabled>
-                        </div>
-
-                        <div>
-                            <label class="block text-xs font-mono uppercase text-amber-500 mb-1">Treść Wiadomości</label>
-                            <textarea rows="5" class="form-input resize-none" placeholder="Opisz swoje zapytanie..." disabled></textarea>
-                        </div>
-
-                        <div class="pt-2">
-                            <button type="button" class="w-full py-3 bg-zinc-800 border border-amber-500/40 text-amber-400 font-mono text-xs font-bold uppercase rounded cursor-not-allowed opacity-75">
-                                [ Formularz obecnie nieaktywny ]
-                            </button>
-                        </div>
-                    </form>
-                </div>
-
+        <!-- BANER GŁÓWNY -->
+        <section class="w-full">
+            <div class="main-banner w-full h-auto">
+                <img src="images/g2.png" alt="Główna grafika taktyczna" class="main-graphic">
             </div>
-        </div>
-    </section>
+        </section>
 
-</main>
+        <!-- PRZYCISKI NAWIGACYJNE -->
+        <nav class="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-8 gap-2 w-full" aria-label="Główna nawigacja">
+            <a href="index.html" class="nav-btn rounded">Główna</a>
+            <a href="nadajnik.html" class="nav-btn rounded">Nadajnik</a>
+            <a href="DroneGen.html" class="nav-btn rounded">DroneGen</a>
+            <a href="symulator.html" class="nav-btn rounded">Symulator</a>
+            <a href="odbiornik.html" class="nav-btn rounded">Odbiornik</a>
+            <a href="pobieranie.html" class="nav-btn rounded">Pobieranie</a>
+            <a href="inne_projekty.html" class="nav-btn rounded">Inne projekty</a>
+            <a href="kontakt.html" class="nav-btn active rounded">Kontakt</a>
+        </nav>
 
-<footer class="w-full text-center py-6 mt-8 border-t border-zinc-800 text-xs text-zinc-500 font-mono tracking-widest">
-    MaxGyver 2024 CE EU • RemoteID zgodny z: REG 2019/945 | ASTM F3411-22a | ASD-STAN prEN 4709-002 • all rights reserved
-</footer>
+        <!-- OKNO TREŚCI PODSTRONY -->
+        <section class="w-full flex-grow">
+            <div class="metal-frame-container w-full">
+                <div class="metal-corner corner-tl"></div>
+                <div class="metal-corner corner-tr"></div>
+                <div class="metal-corner corner-bl"></div>
+                <div class="metal-corner corner-br"></div>
+
+                <div class="metal-bar-h bar-top"></div>
+                <div class="metal-bar-h bar-bottom"></div>
+                <div class="metal-bar-v bar-left"></div>
+                <div class="metal-bar-v bar-right"></div>
+
+                <div class="frame-content p-4 sm:p-6 flex flex-col">
+                    
+                    <!-- NAGŁÓWEK NEONOWY -->
+                    <div class="w-full pb-4 border-b border-amber-500/20 mb-6 text-center">
+                        <h1 class="neon-title sm:text-2xl">Kontakt i Współpraca</h1>
+                        <p class="text-center text-zinc-400 font-mono text-xs mt-2 tracking-widest">
+                            DRONE ATAK MX • zapytania techniczne, szkolenia oraz wsparcie systemowe.
+                        </p>
+                    </div>
+
+                    <!-- INFORMACJE KONTAKTOWE -->
+                    <div class="config-item">
+                        <h2 class="sec-heading">Informacje bezpośrednie</h2>
+                        <div class="sec-body">
+                            <p>W sprawach dotyczących konfiguracji urządzeń Remote ID, wdrożeń symulatorów roju, integracji z systemami ATAK oraz zapytań o materiały szkoleniowe, zapraszamy do kontaktu bezpośredniego:</p>
+                            <p class="mt-3">
+                                <strong>E-mail:</strong> 
+                                <a href="mailto:kontakt@droneatak.pl" class="text-amber-400 hover:underline">kontakt@droneatak.pl</a>
+                            </p>
+                            <p><strong>Projekt:</strong> MaxGyver 2024 CE EU</p>
+                        </div>
+                    </div>
+
+                    <!-- PROSTY FORMULARZ KONTAKTOWY (Mailto) -->
+                    <div class="config-item">
+                        <h2 class="sec-heading">Formularz wiadomości</h2>
+                        <div class="sec-body">
+                            <p class="mb-4">Wypełnij poniższe pola, aby przygotować wiadomość e-mail bezpośrednio w swojej aplikacji pocztowej:</p>
+                            
+                            <form onsubmit="sendMail(event)" class="space-y-4">
+                                <div>
+                                    <label class="block text-xs font-bold text-amber-400 uppercase mb-1">Twój E-mail / Nadawca:</label>
+                                    <input type="email" id="senderEmail" required class="form-input" placeholder="np. imie@domena.pl">
+                                </div>
+                                <div>
+                                    <label class="block text-xs font-bold text-amber-400 uppercase mb-1">Temat wiadomości:</label>
+                                    <input type="text" id="senderSubject" required class="form-input" placeholder="np. Zapytanie o symulator / Wdrożenie WOT">
+                                </div>
+                                <div>
+                                    <label class="block text-xs font-bold text-amber-400 uppercase mb-1">Treść wiadomości:</label>
+                                    <textarea id="senderMessage" rows="5" required class="form-input" placeholder="Wpisz treść zapytania..."></textarea>
+                                </div>
+                                <button type="submit" class="w-full py-3 px-4 text-xs font-mono font-bold uppercase text-amber-400 bg-amber-500/10 border border-amber-500/40 rounded hover:bg-amber-500/20 hover:border-amber-500 transition-all shadow-lg">
+                                    Wyślij wiadomość przez klient poczty
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- STOPKA -->
+    <footer class="w-full text-center py-6 mt-8 border-t border-zinc-800 text-xs text-zinc-500 font-mono tracking-widest">
+        MaxGyver 2024 CE EU • RemoteID zgodny z: REG 2019/945 | ASTM F3411-22a | ASD-STAN prEN 4709-002 • all rights reserved
+    </footer>
+
+    <!-- SKRYPT OBSŁUGI FORMULARZA MAILTO -->
+    <script>
+        function sendMail(e) {
+            e.preventDefault();
+            const email = document.getElementById('senderEmail').value;
+            const subject = document.getElementById('senderSubject').value;
+            const message = document.getElementById('senderMessage').value;
+            
+            const targetMail = 'kontakt@droneatak.pl'; // Podmień na swój adres e-mail jeśli inny
+            const mailtoLink = `mailto:${targetMail}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent("Od: " + email + "\n\n" + message)}`;
+            
+            window.location.href = mailtoLink;
+        }
+    </script>
+
+</body>
+</html>

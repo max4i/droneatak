@@ -70,13 +70,21 @@
             color: #9ca3af;
             font-weight: 600;
             text-transform: uppercase;
-            letter-spacing: 0.05em;
+            letter-spacing: 0.02em;
             transition: all 0.2s ease;
             box-shadow: 0 4px 6px rgba(0,0,0,0.4);
             text-align: center;
             display: flex;
             align-items: center;
             justify-content: center;
+            font-size: 0.7rem;
+            padding: 10px 4px;
+        }
+        @media (min-width: 640px) {
+            .nav-btn { font-size: 0.75rem; }
+        }
+        @media (min-width: 1024px) {
+            .nav-btn { font-size: 0.78rem; }
         }
 
         .nav-btn:hover {
@@ -245,13 +253,15 @@
         </section>
 
         <!-- PRZYCISKI NAWIGACYJNE -->
-        <nav class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3 w-full">
-            <a href="index.html" class="nav-btn py-3 px-2 text-xs sm:text-sm rounded">Główna</a>
-            <a href="nadajnik.html" class="nav-btn py-3 px-2 text-xs sm:text-sm rounded">Nadajnik</a>
-            <a href="symulator.html" class="nav-btn py-3 px-2 text-xs sm:text-sm rounded">Symulator</a>
-            <a href="odbiornik.html" class="nav-btn py-3 px-2 text-xs sm:text-sm rounded">Odbiornik</a>
-            <a href="pobieranie.html" class="nav-btn py-3 px-2 text-xs sm:text-sm rounded">Pobieranie</a>
-            <a href="inne_projekty.html" class="nav-btn active py-3 px-2 text-xs sm:text-sm rounded">Inne projekty</a>
+        <nav class="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-8 gap-2 w-full" aria-label="Główna nawigacja">
+            <a href="index.html" class="nav-btn rounded">Główna</a>
+            <a href="nadajnik.html" class="nav-btn rounded">Nadajnik</a>
+            <a href="DroneGen.html" class="nav-btn rounded">DroneGen</a>
+            <a href="symulator.html" class="nav-btn rounded">Symulator</a>
+            <a href="odbiornik.html" class="nav-btn rounded">Odbiornik</a>
+            <a href="pobieranie.html" class="nav-btn rounded">Pobieranie</a>
+            <a href="inne_projekty.html" class="nav-btn active rounded">Inne projekty</a>
+            <a href="kontakt.html" class="nav-btn rounded">Kontakt</a>
         </nav>
 
         <!-- OKNO TREŚCI PODSTRONY -->
