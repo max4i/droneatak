@@ -1,553 +1,528 @@
-<!DOCTYPE html>
-<html lang="pl">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!-- SEO Google -->
+<title>DroneAtak – Symulatory Dronów, Remote ID Mx ECHO i Systemy Szkoleniowe</title>
+<meta name="description" content="DroneAtak – innowacyjne symulatory dronów, nadajniki i odbiorniki Remote ID Mx ECHO. Systemy szkoleniowe dla pilotów dronów FPV Kamikaze, UAV, Wojska Polskiego i WOT.">
+<meta name="keywords" content="drony, symulator dronów, Remote ID, Remote ID Mx ECHO, BSP, FPV kamikaze, UAV, szkolenie pilotów dronów, WOT, Wojsko Polskie, C-UAS, Swarm Engine, MaxGyver">
+<meta name="robots" content="index, follow">
+<meta name="author" content="DroneAtak">
+<link rel="canonical" href="https://droneatak.pl/">
 
-    <!-- SEO Google -->
-    <title>DroneAtak – Symulatory Dronów, Remote ID Mx ECHO i Systemy Szkoleniowe</title>
-    <meta name="description" content="DroneAtak – innowacyjne symulatory dronów, nadajniki i odbiorniki Remote ID Mx ECHO. Systemy szkoleniowe dla pilotów dronów FPV Kamikaze, UAV, Wojska Polskiego i WOT.">
-    <meta name="keywords" content="drony, symulator dronów, Remote ID, Remote ID Mx ECHO, BSP, FPV kamikaze, UAV, szkolenie pilotów dronów, WOT, Wojsko Polskie, C-UAS, Swarm Engine, MaxGyver">
-    <meta name="robots" content="index, follow">
-    <meta name="author" content="DroneAtak">
-    <link rel="canonical" href="https://droneatak.pl/">
+<!-- Open Graph / Social Media -->
+<meta property="og:type" content="website">
+<meta property="og:title" content="DroneAtak – Symulatory Dronów, Remote ID Mx ECHO i Systemy Szkoleniowe BSP">
+<meta property="og:description" content="Pierwszy na świecie zintegrowany system symulacji wielu dronów, nadajników Remote ID Mx ECHO oraz integracji taktycznej CoT/ATAK.">
+<meta property="og:url" content="https://droneatak.pl/">
+<meta property="og:image" content="https://droneatak.pl/images/g3.png">
+<meta property="og:locale" content="pl_PL">
 
-    <!-- Open Graph / Social Media -->
-    <meta property="og:type" content="website">
-    <meta property="og:title" content="DroneAtak – Symulatory Dronów, Remote ID Mx ECHO i Systemy Szkoleniowe BSP">
-    <meta property="og:description" content="Pierwszy na świecie zintegrowany system symulacji wielu dronów, nadajników Remote ID Mx ECHO oraz integracji taktycznej CoT/ATAK.">
-    <meta property="og:url" content="https://droneatak.pl/">
-    <meta property="og:image" content="https://droneatak.pl/images/g3.png">
-    <meta property="og:locale" content="pl_PL">
+<!-- Twitter / X -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="DroneAtak – Symulatory Dronów i Remote ID Mx ECHO">
+<meta name="twitter:description" content="Zaawansowane projekty symulatorów dronów, Remote ID Mx ECHO oraz narzędzi szkoleniowych dla operatorów BSP.">
+<meta name="twitter:image" content="https://droneatak.pl/images/g4.png">
 
-    <!-- Twitter / X -->
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="DroneAtak – Symulatory Dronów i Remote ID Mx ECHO">
-    <meta name="twitter:description" content="Zaawansowane projekty symulatorów dronów, Remote ID Mx ECHO oraz narzędzi szkoleniowych dla operatorów BSP.">
-    <meta name="twitter:image" content="https://droneatak.pl/images/g4.png">
+<!-- Schema.org JSON-LD -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "DroneAtak Remote ID Mx ECHO & Simulator System",
+  "operatingSystem": "Cross-platform",
+  "applicationCategory": "EducationalApplication",
+  "description": "Zintegrowany system symulacji wielu dronów oraz nadajnik/odbiornik Remote ID Mx ECHO przeznaczony do szkoleń taktycznych operatorów BSP.",
+  "url": "https://droneatak.pl/",
+  "author": {
+    "@type": "Organization",
+    "name": "DroneAtak"
+  }
+}
+</script>
 
-    <!-- Schema.org JSON-LD -->
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "SoftwareApplication",
-      "name": "DroneAtak Remote ID Mx ECHO & Simulator System",
-      "operatingSystem": "Cross-platform",
-      "applicationCategory": "EducationalApplication",
-      "description": "Zintegrowany system symulacji wielu dronów oraz nadajnik/odbiornik Remote ID Mx ECHO przeznaczony do szkoleń taktycznych operatorów BSP.",
-      "url": "https://droneatak.pl/",
-      "author": {
-        "@type": "Organization",
-        "name": "DroneAtak"
-      }
+<script src="https://cdn.tailwindcss.com"></script>
+
+<style>
+    body {
+        background-color: #0b0d12;
+        background-image:
+            radial-gradient(circle at 50% 30%, #1a202c 0%, transparent 70%),
+            linear-gradient(to bottom, #07080a, #0d1017);
+        color: #d1d5db;
+        font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        margin: 0;
+        padding: 0;
+        min-height: 100vh;
     }
-    </script>
 
-    <script src="https://cdn.tailwindcss.com"></script>
+    .main-banner {
+        width: 100%;
+        overflow: hidden;
+        border-radius: 4px;
+        box-shadow: 0 15px 35px rgba(0,0,0,0.8);
+    }
 
-    <style>
-        body {
-            background-color: #0b0d12;
-            background-image:
-                radial-gradient(circle at 50% 30%, #1a202c 0%, transparent 70%),
-                linear-gradient(to bottom, #07080a, #0d1017);
-            color: #d1d5db;
-            font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-            margin: 0;
-            padding: 0;
-            min-height: 100vh;
-        }
+    .main-graphic {
+        width: 100%;
+        height: auto;
+        display: block;
+    }
 
-        .main-banner {
-            width: 100%;
-            overflow: hidden;
-            border-radius: 4px;
-            box-shadow: 0 15px 35px rgba(0,0,0,0.8);
-        }
+    .nav-btn {
+        background: linear-gradient(180deg, #1f242d 0%, #12151c 100%);
+        border: 1px solid #374151;
+        color: #9ca3af;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.02em;
+        transition: all 0.2s ease;
+        box-shadow: 0 4px 6px rgba(0,0,0,0.4);
+        text-align: center;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 0.7rem;
+        padding: 10px 4px;
+    }
+    @media (min-width: 640px) {
+        .nav-btn { font-size: 0.75rem; }
+    }
+    @media (min-width: 1024px) {
+        .nav-btn { font-size: 0.78rem; }
+    }
 
-        .main-graphic {
-            width: 100%;
-            height: auto;
-            display: block;
-        }
+    .nav-btn:hover {
+        border-color: #f59e0b;
+        color: #f59e0b;
+        box-shadow: 0 0 12px rgba(245, 158, 11, 0.3);
+    }
 
-        .nav-btn {
-            background: linear-gradient(180deg, #1f242d 0%, #12151c 100%);
-            border: 1px solid #374151;
-            color: #9ca3af;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-            transition: all 0.2s ease;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.4);
-            text-align: center;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
+    .nav-btn.active {
+        background: linear-gradient(180deg, #2a2215 0%, #18130a 100%);
+        border-color: #f59e0b;
+        color: #f59e0b;
+        box-shadow:
+            inset 0 0 8px rgba(245, 158, 11, 0.4),
+            0 0 10px rgba(245, 158, 11, 0.2);
+    }
 
-        .nav-btn:hover {
-            border-color: #f59e0b;
-            color: #f59e0b;
-            box-shadow: 0 0 12px rgba(245, 158, 11, 0.3);
-        }
+    .metal-frame-container {
+        position: relative;
+        box-sizing: border-box;
+        background: rgba(15, 18, 25, 0.85);
+        padding: 20px;
+        box-shadow:
+            0 15px 35px rgba(0,0,0,0.8),
+            inset 0 0 15px rgba(0,0,0,0.5);
+    }
 
-        .nav-btn.active {
-            background: linear-gradient(180deg, #2a2215 0%, #18130a 100%);
-            border-color: #f59e0b;
-            color: #f59e0b;
-            box-shadow:
-                inset 0 0 8px rgba(245, 158, 11, 0.4),
-                0 0 10px rgba(245, 158, 11, 0.2);
-        }
+    .metal-corner {
+        position: absolute;
+        width: 32px;
+        height: 32px;
+        z-index: 20;
+        pointer-events: none;
+        background-size: contain;
+        background-repeat: no-repeat;
+    }
 
-        .metal-frame-container {
-            position: relative;
-            box-sizing: border-box;
-            background: rgba(15, 18, 25, 0.85);
-            padding: 20px;
-            box-shadow:
-                0 15px 35px rgba(0,0,0,0.8),
-                inset 0 0 15px rgba(0,0,0,0.5);
-        }
+    .corner-tl { top: 0; left: 0; background-image: url('images/naroznik_lewy_gorny.png'); }
+    .corner-tr { top: 0; right: 0; background-image: url('images/naroznik_prawy_gorny.png'); }
+    .corner-bl { bottom: 0; left: 0; background-image: url('images/naroznik_lewy_dolny.png'); }
+    .corner-br { bottom: 0; right: 0; background-image: url('images/naroznik_prawy_dolny.png'); }
 
-        .metal-corner {
-            position: absolute;
-            width: 32px;
-            height: 32px;
-            z-index: 20;
-            pointer-events: none;
-            background-size: contain;
-            background-repeat: no-repeat;
-        }
+    .metal-bar-h,
+    .metal-bar-v {
+        position: absolute;
+        z-index: 10;
+        pointer-events: none;
+    }
 
-        .corner-tl { top: 0; left: 0; background-image: url('images/naroznik_lewy_gorny.png'); }
-        .corner-tr { top: 0; right: 0; background-image: url('images/naroznik_prawy_gorny.png'); }
-        .corner-bl { bottom: 0; left: 0; background-image: url('images/naroznik_lewy_dolny.png'); }
-        .corner-br { bottom: 0; right: 0; background-image: url('images/naroznik_prawy_dolny.png'); }
+    .bar-top {
+        top: 0; left: 32px; right: 32px; height: 16px;
+        background-image: url('images/listwa_gorna.png');
+        background-repeat: repeat-x;
+        background-position: center top;
+        background-size: auto 100%;
+    }
 
-        .metal-bar-h,
-        .metal-bar-v {
-            position: absolute;
-            z-index: 10;
-            pointer-events: none;
-        }
+    .bar-bottom {
+        bottom: 0; left: 32px; right: 32px; height: 16px;
+        background-image: url('images/listwa_dolna.png');
+        background-repeat: repeat-x;
+        background-position: center bottom;
+        background-size: auto 100%;
+    }
 
-        .bar-top {
-            top: 0; left: 32px; right: 32px; height: 16px;
-            background-image: url('images/listwa_gorna.png');
-            background-repeat: repeat-x;
-            background-position: center top;
-            background-size: auto 100%;
-        }
+    .bar-left {
+        top: 32px; bottom: 32px; left: 0; width: 16px;
+        background-image: url('images/listwa_lewa.png');
+        background-repeat: repeat-y;
+        background-position: left center;
+        background-size: 100% auto;
+    }
 
-        .bar-bottom {
-            bottom: 0; left: 32px; right: 32px; height: 16px;
-            background-image: url('images/listwa_dolna.png');
-            background-repeat: repeat-x;
-            background-position: center bottom;
-            background-size: auto 100%;
-        }
+    .bar-right {
+        top: 32px; bottom: 32px; right: 0; width: 16px;
+        background-image: url('images/listwa_prawa.png');
+        background-repeat: repeat-y;
+        background-position: right center;
+        background-size: 100% auto;
+    }
 
-        .bar-left {
-            top: 32px; bottom: 32px; left: 0; width: 16px;
-            background-image: url('images/listwa_lewa.png');
-            background-repeat: repeat-y;
-            background-position: left center;
-            background-size: 100% auto;
-        }
+    .frame-content {
+        position: relative;
+        width: 100%;
+        min-height: 400px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        overflow: auto;
+        border-radius: 4px;
+        background-image: url('images/tlo_okna.jpg');
+        background-repeat: repeat;
+        background-position: center;
+        box-shadow: inset 0 0 15px rgba(0, 0, 0, 0.7);
+    }
 
-        .bar-right {
-            top: 32px; bottom: 32px; right: 0; width: 16px;
-            background-image: url('images/listwa_prawa.png');
-            background-repeat: repeat-y;
-            background-position: right center;
-            background-size: 100% auto;
-        }
+    .neon-text {
+        color: #ffaa00;
+        font-size: 2rem;
+        font-weight: 800;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        text-shadow:
+            0 0 5px #ffaa00,
+            0 0 10px #ffaa00,
+            0 0 20px #ffaa00,
+            0 0 40px #ff6600,
+            0 0 80px #ff6600;
+        animation: neonPulse 1.8s infinite alternate;
+    }
 
-        .frame-content {
-            position: relative;
-            width: 100%;
-            min-height: 400px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            overflow: auto;
-            border-radius: 4px;
-            background-image: url('images/tlo_okna.jpg');
-            background-repeat: repeat;
-            background-position: center;
-            box-shadow: inset 0 0 15px rgba(0, 0, 0, 0.7);
-        }
+    .neon-yellow-title {
+        color: #facc15;
+        font-size: 1.4rem;
+        font-weight: 800;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        text-align: center;
+        text-shadow:
+            0 0 5px #facc15,
+            0 0 10px #eab308,
+            0 0 20px #ca8a04;
+        animation: neonYellowPulse 1.5s infinite alternate;
+    }
 
-        .neon-text {
-            color: #ffaa00;
-            font-size: 2rem;
-            font-weight: 800;
-            letter-spacing: 0.12em;
-            text-transform: uppercase;
-            text-shadow:
-                0 0 5px #ffaa00,
-                0 0 10px #ffaa00,
-                0 0 20px #ffaa00,
-                0 0 40px #ff6600,
-                0 0 80px #ff6600;
-            animation: neonPulse 1.8s infinite alternate;
-        }
+    .neon-red-title {
+        color: #ef4444;
+        font-size: 1.4rem;
+        font-weight: 800;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        text-align: center;
+        text-shadow:
+            0 0 5px #ef4444,
+            0 0 10px #dc2626,
+            0 0 20px #b91c1c;
+        animation: neonRedPulse 1.2s infinite alternate;
+    }
 
-        .neon-yellow-title {
-            color: #facc15;
-            font-size: 1.4rem;
-            font-weight: 800;
-            letter-spacing: 0.12em;
-            text-transform: uppercase;
-            text-align: center;
-            text-shadow:
-                0 0 5px #facc15,
-                0 0 10px #eab308,
-                0 0 20px #ca8a04;
-            animation: neonYellowPulse 1.5s infinite alternate;
-        }
+    .section-title {
+        color: #f59e0b;
+        font-size: 1.1rem;
+        font-weight: 700;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+    }
 
-        .neon-red-title {
-            color: #ef4444;
-            font-size: 1.4rem;
-            font-weight: 800;
-            letter-spacing: 0.12em;
-            text-transform: uppercase;
-            text-align: center;
-            text-shadow:
-                0 0 5px #ef4444,
-                0 0 10px #dc2626,
-                0 0 20px #b91c1c;
-            animation: neonRedPulse 1.2s infinite alternate;
-        }
+    .project-card {
+        background: rgba(10, 12, 17, 0.75);
+        border: 1px solid rgba(75, 85, 99, 0.6);
+        border-radius: 4px;
+        padding: 18px;
+        text-align: left;
+        transition: all 0.2s ease;
+    }
 
-        .section-title {
-            color: #f59e0b;
-            font-size: 1.1rem;
-            font-weight: 700;
-            letter-spacing: 0.08em;
-            text-transform: uppercase;
-        }
+    .project-card:hover {
+        border-color: rgba(245, 158, 11, 0.7);
+        box-shadow: 0 0 15px rgba(245, 158, 11, 0.12);
+    }
 
-        .project-card {
-            background: rgba(10, 12, 17, 0.75);
-            border: 1px solid rgba(75, 85, 99, 0.6);
-            border-radius: 4px;
-            padding: 18px;
-            text-align: left;
-            transition: all 0.2s ease;
-        }
+    .project-card h2, .project-card h3 {
+        color: #fbbf24;
+        font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+        font-size: 0.95rem;
+        font-weight: 700;
+        margin-bottom: 8px;
+        border-bottom: 1px solid rgba(245, 158, 11, 0.2);
+        padding-bottom: 4px;
+    }
 
-        .project-card:hover {
-            border-color: rgba(245, 158, 11, 0.7);
-            box-shadow: 0 0 15px rgba(245, 158, 11, 0.12);
-        }
+    .project-card p {
+        color: #9ca3af;
+        font-size: 0.85rem;
+        line-height: 1.65;
+        margin: 0;
+        font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+    }
 
-        .project-card h2, .project-card h3 {
-            color: #fbbf24;
-            font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
-            font-size: 0.95rem;
-            font-weight: 700;
-            margin-bottom: 8px;
-            border-bottom: 1px solid rgba(245, 158, 11, 0.2);
-            padding-bottom: 4px;
-        }
+    .hero-img-card {
+        border: 1px solid #374151;
+        background: rgba(10, 12, 16, 0.8);
+        border-radius: 4px;
+        overflow: hidden;
+        transition: all 0.3s ease;
+        width: 100%;
+    }
 
-        .project-card p {
-            color: #9ca3af;
-            font-size: 0.85rem;
-            line-height: 1.65;
-            margin: 0;
-            font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
-        }
+    .hero-img-card img {
+        width: 100%;
+        height: auto;
+        display: block;
+    }
 
-        /* DYNAMICZNE DOPASOWANIE DO SZEROKOŚCI GRAFIKI */
-        .hero-img-card {
-            border: 1px solid #374151;
-            background: rgba(10, 12, 16, 0.8);
-            border-radius: 4px;
-            overflow: hidden;
-            transition: all 0.3s ease;
-            width: 100%;
-        }
+    @keyframes neonPulse {
+        0% { opacity: 0.85; text-shadow: 0 0 5px #ffaa00, 0 0 10px #ffaa00, 0 0 20px #ffaa00, 0 0 40px #ff6600; }
+        100% { opacity: 1; text-shadow: 0 0 8px #ffaa00, 0 0 15px #ffaa00, 0 0 30px #ffaa00, 0 0 60px #ff6600, 0 0 90px #ff6600; }
+    }
 
-        .hero-img-card img {
-            width: 100%;
-            height: auto;
-            display: block;
-        }
+    @keyframes neonYellowPulse {
+        0% { opacity: 0.8; text-shadow: 0 0 4px #facc15, 0 0 8px #eab308; }
+        100% { opacity: 1; text-shadow: 0 0 8px #fef08a, 0 0 16px #facc15, 0 0 30px #ca8a04; }
+    }
 
-        @keyframes neonPulse {
-            0% { opacity: 0.85; text-shadow: 0 0 5px #ffaa00, 0 0 10px #ffaa00, 0 0 20px #ffaa00, 0 0 40px #ff6600; }
-            100% { opacity: 1; text-shadow: 0 0 8px #ffaa00, 0 0 15px #ffaa00, 0 0 30px #ffaa00, 0 0 60px #ff6600, 0 0 90px #ff6600; }
-        }
+    @keyframes neonRedPulse {
+        0% { opacity: 0.8; text-shadow: 0 0 4px #ef4444, 0 0 8px #dc2626; }
+        100% { opacity: 1; text-shadow: 0 0 8px #fca5a5, 0 0 16px #ef4444, 0 0 30px #b91c1c; }
+    }
+</style>
 
-        @keyframes neonYellowPulse {
-            0% { opacity: 0.8; text-shadow: 0 0 4px #facc15, 0 0 8px #eab308; }
-            100% { opacity: 1; text-shadow: 0 0 8px #fef08a, 0 0 16px #facc15, 0 0 30px #ca8a04; }
-        }
 
-        @keyframes neonRedPulse {
-            0% { opacity: 0.8; text-shadow: 0 0 4px #ef4444, 0 0 8px #dc2626; }
-            100% { opacity: 1; text-shadow: 0 0 8px #fca5a5, 0 0 16px #ef4444, 0 0 30px #b91c1c; }
-        }
-    </style>
-</head>
+<main class="max-w-7xl mx-auto w-full flex-grow flex flex-col gap-6">
 
-<body class="p-4 md:p-8 flex flex-col min-h-screen">
+    <!-- BANER GŁÓWNY -->
+    <section class="w-full">
+        <div class="main-banner">
+            <img src="images/g2.png" alt="DroneAtak – systemy szkoleniowe, symulatory dronów i technologie Remote ID" class="main-graphic">
+        </div>
+    </section>
 
-    <main class="max-w-7xl mx-auto w-full flex-grow flex flex-col gap-6">
+    <!-- NAWIGACJA (1 LINIA) -->
+    <nav class="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-8 gap-2 w-full" aria-label="Główna nawigacja">
+        <a href="index.html" class="nav-btn active rounded">Główna</a>
+        <a href="nadajnik.html" class="nav-btn rounded">Nadajnik</a>
+        <a href="DroneGen.html" class="nav-btn rounded">DroneGen</a>
+        <a href="symulator.html" class="nav-btn rounded">Symulator</a>
+        <a href="odbiornik.html" class="nav-btn rounded">Odbiornik</a>
+        <a href="pobieranie.html" class="nav-btn rounded">Pobieranie</a>
+        <a href="inne_projekty.html" class="nav-btn rounded">Inne projekty</a>
+        <a href="kontakt.html" class="nav-btn rounded">Kontakt</a>
+    </nav>
 
-        <!-- BANER GŁÓWNY (POJEDYNCZY) -->
-        <section class="w-full">
-            <div class="main-banner">
-                <img src="images/g2.png" alt="DroneAtak – systemy szkoleniowe, symulatory dronów i technologie Remote ID" class="main-graphic">
-            </div>
-        </section>
+    <!-- GŁÓWNA TREŚĆ -->
+    <section class="w-full">
 
-        <!-- NAWIGACJA -->
-        <nav class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3 w-full" aria-label="Główna nawigacja">
-            <a href="index.html" class="nav-btn active py-3 px-2 text-xs sm:text-sm rounded">Główna</a>
-            <a href="nadajnik.html" class="nav-btn py-3 px-2 text-xs sm:text-sm rounded">Nadajnik</a>
-            <a href="symulator.html" class="nav-btn py-3 px-2 text-xs sm:text-sm rounded">Symulator</a>
-            <a href="odbiornik.html" class="nav-btn py-3 px-2 text-xs sm:text-sm rounded">Odbiornik</a>
-            <a href="pobieranie.html" class="nav-btn py-3 px-2 text-xs sm:text-sm rounded">Pobieranie</a>
-            <a href="inne_projekty.html" class="nav-btn py-3 px-2 text-xs sm:text-sm rounded">Inne projekty</a>
-        </nav>
+        <div class="metal-frame-container w-full">
 
-        <!-- GŁÓWNA TREŚĆ -->
-        <section class="w-full">
+            <!-- Narożniki -->
+            <div class="metal-corner corner-tl"></div>
+            <div class="metal-corner corner-tr"></div>
+            <div class="metal-corner corner-bl"></div>
+            <div class="metal-corner corner-br"></div>
 
-            <div class="metal-frame-container w-full">
+            <!-- Listwy -->
+            <div class="metal-bar-h bar-top"></div>
+            <div class="metal-bar-h bar-bottom"></div>
+            <div class="metal-bar-v bar-left"></div>
+            <div class="metal-bar-v bar-right"></div>
 
-                <!-- Narożniki -->
-                <div class="metal-corner corner-tl"></div>
-                <div class="metal-corner corner-tr"></div>
-                <div class="metal-corner corner-bl"></div>
-                <div class="metal-corner corner-br"></div>
+            <div class="frame-content p-6 md:p-10">
 
-                <!-- Listwy -->
-                <div class="metal-bar-h bar-top"></div>
-                <div class="metal-bar-h bar-bottom"></div>
-                <div class="metal-bar-v bar-left"></div>
-                <div class="metal-bar-v bar-right"></div>
+                <!-- GŁÓWNY TYTUŁ -->
+                <header class="text-center max-w-4xl w-full mb-6">
+                    <h1 class="neon-text mb-4">DroneAtak</h1>
+                    <p class="text-xl md:text-2xl text-zinc-200 font-semibold mb-3">
+                        Symulatory dronów, Remote ID Mx ECHO i narzędzia szkoleniowe
+                    </p>
+                    <p class="text-zinc-400 text-sm md:text-base leading-7">
+                        Polski projekt skupiający się na tworzeniu oprogramowania układowego, autorskiego sprzętu mikroprocesorowego oraz systemów taktycznych wspierających szkolenie operatorów bezzałogowych statków powietrznych (BSP) oraz do testowania i sprawdzania systemów antydronowych w jednostkach wojskowych, poligonach, placach ćwiczeń oraz lotniskach cywilnych i wojskowych.
+                    </p>
+                </header>
 
-                <div class="frame-content p-6 md:p-10">
-
-                    <!-- GŁÓWNY TYTUŁ -->
-                    <header class="text-center max-w-4xl w-full mb-6">
-                        <h1 class="neon-text mb-4">DroneAtak</h1>
-                        <p class="text-xl md:text-2xl text-zinc-200 font-semibold mb-3">
-                            Symulatory dronów, Remote ID Mx ECHO i narzędzia szkoleniowe
-                        </p>
-                        <p class="text-zinc-400 text-sm md:text-base leading-7">
-                            Polski projekt skupiający się na tworzeniu oprogramowania układowego, autorskiego sprzętu mikroprocesorowego oraz systemów taktycznych wspierających szkolenie operatorów bezzałogowych statków powietrznych (BSP) oraz do testowania i sprawdzania systemów antydronowych w jednostkach wojskowych, poligonach, placach ćwiczeń oraz lotniskach cywilnych i wojskowych.
-                        </p>
-                    </header>
-
-                    <!-- 2 GRAFIKI NA GÓRZE OPISU (g3.png i g4.png OBOK SIEBIE - DYNAMICZNA WYSOKOŚĆ) -->
-                    <div class="w-full max-w-4xl mb-8 grid grid-cols-1 md:grid-cols-2 gap-4">
-                        <div class="hero-img-card">
-                            <img src="images/g3.png" alt="DroneAtak – Grafika opisu 3" onerror="this.onerror=null; this.src='images/g3.png';">
-                        </div>
-                        <div class="hero-img-card">
-                            <img src="images/g4.png" alt="DroneAtak – Grafika opisu 4" onerror="this.onerror=null; this.src='images/g4.png';">
-                        </div>
+                <!-- 2 GRAFIKI NA GÓRZE OPISU -->
+                <div class="w-full max-w-4xl mb-8 grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div class="hero-img-card">
+                        <img src="images/g3.png" alt="DroneAtak – Grafika opisu 3" onerror="this.onerror=null; this.src='images/g3.png';">
                     </div>
-
-                    <!-- OSTRZEŻENIE 1: ŻÓŁTY NEON -->
-                    <div class="w-full max-w-4xl mb-8 p-6 border border-yellow-500/60 bg-yellow-950/20 rounded text-center shadow-lg">
-                        <div class="neon-yellow-title mb-4">UWAGA</div>
-                        <p class="text-yellow-100 text-sm md:text-base font-semibold leading-relaxed">
-                            Projekty przeznaczone tylko i wyłącznie do szkolenia pilotów dronów FPV KAMIKAZE oraz UAV na potrzeby klas wojskowych, grup prowojskowych, grup szkoleniowych na potrzeby Polskiej Armii i innych służb. Żołnierzy WOT i JW. Tylko w strefach w których Zarządca takiej strefy zezwoli na takie loty.
-                        </p>
+                    <div class="hero-img-card">
+                        <img src="images/g4.png" alt="DroneAtak – Grafika opisu 4" onerror="this.onerror=null; this.src='images/g4.png';">
                     </div>
+                </div>
 
-                    <!-- OSTRZEŻENIE 2: CZERWONY NEON -->
-                    <div class="w-full max-w-4xl mb-10 p-6 border border-red-600/70 bg-red-950/25 rounded text-left shadow-xl">
-                        <div class="neon-red-title mb-5">CZEGO NIE WOLNO ROBIĆ</div>
+                <!-- OSTRZEŻENIE 1: ŻÓŁTY NEON -->
+                <div class="w-full max-w-4xl mb-8 p-6 border border-yellow-500/60 bg-yellow-950/20 rounded text-center shadow-lg">
+                    <div class="neon-yellow-title mb-4">UWAGA</div>
+                    <p class="text-yellow-100 text-sm md:text-base font-semibold leading-relaxed">
+                        Projekty przeznaczone tylko i wyłącznie do szkolenia pilotów dronów FPV KAMIKAZE oraz UAV na potrzeby klas wojskowych, grup prowojskowych, grup szkoleniowych na potrzeby Polskiej Armii i innych służb. Żołnierzy WOT i JW. Tylko w strefach w których Zarządca takiej strefy zezwoli na takie loty.
+                    </p>
+                </div>
 
-                        <div class="space-y-4 text-zinc-300 text-xs sm:text-sm leading-relaxed font-mono">
-                            <p>
-                                <strong class="text-red-400">1. Bezwzględny zakaz podszywania się pod innych użytkowników:</strong><br>
-                                Bezsprzecznie zabrania się podszywania pod innych użytkowników dronów cywilnych oraz komercyjnych, a także bezprawnego wykorzystywania ich danych identyfikacyjnych, takich jak numer rejestracyjny operatora (Operator ID), numer pilota (Pilot ID) czy fabryczne numery seryjne.
-                            </p>
+                <!-- OSTRZEŻENIE 2: CZERWONY NEON -->
+                <div class="w-full max-w-4xl mb-10 p-6 border border-red-600/70 bg-red-950/25 rounded text-left shadow-xl">
+                    <div class="neon-red-title mb-5">CZEGO NIE WOLNO ROBIĆ</div>
 
-                            <p>
-                                <strong class="text-red-400">2. Zakaz podszywania się pod drony służb państwowych i administracji:</strong><br>
-                                Kategorycznie zabrania się podawania za drony specjalne w zarządzaniu innych służb – w tym m.in. Policji (drony policyjne nadzorujące ruch pojazdów), służb Straży Miejskiej / Gminnej, Straży Granicznej, Państwowej Straży Pożarnej, jak również dronów w administracji państwowej przeznaczonych do kontroli jakości powietrza, inspekcji dymu z kominów czy badania materiałów palnych.
-                            </p>
-
-                            <p>
-                                <strong class="text-red-400">3. Zakaz wywoływania fałszywych zagrożeń i interwencji:</strong><br>
-                                Zabrania się wykonywania lotów oraz transmisji danych radiowych w miejscach i warunkach, gdzie mogłoby to wprowadzić mylne zagrożenie i wywołać nieuzasadnioną interwencję odpowiedzialnych służb ratunkowych, porządkowych i wojskowych.
-                            </p>
-
-                            <p>
-                                <strong class="text-red-400">4. Wymóg zgody na testowanie systemów antydronowych (C-UAS):</strong><br>
-                                Sprawdzenie i testowanie skuteczności działania systemów antydronowych oraz stacji detekcji radiowej może odbywać się <strong>wyłącznie za pełną wiedzą i bezwzględną zgodą zarządcy strefy powietrznej lub terenu</strong>, nad którym prowadzone są szkolenia żołnierzy oraz operatorów dronów. Uruchamianie procedur testowych bez wcześniejszej formalnej koordynacji z dowództwem jednostki, zarządem poligonu lub kierownictwem lotniska jest kategorycznie zabronione.
-                            </p>
-
-                            <div class="mt-6 pt-4 border-t border-red-900/60 bg-black/40 p-4 rounded text-xs leading-6">
-                                <h3 class="text-red-400 font-bold uppercase tracking-wider text-sm mb-2 text-center">
-                                    Sankcje prawne i artykuły Kodeksu Karnego oraz Wykroczeń
-                                </h3>
-                                <p class="mb-2 text-zinc-400">
-                                    Naruszenie powyższych zasad wiąże się ze ścisłą odpowiedzialnością karną wynikającą z przepisów polskiego prawa:
-                                </p>
-                                <ul class="list-disc pl-5 space-y-2 text-zinc-300">
-                                    <li>
-                                        <strong class="text-red-300">Art. 190a § 2 KK (Podszywanie się / Kradzież tożsamości):</strong> Podszywanie się pod inną osobę przy użyciu jej danych – podlega karze pozbawienia wolności <strong>od 6 miesięcy do lat 8</strong>.
-                                    </li>
-                                    <li>
-                                        <strong class="text-red-300">Art. 227 KK (Przywłaszczenie funkcji publicznej):</strong> Podszywanie się pod drona służb lub inspekcji – podlega karze grzywny, ograniczenia wolności albo pozbawienia wolności <strong>do roku</strong>.
-                                    </li>
-                                    <li>
-                                        <strong class="text-red-300">Art. 224a KK (Fałszywy alarm i zagrożenie):</strong> Wprowadzenie w błąd organu porządku publicznego – podlega karze pozbawienia wolności <strong>od 6 miesięcy do lat 8</strong>.
-                                    </li>
-                                    <li>
-                                        <strong class="text-red-300">Art. 66 § 1 KW (Wywołanie niepotrzebnej czynności służb):</strong> Bezpodstawna interwencja służb – podlega karze aresztu, ograniczenia wolności albo grzywny <strong>do 1 500 zł</strong>.
-                                    </li>
-                                    <li>
-                                        <strong class="text-red-300">Art. 212 Ustawy Prawo Lotnicze:</strong> Wykonywanie lotu BSP z naruszeniem przepisów – podlega karze pozbawienia wolności <strong>do lat 5</strong>.
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- SEKCJA: DRON TESTOWY -->
-                    <div class="w-full max-w-4xl mb-10 p-6 border border-amber-500/60 bg-amber-950/20 rounded text-left shadow-lg">
-                        <div class="neon-yellow-title mb-4">DRON TESTOWY</div>
-                        
-                        <p class="text-zinc-300 text-sm md:text-base leading-relaxed mb-6 font-mono text-center">
-                            Dron, na którym wszystkie prezentowane projekty zostały przetestowane w lotach rzeczywistych. Wszystkie loty odbywały się w strefach zamkniętych po uzyskaniu pozwolenia Zarządzającego strefą.
+                    <div class="space-y-4 text-zinc-300 text-xs sm:text-sm leading-relaxed font-mono">
+                        <p>
+                            <strong class="text-red-400">1. Bezawaryjny zakaz podszywania się pod innych użytkowników:</strong><br>
+                            Bezsprzecznie zabrania się podszywania pod innych użytkowników dronów cywilnych oraz komercyjnych, a także bezprawnego wykorzystywania ich danych identyfikacyjnych, takich jak numer rejestracyjny operatora (Operator ID), numer pilota (Pilot ID) czy fabryczne numery seryjne.
                         </p>
 
-                        <!-- 4 ZDJĘCIA W DWÓCH RZĘDACH (2x2) Z ZACHOWANIEM PROPORCJI -->
-                        <div class="grid grid-cols-2 gap-4 mb-6">
-                            <div class="hero-img-card">
-                                <img src="images/d1.jpg" alt="Dron testowy - zdjęcie 1" class="w-full h-auto object-cover rounded" onerror="this.onerror=null; this.src='d1.jpg';">
-                            </div>
-                            <div class="hero-img-card">
-                                <img src="images/d2.jpg" alt="Dron testowy - zdjęcie 2" class="w-full h-auto object-cover rounded" onerror="this.onerror=null; this.src='d2.jpg';">
-                            </div>
-                            <div class="hero-img-card">
-                                <img src="images/d3.jpg" alt="Dron testowy - zdjęcie 3" class="w-full h-auto object-cover rounded" onerror="this.onerror=null; this.src='d3.jpg';">
-                            </div>
-                            <div class="hero-img-card">
-                                <img src="images/d4.jpg" alt="Dron testowy - zdjęcie 4" class="w-full h-auto object-cover rounded" onerror="this.onerror=null; this.src='d4.jpg';">
-                            </div>
-                        </div>
+                        <p>
+                            <strong class="text-red-400">2. Zakaz podszywania się pod drony służb państwowych i administracji:</strong><br>
+                            Kategorycznie zabrania się podawania za drony specjalne w zarządzaniu innych służb – w tym m.in. Policji (drony policyjne nadzorujące ruch pojazdów), służb Straży Miejskiej / Gminnej, Straży Granicznej, Państwowej Straży Pożarnej, jak również dronów w administracji państwowej przeznaczonych do kontroli jakości powietrza, inspekcji dymu z kominów czy badania materiałów palnych.
+                        </p>
 
-                        <!-- OPIS TECHNICZNY DRONA (WYPUNKTOWANIE) -->
-                        <div class="bg-black/40 p-5 rounded border border-zinc-700/50 text-xs sm:text-sm text-zinc-300 font-mono leading-relaxed">
-                            <h3 class="text-amber-400 font-bold uppercase tracking-wider text-sm mb-4 text-center border-b border-amber-500/30 pb-2">
-                                Specyfikacja Techniczna Drona
+                        <p>
+                            <strong class="text-red-400">3. Zakaz wywoływania fałszywych zagrożeń i interwencji:</strong><br>
+                            Zabrania się wykonywania lotów oraz transmisji danych radiowych w miejscach i warunkach, gdzie mogłoby to wprowadzić mylne zagrożenie i wywołać nieuzasadnioną interwencję odpowiedzialnych służb ratunkowych, porządkowych i wojskowych.
+                        </p>
+
+                        <p>
+                            <strong class="text-red-400">4. Wymóg zgody na testowanie systemów antydronowych (C-UAS):</strong><br>
+                            Sprawdzenie i testowanie skuteczności działania systemów antydronowych oraz stacji detekcji radiowej może odbywać się <strong>wyłącznie za pełną wiedzą i bezwzględną zgodą zarządcy strefy powietrznej lub terenu</strong>, nad którym prowadzone są szkolenia żołnierzy oraz operatorów dronów. Uruchamianie procedur testowych bez wcześniejszej formalnej koordynacji z dowództwem jednostki, zarządem poligonu lub kierownictwem lotniska jest kategorycznie zabronione.
+                        </p>
+
+                        <div class="mt-6 pt-4 border-t border-red-900/60 bg-black/40 p-4 rounded text-xs leading-6">
+                            <h3 class="text-red-400 font-bold uppercase tracking-wider text-sm mb-2 text-center">
+                                Sankcje prawne i artykuły Kodeksu Karnego oraz Wykroczeń
                             </h3>
+                            <p class="mb-2 text-zinc-400">
+                                Naruszenie powyższych zasad wiąże się ze ścisłą odpowiedzialnością karną wynikającą z przepisów polskiego prawa:
+                            </p>
                             <ul class="list-disc pl-5 space-y-2 text-zinc-300">
-                                <li><strong class="text-amber-200">Typ drona:</strong> QUAD (4 śmigła 13x10)</li>
-                                <li><strong class="text-amber-200">Silniki:</strong> 5010 345 kV</li>
-                                <li><strong class="text-amber-200">Zasilanie:</strong> LiPo 6S 5000 mAh</li>
-                                <li><strong class="text-amber-200">Transmisja wideo:</strong> Analogowa 5,5 W</li>
-                                <li><strong class="text-amber-200">Autopilot:</strong> Omnibus F4 V3 Pro z oprogramowaniem ArduPilot</li>
-                                <li><strong class="text-amber-200">Podgląd wideo:</strong> Gogle FPV Eachine oraz monitor wideo 10 cali</li>
-                                <li><strong class="text-amber-200">Aparatura i łączność:</strong> Aparatura FrSky Horus X12S z modułem ELRS 1+1 W (2,4 GHz oraz 900 MHz GEMINI), protokół MAVLink</li>
-                                <li><strong class="text-amber-200">Pobór prądu:</strong> 8 A w zawisie, 13 A przy prędkości 50 km/h</li>
-                                <li><strong class="text-amber-200">Waga i udźwig:</strong> Waga 2 kg (bez wyposażenia), nośność do 6 kg</li>
+                                <li>
+                                    <strong class="text-red-300">Art. 190a § 2 KK (Podszywanie się / Kradzież tożsamości):</strong> Podszywanie się pod inną osobę przy użyciu jej danych – podlega karze pozbawienia wolności <strong>od 6 miesięcy do lat 8</strong>.
+                                </li>
+                                <li>
+                                    <strong class="text-red-300">Art. 227 KK (Przywłaszczenie funkcji publicznej):</strong> Podszywanie się pod drona służb lub inspekcji – podlega karze grzywny, ograniczenia wolności albo pozbawienia wolności <strong>do roku</strong>.
+                                </li>
+                                <li>
+                                    <strong class="text-red-300">Art. 224a KK (Fałszywy alarm i zagrożenie):</strong> Wprowadzenie w błąd organu porządku publicznego – podlega karze pozbawienia wolności <strong>od 6 miesięcy do lat 8</strong>.
+                                </li>
+                                <li>
+                                    <strong class="text-red-300">Art. 66 § 1 KW (Wywołanie niepotrzebnej czynności służb):</strong> Bezpodstawna interwencja służb – podlega karze aresztu, ograniczenia wolności albo grzywny <strong>do 1 500 zł</strong>.
+                                </li>
+                                <li>
+                                    <strong class="text-red-300">Art. 212 Ustawy Prawo Lotnicze:</strong> Wykonywanie lotu BSP z naruszeniem przepisów – podlega karze pozbawienia wolności <strong>do lat 5</strong>.
+                                </li>
                             </ul>
                         </div>
                     </div>
-
-                    <!-- SEKCJA: PIERWSZY PROJEKT TEGO TYPU NA ŚWIECIE -->
-                    <section class="w-full max-w-4xl mb-10 p-6 border border-amber-500/40 bg-black/40 rounded text-left">
-                        <h2 class="section-title text-center text-lg md:text-xl mb-4">
-                            Pierwszy taki projekt na świecie
-                        </h2>
-
-                        <div class="text-zinc-300 text-sm leading-7 space-y-4 font-mono">
-                            <p>
-                                Prezentowany na tym serwerze <strong>nadajnik Remote ID oraz wieloobiektowy symulator dronów</strong> stanowią <strong>pierwszy tego typu zintegrowany projekt na świecie</strong>. Rozwiązanie to unikalnie łączy fizyczny moduł emisyjny (Radio Hardware na mikrokontrolerach ESP32) z zaawansowanym silnikiem symulacji programowej (Swarm Engine) oraz natywną integracją taktyczną z systemami dowodzenia wojskowego <strong>TAK / ATAK / WinTAK</strong> poprzez komunikaty <strong>CoT (Cursor on Target)</strong>.
-                            </p>
-                            <p>
-                                Warto podkreślić kluczową różnicę zasadniczą pomiędzy dwoma głównymi urządzeniami wchodzącymi w skład systemu:
-                            </p>
-                            <p>
-                                • <strong>Taktyczny Symulator Nalotu (do 200 dronów):</strong> Jest urządzeniem czysto symulacyjnym, które <strong>nie potrzebuje rzeczywistych danych GPS ani odbiornika satelitarnego</strong>. Generuje ono kompletną dynamikę lotu roju dronów programowo w przestrzeni 3D i może działać na dowolnie zdefiniowanych, wirtualnych współrzędnych geograficznych na całym globie (np. na wskazanym obszarze ćwiczeń poligonowych), imitując nalot bojowy bez konieczności użycia realnego drona w powietrzu.
-                            </p>
-                            <p>
-                                • <strong>Osobisty Nadajnik Remote ID z funkcją Echa:</strong> W przeciwieństwie do symulatora, nadajnik ten <strong>musi być zamontowany na fizycznym, latającym dronie i wymaga realnych danych GPS/GNSS</strong>. Nie służy do bezzałogowego generowania ataku z ziemi, lecz nadaje rzeczywistą pozycję pojedynczego drona w locie. Na podstawie tego prawdziwego śladu GPS wbudowany silnik <em>Swarm Engine</em> potrafi wygenerować w eterze do 50 sztuk wirtualnych "ech" (celów pozornych), których trajektorie są dynamicznie powielane i dopasowywane do kursu rzeczywistego drona.
-                            </p>
-                        </div>
-                    </section>
-
-                    <!-- OBSZARY PROJEKTU (MODUŁY 1-4) -->
-                    <section class="w-full max-w-5xl mb-10">
-
-                        <h2 class="section-title text-center mb-6">
-                            Zawartość serwera i moduły projektu
-                        </h2>
-
-                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-
-                            <article class="project-card">
-                                <h2>1. Taktyczny Symulator Dronów (do 200 dronów)</h2>
-                                <p>
-                                    Zaawansowany symulator roju dronów oparty na układzie ESP32-S3. Generuje czysto programowy atak do 200 obiektów w przestrzeni 3D z 12 scenariuszami taktycznymi. <strong>Nie wymaga fizycznego drona ani sygnału GPS</strong> – umożliwia symulację na dowolnych wpisanych współrzędnych geograficznych, transmitując pakiety CoT/Remote ID bezpośrednio do systemów ATAK i stanowisk C-UAS na poligonach.
-                                </p>
-                            </article>
-
-                            <article class="project-card">
-                                <h2>2. Nadajnik Remote ID & Swarm Engine (13g Mini)</h2>
-                                <p>
-                                    Osobisty moduł <strong>montowany bezpośrednio na realnym dronie</strong>, wymagający rzeczywistych odczytów z GPS. Prawdziwa trasa przelotu drona jest w czasie rzeczywistym powielana przez silnik Swarm Engine, wyliczający do 50 wirtualnych celów pozornych (ech) poruszających się w zadanej formacji wokół fizycznej platformy. Dostępny także w wersji Ultra-Light 13,1 g dla dronów FPV.
-                                </p>
-                            </article>
-
-                            <article class="project-card">
-                                <h2>3. Odbiornik Remote ID – Mx ECHO</h2>
-                                <p>
-                                    Stacjonarno-mobilny odbiornik taktyczny oparty na procesorze ESP32-C5 z dwupasmową obsługą Wi-Fi (2.4 GHz oraz 5 GHz) i BLE. Wykorzystuje silnik OpenDroneID core do dekodowania i agregacji do 300 celów w bazie danych. Służy do ciągłego monitorowania przestrzeni oraz sprawdzania skuteczności wykrywania systemów antydronowych na poligonach i lotniskach.
-                                </p>
-                            </article>
-
-                            <article class="project-card">
-                                <h2>4. Systemy Zrzutowe (Druk 3D)</h2>
-                                <p>
-                                    Baza autorskich projektów mechanizmów wykonanych w prostej technice druku 3D (darmowe i płatne modele Cults3D). Pomysły i rozwiązania zostały bezpośrednio zaczerpnięte z realiów działań wojennych w Ukrainie. Służą do uzbrajania komercyjnych dronów FPV oraz płatowców, pozwalając zamienić je w drony kamikaze lub precyzyjne platformy zrzutowe amunicji szkoleniowej (40mm, F1, RG-42, RPG-7) na potrzeby ćwiczeń wojskowych.
-                                </p>
-                            </article>
-
-                        </div>
-
-                    </section>
-
-                    <!-- INFORMACJA KOŃCOWA: CEL PROJEKTU -->
-                    <section class="max-w-4xl w-full text-center mt-4">
-                        <h2 class="section-title mb-3">Cel projektu</h2>
-                        <p class="text-zinc-400 text-sm leading-7 font-mono">
-                            Celem projektu DroneAtak jest tworzenie nowatorskich, practical
-                            narzędzi umożliwiających prowadzenie testów, eksperymentów oraz szkoleń taktycznych związanych z bezzałogowymi
-                            statkami powietrznymi. Systemy są rozwijane etapami,
-                            a ich funkcjonalność jest stale rozszerzana wraz z
-                            rozwojem poszczególnych modułów.
-                        </p>
-                    </section>
-
                 </div>
+
+                <!-- SEKCJA: DRON TESTOWY -->
+                <div class="w-full max-w-4xl mb-10 p-6 border border-amber-500/60 bg-amber-950/20 rounded text-left shadow-lg">
+                    <div class="neon-yellow-title mb-4">DRON TESTOWY</div>
+                    
+                    <p class="text-zinc-300 text-sm md:text-base leading-relaxed mb-6 font-mono text-center">
+                        Dron, na którym wszystkie prezentowane projekty zostały przetestowane w lotach rzeczywistych. Wszystkie loty odbywały się w strefach zamkniętych po uzyskaniu pozwolenia Zarządzającego strefą.
+                    </p>
+
+                    <div class="grid grid-cols-2 gap-4 mb-6">
+                        <div class="hero-img-card">
+                            <img src="images/d1.jpg" alt="Dron testowy - zdjęcie 1" class="w-full h-auto object-cover rounded" onerror="this.onerror=null; this.src='d1.jpg';">
+                        </div>
+                        <div class="hero-img-card">
+                            <img src="images/d2.jpg" alt="Dron testowy - zdjęcie 2" class="w-full h-auto object-cover rounded" onerror="this.onerror=null; this.src='d2.jpg';">
+                        </div>
+                        <div class="hero-img-card">
+                            <img src="images/d3.jpg" alt="Dron testowy - zdjęcie 3" class="w-full h-auto object-cover rounded" onerror="this.onerror=null; this.src='d3.jpg';">
+                        </div>
+                        <div class="hero-img-card">
+                            <img src="images/d4.jpg" alt="Dron testowy - zdjęcie 4" class="w-full h-auto object-cover rounded" onerror="this.onerror=null; this.src='d4.jpg';">
+                        </div>
+                    </div>
+
+                    <div class="bg-black/40 p-5 rounded border border-zinc-700/50 text-xs sm:text-sm text-zinc-300 font-mono leading-relaxed">
+                        <h3 class="text-amber-400 font-bold uppercase tracking-wider text-sm mb-4 text-center border-b border-amber-500/30 pb-2">
+                            Specyfikacja Techniczna Drona
+                        </h3>
+                        <ul class="list-disc pl-5 space-y-2 text-zinc-300">
+                            <li><strong class="text-amber-200">Typ drona:</strong> QUAD (4 śmigła 13x10)</li>
+                            <li><strong class="text-amber-200">Silniki:</strong> 5010 345 kV</li>
+                            <li><strong class="text-amber-200">Zasilanie:</strong> LiPo 6S 5000 mAh</li>
+                            <li><strong class="text-amber-200">Transmisja wideo:</strong> Analogowa 5,5 W</li>
+                            <li><strong class="text-amber-200">Autopilot:</strong> Omnibus F4 V3 Pro z oprogramowaniem ArduPilot</li>
+                            <li><strong class="text-amber-200">Podgląd wideo:</strong> Gogle FPV Eachine oraz monitor wideo 10 cali</li>
+                            <li><strong class="text-amber-200">Aparatura i łączność:</strong> Aparatura FrSky Horus X12S z modułem ELRS 1+1 W (2,4 GHz oraz 900 MHz GEMINI), protokół MAVLink</li>
+                            <li><strong class="text-amber-200">Pobór prądu:</strong> 8 A w zawisie, 13 A przy prędkości 50 km/h</li>
+                            <li><strong class="text-amber-200">Waga i udźwig:</strong> Waga 2 kg (bez wyposażenia), nośność do 6 kg</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- SEKCJA: PIERWSZY PROJEKT TEGO TYPU NA ŚWIECIE -->
+                <section class="w-full max-w-4xl mb-10 p-6 border border-amber-500/40 bg-black/40 rounded text-left">
+                    <h2 class="section-title text-center text-lg md:text-xl mb-4">
+                        Pierwszy taki projekt na świecie
+                    </h2>
+
+                    <div class="text-zinc-300 text-sm leading-7 space-y-4 font-mono">
+                        <p>
+                            Prezentowany na tym serwerze <strong>nadajnik Remote ID oraz wieloobiektowy symulator dronów</strong> stanowią <strong>pierwszy tego typu zintegrowany projekt na świecie</strong>. Rozwiązanie to unikalnie łączy fizyczny moduł emisyjny (Radio Hardware na mikrokontrolerach ESP32) z zaawansowanym silnikiem symulacji programowej (Swarm Engine) oraz natywną integracją taktyczną z systemami dowodzenia wojskowego <strong>TAK / ATAK / WinTAK</strong> poprzez komunikaty <strong>CoT (Cursor on Target)</strong>.
+                        </p>
+                    </div>
+                </section>
+
+                <!-- OBSZARY PROJEKTU -->
+                <section class="w-full max-w-5xl mb-10">
+                    <h2 class="section-title text-center mb-6">
+                        Zawartość serwera i moduły projektu
+                    </h2>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <article class="project-card">
+                            <h2>1. Taktyczny Symulator Dronów (do 200 dronów)</h2>
+                            <p>
+                                Zaawansowany symulator roju dronów oparty na układzie ESP32-S3. Generuje czysto programowy atak do 200 obiektów w przestrzeni 3D z 12 scenariuszami taktycznymi. Nie wymaga fizycznego drona ani sygnału GPS.
+                            </p>
+                        </article>
+
+                        <article class="project-card">
+                            <h2>2. Nadajnik Remote ID & Swarm Engine (13g Mini)</h2>
+                            <p>
+                                Osobisty moduł montowany bezpośrednio na realnym dronie, wymagający rzeczywistych odczytów z GPS. Silnik Swarm Engine wylicza do 50 wirtualnych celów pozornych poruszających się w zadanej formacji.
+                            </p>
+                        </article>
+
+                        <article class="project-card">
+                            <h2>3. Odbiornik Remote ID – Mx ECHO</h2>
+                            <p>
+                                Stacjonarno-mobilny odbiornik taktyczny oparty na procesorze ESP32-C5 z dwupasmową obsługą Wi-Fi (2.4 GHz oraz 5 GHz) i BLE. Wykorzystuje silnik OpenDroneID core do dekodowania i agregacji do 300 celów.
+                            </p>
+                        </article>
+
+                        <article class="project-card">
+                            <h2>4. Systemy Zrzutowe (Druk 3D)</h2>
+                            <p>
+                                Baza autorskich projektów mechanizmów wykonanych w technice druku 3D (modele Cults3D). Służą do uzbrajania dronów FPV w amunicję szkoleniową na potrzeby ćwiczeń wojskowych.
+                            </p>
+                        </article>
+                    </div>
+                </section>
+
+                <section class="max-w-4xl w-full text-center mt-4">
+                    <h2 class="section-title mb-3">Cel projektu</h2>
+                    <p class="text-zinc-400 text-sm leading-7 font-mono">
+                        Celem projektu DroneAtak jest tworzenie nowatorskich, praktycznych narzędzi umożliwiających prowadzenie testów, eksperymentów oraz szkoleń taktycznych związanych z bezzałogowymi statkami powietrznymi.
+                    </p>
+                </section>
+
             </div>
+        </div>
+    </section>
+</main>
 
-        </section>
-
-    </main>
-
-    <!-- UJEDNOLICONA STOPKA -->
-    <footer class="w-full text-center py-6 mt-8 border-t border-zinc-800 text-xs text-zinc-500 font-mono tracking-widest">
-        MaxGyver 2024 CE EU • RemoteID zgodny z: REG 2019/945 | ASTM F3411-22a | ASD-STAN prEN 4709-002 • all rights reserved
-    </footer>
-
-</body>
-</html>
+<footer class="w-full text-center py-6 mt-8 border-t border-zinc-800 text-xs text-zinc-500 font-mono tracking-widest">
+    MaxGyver 2024 CE EU • RemoteID zgodny z: REG 2019/945 | ASTM F3411-22a | ASD-STAN prEN 4709-002 • all rights reserved
+</footer>

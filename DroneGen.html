@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DroneGen — Symulator Roju i Nadajnik | DroneAtak</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body { background-color: #0b0d12; color: #d1d5db; font-family: system-ui, sans-serif; min-height: 100vh; }
+        .main-banner { width: 100%; border-radius: 4px; box-shadow: 0 15px 35px rgba(0,0,0,0.8); }
+        .main-graphic { width: 100%; height: auto; display: block; }
+        .nav-btn { background: linear-gradient(180deg, #1f242d 0%, #12151c 100%); border: 1px solid #374151; color: #9ca3af; padding: 12px; text-transform: uppercase; font-weight: 600; text-align: center; display: flex; align-items: center; justify-content: center; }
+        .nav-btn:hover { border-color: #f59e0b; color: #f59e0b; }
+        .nav-btn.active { background: linear-gradient(180deg, #2a2215 0%, #18130a 100%); border-color: #f59e0b; color: #f59e0b; }
+        .metal-frame-container { position: relative; background: rgba(15, 18, 25, 0.85); padding: 20px; box-shadow: 0 15px 35px rgba(0,0,0,0.8); }
+        .config-item { border: 1px solid rgba(55, 65, 81, 0.5); background: rgba(15, 18, 25, 0.6); padding: 1rem; border-radius: 4px; margin-bottom: 1rem; }
+        .sec-heading { color: #f59e0b; font-family: monospace; font-size: 0.95rem; font-weight: 800; text-transform: uppercase; border-bottom: 1px solid rgba(245, 158, 11, 0.25); padding-bottom: 0.35rem; margin-bottom: 0.5rem; }
+        .sec-body { font-family: monospace; font-size: 0.85rem; color: #cbd5e1; line-height: 1.6; }
+    </style>
+</head>
+<body class="p-4 md:p-8 flex flex-col min-h-screen">
+    <main class="max-w-7xl mx-auto w-full flex-grow flex flex-col gap-6">
+        <section class="w-full">
+            <div class="main-banner"><img src="images/g2.png" alt="Banner" class="main-graphic"></div>
+        </section>
+        
+        <nav class="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-8 gap-2 w-full" aria-label="Nawigacja">
+            <a href="index.html" class="nav-btn py-3 px-1 text-xs rounded">Główna</a>
+            <a href="nadajnik.html" class="nav-btn py-3 px-1 text-xs rounded">Nadajnik</a>
+            <a href="DroneGen.html" class="nav-btn active py-3 px-1 text-xs rounded">DroneGen</a>
+            <a href="symulator.html" class="nav-btn py-3 px-1 text-xs rounded">Symulator</a>
+            <a href="odbiornik.html" class="nav-btn py-3 px-1 text-xs rounded">Odbiornik</a>
+            <a href="pobieranie.html" class="nav-btn py-3 px-1 text-xs rounded">Pobieranie</a>
+            <a href="inne_projekty.html" class="nav-btn py-3 px-1 text-xs rounded">Inne projekty</a>
+            <a href="kontakt.html" class="nav-btn py-3 px-1 text-xs rounded">Kontakt</a>
+        </nav>
+
+        <section class="metal-frame-container">
+            <h1 class="text-3xl text-amber-500 font-bold text-center mb-6">DroneGen — Oprogramowanie i Sprzęt</h1>
+            
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-8">
+                <img src="images/gen1.jpg" alt="Urządzenie 1" class="rounded w-full h-auto">
+                <img src="images/gen2.jpg" alt="Urządzenie 2" class="rounded w-full h-auto">
+            </div>
+
+            <div class="config-item">
+                <h2 class="sec-heading">Możliwości systemu</h2>
+                <div class="sec-body">
+                    <p>DroneGen to zaawansowany system szkoleniowy, dostępny w dwóch wersjach: z modułem GPS oraz bez modułu GPS. Oprogramowanie jest identyczne dla obu wersji.</p>
+                    <p>Obudowa została zaprojektowana w technologii druku 3D, co zapewnia lekkość i wytrzymałość konstrukcji. W zestawie znajdują się wydajne anteny typu GP 5/8 o zysku 6 dBi, gwarantujące stabilną transmisję.</p>
+                    <p class="text-amber-400 mt-2">Uwaga: Przy dużej liczbie emulowanych dronów, czas odświeżania może przekraczać normy europejskie i USA ze względów fizycznych wynikających z przepustowości pasma transmisyjnego.</p>
+                </div>
+            </div>
+
+            <div class="config-item">
+                <h2 class="sec-heading">Opis okien oprogramowania</h2>
+                <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-3 my-4">
+                    <img src="images/snap2.jpg" alt="Położenie" class="rounded w-full h-auto">
+                    <img src="images/snap3.jpg" alt="Wysokość" class="rounded w-full h-auto">
+                    <img src="images/snap4.jpg" alt="Geometria" class="rounded w-full h-auto">
+                    <img src="images/snap5.jpg" alt="Tożsamość" class="rounded w-full h-auto">
+                    <img src="images/snap6.jpg" alt="Radio" class="rounded w-full h-auto">
+                    <img src="images/snap7.jpg" alt="Sterowanie" class="rounded w-full h-auto">
+                    <img src="images/snap8.jpg" alt="Terminal" class="rounded w-full h-auto">
+                    <img src="images/snap9.jpg" alt="Status" class="rounded w-full h-auto">
+                    <img src="images/snap10.jpg" alt="Port" class="rounded w-full h-auto">
+                </div>
+                <div class="sec-body mt-4 space-y-1">
+                    <p><strong>Położenie:</strong> Konfiguracja centrum ugrupowania i offsetu.</p>
+                    <p><strong>Wysokość:</strong> Ustawienie pułapu roju i wahań.</p>
+                    <p><strong>Geometria:</strong> Wybór szyku i rozstawu dronów.</p>
+                    <p><strong>Tożsamość:</strong> Dane Remote ID.</p>
+                    <p><strong>Radio sterowanie:</strong> Parametry nadawania.</p>
+                    <p><strong>Terminal:</strong> Podgląd komunikacji.</p>
+                    <p><strong>Status:</strong> Dane telemetryczne.</p>
+                    <p><strong>Port:</strong> Wybór portu szeregowego.</p>
+                </div>
+            </div>
+
+            <div class="config-item">
+                <h2 class="sec-heading">Pierwsze uruchomienie</h2>
+                <div class="sec-body space-y-2">
+                    <p>Podłącz urządzenie zasilaniem 5V/600mA przy użyciu powerbanka, telefonu (przez OTG), tabletu lub komputera PC.</p>
+                    <p><strong>Wersja bez GPS:</strong> Działa natychmiast po podłączeniu zasilania. Współrzędne centrum ugrupowania należy wprowadzić ręcznie w panelu konfiguracji (kopiuj-wklej z Google Maps).</p>
+                    <p><strong>Wersja z GPS:</strong> Rozpoczęcie nadawania następuje po uzyskaniu fixa satelitarnego (do 2 minut). Podczas nadawania parametry można zmieniać na bieżąco za pośrednictwem oprogramowania na Windows 10/11.</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="w-full text-center py-6 mt-8 border-t border-zinc-800 text-xs text-zinc-500 font-mono tracking-widest">
+        MaxGyver 2024 CE EU • RemoteID zgodny z: REG 2019/945 | ASTM F3411-22a | ASD-STAN prEN 4709-002 • all rights reserved
+    </footer>
+</body>
+</html>

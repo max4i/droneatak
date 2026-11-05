@@ -208,7 +208,6 @@
             }
         }
 
-        /* === Karta dla zdjęć symulatora (s1.jfif, s2.jfif) — stałe proporcje 4:3 === */
         .sim-thumb-card {
             border: 1px solid #374151;
             background: rgba(10, 12, 16, 0.8);
@@ -235,9 +234,6 @@
             display: block;
         }
 
-        /* === Karta dla zrzutów ekranu w "Panel WWW — konfiguracja" ===
-           Zachowuje naturalne proporcje obrazka, nie rozciąga go.
-           Szerokość kontrolowana przez kolumnę grid (lg:col-span-6 = 50%). */
         .sim-thumb-card.screen {
             aspect-ratio: auto;
         }
@@ -311,7 +307,6 @@
             font-family: ui-monospace, monospace;
         }
 
-        /* === 2 zdjęcia na górze === */
         .hero-sim {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
@@ -356,7 +351,6 @@
             font-weight: 700;
         }
 
-        /* === Lightbox === */
         .lightbox-overlay {
             display: none;
             position: fixed;
@@ -459,18 +453,20 @@
                 <img src="images/g2.png" 
                      alt="Główna grafika taktyczna" 
                      class="main-graphic"
-                     onerror="this.onerror=null; this.src='https://placehold.co/1200x600/182026/e5a93c?text=ChatGPT+Image+18+wrz+2026,+17_31_33.png';">
+                     onerror="this.onerror=null; this.src='https://placehold.co/1200x600/182026/e5a93c?text=Baner+Główny';">
             </div>
         </section>
 
         <!-- PRZYCISKI NAWIGACYJNE -->
-        <nav class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-3 w-full">
-            <a href="index.html" class="nav-btn py-3 px-2 text-xs sm:text-sm rounded">Główna</a>
-            <a href="nadajnik.html" class="nav-btn py-3 px-2 text-xs sm:text-sm rounded">Nadajnik</a>
-            <a href="symulator.html" class="nav-btn active py-3 px-2 text-xs sm:text-sm rounded">Symulator</a>
-            <a href="odbiornik.html" class="nav-btn py-3 px-2 text-xs sm:text-sm rounded">Odbiornik</a>
-            <a href="pobieranie.html" class="nav-btn py-3 px-2 text-xs sm:text-sm rounded">Pobieranie</a>
-            <a href="projekty.html" class="nav-btn py-3 px-2 text-xs sm:text-sm rounded">Inne Projekty</a>
+        <nav class="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-8 gap-2 w-full" aria-label="Główna nawigacja">
+            <a href="index.html" class="nav-btn py-3 px-1 text-xs rounded">Główna</a>
+            <a href="nadajnik.html" class="nav-btn py-3 px-1 text-xs rounded">Nadajnik</a>
+            <a href="DroneGen.html" class="nav-btn py-3 px-1 text-xs rounded">DroneGen</a>
+            <a href="symulator.html" class="nav-btn active py-3 px-1 text-xs rounded">Symulator</a>
+            <a href="odbiornik.html" class="nav-btn py-3 px-1 text-xs rounded">Odbiornik</a>
+            <a href="pobieranie.html" class="nav-btn py-3 px-1 text-xs rounded">Pobieranie</a>
+            <a href="inne_projekty.html" class="nav-btn py-3 px-1 text-xs rounded">Inne projekty</a>
+            <a href="kontakt.html" class="nav-btn py-3 px-1 text-xs rounded">Kontakt</a>
         </nav>
 
         <!-- OKNO TREŚCI PODSTRONY -->

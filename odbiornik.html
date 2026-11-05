@@ -5,25 +5,25 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <!-- SEO Google -->
-    <title>Taktyczny Odbiornik Remote ID Mx ECHO – DroneAtak</title>
-    <meta name="description" content="Odbiornik Remote ID Mx ECHO oparty na ESP32-C5. Dwupasmowa detekcja Wi-Fi (2.4 GHz + 5 GHz) oraz BLE, silnik OpenDroneID, agregacja celów i integracja z TAK/ATAK.">
-    <meta name="keywords" content="odbiornik Remote ID, Remote ID Mx ECHO, ESP32-C5, OpenDroneID, detekcja dronów, C-UAS, ATAK, CoT, DroneAtak">
+    <title>Taktyczny Odbiornik Remote ID Mx ECHO – ESP32-C5, Wi-Fi 2.4/5GHz & BLE | DroneAtak</title>
+    <meta name="description" content="Taktyczny odbiornik Remote ID DroneAtak MX oparty na dwupasmowym module ESP32-C5 (Wi-Fi 2.4/5 GHz + BLE). Dekodowanie OpenDroneID, agregacja do 300 celów, integracja z ATAK/CoT.">
+    <meta name="keywords" content="odbiornik Remote ID, skaner Remote ID, DroneAtak, ESP32-C5, OpenDroneID, C-UAS, ATAK, CoT, Wi-Fi 5GHz, BLE, detekcja dronów, WOT, Wojsko Polskie, ASTM F3411">
     <meta name="robots" content="index, follow">
     <meta name="author" content="DroneAtak">
     <link rel="canonical" href="https://droneatak.pl/odbiornik.html">
 
-    <!-- Open Graph -->
+    <!-- Open Graph / Social Media -->
     <meta property="og:type" content="website">
     <meta property="og:title" content="Taktyczny Odbiornik Remote ID Mx ECHO – DroneAtak">
-    <meta property="og:description" content="Dwupasmowy odbiornik Remote ID Mx ECHO z systemem detekcji, dekodowania OpenDroneID i agregacji celów dla systemów TAK/ATAK.">
+    <meta property="og:description" content="Dwupasmowy odbiornik Remote ID na bazie ESP32-C5 z obsługą Wi-Fi 2.4/5 GHz, dekodowaniem OpenDroneID i eksportem do ATAK.">
     <meta property="og:url" content="https://droneatak.pl/odbiornik.html">
     <meta property="og:image" content="https://droneatak.pl/images/g2.png">
     <meta property="og:locale" content="pl_PL">
 
-    <!-- Twitter -->
+    <!-- Twitter / X -->
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Taktyczny Odbiornik Remote ID Mx ECHO">
-    <meta name="twitter:description" content="Odbiornik Remote ID Mx ECHO oparty na ESP32-C5. Agregacja celów i strumieniowanie CoT do ATAK.">
+    <meta name="twitter:title" content="Taktyczny Odbiornik Remote ID Mx ECHO – DroneAtak">
+    <meta name="twitter:description" content="Dwupasmowy skaner Remote ID i system ostrzegania przed bezzałogowcami.">
     <meta name="twitter:image" content="https://droneatak.pl/images/g2.png">
 
     <!-- Schema.org JSON-LD -->
@@ -31,12 +31,14 @@
     {
       "@context": "https://schema.org",
       "@type": "Product",
-      "name": "Taktyczny Odbiornik Remote ID Mx ECHO",
-      "description": "Stacjonarno-mobilny odbiornik sygnałów Remote ID najnowszej generacji oparty na ESP32-C5 z obsługą 2.4 GHz, 5 GHz i BLE.",
+      "name": "Taktyczny Odbiornik Remote ID DroneAtak MX ECHO",
+      "description": "Dwupasmowy odbiornik i skaner Remote ID oparty na module ESP32-C5 z obsługą Wi-Fi 2.4/5 GHz oraz BLE do dekodowania roju dronów.",
       "brand": {
         "@type": "Brand",
         "name": "DroneAtak"
-      }
+      },
+      "category": "Electronics > Communications > Radio Receivers",
+      "url": "https://droneatak.pl/odbiornik.html"
     }
     </script>
 
@@ -231,6 +233,16 @@
             display: block;
         }
 
+        .sim-thumb-card.screen {
+            aspect-ratio: auto;
+        }
+        .sim-thumb-card.screen img {
+            width: 100%;
+            height: auto;
+            object-fit: contain;
+            display: block;
+        }
+
         .config-item {
             border: 1px solid rgba(55, 65, 81, 0.5);
             background: rgba(15, 18, 25, 0.6);
@@ -292,16 +304,6 @@
             margin-right: 4px;
             margin-bottom: 4px;
             font-family: ui-monospace, monospace;
-        }
-
-        .hero-sim {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 16px;
-            margin-bottom: 1.5rem;
-        }
-        @media (max-width: 700px) {
-            .hero-sim { grid-template-columns: 1fr; }
         }
 
         .spec-table {
@@ -445,13 +447,15 @@
         </section>
 
         <!-- PRZYCISKI NAWIGACYJNE -->
-        <nav class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3 w-full">
-            <a href="index.html" class="nav-btn py-3 px-2 text-xs sm:text-sm rounded">Główna</a>
-            <a href="nadajnik.html" class="nav-btn py-3 px-2 text-xs sm:text-sm rounded">Nadajnik</a>
-            <a href="symulator.html" class="nav-btn py-3 px-2 text-xs sm:text-sm rounded">Symulator</a>
-            <a href="odbiornik.html" class="nav-btn active py-3 px-2 text-xs sm:text-sm rounded">Odbiornik</a>
-            <a href="pobieranie.html" class="nav-btn py-3 px-2 text-xs sm:text-sm rounded">Pobieranie</a>
-            <a href="inne_projekty.html" class="nav-btn py-3 px-2 text-xs sm:text-sm rounded">Inne Projekty</a>
+        <nav class="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-8 gap-2 w-full" aria-label="Główna nawigacja">
+            <a href="index.html" class="nav-btn py-3 px-1 text-xs rounded">Główna</a>
+            <a href="nadajnik.html" class="nav-btn py-3 px-1 text-xs rounded">Nadajnik</a>
+            <a href="DroneGen.html" class="nav-btn py-3 px-1 text-xs rounded">DroneGen</a>
+            <a href="symulator.html" class="nav-btn py-3 px-1 text-xs rounded">Symulator</a>
+            <a href="odbiornik.html" class="nav-btn active py-3 px-1 text-xs rounded">Odbiornik</a>
+            <a href="pobieranie.html" class="nav-btn py-3 px-1 text-xs rounded">Pobieranie</a>
+            <a href="inne_projekty.html" class="nav-btn py-3 px-1 text-xs rounded">Inne projekty</a>
+            <a href="kontakt.html" class="nav-btn py-3 px-1 text-xs rounded">Kontakt</a>
         </nav>
 
         <!-- OKNO TREŚCI PODSTRONY -->
@@ -471,21 +475,25 @@
                     
                     <!-- NAGŁÓWEK NEONOWY -->
                     <div class="w-full pb-4 border-b border-amber-500/20 mb-6">
-                        <h1 class="neon-title sm:text-2xl">Taktyczny Odbiornik Remote ID — Mx ECHO</h1>
+                        <h1 class="neon-title sm:text-2xl">Taktyczny Odbiornik Remote ID (Mx ECHO)</h1>
                         <p class="text-center text-zinc-400 font-mono text-xs mt-2 tracking-widest">
-                            REMOTE ID ODBIORNIK MX ECHO • System detekcji, dekodowania OpenDroneID i agregacji roju dronów.
+                            DRONE ATAK MX • dwupasmowy skaner i dekoder OpenDroneID oparty na ESP32-C5.
                         </p>
                     </div>
 
-                    <!-- === DWA ZDJĘCIA ODBIORNIKA NA GÓRZE === -->
-                    <div class="hero-sim">
-                        <div class="sim-thumb-card" onclick="openLightbox('images/o1.jfif', 'Odbiornik Remote ID Mx ECHO — widok obudowy taktycznej')">
-                            <img src="images/o1.jfif" alt="Odbiornik Remote ID Mx ECHO — widok obudowy taktycznej"
-                                 onerror="this.onerror=null; this.src='https://placehold.co/600x450/111827/f59e0b?text=o1.jfif';">
+                    <!-- === ZDJĘCIA ODBIORNIKA NA GÓRZE (o1.jfif do o4.jfif) === -->
+                    <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 mb-6 w-full">
+                        <div class="sim-thumb-card" onclick="openLightbox('images/o1.jfif', 'Odbiornik Remote ID Mx ECHO — obudowa i moduł')">
+                            <img src="images/o1.jfif" alt="o1.jfif" onerror="this.onerror=null; this.src='https://placehold.co/600x450/111827/f59e0b?text=o1.jfif';">
                         </div>
-                        <div class="sim-thumb-card" onclick="openLightbox('images/o2.jfif', 'Odbiornik Remote ID Mx ECHO — moduł ESP32-C5 i tory RF')">
-                            <img src="images/o2.jfif" alt="Odbiornik Remote ID Mx ECHO — moduł ESP32-C5 i tory RF"
-                                 onerror="this.onerror=null; this.src='https://placehold.co/600x450/111827/f59e0b?text=o2.jfif';">
+                        <div class="sim-thumb-card" onclick="openLightbox('images/o2.jfif', 'Odbiornik Remote ID Mx ECHO — widok układu')">
+                            <img src="images/o2.jfif" alt="o2.jfif" onerror="this.onerror=null; this.src='https://placehold.co/600x450/111827/f59e0b?text=o2.jfif';">
+                        </div>
+                        <div class="sim-thumb-card" onclick="openLightbox('images/o3.jfif', 'Odbiornik Remote ID Mx ECHO — testy polowe')">
+                            <img src="images/o3.jfif" alt="o3.jfif" onerror="this.onerror=null; this.src='https://placehold.co/600x450/111827/f59e0b?text=o3.jfif';">
+                        </div>
+                        <div class="sim-thumb-card" onclick="openLightbox('images/o4.jfif', 'Odbiornik Remote ID Mx ECHO — wersja robocza')">
+                            <img src="images/o4.jfif" alt="o4.jfif" onerror="this.onerror=null; this.src='https://placehold.co/600x450/111827/f59e0b?text=o4.jfif';">
                         </div>
                     </div>
 
@@ -493,63 +501,57 @@
                     <div class="config-item mb-6">
                         <h2 class="sec-heading">O odbiorniku — ogólne informacje</h2>
                         <div class="sec-body">
-                            <p><strong>RemoteID_odbiornik_Mx ECHO</strong> to zaawansowany stacjonarno-mobilny odbiornik sygnałów Remote ID najnowszej generacji. Urządzenie zostało zaprojektowane do wykrywania, identyfikacji oraz ciągłego śledzenia pozycji statków powietrznych (BSP) w czasie rzeczywistym. Baza dekodowania opiera się na oficjalnej bibliotece <strong>OpenDroneID (opendroneid-core-c)</strong>, co gwarantuje 100% zgodności ze standardami <strong>ASTM F3411</strong> oraz <strong>ASD-STAN</strong>.</p>
-                            <p>Odbiornik wykorzystuje nowoczesny układ <strong>ESP32-C5</strong> obsługujący wielopasmowy odbiór sygnałów na częstotliwościach <strong>2,4 GHz oraz 5 GHz</strong>, a także łączność <strong>Bluetooth LE (BLE 4.2 Legacy oraz BLE 5.x Extended Advertising)</strong>. System jest wyposażony w aktywne narzędzie agregacji danych (RID Aggregator), skaner RF oraz wielokanałową wysyłkę danych do oprogramowania dowodzenia TAK/ATAK/WinTAK i dedykowanych protokołów binarnych Mx (CBOR).</p>
+                            <p><strong>Taktyczny Odbiornik Remote ID DroneAtak MX ECHO</strong> to zaawansowany skaner i dekoder sygnałów Remote ID, zaprojektowany z myślą o mobilnych zespołach C-UAS, jednostkach WOT oraz operatorach poszukujących skutecznego narzędzia do wykrywania i identyfikacji bezzałogowych statków powietrznych. Urządzenie nasłuchuje eter w dwóch pasmach jednocześnie, dekoduje pakiety OpenDroneID (ASTM F3411 / ASD-STAN) i prezentuje zebrane dane na wbudowanym wyświetlaczu lub przesyła je bezpośrednio do oprogramowania TAK/ATAK przez Wi-Fi.</p>
+                            <p>Dzięki zastosowaniu nowoczesnego układu ESP32-C5 odbiornik obsługuje nie tylko tradycyjne pasmo 2,4 GHz, ale również <strong>pasmo 5 GHz</strong>, co pozwala na detekcję dronów korzystających z nowoczesnych protokołów transmisyjnych i unikających zatłoczonego pasma 2,4 GHz.</p>
                             <div class="mt-3">
-                                <span class="badge-tech">ESP32-C5</span>
-                                <span class="badge-tech">OpenDroneID Core</span>
-                                <span class="badge-tech">BLE 4.2 / BLE 5.x</span>
-                                <span class="badge-tech">Wi-Fi 2.4 GHz + 5 GHz</span>
-                                <span class="badge-tech">Protokół Mx (CBOR)</span>
-                                <span class="badge-tech">3-Kierunkowe CoT / TAK</span>
-                                <span class="badge-tech">Pojemność DB: 300 celów</span>
-                                <span class="badge-tech">Web UI Embedded</span>
+                                <span class="badge-tech">ESP32-C5 Dual-Band</span>
+                                <span class="badge-tech">Wi-Fi 2.4 / 5 GHz</span>
+                                <span class="badge-tech">BLE 5 / Coded PHY</span>
+                                <span class="badge-tech">Agregacja do 300 celów</span>
+                                <span class="badge-tech">Eksport CoT do ATAK</span>
+                                <span class="badge-tech">Zasilanie USB-C 5V</span>
                             </div>
                         </div>
                     </div>
 
-                    <!-- === SPECYFIKACJA TECHNICZNA I ARCHITEKTURA === -->
+                    <!-- === DANE TECHNICZNE === -->
                     <div class="config-item mb-6">
-                        <h2 class="sec-heading">Specyfikacja techniczna i architektura kodu</h2>
+                        <h2 class="sec-heading">Dane techniczne</h2>
                         <div class="sec-body">
-                            <p><strong>Platforma i system:</strong> Urządzenie bazuje na mikrokontrolerze <strong>Espressif ESP32-C5</strong>, pracującym pod kontrolą systemu czasu rzeczywistego <strong>FreeRTOS</strong> w środowisku <strong>ESP-IDF / PlatformIO</strong>. Pamięć Flash wynosząca <strong>4 MB</strong> została zoptymalizowana pod kątem maksymalnej wydajności i stabilności operacyjnej — zrezygnowano z podwójnej partycji OTA i systemu plików SPIFFS na rzecz jednej produkcyjnej partycji aplikacji (ok. 3.94 MB).</p>
-                            <p><strong>Architektura 4 plików źródłowych:</strong> Kod źródłowy firmware został zbudowany w rygorystycznym, modułowym rygorze 4 plików głównych, co zapewnia minimalny narzut kompilacyjny, wysoki poziom audytowalności oraz gwarancję braku wycieków pamięci Heap:</p>
+                            <p><strong>Platforma:</strong> Espressif <strong>ESP32-C5</strong> — pierwszy w rodzinie ESP32 dwupasmowy mikrokontroler RISC-V obsługujący <strong>Wi-Fi 6 (802.11ax) w pasmach 2,4 GHz i 5 GHz</strong> oraz <strong>Bluetooth 5 (LE)</strong>. Zapewnia ultra-niskie zużycie energii i dużą moc obliczeniową do jednoczesnego skanowania wielu kanałów radiowych.</p>
+                            <p><strong>Pasmo radiowe i czułość:</strong></p>
                             <ul>
-                                <li><code>main.c</code> — inicjalizacja systemu, zadania FreeRTOS, scheduler RF, pętla główna i obsługa WDT (Watchdog).</li>
-                                <li><code>rid_core.c</code> — warstwa HAL OpenDroneID (odid_hal_esp32), pętla dekodowania ramek RF, baza danych RID DB oraz algorytm agregacji celów.</li>
-                                <li><code>comms.c</code> — protokół binarnego strumieniowania Mx (CBOR), silnik CoT (Cursor on Target), serwer Web UI oraz komunikacja WebSocket.</li>
-                                <li><code>config.c</code> — pamięć NVS, zarządzanie konfiguracją, szyfrowana autoryzacja PBKDF2/scrypt, logi i diagnostyka.</li>
+                                <li><strong>Pasmo 2,4 GHz:</strong> skanowanie kanałów 1–13 (Wi-Fi Beacon / NAN) oraz BLE (Legacy + Extended Coded PHY).</li>
+                                <li><strong>Pasmo 5 GHz:</strong> skanowanie kanałów 5 GHz (Wi-Fi 802.11 a/n/ax) — detekcja nowoczesnych łączy transmisyjnych dronów.</li>
+                                <li><strong>Czułość odbiornika:</strong> do -102 dBm, co pozwala na wykrywanie słabych sygnałów Remote ID z dużej odległości (nawet do ~1500 m w otwartej przestrzeni z odpowiednią anteną).</li>
                             </ul>
+                            <p><strong>Zasilanie i pobór:</strong> 5 V przez USB-C, pobór prądu ok. 0,25 A (1,25 W). Zasilanie z powerbanku 10 000 mAh wystarcza na ponad 30 godzin ciągłej pracy.</p>
 
                             <div class="mt-4">
-                                <h3 class="sec-heading" style="font-size:0.8rem; margin-top:1rem;">Tabela partycji pamięci Flash (partitions.csv)</h3>
+                                <h3 class="sec-heading" style="font-size:0.8rem; margin-top:1rem;">Certyfikaty ESP32-C5</h3>
                                 <table class="spec-table">
                                     <thead>
                                         <tr>
-                                            <th>Nazwa partycji</th>
-                                            <th>Typ / Subtyp</th>
-                                            <th>Adres Offset</th>
-                                            <th>Rozmiar</th>
+                                            <th>Certyfikat / region</th>
+                                            <th>Numer / data</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         <tr>
-                                            <th>nvs</th>
-                                            <td>data / nvs</td>
-                                            <td><code>0x9000</code></td>
-                                            <td>24 KB (0x6000)</td>
+                                            <th>FCC (USA)</th>
+                                            <td>Zgodność FCC Part 15C / 15E — 2024/2025</td>
                                         </tr>
                                         <tr>
-                                            <th>phy_init</th>
-                                            <td>data / phy</td>
-                                            <td><code>0xF000</code></td>
-                                            <td>4 KB (0x1000)</td>
+                                            <th>CE (Unia Europejska)</th>
+                                            <td>Zgodność RED 2014/53/EU (Wi-Fi 2.4/5GHz + BLE)</td>
                                         </tr>
                                         <tr>
-                                            <th>factory</th>
-                                            <td>app / factory</td>
-                                            <td><code>0x10000</code></td>
-                                            <td><span class="cert-num">3.94 MB</span> (0x3F0000)</td>
+                                            <th>SRRC (Chiny)</th>
+                                            <td>Certyfikacja radiowa SRRC</td>
+                                        </tr>
+                                        <tr>
+                                            <th>RoHS / REACH</th>
+                                            <td>Zgodność środowiskowa UE</td>
                                         </tr>
                                     </tbody>
                                 </table>
@@ -557,34 +559,70 @@
                         </div>
                     </div>
 
-                    <!-- === SCHEDULER RF I AGREGACJA CELÓW === -->
+                    <!-- === ZASTOSOWANIE === -->
                     <div class="config-item mb-6">
-                        <h2 class="sec-heading">Scheduler RF i Agregacja Bazy Danych RID</h2>
+                        <h2 class="sec-heading">Zastosowanie taktyczne</h2>
                         <div class="sec-body">
-                            <p>Ze względu na pojedynczy tor RF w układzie ESP32-C5, odbiornik wykorzystuje zaawansowany <strong>Harmonogram Pracy Radia (RF Scheduler)</strong> zarządzający przełączaniem pasm. Pakiety odebrane z modułów BLE oraz Wi-Fi trafiają bezpośrednio do bufora pierścieniowego (lock-free ringbuffer), dzięki czemu proces skanowania nie blokuje rdzenia procesora.</p>
-                            <p><strong>Tryby Schedulera RF:</strong></p>
+                            <p>Odbiornik MX ECHO został zaprojektowany z myślą o realnych potrzebach pododdziałów i służb:</p>
                             <ul>
-                                <li><strong>FIXED:</strong> Sekwencyjny, sztywny czas skanowania okien (BLE 4.2 / BLE 5.x → Wi-Fi 2.4 GHz → Wi-Fi 5 GHz).</li>
-                                <li><strong>AUTO:</strong> Dynamiczne dopasowanie czasów skanowania na podstawie natężenia ruchu radiowego w poszczególnych pasmach.</li>
-                                <li><strong>SMART:</strong> Automatyczne wydłużanie okna dla pasma, z którego spływa najwięcej poprawnie odkodowanych ramek Remote ID.</li>
+                                <li><strong>Wczesne ostrzeganie (Early Warning):</strong> wykrywanie obecności dronów w stasowaniu zanim wejdą w bezpośredni zasięg wzroku lub słuchu.</li>
+                                <li><strong>Identyfikacja zagrożeń:</strong> natychmiastowe odczytanie numeru seryjnego drona, pozycji pilota, wysokości i typu statku z pakietów Remote ID.</li>
+                                <li><strong>Współpraca z ATAK:</strong> przekazywanie wykrytych celów jako punkty CoT do terminali operatorów w sieci lokalnej (Wi-Fi AP / UDP / TCP).</li>
+                                <li><strong>Mobilność i dyskrecja:</strong> niewielkie gabaryty i brak emisji własnej (urządzenie działa w trybie czystego nasłuchu) zapewniają wysoki poziom OPSEC.</li>
                             </ul>
-                            <p><strong>Agregacja danych (RID Aggregator):</strong> Pojedynczy dron nadający jednocześnie przez BLE i Wi-Fi jest łączony w <strong>jeden spójny rekord taktyczny</strong> na podstawie unikalnego identyfikatora <strong>UAS ID (Basic ID)</strong>. Baza danych mieści domyślnie <strong>300 celów</strong> (konfigurowalne 200/300/500), stosując politykę automatycznego czyszczenia najstarszych nieaktywnych obiektów (LRU - Least Recently Used), zabezpieczając pamięć RAM przed wyczerpaniem.</p>
                         </div>
                     </div>
 
-                    <!-- === PROTOKÓŁ MX (CBOR) I COT / TAK === -->
+                    <!-- === PANEL WWW — INTERFEJS ODBIORNIKA === -->
                     <div class="config-item mb-6">
-                        <h2 class="sec-heading">Protokół Strumieniowy Mx (CBOR) i Integracja CoT / TAK</h2>
+                        <h2 class="sec-heading">Panel WWW — interfejs odbiornika i logi</h2>
                         <div class="sec-body">
-                            <p>Odbiornik oferuje bezpośrednią gotowość do współpracy z zewnętrznym oprogramowaniem analitycznym (Python, Android, serwery dowodzenia) za pomocą binarnego, szybkiego protokołu <strong>Mx</strong>, opartego na standardzie <strong>CBOR (tinycbor)</strong>. Dane są transmitowane przez interfejs TCP (port 5555) lub UDP Broadcast z pełną weryfikacją sumy kontrolnej <strong>CRC16-CCITT</strong> i numeracją sekwencyjną ramek.</p>
+                            <p>Poniżej przedstawiono zrzuty ekranu z panelu zarządzania i podglądu odbiornika MX ECHO. Interfejs jest dostępny przez przeglądarkę po połączeniu z siecią Wi-Fi generowaną przez urządzenie. Kliknij grafikę, aby ją powiększyć.</p>
+                        </div>
+                    </div>
 
-                            <p><strong>Trzy niezależne kanały CoT (Cursor on Target):</strong></p>
-                            <ul>
-                                <li><strong>Kanał A (ESP32 SoftAP):</strong> Bezpośrednia wysyłka taktyczna do urządzeń połączonych z lokalną siecią Wi-Fi odbiornika (np. tablet z aplikacją ATAK).</li>
-                                <li><strong>Kanał B (STA Router):</strong> Wysyłka danych do lokalnej sieci LAN/WLAN za pośrednictwem zewnętrznego routera.</li>
-                                <li><strong>Kanał C (External TAK Server):</strong> Dedykowany strumień CoT przesyłany do zdalnego serwera wojskowego przez sieć IP.</li>
-                            </ul>
-                            <p>Użytkownik ma do wyboru 3 profile danych CoT: <code>STANDARD</code>, <code>FULL</code> oraz <code>CUSTOM</code> (swobodna selekcja transmitowanych pól taktycznych).</p>
+                    <!-- ELEMENT 1: o_panel1.jpg -->
+                    <div class="config-item grid grid-cols-1 lg:grid-cols-12 gap-4 items-start mb-4">
+                        <div class="lg:col-span-6 flex justify-center lg:justify-start">
+                            <div class="sim-thumb-card screen" onclick="openLightbox('images/o_panel1.jpg', 'Panel główny odbiornika — lista wykrytych dronów')">
+                                <img src="images/o_panel1.jpg" alt="o_panel1.jpg" onerror="this.onerror=null; this.src='https://placehold.co/600x400/111827/f59e0b?text=o_panel1.jpg';">
+                            </div>
+                        </div>
+                        <div class="lg:col-span-6">
+                            <h3 class="sec-heading">Panel główny — lista wykrytych dronów</h3>
+                            <div class="sec-body">
+                                <p>Główny ekran panelu WWW przedstawia tabelę wykrytych w eterze bezzałogowców. Każdy wiersz zawiera:</p>
+                                <ul>
+                                    <li><strong>UAS ID / Serial:</strong> unikalny numer seryjny drona odczytany z pakietu Remote ID.</li>
+                                    <li><strong>Typ statku:</strong> kategoria (np. Multirotor, Fixed-wing).</li>
+                                    <li><strong>Pozycja GPS:</strong> aktualne współrzędne drona (szerokość, długość, wysokość AGL).</li>
+                                    <li><strong>Pozycja operatora:</strong> odczytana z komunikatu Remote ID pozycja stacji kontroli.</li>
+                                    <li><strong>RSSI:</strong> siła sygnału radiowego (dBm) określająca szacowaną odległość od źródła.</li>
+                                    <li><strong>Czas ostatniego pakietu:</strong> znacznik czasu wskazujący, kiedy odebrano ostatnią ramkę.</li>
+                                </ul>
+                                <p>System potrafi przetwarzać i agregować <strong>do 300 obiektów jednocześnie</strong>, co pozwala na skuteczne monitorowanie nawet dużych rojów i intensywnego ruchu bezzałogowców w rejonie odpowiedzialności.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- ELEMENT 2: o_panel2.jpg -->
+                    <div class="config-item grid grid-cols-1 lg:grid-cols-12 gap-4 items-start mb-4">
+                        <div class="lg:col-span-6 flex justify-center lg:justify-start">
+                            <div class="sim-thumb-card screen" onclick="openLightbox('images/o_panel2.jpg', 'Konfiguracja skanera i ustawienia pasma 2.4 / 5 GHz')">
+                                <img src="images/o_panel2.jpg" alt="o_panel2.jpg" onerror="this.onerror=null; this.src='https://placehold.co/600x400/111827/f59e0b?text=o_panel2.jpg';">
+                            </div>
+                        </div>
+                        <div class="lg:col-span-6">
+                            <h3 class="sec-heading">Konfiguracja skanera i ustawienia pasma</h3>
+                            <div class="sec-body">
+                                <p>Drugi zrzut ekranu przedstawia panel konfiguracyjny odbiornika:</p>
+                                <ul>
+                                    <li><strong>Wybór pasma nasłuchu:</strong> przełącznik między 2,4 GHz, 5 GHz lub trybem dualnym (jednoczesne skanowanie obu pasm).</li>
+                                    <li><strong>Filtrowanie sygnałów:</strong> możliwość ustawienia filtrów RSSI (odrzucanie słabych, odległych sygnałów) oraz filtrowania po typie protokołu (BLE / Wi-Fi Beacon).</li>
+                                    <li><strong>Eksport CoT do ATAK:</strong> konfiguracja adresu IP odbiorcy (np. tablet z ATAK w sieci lokalnej) oraz portu UDP/TCP.</li>
+                                    <li><strong>Zarządzanie logami:</strong> zapisywanie historii wykryć do pamięci Flash z możliwością pobrania w formacie CSV.</li>
+                                </ul>
+                            </div>
                         </div>
                     </div>
 
@@ -592,7 +630,7 @@
                     <div class="config-item">
                         <h2 class="sec-heading">Podsumowanie</h2>
                         <div class="sec-body">
-                            <p>Odbiornik Remote ID Mx ECHO to kompletne rozwiązanie stacjonarno-mobilne do ciągłego monitorowania przestrzeni powietrznej pod kątem obecności bezzałogowców. Dzięki obsłudze pasm 2.4 GHz i 5 GHz oraz integracji z taktycznymi systemami dowodzenia TAK/ATAK, urządzenie doskonale odpowiada potrzebom szkoleniowym i operacyjnym.</p>
+                            <p>Taktyczny odbiornik Remote ID DroneAtak MX ECHO na bazie czipu ESP32-C5 to nowoczesne, dwupasmowe narzędzie do detekcji i analizy ruchu bezzałogowców. Obsługa pasma 5 GHz, agregacja do 300 celów, natywna integracja z oprogramowaniem ATAK oraz kompaktowa konstrukcja czynią go idealnym rozwiązaniem dla formacji poszukujących niezawodnych systemów świadomości sytuacyjnej w przestrzeni powietrznej.</p>
                         </div>
                     </div>
 
@@ -607,41 +645,45 @@
         MaxGyver 2024 CE EU • RemoteID zgodny z: REG 2019/945 | ASTM F3411-22a | ASD-STAN prEN 4709-002 • all rights reserved
     </footer>
 
-    <!-- LIGHTBOX OVERLAY -->
-    <div id="lightbox" class="lightbox-overlay" onclick="closeLightbox(event)">
-        <div class="lightbox-frame" onclick="event.stopPropagation()">
-            <button class="lightbox-close" onclick="closeLightbox()">&times;</button>
+    <!-- === LIGHTBOX === -->
+    <div class="lightbox-overlay" id="lightbox" onclick="if(event.target===this)closeLightbox()">
+        <div class="lightbox-frame">
             <div class="metal-corner corner-tl"></div>
             <div class="metal-corner corner-tr"></div>
             <div class="metal-corner corner-bl"></div>
             <div class="metal-corner corner-br"></div>
+
             <div class="metal-bar-h bar-top"></div>
             <div class="metal-bar-h bar-bottom"></div>
             <div class="metal-bar-v bar-left"></div>
             <div class="metal-bar-v bar-right"></div>
+
+            <button class="lightbox-close" onclick="closeLightbox()" aria-label="Zamknij">&times;</button>
+
             <div class="lightbox-img-wrapper">
-                <img id="lightbox-img" src="" alt="Podgląd sprzętu">
+                <img id="lightbox-img" src="" alt="">
             </div>
-            <div id="lightbox-caption" class="lightbox-caption"></div>
+            <div class="lightbox-caption" id="lightbox-caption"></div>
         </div>
     </div>
 
     <script>
         function openLightbox(src, caption) {
+            var lb = document.getElementById('lightbox');
             document.getElementById('lightbox-img').src = src;
-            document.getElementById('lightbox-caption').innerText = caption;
-            document.getElementById('lightbox').classList.add('active');
+            document.getElementById('lightbox-img').alt = caption || '';
+            document.getElementById('lightbox-caption').textContent = caption || '';
+            lb.classList.add('active');
+            document.body.style.overflow = 'hidden';
         }
-
-        function closeLightbox(e) {
+        function closeLightbox() {
             document.getElementById('lightbox').classList.remove('active');
+            document.body.style.overflow = '';
         }
-
         document.addEventListener('keydown', function(e) {
-            if (e.key === 'Escape') {
-                closeLightbox();
-            }
+            if (e.key === 'Escape') closeLightbox();
         });
     </script>
+
 </body>
 </html>
