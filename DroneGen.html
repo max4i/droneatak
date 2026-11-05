@@ -3,28 +3,283 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DroneGen — Symulator Roju i Nadajnik | DroneAtak</title>
+    <title>DroneGen Mx — Taktyczny Konfigurator i Nadajnik | DroneAtak</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
-        body { background-color: #0b0d12; color: #d1d5db; font-family: system-ui, sans-serif; min-height: 100vh; }
-        .main-banner { width: 100%; border-radius: 4px; box-shadow: 0 15px 35px rgba(0,0,0,0.8); }
-        .main-graphic { width: 100%; height: auto; display: block; }
-        .nav-btn { background: linear-gradient(180deg, #1f242d 0%, #12151c 100%); border: 1px solid #374151; color: #9ca3af; padding: 12px; text-transform: uppercase; font-weight: 600; text-align: center; display: flex; align-items: center; justify-content: center; }
-        .nav-btn:hover { border-color: #f59e0b; color: #f59e0b; }
-        .nav-btn.active { background: linear-gradient(180deg, #2a2215 0%, #18130a 100%); border-color: #f59e0b; color: #f59e0b; }
-        .metal-frame-container { position: relative; background: rgba(15, 18, 25, 0.85); padding: 20px; box-shadow: 0 15px 35px rgba(0,0,0,0.8); }
-        .config-item { border: 1px solid rgba(55, 65, 81, 0.5); background: rgba(15, 18, 25, 0.6); padding: 1rem; border-radius: 4px; margin-bottom: 1rem; }
-        .sec-heading { color: #f59e0b; font-family: monospace; font-size: 0.95rem; font-weight: 800; text-transform: uppercase; border-bottom: 1px solid rgba(245, 158, 11, 0.25); padding-bottom: 0.35rem; margin-bottom: 0.5rem; }
-        .sec-body { font-family: monospace; font-size: 0.85rem; color: #cbd5e1; line-height: 1.6; }
+        body {
+            background-color: #0b0d12;
+            background-image: 
+                radial-gradient(circle at 50% 30%, #1a202c 0%, transparent 70%),
+                linear-gradient(to bottom, #07080a, #0d1017);
+            color: #d1d5db;
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+        }
+        .main-banner {
+            width: 100%;
+            overflow: hidden;
+            border-radius: 4px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.8);
+        }
+        .main-graphic {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+        .nav-btn {
+            background: linear-gradient(180deg, #1f242d 0%, #12151c 100%);
+            border: 1px solid #374151;
+            color: #9ca3af;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            transition: all 0.2s ease;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.4);
+            text-align: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .nav-btn:hover {
+            border-color: #f59e0b;
+            color: #f59e0b;
+            box-shadow: 0 0 12px rgba(245, 158, 11, 0.3);
+        }
+        .nav-btn.active {
+            background: linear-gradient(180deg, #2a2215 0%, #18130a 100%);
+            border-color: #f59e0b;
+            color: #f59e0b;
+            box-shadow: inset 0 0 8px rgba(245, 158, 11, 0.4), 0 0 10px rgba(245, 158, 11, 0.2);
+        }
+        .metal-frame-container {
+            position: relative;
+            box-sizing: border-box;
+            background: rgba(15, 18, 25, 0.85);
+            padding: 20px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.8), inset 0 0 15px rgba(0,0,0,0.5);
+            height: auto;
+        }
+        .metal-corner {
+            position: absolute;
+            width: 32px;
+            height: 32px;
+            z-index: 20;
+            pointer-events: none;
+            background-size: contain;
+            background-repeat: no-repeat;
+        }
+        .corner-tl { top: 0; left: 0; background-image: url('images/naroznik_lewy_gorny.png'); }
+        .corner-tr { top: 0; right: 0; background-image: url('images/naroznik_prawy_gorny.png'); }
+        .corner-bl { bottom: 0; left: 0; background-image: url('images/naroznik_lewy_dolny.png'); }
+        .corner-br { bottom: 0; right: 0; background-image: url('images/naroznik_prawy_dolny.png'); }
+        
+        .metal-bar-h, .metal-bar-v {
+            position: absolute;
+            z-index: 10;
+            pointer-events: none;
+        }
+        .bar-top { top: 0; left: 32px; right: 32px; height: 16px; background-image: url('images/listwa_gorna.png'); background-repeat: repeat-x; background-size: auto 100%; }
+        .bar-bottom { bottom: 0; left: 32px; right: 32px; height: 16px; background-image: url('images/listwa_dolna.png'); background-repeat: repeat-x; background-size: auto 100%; }
+        .bar-left { top: 32px; bottom: 32px; left: 0; width: 16px; background-image: url('images/listwa_lewa.png'); background-repeat: repeat-y; background-size: 100% auto; }
+        .bar-right { top: 32px; bottom: 32px; right: 0; width: 16px; background-image: url('images/listwa_prawa.png'); background-repeat: repeat-y; background-size: 100% auto; }
+
+        .frame-content {
+            position: relative;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            border-radius: 4px;
+            background-image: url('images/tlo_okna.jpg');
+            background-repeat: repeat;
+            background-position: center;
+            box-shadow: inset 0 0 15px rgba(0, 0, 0, 0.7);
+        }
+        .neon-title {
+            color: #ffaa00;
+            font-size: 1.5rem;
+            font-weight: 800;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            text-align: center;
+            text-shadow: 0 0 5px #ffaa00, 0 0 10px #ffaa00, 0 0 20px #ffaa00, 0 0 40px #ff6600;
+        }
+        .config-item {
+            border: 1px solid rgba(55, 65, 81, 0.5);
+            background: rgba(15, 18, 25, 0.6);
+            padding: 1.25rem;
+            border-radius: 4px;
+            margin-bottom: 1.25rem;
+        }
+        .sec-heading {
+            color: #f59e0b;
+            font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+            font-size: 0.95rem;
+            font-weight: 800;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            margin-bottom: 0.5rem;
+            border-bottom: 1px solid rgba(245, 158, 11, 0.25);
+            padding-bottom: 0.35rem;
+        }
+        .sec-body {
+            font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+            font-size: 0.78rem;
+            color: #cbd5e1;
+            line-height: 1.65;
+        }
+        .sec-body p { margin-bottom: 0.5rem; }
+        .sec-body ul { list-style: none; padding-left: 0; }
+        .sec-body li {
+            position: relative;
+            padding-left: 1rem;
+            margin-bottom: 0.3rem;
+        }
+        .sec-body li::before {
+            content: "▸";
+            position: absolute;
+            left: 0;
+            color: #f59e0b;
+        }
+        .sec-body strong { color: #fbbf24; }
+        .sec-body code {
+            background: rgba(245, 158, 11, 0.1);
+            border: 1px solid rgba(245, 158, 11, 0.3);
+            padding: 1px 5px;
+            border-radius: 3px;
+            color: #fbbf24;
+            font-size: 0.72rem;
+        }
+
+        /* Styl ramki grafiki identyczny jak w nadajniku */
+        .sim-thumb-card-framed {
+            position: relative;
+            box-sizing: border-box;
+            background: rgba(15, 18, 25, 0.85);
+            padding: 14px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.8), inset 0 0 15px rgba(0,0,0,0.5);
+            border-radius: 4px;
+            cursor: pointer;
+            width: 100%;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+        .sim-thumb-card-framed:hover {
+            border-color: #f59e0b;
+            box-shadow: 0 0 15px rgba(245, 158, 11, 0.4), inset 0 0 15px rgba(0,0,0,0.5);
+        }
+        .sim-thumb-inner {
+            position: relative;
+            width: 100%;
+            border-radius: 2px;
+            overflow: hidden;
+            background-image: url('images/tlo_okna.jpg');
+            background-repeat: repeat;
+            background-position: center;
+            box-shadow: inset 0 0 15px rgba(0, 0, 0, 0.7);
+            padding: 6px;
+        }
+        .sim-thumb-inner img {
+            width: 100%;
+            height: auto;
+            display: block;
+            border-radius: 2px;
+            border: 1px solid rgba(245, 158, 11, 0.3);
+        }
+
+        /* Lightbox z ramką ozdobną jak w nadajniku */
+        .lightbox-overlay {
+            display: none;
+            position: fixed;
+            inset: 0;
+            z-index: 9999;
+            background: rgba(7, 8, 10, 0.92);
+            backdrop-filter: blur(6px);
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+        .lightbox-overlay.active { display: flex; }
+        .lightbox-frame {
+            position: relative;
+            width: 75vw;
+            max-width: 1400px;
+            background: rgba(15, 18, 25, 0.95);
+            padding: 20px;
+            box-shadow: 0 25px 60px rgba(0,0,0,0.95), inset 0 0 20px rgba(0,0,0,0.6);
+        }
+        .lightbox-img-wrapper {
+            position: relative;
+            width: 100%;
+            border-radius: 4px;
+            overflow: hidden;
+            background-image: url('images/tlo_okna.jpg');
+            background-repeat: repeat;
+            background-position: center;
+            box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.8);
+            padding: 8px;
+        }
+        .lightbox-img-wrapper img {
+            width: 100%;
+            height: auto;
+            display: block;
+            border-radius: 2px;
+            border: 1px solid rgba(245, 158, 11, 0.3);
+        }
+        .lightbox-caption {
+            text-align: center;
+            color: #fbbf24;
+            font-family: ui-monospace, monospace;
+            font-size: 0.78rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            margin-top: 12px;
+            padding: 8px;
+            border-top: 1px solid rgba(245, 158, 11, 0.25);
+        }
+        .lightbox-close {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            width: 40px;
+            height: 40px;
+            background: rgba(20, 24, 32, 0.95);
+            border: 1px solid #f59e0b;
+            border-radius: 4px;
+            color: #f59e0b;
+            font-size: 22px;
+            font-weight: 900;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 30;
+            transition: all 0.2s ease;
+            font-family: monospace;
+            line-height: 1;
+        }
+        .lightbox-close:hover {
+            background: #dc2626;
+            border-color: #dc2626;
+            color: #fff;
+            box-shadow: 0 0 15px rgba(220, 38, 38, 0.6);
+        }
     </style>
 </head>
 <body class="p-4 md:p-8 flex flex-col min-h-screen">
+
     <main class="max-w-7xl mx-auto w-full flex-grow flex flex-col gap-6">
+
+        <!-- BANER GŁÓWNY -->
         <section class="w-full">
-            <div class="main-banner"><img src="images/g2.png" alt="Banner" class="main-graphic"></div>
+            <div class="main-banner w-full h-auto">
+                <img src="images/g2.png" alt="Główna grafika taktyczna" class="main-graphic" onerror="this.onerror=null; this.src='https://placehold.co/1200x600/182026/e5a93c?text=Baner+Główny';">
+            </div>
         </section>
-        
-        <nav class="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-8 gap-2 w-full" aria-label="Nawigacja">
+
+        <!-- PRZYCISKI NAWIGACYJNE -->
+        <nav class="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-8 gap-2 w-full" aria-label="Główna nawigacja">
             <a href="index.html" class="nav-btn py-3 px-1 text-xs rounded">Główna</a>
             <a href="nadajnik.html" class="nav-btn py-3 px-1 text-xs rounded">Nadajnik</a>
             <a href="DroneGen.html" class="nav-btn active py-3 px-1 text-xs rounded">DroneGen</a>
@@ -35,61 +290,311 @@
             <a href="kontakt.html" class="nav-btn py-3 px-1 text-xs rounded">Kontakt</a>
         </nav>
 
-        <section class="metal-frame-container">
-            <h1 class="text-3xl text-amber-500 font-bold text-center mb-6">DroneGen — Oprogramowanie i Sprzęt</h1>
-            
-            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-8">
-                <img src="images/gen1.jpg" alt="Urządzenie 1" class="rounded w-full h-auto">
-                <img src="images/gen2.jpg" alt="Urządzenie 2" class="rounded w-full h-auto">
-            </div>
+        <!-- OKNO TREŚCI PODSTRONY -->
+        <section class="w-full flex-grow">
+            <div class="metal-frame-container w-full">
+                <div class="metal-corner corner-tl"></div>
+                <div class="metal-corner corner-tr"></div>
+                <div class="metal-corner corner-bl"></div>
+                <div class="metal-corner corner-br"></div>
+                <div class="metal-bar-h bar-top"></div>
+                <div class="metal-bar-h bar-bottom"></div>
+                <div class="metal-bar-v bar-left"></div>
+                <div class="metal-bar-v bar-right"></div>
 
-            <div class="config-item">
-                <h2 class="sec-heading">Możliwości systemu</h2>
-                <div class="sec-body">
-                    <p>DroneGen to zaawansowany system szkoleniowy, dostępny w dwóch wersjach: z modułem GPS oraz bez modułu GPS. Oprogramowanie jest identyczne dla obu wersji.</p>
-                    <p>Obudowa została zaprojektowana w technologii druku 3D, co zapewnia lekkość i wytrzymałość konstrukcji. W zestawie znajdują się wydajne anteny typu GP 5/8 o zysku 6 dBi, gwarantujące stabilną transmisję.</p>
-                    <p class="text-amber-400 mt-2">Uwaga: Przy dużej liczbie emulowanych dronów, czas odświeżania może przekraczać normy europejskie i USA ze względów fizycznych wynikających z przepustowości pasma transmisyjnego.</p>
-                </div>
-            </div>
+                <div class="frame-content p-4 sm:p-6 flex flex-col">
+                    
+                    <!-- NAGŁÓWEK NEONOWY -->
+                    <div class="w-full pb-4 border-b border-amber-500/20 mb-6">
+                        <h1 class="neon-title sm:text-2xl">DroneGen Mx — Taktyczny Konfigurator Nadajnika ODID</h1>
+                        <p class="text-center text-zinc-400 font-mono text-xs mt-2 tracking-widest">
+                            Wersja oprogramowania v0.98 • Moduł pozoracji roju i sterowania radiowego.
+                        </p>
+                    </div>
 
-            <div class="config-item">
-                <h2 class="sec-heading">Opis okien oprogramowania</h2>
-                <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-3 my-4">
-                    <img src="images/snap2.jpg" alt="Położenie" class="rounded w-full h-auto">
-                    <img src="images/snap3.jpg" alt="Wysokość" class="rounded w-full h-auto">
-                    <img src="images/snap4.jpg" alt="Geometria" class="rounded w-full h-auto">
-                    <img src="images/snap5.jpg" alt="Tożsamość" class="rounded w-full h-auto">
-                    <img src="images/snap6.jpg" alt="Radio" class="rounded w-full h-auto">
-                    <img src="images/snap7.jpg" alt="Sterowanie" class="rounded w-full h-auto">
-                    <img src="images/snap8.jpg" alt="Terminal" class="rounded w-full h-auto">
-                    <img src="images/snap9.jpg" alt="Status" class="rounded w-full h-auto">
-                    <img src="images/snap10.jpg" alt="Port" class="rounded w-full h-auto">
-                </div>
-                <div class="sec-body mt-4 space-y-1">
-                    <p><strong>Położenie:</strong> Konfiguracja centrum ugrupowania i offsetu.</p>
-                    <p><strong>Wysokość:</strong> Ustawienie pułapu roju i wahań.</p>
-                    <p><strong>Geometria:</strong> Wybór szyku i rozstawu dronów.</p>
-                    <p><strong>Tożsamość:</strong> Dane Remote ID.</p>
-                    <p><strong>Radio sterowanie:</strong> Parametry nadawania.</p>
-                    <p><strong>Terminal:</strong> Podgląd komunikacji.</p>
-                    <p><strong>Status:</strong> Dane telemetryczne.</p>
-                    <p><strong>Port:</strong> Wybór portu szeregowego.</p>
-                </div>
-            </div>
+                    <!-- === DWIE GRAFIKI NA GÓRZE (gen1.jpg i gen2.jpg) WYCENTROWANE I DOPASOWANE DO SZEROKOŚCI OKNA === -->
+                    <div class="config-item mb-6">
+                        <h2 class="sec-heading">Prezentacja Sprzętowa i Układ Urządzenia</h2>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 my-2">
+                            <div class="sim-thumb-card-framed" onclick="openLightbox('images/gen1.jpg', 'DroneGen — Widok układu i obudowy 3D (Wersja 1)')">
+                                <div class="metal-corner corner-tl" style="width:18px;height:18px;"></div>
+                                <div class="metal-corner corner-tr" style="width:18px;height:18px;"></div>
+                                <div class="metal-corner corner-bl" style="width:18px;height:18px;"></div>
+                                <div class="metal-corner corner-br" style="width:18px;height:18px;"></div>
+                                <div class="sim-thumb-inner">
+                                    <img src="images/gen1.jpg" alt="gen1.jpg" onerror="this.onerror=null; this.src='https://placehold.co/600x400/111827/f59e0b?text=gen1.jpg';">
+                                </div>
+                            </div>
+                            <div class="sim-thumb-card-framed" onclick="openLightbox('images/gen2.jpg', 'DroneGen — Widok montażu i anteny GP 5/8 (Wersja 2)')">
+                                <div class="metal-corner corner-tl" style="width:18px;height:18px;"></div>
+                                <div class="metal-corner corner-tr" style="width:18px;height:18px;"></div>
+                                <div class="metal-corner corner-bl" style="width:18px;height:18px;"></div>
+                                <div class="metal-corner corner-br" style="width:18px;height:18px;"></div>
+                                <div class="sim-thumb-inner">
+                                    <img src="images/gen2.jpg" alt="gen2.jpg" onerror="this.onerror=null; this.src='https://placehold.co/600x400/111827/f59e0b?text=gen2.jpg';">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="sec-body mt-2">
+                            <p>Urządzenie DroneGen Mx zamknięte jest w obudowie wykonanej w technologii druku 3D, gwarantującej niską masę oraz odporność mechaniczną. W skład zestawu wchodzi wydajna antena typu GP 5/8 o zysku 6 dBi. System dostępny jest w wariancie z wbudowanym modułem GNSS (GPS) oraz w wersji stacjonarnej[cite: 8].</p>
+                        </div>
+                    </div>
 
-            <div class="config-item">
-                <h2 class="sec-heading">Pierwsze uruchomienie</h2>
-                <div class="sec-body space-y-2">
-                    <p>Podłącz urządzenie zasilaniem 5V/600mA przy użyciu powerbanka, telefonu (przez OTG), tabletu lub komputera PC.</p>
-                    <p><strong>Wersja bez GPS:</strong> Działa natychmiast po podłączeniu zasilania. Współrzędne centrum ugrupowania należy wprowadzić ręcznie w panelu konfiguracji (kopiuj-wklej z Google Maps).</p>
-                    <p><strong>Wersja z GPS:</strong> Rozpoczęcie nadawania następuje po uzyskaniu fixa satelitarnego (do 2 minut). Podczas nadawania parametry można zmieniać na bieżąco za pośrednictwem oprogramowania na Windows 10/11.</p>
+                    <!-- ========================================================== -->
+                    <!-- SNAP 5: POŁOŻENIE -->
+                    <!-- ========================================================== -->
+                    <div class="config-item">
+                        <h2 class="sec-heading">snap5 — Położenie bazowe i współrzędne</h2>
+                        <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-center">
+                            <!-- Lewa strona: Opis -->
+                            <div class="lg:col-span-7 sec-body">
+                                <p><strong>Co podlega konfiguracji:</strong> Centrum ugrupowania roju (szerokość i długość geograficzna), odsunięcie stanowiska operatora na wschód w metrach, przesunięcie północne (0–100 m w trybie GPS) oraz źródło pozycji (współrzędne statyczne lub aktywny moduł GNSS/GPS)[cite: 8].</p>
+                                <p><strong>Wpływ na generator:</strong> Definiuje globalną bazę geograficzną, wokół której algorytm rozmieszcza roje dronów. Pozwala na precyzyjne symulowanie punktu startu nalotu w odniesieniu do realnego terenu operacyjnego z dokładnością do pełnych koordynatów z Google Maps[cite: 8].</p>
+                            </div>
+                            <!-- Prawa strona: Grafika z ramką ozdobną -->
+                            <div class="lg:col-span-5 flex justify-center">
+                                <div class="sim-thumb-card-framed" onclick="openLightbox('images/snap5.jpg', 'snap5 — Położenie bazowe i współrzędne')">
+                                    <div class="metal-corner corner-tl" style="width:20px;height:20px;"></div>
+                                    <div class="metal-corner corner-tr" style="width:20px;height:20px;"></div>
+                                    <div class="metal-corner corner-bl" style="width:20px;height:20px;"></div>
+                                    <div class="metal-corner corner-br" style="width:20px;height:20px;"></div>
+                                    <div class="sim-thumb-inner">
+                                        <img src="images/snap5.jpg" alt="snap5.jpg" onerror="this.onerror=null; this.src='https://placehold.co/600x450/111827/f59e0b?text=snap5.jpg';">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- ========================================================== -->
+                    <!-- SNAP 6: WYSOKOŚĆ -->
+                    <!-- ========================================================== -->
+                    <div class="config-item">
+                        <h2 class="sec-heading">snap6 — Wysokość przelotowa i wahania</h2>
+                        <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-center">
+                            <!-- Lewa strona: Opis -->
+                            <div class="lg:col-span-7 sec-body">
+                                <p><strong>Co podlega konfiguracji:</strong> Wysokość przelotowa roju (w metrach AGL, max 2000 m), wysokość operatora (domyślnie 5 m, max 10 m), wahania wysokości roju (±% max 25%) oraz wahania rozstawu (±% max 25%)[cite: 8].</p>
+                                <p><strong>Wpływ na generator:</strong> Ustala pułap operacyjny formacji nad tłem terenu. Wprowadzenie wahaniowych zakłóceń procentowych sprawia, że pozycje celów w roju nie są statyczne, lecz dynamicznie falują, co uwiarygadnia symulację w systemach rozpoznania i uniemożliwia algorytmom C-UAS łatwe odfiltrowanie sztucznego wzorca[cite: 8].</p>
+                            </div>
+                            <!-- Prawa strona: Grafika z ramką ozdobną -->
+                            <div class="lg:col-span-5 flex justify-center">
+                                <div class="sim-thumb-card-framed" onclick="openLightbox('images/snap6.jpg', 'snap6 — Wysokość przelotowa i wahania')">
+                                    <div class="metal-corner corner-tl" style="width:20px;height:20px;"></div>
+                                    <div class="metal-corner corner-tr" style="width:20px;height:20px;"></div>
+                                    <div class="metal-corner corner-bl" style="width:20px;height:20px;"></div>
+                                    <div class="metal-corner corner-br" style="width:20px;height:20px;"></div>
+                                    <div class="sim-thumb-inner">
+                                        <img src="images/snap6.jpg" alt="snap6.jpg" onerror="this.onerror=null; this.src='https://placehold.co/600x450/111827/f59e0b?text=snap6.jpg';">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- ========================================================== -->
+                    <!-- SNAP 7: GEOMETRIA -->
+                    <!-- ========================================================== -->
+                    <div class="config-item">
+                        <h2 class="sec-heading">snap7 — Geometria szyku i liczebność roju</h2>
+                        <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-center">
+                            <!-- Lewa strona: Opis -->
+                            <div class="lg:col-span-7 sec-body">
+                                <p><strong>Co podlega konfiguracji:</strong> Liczba dronów w roju (1–400 szt.), rozstaw między celami w metrach (max 500 m), kształt formacji (kwadrat, okrąg, chmura, szyk V, random, hex, spiral), kierunek obrotu formacji (0–360°) oraz pole powierzchni (zacienione, wyliczane automatycznie)[cite: 8].</p>
+                                <p><strong>Wpływ na generator:</strong> Określa gęstość ugrupowania i zajmowaną przestrzeń powietrzną w kilometrach kwadratowych. Zmiana geometrii drastycznie wpływa na strukturę rozgłaszanych pakietów Remote ID oraz obciążenie czasowe cyklu obliczeniowego procesora[cite: 8].</p>
+                            </div>
+                            <!-- Prawa strona: Grafika z ramką ozdobną -->
+                            <div class="lg:col-span-5 flex justify-center">
+                                <div class="sim-thumb-card-framed" onclick="openLightbox('images/snap7.jpg', 'snap7 — Geometria szyku i liczebność roju')">
+                                    <div class="metal-corner corner-tl" style="width:20px;height:20px;"></div>
+                                    <div class="metal-corner corner-tr" style="width:20px;height:20px;"></div>
+                                    <div class="metal-corner corner-bl" style="width:20px;height:20px;"></div>
+                                    <div class="metal-corner corner-br" style="width:20px;height:20px;"></div>
+                                    <div class="sim-thumb-inner">
+                                        <img src="images/snap7.jpg" alt="snap7.jpg" onerror="this.onerror=null; this.src='https://placehold.co/600x450/111827/f59e0b?text=snap7.jpg';">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- ========================================================== -->
+                    <!-- SNAP 8: TOŻSAMOŚĆ -->
+                    <!-- ========================================================== -->
+                    <div class="config-item">
+                        <h2 class="sec-heading">snap8 — Tożsamość OpenDroneID i klasyfikacja EU</h2>
+                        <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-center">
+                            <!-- Lewa strona: Opis -->
+                            <div class="lg:col-span-7 sec-body">
+                                <p><strong>Co podlega konfiguracji:</strong> UASID formacji (max 15 znaków), ID operatora, prefiks MAC Wi-Fi, typ drona (multirotor, samolot, helikopter itp.), kategoria OpenDroneID EU (Specific, Open, Certified) oraz klasa EU (domyślnie C6 BVLOS)[cite: 8].</p>
+                                <p><strong>Wpływ na generator:</strong> Wprowadza zgodność cyfrową z międzynarodowymi standardami OpenDroneID. Określa, jak urządzenie jest identyfikowane przez skanery cywilne i wojskowe oraz w jakiej klasie operacyjnej symulowany jest nalot[cite: 8].</p>
+                            </div>
+                            <!-- Prawa strona: Grafika z ramką ozdobną -->
+                            <div class="lg:col-span-5 flex justify-center">
+                                <div class="sim-thumb-card-framed" onclick="openLightbox('images/snap8.jpg', 'snap8 — Tożsamość OpenDroneID i klasyfikacja EU')">
+                                    <div class="metal-corner corner-tl" style="width:20px;height:20px;"></div>
+                                    <div class="metal-corner corner-tr" style="width:20px;height:20px;"></div>
+                                    <div class="metal-corner corner-bl" style="width:20px;height:20px;"></div>
+                                    <div class="metal-corner corner-br" style="width:20px;height:20px;"></div>
+                                    <div class="sim-thumb-inner">
+                                        <img src="images/snap8.jpg" alt="snap8.jpg" onerror="this.onerror=null; this.src='https://placehold.co/600x450/111827/f59e0b?text=snap8.jpg';">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- ========================================================== -->
+                    <!-- SNAP 9: RADIO -->
+                    <!-- ========================================================== -->
+                    <div class="config-item">
+                        <h2 class="sec-heading">snap9 — Radio i parametry transmisji TX</h2>
+                        <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-center">
+                            <!-- Lewa strona: Opis -->
+                            <div class="lg:col-span-7 sec-body">
+                                <p><strong>Co podlega konfiguracji:</strong> Kanał Wi-Fi w zoptymalizowanym pasmie 2.4 GHz (kanały 1, 6, 11), moc nadawcza TX w dBm zgodnie z możliwościami sprzętowymi (21, 20, 18.5, 17, 15, 13, 11, 8, 5, 2 dBm), interwały min/max (50–500 ms) oraz tryb symulacji awarii[cite: 8].</p>
+                                <p><strong>Wpływ na generator:</strong> Steruje fizyczną warstwą radiową. Interwał 50–80 ms zapewnia szybkie wykrycie, natomiast 150–250 ms zapobiega kolizjom pakietów w eterze przy dużym roju 400 celów. Regulacja mocy pozwala dostosować zasięg emisyjny[cite: 8].</p>
+                            </div>
+                            <!-- Prawa strona: Grafika z ramką ozdobną -->
+                            <div class="lg:col-span-5 flex justify-center">
+                                <div class="sim-thumb-card-framed" onclick="openLightbox('images/snap9.jpg', 'snap9 — Radio i parametry transmisji TX')">
+                                    <div class="metal-corner corner-tl" style="width:20px;height:20px;"></div>
+                                    <div class="metal-corner corner-tr" style="width:20px;height:20px;"></div>
+                                    <div class="metal-corner corner-bl" style="width:20px;height:20px;"></div>
+                                    <div class="metal-corner corner-br" style="width:20px;height:20px;"></div>
+                                    <div class="sim-thumb-inner">
+                                        <img src="images/snap9.jpg" alt="snap9.jpg" onerror="this.onerror=null; this.src='https://placehold.co/600x450/111827/f59e0b?text=snap9.jpg';">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- ========================================================== -->
+                    <!-- SNAP 10: TERMINAL -->
+                    <!-- ========================================================== -->
+                    <div class="config-item">
+                        <h2 class="sec-heading">snap10 — Terminal transmisji szeregowej</h2>
+                        <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-center">
+                            <!-- Lewa strona: Opis -->
+                            <div class="lg:col-span-7 sec-body">
+                                <p><strong>Co podlega konfiguracji:</strong> Podgląd strumienia logów TX/RX oraz funkcja czyszczenia bufora komunikacji z mikrokontrolerem[cite: 8].</p>
+                                <p><strong>Wpływ na generator:</strong> Umożliwia diagnostykę w czasie rzeczywistym, weryfikację poprawności przesyłanych komend protokołu szeregowego oraz natychmiastowe wychwycenie ewentualnych błędów transmisji[cite: 8].</p>
+                            </div>
+                            <!-- Prawa strona: Grafika z ramką ozdobną -->
+                            <div class="lg:col-span-5 flex justify-center">
+                                <div class="sim-thumb-card-framed" onclick="openLightbox('images/snap10.jpg', 'snap10 — Terminal transmisji szeregowej')">
+                                    <div class="metal-corner corner-tl" style="width:20px;height:20px;"></div>
+                                    <div class="metal-corner corner-tr" style="width:20px;height:20px;"></div>
+                                    <div class="metal-corner corner-bl" style="width:20px;height:20px;"></div>
+                                    <div class="metal-corner corner-br" style="width:20px;height:20px;"></div>
+                                    <div class="sim-thumb-inner">
+                                        <img src="images/snap10.jpg" alt="snap10.jpg" onerror="this.onerror=null; this.src='https://placehold.co/600x450/111827/f59e0b?text=snap10.jpg';">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- ========================================================== -->
+                    <!-- SNAP 11: STATUS -->
+                    <!-- ========================================================== -->
+                    <div class="config-item">
+                        <h2 class="sec-heading">snap11 — Status modułu i telemetria administratora</h2>
+                        <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-center">
+                            <!-- Lewa strona: Opis -->
+                            <div class="lg:col-span-7 sec-body">
+                                <p><strong>Co podlega konfiguracji:</strong> Panel podglądu statystyk nadawania: przepływność pakietowa (PPS), licznik ramek wysanych (TX OK) i odrzuconych (TX ERR), czas pełnego cyklu roju, wolna pamięć operacyjna (RAM) oraz status fixu satelitarnego GPS[cite: 8].</p>
+                                <p><strong>Wpływ na generator:</strong> Dostarcza kluczowych informacji diagnostycznych o obciążeniu systemu i efektywności emisji radiowej w warunkach polowych[cite: 8].</p>
+                            </div>
+                            <!-- Prawa strona: Grafika z ramką ozdobną -->
+                            <div class="lg:col-span-5 flex justify-center">
+                                <div class="sim-thumb-card-framed" onclick="openLightbox('images/snap11.jpg', 'snap11 — Status modułu i telemetria administratora')">
+                                    <div class="metal-corner corner-tl" style="width:20px;height:20px;"></div>
+                                    <div class="metal-corner corner-tr" style="width:20px;height:20px;"></div>
+                                    <div class="metal-corner corner-bl" style="width:20px;height:20px;"></div>
+                                    <div class="metal-corner corner-br" style="width:20px;height:20px;"></div>
+                                    <div class="sim-thumb-inner">
+                                        <img src="images/snap11.jpg" alt="snap11.jpg" onerror="this.onerror=null; this.src='https://placehold.co/600x450/111827/f59e0b?text=snap11.jpg';">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- ========================================================== -->
+                    <!-- SNAP 12: PORT -->
+                    <!-- ========================================================== -->
+                    <div class="config-item">
+                        <h2 class="sec-heading">snap12 — Skanowanie portów szeregowych COM</h2>
+                        <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-center">
+                            <!-- Lewa strona: Opis -->
+                            <div class="lg:col-span-7 sec-body">
+                                <p><strong>Co podlega konfiguracji:</strong> Wybór aktywnego portu COM oraz inicjalizacja prędkości 115200 bps dla połączenia szeregowego z mikrokontrolerem[cite: 8].</p>
+                                <p><strong>Wpływ na generator:</strong> Umożliwia stabilne nawiązanie i utrzymanie dwukierunkowej sesji komunikacyjnej między aplikacją PC a modułem nadawczym[cite: 8].</p>
+                            </div>
+                            <!-- Prawa strona: Grafika z ramką ozdobną -->
+                            <div class="lg:col-span-5 flex justify-center">
+                                <div class="sim-thumb-card-framed" onclick="openLightbox('images/snap12.jpg', 'snap12 — Skanowanie portów szeregowych COM')">
+                                    <div class="metal-corner corner-tl" style="width:20px;height:20px;"></div>
+                                    <div class="metal-corner corner-tr" style="width:20px;height:20px;"></div>
+                                    <div class="metal-corner corner-bl" style="width:20px;height:20px;"></div>
+                                    <div class="metal-corner corner-br" style="width:20px;height:20px;"></div>
+                                    <div class="sim-thumb-inner">
+                                        <img src="images/snap12.jpg" alt="snap12.jpg" onerror="this.onerror=null; this.src='https://placehold.co/600x450/111827/f59e0b?text=snap12.jpg';">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
                 </div>
             </div>
         </section>
+
     </main>
 
+    <!-- STOPKA -->
     <footer class="w-full text-center py-6 mt-8 border-t border-zinc-800 text-xs text-zinc-500 font-mono tracking-widest">
         MaxGyver 2024 CE EU • RemoteID zgodny z: REG 2019/945 | ASTM F3411-22a | ASD-STAN prEN 4709-002 • all rights reserved
     </footer>
+
+    <!-- === LIGHTBOX === -->
+    <div class="lightbox-overlay" id="lightbox" onclick="if(event.target===this)closeLightbox()">
+        <div class="lightbox-frame">
+            <div class="metal-corner corner-tl"></div>
+            <div class="metal-corner corner-tr"></div>
+            <div class="metal-corner corner-bl"></div>
+            <div class="metal-corner corner-br"></div>
+            <div class="metal-bar-h bar-top"></div>
+            <div class="metal-bar-h bar-bottom"></div>
+            <div class="metal-bar-v bar-left"></div>
+            <div class="metal-bar-v bar-right"></div>
+            <button class="lightbox-close" onclick="closeLightbox()" aria-label="Zamknij">&times;</button>
+            <div class="lightbox-img-wrapper">
+                <img id="lightbox-img" src="" alt="">
+            </div>
+            <div class="lightbox-caption" id="lightbox-caption"></div>
+        </div>
+    </div>
+
+    <script>
+        function openLightbox(src, caption) {
+            var lb = document.getElementById('lightbox');
+            document.getElementById('lightbox-img').src = src;
+            document.getElementById('lightbox-img').alt = caption || '';
+            document.getElementById('lightbox-caption').textContent = caption || '';
+            lb.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+        function closeLightbox() {
+            document.getElementById('lightbox').classList.remove('active');
+            document.body.style.overflow = '';
+        }
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') closeLightbox();
+        });
+    </script>
+
 </body>
 </html>
